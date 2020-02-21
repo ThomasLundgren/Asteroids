@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="912592ae-0182-4155-a100-0b05ae75298b" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeInsightWorkspaceSettings">
+    <option name="optimizeImportsOnTheFly" value="true" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Enum" />
+        <option value="Class" />
+        <option value="Interface" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectId" id="1Xzd5fFfNZNIipZxnwncje0yvGT" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="extract.method.default.visibility" value="private" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.Java" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\thoma\Documents\Dev\Projects\Asteroids\src" />
+    </key>
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="se.hig.thlu.asteroids.controller" />
+      <recent name="se.hig.thlu.asteroids.factory" />
+      <recent name="se.hig.thlu.asteroids.model" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="AsteroidsApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="se.hig.thlu.asteroids.app.AsteroidsApp" />
+      <module name="Asteroids" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="se.hig.thlu.asteroids.app.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.AsteroidsApp" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="912592ae-0182-4155-a100-0b05ae75298b" name="Default Changelist" comment="" />
+      <created>1582052674129</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1582052674129</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="228" y="42" key="#Inspections" timestamp="1582271460034">
+      <screen x="0" y="0" width="1273" height="768" />
+    </state>
+    <state x="228" y="42" key="#Inspections/0.0.1273.768@0.0.1273.768" timestamp="1582271460034" />
+    <state x="228" y="0" width="816" height="768" key="#Intentions" timestamp="1582271447648">
+      <screen x="0" y="0" width="1273" height="768" />
+    </state>
+    <state x="228" y="0" width="816" height="768" key="#Intentions/0.0.1273.768@0.0.1273.768" timestamp="1582271447648" />
+    <state x="406" y="85" key="#com.intellij.ide.util.MemberChooser" timestamp="1582271730485">
+      <screen x="0" y="0" width="1273" height="768" />
+    </state>
+    <state x="406" y="85" key="#com.intellij.ide.util.MemberChooser/0.0.1273.768@0.0.1273.768" timestamp="1582271730484" />
+    <state x="340" y="67" key="#com.intellij.refactoring.encapsulateFields.EncalpsulateFieldsDialog" timestamp="1582054948532">
+      <screen x="0" y="0" width="1273" height="768" />
+    </state>
+    <state x="340" y="67" key="#com.intellij.refactoring.encapsulateFields.EncalpsulateFieldsDialog/0.0.1273.768@0.0.1273.768" timestamp="1582054948532" />
+    <state x="366" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1582269520592">
+      <screen x="0" y="0" width="1273" height="768" />
+    </state>
+    <state x="366" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1273.768@0.0.1273.768" timestamp="1582269520592" />
+    <state x="478" y="294" key="#com.intellij.refactoring.replaceConstructorWithFactory.ReplaceConstructorWithFactoryDialog" timestamp="1582204388436">
+      <screen x="0" y="0" width="1273" height="768" />
+    </state>
+    <state x="478" y="294" key="#com.intellij.refactoring.replaceConstructorWithFactory.ReplaceConstructorWithFactoryDialog/0.0.1273.768@0.0.1273.768" timestamp="1582204388436" />
+    <state x="366" y="131" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1582271978051">
+      <screen x="0" y="0" width="1273" height="768" />
+    </state>
+    <state x="366" y="131" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1273.768@0.0.1273.768" timestamp="1582271978051" />
+    <state x="416" y="138" key="FileChooserDialogImpl" timestamp="1582052858112">
+      <screen x="0" y="0" width="1273" height="768" />
+    </state>
+    <state x="416" y="138" key="FileChooserDialogImpl/0.0.1273.768@0.0.1273.768" timestamp="1582052858112" />
+    <state width="1229" height="192" key="GridCell.Tab.0.bottom" timestamp="1582267509576">
+      <screen x="0" y="0" width="1273" height="768" />
+    </state>
+    <state width="1229" height="192" key="GridCell.Tab.0.bottom/0.0.1273.768@0.0.1273.768" timestamp="1582267509576" />
+    <state width="1229" height="192" key="GridCell.Tab.0.center" timestamp="1582267509575">
+      <screen x="0" y="0" width="1273" height="768" />
+    </state>
+    <state width="1229" height="192" key="GridCell.Tab.0.center/0.0.1273.768@0.0.1273.768" timestamp="1582267509575" />
+    <state width="1229" height="192" key="GridCell.Tab.0.left" timestamp="1582267509575">
+      <screen x="0" y="0" width="1273" height="768" />
+    </state>
+    <state width="1229" height="192" key="GridCell.Tab.0.left/0.0.1273.768@0.0.1273.768" timestamp="1582267509575" />
+    <state width="1229" height="192" key="GridCell.Tab.0.right" timestamp="1582267509575">
+      <screen x="0" y="0" width="1273" height="768" />
+    </state>
+    <state width="1229" height="192" key="GridCell.Tab.0.right/0.0.1273.768@0.0.1273.768" timestamp="1582267509575" />
+    <state x="451" y="318" key="ReplaceDuplicatesPrompt" timestamp="1582200742168">
+      <screen x="0" y="0" width="1273" height="768" />
+    </state>
+    <state x="451" y="318" key="ReplaceDuplicatesPrompt/0.0.1273.768@0.0.1273.768" timestamp="1582200742168" />
+    <state x="137" y="26" key="SettingsEditor" timestamp="1582271471997">
+      <screen x="0" y="0" width="1273" height="768" />
+    </state>
+    <state x="137" y="26" key="SettingsEditor/0.0.1273.768@0.0.1273.768" timestamp="1582271471997" />
+    <state x="333" y="208" key="com.intellij.ide.util.TipDialog" timestamp="1582096522595">
+      <screen x="0" y="0" width="1273" height="768" />
+    </state>
+    <state x="333" y="208" key="com.intellij.ide.util.TipDialog/0.0.1273.768@0.0.1273.768" timestamp="1582096522595" />
+    <state x="366" y="139" width="540" height="496" key="extract.method.dialog" timestamp="1582209215174">
+      <screen x="0" y="0" width="1273" height="768" />
+    </state>
+    <state x="366" y="139" width="540" height="496" key="extract.method.dialog/0.0.1273.768@0.0.1273.768" timestamp="1582209215174" />
+    <state x="293" y="172" key="run.anything.popup" timestamp="1582238342069">
+      <screen x="0" y="0" width="1273" height="768" />
+    </state>
+    <state x="293" y="172" key="run.anything.popup/0.0.1273.768@0.0.1273.768" timestamp="1582238342069" />
+    <state x="228" y="42" key="scopes" timestamp="1582209063947">
+      <screen x="0" y="0" width="1273" height="768" />
+    </state>
+    <state x="228" y="42" key="scopes/0.0.1273.768@0.0.1273.768" timestamp="1582209063947" />
+    <state x="299" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1582271415507">
+      <screen x="0" y="0" width="1273" height="768" />
+    </state>
+    <state x="299" y="89" width="672" height="678" key="search.everywhere.popup/0.0.1273.768@0.0.1273.768" timestamp="1582271415507" />
+  </component>
+</project>
