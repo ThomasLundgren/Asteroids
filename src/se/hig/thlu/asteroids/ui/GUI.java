@@ -1,16 +1,20 @@
 package se.hig.thlu.asteroids.ui;
 
+import se.hig.thlu.asteroids.graphics.polygon.*;
+
 import javax.imageio.*;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.*;
 import java.io.*;
 import java.net.*;
+import java.util.List;
 
 public class GUI implements UI {
 
 	private final JFrame frame;
-	private JPanel bg;
-	private JPanel backgroundPanel;
+	private TranslucentPane bg;
+	private BackgroundPanel backgroundPanel;
 
 	public GUI() {
 		frame = new JFrame();
@@ -20,13 +24,12 @@ public class GUI implements UI {
 			if (url != null) {
 				img = ImageIO.read(url);
 				backgroundPanel = new BackgroundPanel(img);
-				bg = new TranslucentPane(backgroundPanel.getWidth(), backgroundPanel.getHeight());
-				backgroundPanel.add(bg);
+//				bg = new TranslucentPane(backgroundPanel.getWidth(), backgroundPanel.getHeight(), 0.6f);
+//				backgroundPanel.add(bg);
 			}
 		} catch (IOException e) {
 			System.out.println("File not found");
-			backgroundPanel = new JPanel();
-			bg = new JPanel();
+			bg = new TranslucentPane();
 		}
 		frame.setSize(new Dimension(900, 900));
 		frame.add(backgroundPanel);
@@ -37,7 +40,12 @@ public class GUI implements UI {
 	}
 
 	@Override
-	public void render() {
-		// TODO
+	public void render(List<IPolygon> entities) {
+//		bg.setEntities(entities);
+		backgroundPanel.setEntities(entities);
+	}
+
+	public void addKeyListener(KeyListener listener) {
+		frame.addKeyListener(listener);
 	}
 }

@@ -46,9 +46,9 @@ public final class Missile extends Entity {
     private static double getMissileSpeed(MissileSource missileSource) {
         switch (missileSource) {
             case ENEMY:
-                return GameConfig.ENEMY_MISSILE_DEFAULT_SPEED;
+                return GameConfig.ENEMY_MISSILE_UPDATE_MS;
             case PLAYER:
-                return GameConfig.PLAYER_MISSILE_DEFAULT_SPEED;
+                return GameConfig.PLAYER_SHOOTING_DELAY_MS;
             default:
                 throw new IllegalArgumentException("Enum type not supported");
         }

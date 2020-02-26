@@ -19,39 +19,26 @@ public class GameLoop {
         int fps = 0;
 
         while (isRunning) {
-            // work out how long its been since the last update, this
-            // will be used to calculate how far the entities should
-            // move this loop
             long now = System.nanoTime();
             long updateLength = now - lastLoopTime;
             lastLoopTime = now;
             double delta = updateLength / ((double) OPTIMAL_TIME);
 
-            // update the frame counter
-            lastFpsTime += updateLength;
-            fps++;
-
-            // update our FPS counter if a second has passed since
-            // we last recorded
-            if (lastFpsTime >= BILLION) {
-                System.out.println("(FPS: " + fps + ")");
-                lastFpsTime = 0L;
-                fps = 0;
-            }
-
-            // update the game logic
+//            lastFpsTime += updateLength;
+//            fps++;
+//
+//            if (lastFpsTime >= BILLION) {
+//                System.out.println("(FPS: " + fps + ")");
+//                lastFpsTime = 0L;
+//                fps = 0;
+//            }
             State.getState().update(delta);
 
-            // draw everyting
-//            ui.render();
-
-            // we want each frame to take 10 milliseconds, to do this
-            // we've recorded when we started the frame. We add 10 milliseconds
-            // to this and then factor in the current time to give
-            // us our final value to wait for
-            // remember this is in ms, whereas our lastLoopTime etc. vars are in ns.
             try {
-                Thread.sleep((lastLoopTime - System.nanoTime() + OPTIMAL_TIME) / MILLION);
+                long millis = (lastLoopTime - System.nanoTime() + OPTIMAL_TIME) / MILLION;
+                if (millis > 0L) {
+                    Thread.sleep(millis);
+                }
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

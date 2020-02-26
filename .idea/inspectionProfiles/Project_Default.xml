@@ -85,7 +85,7 @@
     <inspection_tool class="BusyWait" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="CallToNativeMethodWhileLocked" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="CallToSimpleGetterInClass" enabled="true" level="WARNING" enabled_by_default="true">
-      <option name="ignoreGetterCallsOnOtherObjects" value="false" />
+      <option name="ignoreGetterCallsOnOtherObjects" value="true" />
       <option name="onlyReportPrivateGetter" value="false" />
     </inspection_tool>
     <inspection_tool class="CallToSimpleSetterInClass" enabled="true" level="WARNING" enabled_by_default="true">
@@ -404,6 +404,7 @@
     <inspection_tool class="NestedConditionalExpression" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="NestedMethodCall" enabled="true" level="WARNING" enabled_by_default="true">
       <option name="m_ignoreFieldInitializations" value="true" />
+      <option name="ignoreGetterCalls" value="true" />
     </inspection_tool>
     <inspection_tool class="NestedSwitchStatement" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="NestedSynchronizedStatement" enabled="true" level="WARNING" enabled_by_default="true" />

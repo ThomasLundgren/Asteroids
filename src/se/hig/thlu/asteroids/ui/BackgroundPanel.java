@@ -1,7 +1,11 @@
 package se.hig.thlu.asteroids.ui;
 
+import se.hig.thlu.asteroids.graphics.polygon.*;
+
 import javax.swing.*;
 import java.awt.*;
+import java.util.List;
+import java.util.*;
 
 /*
  *  Support custom painting on a panel in the form of
@@ -20,6 +24,7 @@ public class BackgroundPanel extends JPanel {
 	private double alignmentX = 0.5;
 	private double alignmentY = 0.5;
 	private boolean isTransparentAdd = true;
+	private List<IPolygon> entities = new ArrayList();
 
 	/*
 	 *  Set image as the background with the specified style
@@ -45,6 +50,11 @@ public class BackgroundPanel extends JPanel {
 	public BackgroundPanel(Paint painter) {
 		setPaint(painter);
 		setLayout(new BorderLayout());
+	}
+
+	public void setEntities(List<IPolygon> entities) {
+		this.entities = entities;
+		repaint();
 	}
 
 	/*
@@ -83,7 +93,7 @@ public class BackgroundPanel extends JPanel {
 	 *  Override method so we can make the component transparent
 	 */
 	public void add(JComponent component) {
-		add(component);
+		super.add(component);
 //		add(component, null);
 	}
 
@@ -141,6 +151,7 @@ public class BackgroundPanel extends JPanel {
 			Graphics2D g2 = (Graphics2D) g;
 			g2.setPaint(painter);
 			g2.fill(new Rectangle(0, 0, d.width, d.height));
+
 		}
 
 		if (image == null) return;
@@ -154,5 +165,13 @@ public class BackgroundPanel extends JPanel {
 	private void drawScaled(Graphics g) {
 		Dimension d = getSize();
 		g.drawImage(image, 0, 0, d.width, d.height, null);
+
+		Graphics2D g2 = (Graphics2D) g;
+		g2.setColor(Color.WHITE);
+		g2.drawOval(0, 0, 500, 500);
+		entities.forEach(e -> {
+			e.draw(g2);
+		});
 	}
+
 }

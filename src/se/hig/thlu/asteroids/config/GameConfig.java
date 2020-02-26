@@ -25,10 +25,11 @@ public enum GameConfig {
 	 * Minimum time between {@link Asteroid} spawns.
 	 */
 	public static final int MINIMUM_SPAWN_INTERVAL = 2;
-	public static final double PLAYER_MAX_SPEED = 30.0;
-	public static final double ENEMY_SHIP_SPEED = 15.0;
-	public static final double ENEMY_MISSILE_DEFAULT_SPEED = 60.0;
-	public static final double PLAYER_MISSILE_DEFAULT_SPEED = 60.0;
+	public static final double PLAYER_SHIP_UPDATE_MS = 5.0;
+	public static final double ENEMY_SHIP_UPDATE_MS = 5.0;
+	public static final double ENEMY_MISSILE_UPDATE_MS = 2.0;
+	public static final double PLAYER_MISSILE_UPDATE_MS = 2.0;
+	public static final double PLAYER_SHOOTING_DELAY_MS = 12.0;
 
 
 }

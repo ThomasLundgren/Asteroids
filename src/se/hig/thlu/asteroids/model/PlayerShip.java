@@ -67,7 +67,7 @@ public final class PlayerShip extends Entity implements Shooter {
     }
 
     private static double lessThanTopSpeed(double speed) {
-        if (speed > GameConfig.PLAYER_MAX_SPEED) {
+        if (speed > GameConfig.PLAYER_SHIP_UPDATE_MS) {
             throw new IllegalArgumentException("PlayerShip cannot exceed GameConfig.PLAYER_MAX_SPEED");
         }
         return speed;
