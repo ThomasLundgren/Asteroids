@@ -1,6 +1,6 @@
 package se.hig.thlu.asteroids.ui;
 
-import se.hig.thlu.asteroids.graphics.polygon.*;
+import se.hig.thlu.asteroids.graphics.model.*;
 
 import javax.imageio.*;
 import javax.swing.*;
@@ -40,7 +40,7 @@ public class GUI implements UI {
 	}
 
 	@Override
-	public void render(List<IPolygon> entities) {
+	public void render(List<GraphicModel> entities) {
 //		bg.setEntities(entities);
 		backgroundPanel.setEntities(entities);
 	}

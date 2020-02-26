@@ -1,6 +1,6 @@
 package se.hig.thlu.asteroids.ui;
 
-import se.hig.thlu.asteroids.graphics.polygon.*;
+import se.hig.thlu.asteroids.graphics.model.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,7 +11,7 @@ public class TranslucentPane extends JPanel {
 
 	private int width, height;
 	private float alpha;
-	private List<IPolygon> entities = new ArrayList();
+	private List<GraphicModel> entities = new ArrayList();
 
 	public TranslucentPane() {}
 
@@ -41,7 +41,7 @@ public class TranslucentPane extends JPanel {
 		g2d.dispose();
 	}
 
-	public void setEntities(List<IPolygon> entities) {
+	public void setEntities(List<GraphicModel> entities) {
 		this.entities = entities;
 		repaint();
 	}

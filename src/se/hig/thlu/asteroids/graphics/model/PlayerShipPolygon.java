@@ -1,4 +1,4 @@
-package se.hig.thlu.asteroids.graphics.polygon;
+package se.hig.thlu.asteroids.graphics.model;
 
 import se.hig.thlu.asteroids.graphics.primitives.*;
 import se.hig.thlu.asteroids.model.Point;
@@ -7,7 +7,7 @@ import java.awt.*;
 import java.util.List;
 import java.util.*;
 
-public class PlayerShipPolygon implements IPolygon {
+public class PlayerShipPolygon implements GraphicModel {
 
 	private final List<Line> lines = new ArrayList<>(7);
 	private static final double SHIP_LENGTH = 50.0;

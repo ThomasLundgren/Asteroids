@@ -1,4 +1,4 @@
-package se.hig.thlu.asteroids.graphics.polygon;
+package se.hig.thlu.asteroids.graphics.model;
 
 import se.hig.thlu.asteroids.ui.*;
 
@@ -7,11 +7,11 @@ import java.awt.*;
 import java.io.*;
 import java.net.*;
 
-public class PlayerShipImage implements IPolygon {
+public class PlayerShipGModel implements GraphicModel {
 
 	private Image img;
 
-	public PlayerShipImage() {
+	public PlayerShipGModel() {
 		URL url = GUI.class.getClassLoader().getResource("resources/images/Spaceship_01_BLUE_v3png.png");
 		if (url != null) {
 			try {

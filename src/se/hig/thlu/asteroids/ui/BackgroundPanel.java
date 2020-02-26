@@ -1,6 +1,6 @@
 package se.hig.thlu.asteroids.ui;
 
-import se.hig.thlu.asteroids.graphics.polygon.*;
+import se.hig.thlu.asteroids.graphics.model.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -24,7 +24,7 @@ public class BackgroundPanel extends JPanel {
 	private double alignmentX = 0.5;
 	private double alignmentY = 0.5;
 	private boolean isTransparentAdd = true;
-	private List<IPolygon> entities = new ArrayList();
+	private List<GraphicModel> entities = new ArrayList();
 
 	/*
 	 *  Set image as the background with the specified style
@@ -52,7 +52,7 @@ public class BackgroundPanel extends JPanel {
 		setLayout(new BorderLayout());
 	}
 
-	public void setEntities(List<IPolygon> entities) {
+	public void setEntities(List<GraphicModel> entities) {
 		this.entities = entities;
 		repaint();
 	}
