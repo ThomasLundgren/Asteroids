@@ -7,6 +7,11 @@ public final class PlayerShip extends Entity implements Shooter {
 
     private final int lives;
 
+    public PlayerShip() {
+        super(new Point(0.0, 0.0), new Velocity(0.0, 0.0));
+        lives = 3;
+    }
+
     private PlayerShip(Point position, Velocity velocity, int lives) {
         super(position, velocity);
         lessThanTopSpeed(velocity.getSpeed());
@@ -29,16 +34,18 @@ public final class PlayerShip extends Entity implements Shooter {
     }
 
     public PlayerShip accelerate() {
-        double speed = getVelocity().getSpeed() + 1.0;
-        double direction = getVelocity().getDirection();
-        Velocity velocity = new Velocity(speed, direction);
-        return (PlayerShip) withVelocityImpl(velocity);
+        System.out.println("Accelerate called");
+        double newSpeed = velocity.getSpeed() + 1.0;
+        double newDirection = velocity.getDirection();
+        Velocity v = velocity.composeWith(new Velocity(newSpeed, newDirection));
+        System.out.println(v);
+        return (PlayerShip) withVelocityImpl(v);
     }
 
     public PlayerShip decelerate() {
         double speed = getVelocity().getSpeed() - 1.0;
         double direction = getVelocity().getDirection();
-        Velocity v = new Velocity(speed, direction);
+        Velocity v = velocity.composeWith(new Velocity(speed, direction));
         return (PlayerShip) withVelocityImpl(v);
     }
 

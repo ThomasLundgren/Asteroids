@@ -1,36 +1,28 @@
 package se.hig.thlu.asteroids.ui;
 
 import se.hig.thlu.asteroids.graphics.model.*;
+import se.hig.thlu.asteroids.model.*;
+import se.hig.thlu.asteroids.storage.*;
 
-import javax.imageio.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.io.*;
-import java.net.*;
+import java.beans.*;
 import java.util.List;
+import java.util.*;
 
 public class GUI implements UI {
 
 	private final JFrame frame;
-	private TranslucentPane bg;
 	private BackgroundPanel backgroundPanel;
 
 	public GUI() {
 		frame = new JFrame();
-		Image img = null;
-		try {
-			URL url = GUI.class.getClassLoader().getResource("resources/images/final/background.png");
-			if (url != null) {
-				img = ImageIO.read(url);
-				backgroundPanel = new BackgroundPanel(img);
-//				bg = new TranslucentPane(backgroundPanel.getWidth(), backgroundPanel.getHeight(), 0.6f);
-//				backgroundPanel.add(bg);
-			}
-		} catch (IOException e) {
-			System.out.println("File not found");
-			bg = new TranslucentPane();
-		}
+		backgroundPanel = new BackgroundPanel(ImageLoader.getBackgroundImg());
+		configureFrame();
+	}
+
+	private void configureFrame() {
 		frame.setSize(new Dimension(900, 900));
 		frame.add(backgroundPanel);
 		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -47,5 +39,15 @@ public class GUI implements UI {
 
 	public void addKeyListener(KeyListener listener) {
 		frame.addKeyListener(listener);
+	}
+
+	@Override
+	public void propertyChange(PropertyChangeEvent evt) {
+		// TODO: Make PLAYER_SHIP a constant
+		if (evt.getPropertyName() == "PLAYER_SHIP") {
+			PlayerShip playerShip = (PlayerShip) evt.getNewValue();
+			PlayerShipGModel model = new PlayerShipGModel(playerShip);
+			backgroundPanel.setEntities(Arrays.asList(model));
+		}
 	}
 }

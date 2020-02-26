@@ -1,5 +1,7 @@
 package se.hig.thlu.asteroids.gamestate;
 
+import se.hig.thlu.asteroids.controller.*;
+
 /**
  * Credit to http://www.java-gaming.org/index.php?topic=24220.0
  * and http://www.cokeandcode.com/info/showsrc/showsrc.php?src=../spaceinvaders102/org/newdawn/spaceinvaders/Game.java
@@ -12,6 +14,11 @@ public class GameLoop {
     public static final long BILLION = 1000000000L;
     public static final long OPTIMAL_TIME = BILLION / (long) TARGET_FPS;
     private boolean isRunning = true;
+    private final PlayerShipController controller;
+
+    public GameLoop(PlayerShipController controller) {
+        this.controller = controller;
+    }
 
     public void gameLoop() {
         long lastLoopTime = System.nanoTime();
@@ -32,7 +39,7 @@ public class GameLoop {
 //                lastFpsTime = 0L;
 //                fps = 0;
 //            }
-            State.getState().update(delta);
+            controller.update(delta);
 
             try {
                 long millis = (lastLoopTime - System.nanoTime() + OPTIMAL_TIME) / MILLION;

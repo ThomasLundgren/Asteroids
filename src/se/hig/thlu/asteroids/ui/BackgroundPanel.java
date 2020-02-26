@@ -166,11 +166,8 @@ public class BackgroundPanel extends JPanel {
 		Dimension d = getSize();
 		g.drawImage(image, 0, 0, d.width, d.height, null);
 
-		Graphics2D g2 = (Graphics2D) g;
-		g2.setColor(Color.WHITE);
-		g2.drawOval(0, 0, 500, 500);
 		entities.forEach(e -> {
-			e.draw(g2);
+			e.draw(g);
 		});
 	}
 

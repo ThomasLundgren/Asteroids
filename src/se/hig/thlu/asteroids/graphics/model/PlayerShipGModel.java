@@ -1,33 +1,28 @@
 package se.hig.thlu.asteroids.graphics.model;
 
-import se.hig.thlu.asteroids.ui.*;
+import se.hig.thlu.asteroids.model.Point;
+import se.hig.thlu.asteroids.model.*;
+import se.hig.thlu.asteroids.storage.*;
 
-import javax.imageio.*;
 import java.awt.*;
-import java.io.*;
-import java.net.*;
 
 public class PlayerShipGModel implements GraphicModel {
 
-	private Image img;
+	private final Image playerShipImage;
+	private final PlayerShip playerShip;
 
-	public PlayerShipGModel() {
-		URL url = GUI.class.getClassLoader().getResource("resources/images/final/player-ship-accel.png");
-		if (url != null) {
-			try {
-				img = ImageIO.read(url);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
+	public PlayerShipGModel(PlayerShip playerShip) {
+		this.playerShipImage = ImageLoader.getPlayerShipImg();
+		this.playerShip = playerShip;
 	}
 
 	@Override
 	public void draw(Graphics g) {
-		if (img != null) {
-			Image tmp = img.getScaledInstance(100, 100,
-					Image.SCALE_SMOOTH);
-			g.drawImage(tmp, 200, 200, null);
-		}
+		Point position = playerShip.getPosition();
+		g.drawImage(
+				playerShipImage,
+				(int) position.getX(),
+				(int) position.getY(),
+				null);
 	}
 }

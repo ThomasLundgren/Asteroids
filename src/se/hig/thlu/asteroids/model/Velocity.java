@@ -5,12 +5,12 @@ public class Velocity {
 	private final double speed;
 	private final double direction;
 
-	public Velocity(double speed, double direction) {
+	Velocity(double speed, double direction) {
 		this.speed = validateSpeed(speed);
 		this.direction = validateDirection(direction);
 	}
 
-	public Velocity composeWith(Velocity velocity) {
+	Velocity composeWith(Velocity velocity) {
 		double x1 = StrictMath.cos(StrictMath.toRadians(direction)) * speed;
 		double y1 = StrictMath.sin(StrictMath.toRadians(direction)) * speed;
 		double x2 = StrictMath.cos(StrictMath.toRadians(velocity.getDirection())) * velocity.getSpeed();
@@ -24,11 +24,11 @@ public class Velocity {
 		return new Velocity(newSpeed, newDir);
 	}
 
-	public double getSpeed() {
+	double getSpeed() {
 		return speed;
 	}
 
-	public double getDirection() {
+	double getDirection() {
 		return direction;
 	}
 
@@ -46,5 +46,13 @@ public class Velocity {
 			throw new IllegalArgumentException("Speed cannot be less than zero");
 		}
 		return speed;
+	}
+
+	@Override
+	public String toString() {
+		return "Velocity{" +
+				"speed=" + speed +
+				", direction=" + direction +
+				'}';
 	}
 }

@@ -52,11 +52,13 @@ public abstract class Entity {
 
     public abstract Entity destroy();
 
-    public Entity updatePosition() {
+    public Entity withUpdatedPosition() {
         double diffX = StrictMath.cos(StrictMath.toRadians(velocity.getDirection())) * velocity.getSpeed();
         double diffY = StrictMath.sin(StrictMath.toRadians(velocity.getDirection())) * velocity.getSpeed();
 
         Point newPos = new Point(position.getX() + diffX, position.getY() + diffY);
+//        System.out.println(newPos);
+        System.out.println("x=" + diffX + ", y=" + diffY);
         return withPosition(newPos);
     }
 }
