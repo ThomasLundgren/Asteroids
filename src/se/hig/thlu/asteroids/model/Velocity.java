@@ -10,16 +10,16 @@ public class Velocity {
 		this.direction = validateDirection(direction);
 	}
 
-	public Velocity computeNew(Velocity velocity) {
-		double x1 = StrictMath.cos(direction) * speed;
-		double y1 = StrictMath.sin(direction) * speed;
-		double x2 = StrictMath.cos(velocity.getDirection()) * velocity.getSpeed();
-		double y2 = StrictMath.sin(velocity.getDirection()) * velocity.getSpeed();
+	public Velocity composeWith(Velocity velocity) {
+		double x1 = StrictMath.cos(StrictMath.toRadians(direction)) * speed;
+		double y1 = StrictMath.sin(StrictMath.toRadians(direction)) * speed;
+		double x2 = StrictMath.cos(StrictMath.toRadians(velocity.getDirection())) * velocity.getSpeed();
+		double y2 = StrictMath.sin(StrictMath.toRadians(velocity.getDirection())) * velocity.getSpeed();
 
 		double xRes = x1 + x2;
 		double yRes = y1 + y2;
 
-		double newDir = StrictMath.acos(xRes);
+		double newDir = StrictMath.acos(StrictMath.toRadians(xRes));
 		double newSpeed = Math.sqrt(xRes*xRes + yRes*yRes);
 		return new Velocity(newSpeed, newDir);
 	}

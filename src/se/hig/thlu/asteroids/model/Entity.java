@@ -6,17 +6,17 @@ public abstract class Entity {
     protected final Velocity velocity;
     protected final boolean isDestroyed;
 
-    protected Entity() {
-        position = new Point(0.0, 0.0);
-        velocity = new Velocity(0.0, 0.0);
-        isDestroyed = false;
-    }
-
-    protected Entity(double speed) {
-        position = new Point(0.0, 0.0);
-        velocity = new Velocity(speed, 0.0);
-        isDestroyed = false;
-    }
+//    protected Entity() {
+//        position = new Point(0.0, 0.0);
+//        velocity = new Velocity(0.0, 0.0);
+//        isDestroyed = false;
+//    }
+//
+//    protected Entity(double speed) {
+//        position = new Point(0.0, 0.0);
+//        velocity = new Velocity(speed, 0.0);
+//        isDestroyed = false;
+//    }
 
     protected Entity(Point position, Velocity velocity) {
         this.velocity = velocity;
@@ -34,13 +34,13 @@ public abstract class Entity {
         return position;
     }
 
-    public abstract Entity withPosition(Point position);
+    protected abstract Entity withPosition(Point position);
 
     public final Velocity getVelocity() {
         return velocity;
     }
 
-    public final Entity withVelocity(Velocity velocity) {
+    protected final Entity withVelocity(Velocity velocity) {
         return withVelocityImpl(velocity);
     }
 
@@ -51,4 +51,12 @@ public abstract class Entity {
     }
 
     public abstract Entity destroy();
+
+    public Entity updatePosition() {
+        double diffX = StrictMath.cos(StrictMath.toRadians(velocity.getDirection())) * velocity.getSpeed();
+        double diffY = StrictMath.sin(StrictMath.toRadians(velocity.getDirection())) * velocity.getSpeed();
+
+        Point newPos = new Point(position.getX() + diffX, position.getY() + diffY);
+        return withPosition(newPos);
+    }
 }

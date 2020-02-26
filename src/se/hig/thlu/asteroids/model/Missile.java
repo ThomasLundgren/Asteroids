@@ -8,10 +8,10 @@ public final class Missile extends Entity {
 
     public enum MissileSource { PLAYER, ENEMY }
 
-    public Missile(MissileSource missileSource) {
-        super(getMissileSpeed(missileSource));
-        this.missileSource = missileSource;
-    }
+//    public Missile(MissileSource missileSource) {
+//        super(getMissileSpeed(missileSource));
+//        this.missileSource = missileSource;
+//    }
 
     public Missile(Point position, double direction, MissileSource source) {
         super(position, new Velocity(getMissileSpeed(source), direction));

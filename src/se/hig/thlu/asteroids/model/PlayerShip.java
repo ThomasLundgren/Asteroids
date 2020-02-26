@@ -7,9 +7,9 @@ public final class PlayerShip extends Entity implements Shooter {
 
     private final int lives;
 
-    public PlayerShip() {
-        lives = GameConfig.MAX_LIVES;
-    }
+//    public PlayerShip() {
+//        lives = GameConfig.MAX_LIVES;
+//    }
 
     private PlayerShip(Point position, Velocity velocity, int lives) {
         super(position, velocity);
@@ -30,6 +30,34 @@ public final class PlayerShip extends Entity implements Shooter {
     private PlayerShip withLives(int lives) {
         int validatedLives = validateLives(lives);
         return new PlayerShip(position, velocity, validatedLives);
+    }
+
+    public PlayerShip accelerate() {
+        double speed = getVelocity().getSpeed() + 1.0;
+        double direction = getVelocity().getDirection();
+        Velocity velocity = new Velocity(speed, direction);
+        return (PlayerShip) withVelocityImpl(velocity);
+    }
+
+    public PlayerShip decelerate() {
+        double speed = getVelocity().getSpeed() - 1.0;
+        double direction = getVelocity().getDirection();
+        Velocity v = new Velocity(speed, direction);
+        return (PlayerShip) withVelocityImpl(v);
+    }
+
+    public PlayerShip turnLeft() {
+        double speed = velocity.getSpeed();
+        double direction = velocity.getDirection() + 1.0;
+        Velocity v = velocity.composeWith(new Velocity(speed, direction));
+        return (PlayerShip) withVelocityImpl(v);
+    }
+
+    public PlayerShip turnRight() {
+        double speed = getVelocity().getSpeed();
+        double direction = getVelocity().getDirection() - 1.0;
+        Velocity v = velocity.composeWith(new Velocity(speed, direction));
+        return (PlayerShip) withVelocityImpl(v);
     }
 
     @Override

@@ -6,9 +6,9 @@ public class Asteroid extends Entity {
 
     public enum AsteroidSize { LARGE, MEDIUM, SMALL }
 
-    public Asteroid() {
-        asteroidSize = AsteroidSize.LARGE;
-    }
+//    public Asteroid() {
+//        asteroidSize = AsteroidSize.LARGE;
+//    }
 
     public Asteroid(Point position, Velocity velocity, AsteroidSize asteroidSize) {
         super(position, velocity);

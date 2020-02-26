@@ -2,10 +2,29 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="912592ae-0182-4155-a100-0b05ae75298b" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/resources/images/SpaceShipSamples/AngelWing_A_150x100.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/images/SpaceShipSamples/Bug_NightmareWoodLouse_80x80.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/images/SpaceShipSamples/Buggy_Black_63x69.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/images/SpaceShipSamples/Cruiser2_42x61.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/images/SpaceShipSamples/Cruiser_57x49.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/images/SpaceShipSamples/Fear_A_Shadow_100x100.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/images/SpaceShipSamples/Flash_10_80x110.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/images/SpaceShipSamples/Flash_A_71x75.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/images/SpaceShipSamples/Magicfly_47x65.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/images/SpaceShipSamples/Scorpion_Evo_112x102.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/images/SpaceShipSamples/Starship_A_96x120.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/images/SpaceShipSamples/TinyCruiser_Ice_64x64.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/images/SpaceShipSamples/Turret_45x60.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/images/SpaceShipSamples/UFO_PlasmaShield_Pink_69x69.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/images/SpaceShipSamples/Z8FreedomFighter_Blade_110x110.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/images/ThankYou!.rtf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/images/asteroid-large.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/images/asteroid-medium-1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/images/asteroids-arcade.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/images/player-ship-accel.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/factory/EntityFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/factory/EntityFactory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/model/Asteroid.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/model/Asteroid.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/model/EnemyShip.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/model/EnemyShip.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/model/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/model/Entity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/model/Missile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/model/Missile.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/model/PlayerShip.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/model/PlayerShip.java" afterDir="false" />
@@ -91,10 +110,10 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="228" y="42" key="#Inspections" timestamp="1582722792937">
+    <state x="228" y="42" key="#Inspections" timestamp="1582745229752">
       <screen x="0" y="0" width="1273" height="768" />
     </state>
-    <state x="228" y="42" key="#Inspections/0.0.1273.768@0.0.1273.768" timestamp="1582722792937" />
+    <state x="228" y="42" key="#Inspections/0.0.1273.768@0.0.1273.768" timestamp="1582745229752" />
     <state x="228" y="0" width="816" height="768" key="#Intentions" timestamp="1582271447648">
       <screen x="0" y="0" width="1273" height="768" />
     </state>
@@ -127,22 +146,22 @@
       <screen x="0" y="0" width="1273" height="768" />
     </state>
     <state x="416" y="138" key="FileChooserDialogImpl/0.0.1273.768@0.0.1273.768" timestamp="1582052858112" />
-    <state width="1229" height="192" key="GridCell.Tab.0.bottom" timestamp="1582724540733">
+    <state width="1229" height="192" key="GridCell.Tab.0.bottom" timestamp="1582748337579">
       <screen x="0" y="0" width="1273" height="768" />
     </state>
-    <state width="1229" height="192" key="GridCell.Tab.0.bottom/0.0.1273.768@0.0.1273.768" timestamp="1582724540733" />
-    <state width="1229" height="192" key="GridCell.Tab.0.center" timestamp="1582724540732">
+    <state width="1229" height="192" key="GridCell.Tab.0.bottom/0.0.1273.768@0.0.1273.768" timestamp="1582748337579" />
+    <state width="1229" height="192" key="GridCell.Tab.0.center" timestamp="1582748337578">
       <screen x="0" y="0" width="1273" height="768" />
     </state>
-    <state width="1229" height="192" key="GridCell.Tab.0.center/0.0.1273.768@0.0.1273.768" timestamp="1582724540732" />
-    <state width="1229" height="192" key="GridCell.Tab.0.left" timestamp="1582724540732">
+    <state width="1229" height="192" key="GridCell.Tab.0.center/0.0.1273.768@0.0.1273.768" timestamp="1582748337578" />
+    <state width="1229" height="192" key="GridCell.Tab.0.left" timestamp="1582748337578">
       <screen x="0" y="0" width="1273" height="768" />
     </state>
-    <state width="1229" height="192" key="GridCell.Tab.0.left/0.0.1273.768@0.0.1273.768" timestamp="1582724540732" />
-    <state width="1229" height="192" key="GridCell.Tab.0.right" timestamp="1582724540732">
+    <state width="1229" height="192" key="GridCell.Tab.0.left/0.0.1273.768@0.0.1273.768" timestamp="1582748337578" />
+    <state width="1229" height="192" key="GridCell.Tab.0.right" timestamp="1582748337578">
       <screen x="0" y="0" width="1273" height="768" />
     </state>
-    <state width="1229" height="192" key="GridCell.Tab.0.right/0.0.1273.768@0.0.1273.768" timestamp="1582724540732" />
+    <state width="1229" height="192" key="GridCell.Tab.0.right/0.0.1273.768@0.0.1273.768" timestamp="1582748337578" />
     <state x="333" y="155" width="567" height="570" key="RefactorJ.ExtractClass" timestamp="1582716202726">
       <screen x="0" y="0" width="1273" height="768" />
     </state>
@@ -171,9 +190,9 @@
       <screen x="0" y="0" width="1273" height="768" />
     </state>
     <state x="228" y="42" key="scopes/0.0.1273.768@0.0.1273.768" timestamp="1582209063947" />
-    <state x="299" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1582724167259">
+    <state x="299" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1582745561714">
       <screen x="0" y="0" width="1273" height="768" />
     </state>
-    <state x="299" y="89" width="672" height="678" key="search.everywhere.popup/0.0.1273.768@0.0.1273.768" timestamp="1582724167259" />
+    <state x="299" y="89" width="672" height="678" key="search.everywhere.popup/0.0.1273.768@0.0.1273.768" timestamp="1582745561714" />
   </component>
 </project>
