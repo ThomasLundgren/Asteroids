@@ -2,21 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="912592ae-0182-4155-a100-0b05ae75298b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/controller/PlayerShipController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/storage/ImageLoader.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/se/hig/thlu/asteroids/model/velocity/VelocityTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/app/AsteroidsApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/app/AsteroidsApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/controller/EntityController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/controller/InputController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/gamestate/GameLoop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/gamestate/GameLoop.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/gamestate/NormalState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/gamestate/NormalState.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/gamestate/State.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/gamestate/State.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/graphics/model/PlayerShipGModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/graphics/model/PlayerShipGModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/model/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/model/Entity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/controller/PlayerShipController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/controller/PlayerShipController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/model/PlayerShip.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/model/PlayerShip.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/model/Velocity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/model/Velocity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/ui/BackgroundPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/ui/BackgroundPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/ui/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/ui/GUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/ui/UI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/ui/UI.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,6 +22,7 @@
         <option value="Enum" />
         <option value="Interface" />
         <option value="Class" />
+        <option value="JUnit5 Test Class" />
       </list>
     </option>
   </component>
@@ -49,16 +40,30 @@
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="Downloaded.Files.Path.Enabled" value="false" />
+    <property name="Repository.Attach.Annotations" value="true" />
+    <property name="Repository.Attach.JavaDocs" value="true" />
+    <property name="Repository.Attach.Sources" value="false" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
+    <property name="create.test.in.the.same.root" value="true" />
     <property name="extract.method.default.visibility" value="private" />
     <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
   <component name="RecentsManager">
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="test.se.hig.thlu.asteroids.model.velocity" />
+      <recent name="se.hig.thlu.asteroids.model" />
+    </key>
     <key name="CreateClassDialog.RecentsKey">
       <recent name="se.hig.thlu.asteroids.controller" />
       <recent name="se.hig.thlu.asteroids.factory" />
       <recent name="se.hig.thlu.asteroids.model" />
+    </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\thoma\Documents\Dev\Projects\Asteroids\src" />
@@ -110,6 +115,10 @@
       <screen x="0" y="0" width="1273" height="768" />
     </state>
     <state x="406" y="85" key="#com.intellij.ide.util.MemberChooser/0.0.1273.768@0.0.1273.768" timestamp="1582752893380" />
+    <state x="366" y="144" key="#com.intellij.ide.util.PackageChooserDialog" timestamp="1582754924687">
+      <screen x="0" y="0" width="1273" height="768" />
+    </state>
+    <state x="366" y="144" key="#com.intellij.ide.util.PackageChooserDialog/0.0.1273.768@0.0.1273.768" timestamp="1582754924687" />
     <state x="340" y="67" key="#com.intellij.refactoring.encapsulateFields.EncalpsulateFieldsDialog" timestamp="1582721240505">
       <screen x="0" y="0" width="1273" height="768" />
     </state>
@@ -134,22 +143,22 @@
       <screen x="0" y="0" width="1273" height="768" />
     </state>
     <state x="416" y="138" key="FileChooserDialogImpl/0.0.1273.768@0.0.1273.768" timestamp="1582052858112" />
-    <state width="1229" height="192" key="GridCell.Tab.0.bottom" timestamp="1582754265909">
+    <state width="1229" height="192" key="GridCell.Tab.0.bottom" timestamp="1582755129300">
       <screen x="0" y="0" width="1273" height="768" />
     </state>
-    <state width="1229" height="192" key="GridCell.Tab.0.bottom/0.0.1273.768@0.0.1273.768" timestamp="1582754265909" />
-    <state width="1229" height="192" key="GridCell.Tab.0.center" timestamp="1582754265908">
+    <state width="1229" height="192" key="GridCell.Tab.0.bottom/0.0.1273.768@0.0.1273.768" timestamp="1582755129300" />
+    <state width="1229" height="192" key="GridCell.Tab.0.center" timestamp="1582755129299">
       <screen x="0" y="0" width="1273" height="768" />
     </state>
-    <state width="1229" height="192" key="GridCell.Tab.0.center/0.0.1273.768@0.0.1273.768" timestamp="1582754265908" />
-    <state width="1229" height="192" key="GridCell.Tab.0.left" timestamp="1582754265908">
+    <state width="1229" height="192" key="GridCell.Tab.0.center/0.0.1273.768@0.0.1273.768" timestamp="1582755129299" />
+    <state width="1229" height="192" key="GridCell.Tab.0.left" timestamp="1582755129299">
       <screen x="0" y="0" width="1273" height="768" />
     </state>
-    <state width="1229" height="192" key="GridCell.Tab.0.left/0.0.1273.768@0.0.1273.768" timestamp="1582754265908" />
-    <state width="1229" height="192" key="GridCell.Tab.0.right" timestamp="1582754265908">
+    <state width="1229" height="192" key="GridCell.Tab.0.left/0.0.1273.768@0.0.1273.768" timestamp="1582755129299" />
+    <state width="1229" height="192" key="GridCell.Tab.0.right" timestamp="1582755129300">
       <screen x="0" y="0" width="1273" height="768" />
     </state>
-    <state width="1229" height="192" key="GridCell.Tab.0.right/0.0.1273.768@0.0.1273.768" timestamp="1582754265908" />
+    <state width="1229" height="192" key="GridCell.Tab.0.right/0.0.1273.768@0.0.1273.768" timestamp="1582755129300" />
     <state x="333" y="155" width="567" height="570" key="RefactorJ.ExtractClass" timestamp="1582716202726">
       <screen x="0" y="0" width="1273" height="768" />
     </state>
@@ -166,6 +175,14 @@
       <screen x="0" y="0" width="1273" height="768" />
     </state>
     <state x="333" y="208" key="com.intellij.ide.util.TipDialog/0.0.1273.768@0.0.1273.768" timestamp="1582650633755" />
+    <state x="341" y="277" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" timestamp="1582754836639">
+      <screen x="0" y="0" width="1273" height="768" />
+    </state>
+    <state x="341" y="277" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD/0.0.1273.768@0.0.1273.768" timestamp="1582754836639" />
+    <state x="407" y="87" width="494" height="563" key="com.intellij.testIntegration.createTest.CreateTestDialog" timestamp="1582754927166">
+      <screen x="0" y="0" width="1273" height="768" />
+    </state>
+    <state x="407" y="87" width="494" height="563" key="com.intellij.testIntegration.createTest.CreateTestDialog/0.0.1273.768@0.0.1273.768" timestamp="1582754927166" />
     <state x="366" y="139" width="540" height="496" key="extract.method.dialog" timestamp="1582752261218">
       <screen x="0" y="0" width="1273" height="768" />
     </state>
@@ -178,9 +195,9 @@
       <screen x="0" y="0" width="1273" height="768" />
     </state>
     <state x="228" y="42" key="scopes/0.0.1273.768@0.0.1273.768" timestamp="1582209063947" />
-    <state x="299" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1582754002036">
+    <state x="299" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1582754685856">
       <screen x="0" y="0" width="1273" height="768" />
     </state>
-    <state x="299" y="89" width="672" height="678" key="search.everywhere.popup/0.0.1273.768@0.0.1273.768" timestamp="1582754002036" />
+    <state x="299" y="89" width="672" height="678" key="search.everywhere.popup/0.0.1273.768@0.0.1273.768" timestamp="1582754685856" />
   </component>
 </project>

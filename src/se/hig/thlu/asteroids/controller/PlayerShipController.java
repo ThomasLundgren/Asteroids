@@ -34,10 +34,10 @@ public class PlayerShipController {
 		updateTimes(delta);
 		checkCollisions();
 		// TODO update all positions
-		if (timer > 100) {
-			playerShip = (PlayerShip) playerShip.withUpdatedPosition();
-			timer = 0;
-		}
+//		if (timer > 100) {
+//			playerShip = (PlayerShip) playerShip.withUpdatedPosition();
+//			timer = 0;
+//		}
 		// TODO if x amount of time has passed since pressing acceleration, start decelerating
 		notifyObservers();
 	}

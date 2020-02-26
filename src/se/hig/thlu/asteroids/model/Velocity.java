@@ -5,7 +5,7 @@ public class Velocity {
 	private final double speed;
 	private final double direction;
 
-	Velocity(double speed, double direction) {
+	public Velocity(double speed, double direction) {
 		this.speed = validateSpeed(speed);
 		this.direction = validateDirection(direction);
 	}
@@ -24,11 +24,11 @@ public class Velocity {
 		return new Velocity(newSpeed, newDir);
 	}
 
-	double getSpeed() {
+	public double getSpeed() {
 		return speed;
 	}
 
-	double getDirection() {
+	public double getDirection() {
 		return direction;
 	}
 

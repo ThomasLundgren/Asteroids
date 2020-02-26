@@ -39,7 +39,7 @@ public final class PlayerShip extends Entity implements Shooter {
         double newDirection = velocity.getDirection();
         Velocity v = velocity.composeWith(new Velocity(newSpeed, newDirection));
         System.out.println(v);
-        return (PlayerShip) withVelocityImpl(v);
+        return new PlayerShip(position, v, lives);
     }
 
     public PlayerShip decelerate() {
