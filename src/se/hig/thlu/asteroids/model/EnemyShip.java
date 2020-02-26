@@ -4,32 +4,27 @@ import se.hig.thlu.asteroids.model.Missile.MissileSource;
 
 public final class EnemyShip extends Entity implements Shooter {
 
-    public EnemyShip(Point position, double speed, double direction) {
-        super(position, speed, direction);
+    public EnemyShip(Point position, Velocity velocity) {
+        super(position, velocity);
     }
 
-    private EnemyShip(Point position, double speed, double direction, boolean isDestroyed) {
-        super(position, speed, direction);
+    private EnemyShip(Point position, Velocity velocity, boolean isDestroyed) {
+        super(position, velocity, isDestroyed);
     }
 
     @Override
     public Entity withPosition(Point position) {
-        return new EnemyShip(position, speed, direction);
+        return new EnemyShip(position, velocity);
     }
 
     @Override
-    protected Entity withSpeedImpl(double speed) {
-        return new EnemyShip(position, speed, direction);
-    }
-
-    @Override
-    protected Entity withDirectionImpl(double direction) {
-        return new EnemyShip(position, speed, direction);
+    protected Entity withVelocityImpl(Velocity velocity) {
+        return new EnemyShip(position, velocity);
     }
 
     @Override
     public Entity destroy() {
-        return new EnemyShip(position, speed, direction, true);
+        return new EnemyShip(position, velocity, true);
     }
 
     @Override

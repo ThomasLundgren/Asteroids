@@ -14,33 +14,28 @@ public final class Missile extends Entity {
     }
 
     public Missile(Point position, double direction, MissileSource source) {
-        super(position, getMissileSpeed(source), direction);
+        super(position, new Velocity(getMissileSpeed(source), direction));
         missileSource = source;
     }
 
     private Missile(Point position, double direction, boolean isDestroyed, MissileSource source) {
-        super(position, getMissileSpeed(source), direction, isDestroyed);
+        super(position, new Velocity(getMissileSpeed(source), direction), isDestroyed);
         missileSource = source;
     }
 
     @Override
     public Entity withPosition(Point position) {
-        return new Missile(position, direction, missileSource);
+        return new Missile(position, velocity.getDirection(), missileSource);
     }
 
     @Override
-    protected Entity withSpeedImpl(double speed) {
+    protected Entity withVelocityImpl(Velocity velocity) {
         return this;
     }
 
     @Override
-    protected Entity withDirectionImpl(double direction) {
-        return new Missile(position, direction, missileSource);
-    }
-
-    @Override
     public Entity destroy() {
-        return new Missile(position, direction, true, missileSource);
+        return new Missile(position, velocity.getDirection(), true, missileSource);
     }
 
     private static double getMissileSpeed(MissileSource missileSource) {

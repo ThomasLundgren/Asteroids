@@ -11,15 +11,15 @@ public final class PlayerShip extends Entity implements Shooter {
         lives = GameConfig.MAX_LIVES;
     }
 
-    private PlayerShip(Point position, double speed, double direction, int lives) {
-        super(position, speed, direction);
-        lessThanTopSpeed(speed);
+    private PlayerShip(Point position, Velocity velocity, int lives) {
+        super(position, velocity);
+        lessThanTopSpeed(velocity.getSpeed());
         this.lives = validateLives(lives);
     }
 
-    private PlayerShip(Point position, double speed, double direction, boolean isDestroyed, int lives) {
-        super(position, speed, direction, isDestroyed);
-        lessThanTopSpeed(speed);
+    private PlayerShip(Point position, Velocity velocity, boolean isDestroyed, int lives) {
+        super(position, velocity, isDestroyed);
+        lessThanTopSpeed(velocity.getSpeed());
         this.lives = validateLives(lives);
     }
 
@@ -29,17 +29,17 @@ public final class PlayerShip extends Entity implements Shooter {
 
     private PlayerShip withLives(int lives) {
         int validatedLives = validateLives(lives);
-        return new PlayerShip(position, speed, direction, validatedLives);
+        return new PlayerShip(position, velocity, validatedLives);
     }
 
     @Override
     public Entity withPosition(Point position) {
-        return new PlayerShip(position, speed, direction, lives);
+        return new PlayerShip(position, velocity, lives);
     }
 
     @Override
     public Entity destroy() {
-        return lives == 1 ? new PlayerShip(position, 0.0, 0.0, true, 0)
+        return lives == 1 ? new PlayerShip(position, new Velocity(0.0, 0.0), true, 0)
                 : this.withLives(lives - 1);
     }
 
@@ -49,14 +49,9 @@ public final class PlayerShip extends Entity implements Shooter {
     }
 
     @Override
-    protected Entity withSpeedImpl(double speed) {
-        double spd = lessThanTopSpeed(speed);
-        return new PlayerShip(position, spd, direction, lives);
-    }
-
-    @Override
-    protected Entity withDirectionImpl(double direction) {
-        return new PlayerShip(position, speed, direction, lives);
+    protected Entity withVelocityImpl(Velocity velocity) {
+        lessThanTopSpeed(velocity.getSpeed());
+        return new PlayerShip(position, velocity, lives);
     }
 
     private static int validateLives(int lives) {

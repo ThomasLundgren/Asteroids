@@ -6,8 +6,8 @@ public class Velocity {
 	private final double direction;
 
 	public Velocity(double speed, double direction) {
-		this.speed = speed;
-		this.direction = direction;
+		this.speed = validateSpeed(speed);
+		this.direction = validateDirection(direction);
 	}
 
 	public Velocity computeNew(Velocity velocity) {
@@ -30,5 +30,21 @@ public class Velocity {
 
 	public double getDirection() {
 		return direction;
+	}
+
+	private static double validateDirection(double direction) {
+		final double lap = 360.0;
+		double temp = direction % lap;
+		if (temp < 0.0) {
+			temp = lap - temp;
+		}
+		return temp % lap;
+	}
+
+	private static double validateSpeed(double speed) {
+		if (speed < 0.0) {
+			throw new IllegalArgumentException("Speed cannot be less than zero");
+		}
+		return speed;
 	}
 }

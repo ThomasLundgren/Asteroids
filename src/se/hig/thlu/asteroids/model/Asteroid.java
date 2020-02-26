@@ -10,34 +10,29 @@ public class Asteroid extends Entity {
         asteroidSize = AsteroidSize.LARGE;
     }
 
-    public Asteroid(Point position, double speed, double direction, AsteroidSize asteroidSize) {
-        super(position, speed, direction);
+    public Asteroid(Point position, Velocity velocity, AsteroidSize asteroidSize) {
+        super(position, velocity);
         this.asteroidSize = asteroidSize;
     }
 
-    private Asteroid(Point position, double speed, double direction, AsteroidSize asteroidSize, boolean isDestroyed) {
-        super(position, speed, direction, isDestroyed);
+    private Asteroid(Point position, Velocity velocity, AsteroidSize asteroidSize, boolean isDestroyed) {
+        super(position, velocity, isDestroyed);
         this.asteroidSize = asteroidSize;
     }
 
     @Override
     public Entity withPosition(Point position) {
-        return new Asteroid(position, speed, direction, asteroidSize);
+        return new Asteroid(position, velocity, asteroidSize);
     }
 
     @Override
-    protected Entity withSpeedImpl(double speed) {
-        return new Asteroid(position, speed, direction, asteroidSize);
-    }
-
-    @Override
-    protected Entity withDirectionImpl(double direction) {
-        return new Asteroid(position, speed, direction, asteroidSize);
+    protected Entity withVelocityImpl(Velocity velocity) {
+        return new Asteroid(position, velocity, asteroidSize);
     }
 
     @Override
     public Entity destroy() {
-        return new Asteroid(position, speed, direction, asteroidSize, true);
+        return new Asteroid(position, velocity, asteroidSize, true);
     }
 
 }
