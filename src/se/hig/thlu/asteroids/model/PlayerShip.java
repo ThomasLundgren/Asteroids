@@ -7,10 +7,6 @@ public final class PlayerShip extends Entity implements Shooter {
 
     private final int lives;
 
-//    public PlayerShip() {
-//        lives = GameConfig.MAX_LIVES;
-//    }
-
     private PlayerShip(Point position, Velocity velocity, int lives) {
         super(position, velocity);
         lessThanTopSpeed(velocity.getSpeed());
@@ -67,7 +63,8 @@ public final class PlayerShip extends Entity implements Shooter {
 
     @Override
     public Entity destroy() {
-        return lives == 1 ? new PlayerShip(position, new Velocity(0.0, 0.0), true, 0)
+        return lives == 1 ?
+                new PlayerShip(position, new Velocity(0.0, 0.0), true, 0)
                 : this.withLives(lives - 1);
     }
 

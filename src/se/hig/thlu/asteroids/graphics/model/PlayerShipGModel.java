@@ -12,7 +12,7 @@ public class PlayerShipGModel implements GraphicModel {
 	private Image img;
 
 	public PlayerShipGModel() {
-		URL url = GUI.class.getClassLoader().getResource("resources/images/Spaceship_01_BLUE_v3png.png");
+		URL url = GUI.class.getClassLoader().getResource("resources/images/final/player-ship-accel.png");
 		if (url != null) {
 			try {
 				img = ImageIO.read(url);

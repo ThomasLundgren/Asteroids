@@ -20,7 +20,7 @@ public class GUI implements UI {
 		frame = new JFrame();
 		Image img = null;
 		try {
-			URL url = GUI.class.getClassLoader().getResource("resources/images/dark-starry-sky-sololos.jpg");
+			URL url = GUI.class.getClassLoader().getResource("resources/images/final/background.png");
 			if (url != null) {
 				img = ImageIO.read(url);
 				backgroundPanel = new BackgroundPanel(img);
