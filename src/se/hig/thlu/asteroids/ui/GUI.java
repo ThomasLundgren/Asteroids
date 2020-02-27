@@ -8,7 +8,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.beans.*;
-import java.io.*;
 import java.util.List;
 import java.util.*;
 
@@ -17,9 +16,9 @@ public class GUI implements UI {
 	private final JFrame frame;
 	private BackgroundPanel backgroundPanel;
 
-	public GUI() throws IOException {
+	public GUI() {
 		frame = new JFrame();
-		backgroundPanel = new BackgroundPanel(ImageLoader.getBackgroundImg());
+		backgroundPanel = new BackgroundPanel(ImageLoader.loadBackgroundImg());
 		configureFrame();
 	}
 

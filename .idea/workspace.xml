@@ -2,10 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="912592ae-0182-4155-a100-0b05ae75298b" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/controller/PlayerShipController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/controller/PlayerShipController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/model/PlayerShip.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/model/PlayerShip.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/se/hig/thlu/asteroids/model/PlayerShipTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/se/hig/thlu/asteroids/model/PlayerShipTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/graphics/model/PlayerShipGModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/graphics/model/PlayerShipGModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/storage/ImageLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/storage/ImageLoader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/ui/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/ui/GUI.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -168,10 +170,10 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="228" y="42" key="#Inspections" timestamp="1582768449918">
+    <state x="196" y="85" key="#Inspections" timestamp="1582794764952">
       <screen x="0" y="0" width="1273" height="768" />
     </state>
-    <state x="228" y="42" key="#Inspections/0.0.1273.768@0.0.1273.768" timestamp="1582768449918" />
+    <state x="196" y="85" key="#Inspections/0.0.1273.768@0.0.1273.768" timestamp="1582794764952" />
     <state x="228" y="0" width="816" height="768" key="#Intentions" timestamp="1582271447648">
       <screen x="0" y="0" width="1273" height="768" />
     </state>
@@ -184,18 +186,18 @@
       <screen x="0" y="0" width="1273" height="768" />
     </state>
     <state x="92" y="92" width="1089" height="584" key="#com.intellij.execution.junit2.states.ComparisonFailureState$DiffDialog/0.0.1273.768@0.0.1273.768" timestamp="1582761027456" />
-    <state x="406" y="85" key="#com.intellij.ide.util.MemberChooser" timestamp="1582752893380">
+    <state x="406" y="85" key="#com.intellij.ide.util.MemberChooser" timestamp="1582793265332">
       <screen x="0" y="0" width="1273" height="768" />
     </state>
-    <state x="406" y="85" key="#com.intellij.ide.util.MemberChooser/0.0.1273.768@0.0.1273.768" timestamp="1582752893380" />
+    <state x="406" y="85" key="#com.intellij.ide.util.MemberChooser/0.0.1273.768@0.0.1273.768" timestamp="1582793265332" />
     <state x="366" y="144" key="#com.intellij.ide.util.PackageChooserDialog" timestamp="1582754924687">
       <screen x="0" y="0" width="1273" height="768" />
     </state>
     <state x="366" y="144" key="#com.intellij.ide.util.PackageChooserDialog/0.0.1273.768@0.0.1273.768" timestamp="1582754924687" />
-    <state x="340" y="67" key="#com.intellij.refactoring.encapsulateFields.EncalpsulateFieldsDialog" timestamp="1582721240505">
+    <state x="340" y="67" key="#com.intellij.refactoring.encapsulateFields.EncalpsulateFieldsDialog" timestamp="1582793302888">
       <screen x="0" y="0" width="1273" height="768" />
     </state>
-    <state x="340" y="67" key="#com.intellij.refactoring.encapsulateFields.EncalpsulateFieldsDialog/0.0.1273.768@0.0.1273.768" timestamp="1582721240505" />
+    <state x="340" y="67" key="#com.intellij.refactoring.encapsulateFields.EncalpsulateFieldsDialog/0.0.1273.768@0.0.1273.768" timestamp="1582793302888" />
     <state x="340" y="152" key="#com.intellij.refactoring.memberPushDown.PushDownDialog" timestamp="1582716097197">
       <screen x="0" y="0" width="1273" height="768" />
     </state>
@@ -272,10 +274,10 @@
       <screen x="0" y="0" width="1273" height="768" />
     </state>
     <state x="407" y="87" width="494" height="563" key="com.intellij.testIntegration.createTest.CreateTestDialog/0.0.1273.768@0.0.1273.768" timestamp="1582760692882" />
-    <state x="366" y="139" width="540" height="496" key="extract.method.dialog" timestamp="1582757516299">
+    <state x="250" y="111" width="540" height="496" key="extract.method.dialog" timestamp="1582796030871">
       <screen x="0" y="0" width="1273" height="768" />
     </state>
-    <state x="366" y="139" width="540" height="496" key="extract.method.dialog/0.0.1273.768@0.0.1273.768" timestamp="1582757516299" />
+    <state x="250" y="111" width="540" height="496" key="extract.method.dialog/0.0.1273.768@0.0.1273.768" timestamp="1582796030871" />
     <state x="293" y="172" key="run.anything.popup" timestamp="1582757101620">
       <screen x="0" y="0" width="1273" height="768" />
     </state>
@@ -284,17 +286,17 @@
       <screen x="0" y="0" width="1273" height="768" />
     </state>
     <state x="228" y="42" key="scopes/0.0.1273.768@0.0.1273.768" timestamp="1582209063947" />
-    <state x="299" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1582769148407">
+    <state x="299" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1582790255343">
       <screen x="0" y="0" width="1273" height="768" />
     </state>
-    <state x="299" y="89" width="672" height="678" key="search.everywhere.popup/0.0.1273.768@0.0.1273.768" timestamp="1582769148407" />
+    <state x="299" y="89" width="672" height="678" key="search.everywhere.popup/0.0.1273.768@0.0.1273.768" timestamp="1582790255343" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/se/hig/thlu/asteroids/controller/PlayerShipController.java</url>
-          <line>77</line>
+          <line>76</line>
           <option name="timeStamp" value="5" />
         </line-breakpoint>
       </breakpoints>

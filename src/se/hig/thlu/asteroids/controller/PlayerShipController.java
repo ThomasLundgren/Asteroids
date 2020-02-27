@@ -10,14 +10,14 @@ public class PlayerShipController {
 
 	public static PlayerShipController instance;
 	private final PropertyChangeSupport changeSupport;
-	private long totalGameTime = 0;
-	private long nextSpawn = GameConfig.INITIAL_SPAWN_INTERVAL;
-	private double timeSinceLastShot = Long.MAX_VALUE;
+	private final List<Asteroid> asteroids = new ArrayList<>(30);
+	private final List<EnemyShip> enemyShips = new ArrayList<>(5);
+	private final List<Missile> missiles = new ArrayList<>(30);
+	private long totalGameTime = 0L;
+	private long nextSpawn = (long) GameConfig.INITIAL_SPAWN_INTERVAL;
+	private double timeSinceLastShot = Double.MAX_VALUE;
 	private int timer = 0;
 	private PlayerShip playerShip;
-	private List<Asteroid> asteroids = new ArrayList<>();
-	private List<EnemyShip> enemyShips = new ArrayList<>();
-	private List<Missile> missiles = new ArrayList<>();
 
 	private PlayerShipController() {
 		changeSupport = new PropertyChangeSupport(this);
@@ -26,10 +26,9 @@ public class PlayerShipController {
 
 	public static PlayerShipController getInstance() {
 		if (instance == null) {
-			return new PlayerShipController();
-		} else {
-			return instance;
+			instance = new PlayerShipController();
 		}
+		return instance;
 	}
 
 	public void update(double delta) {
@@ -37,7 +36,7 @@ public class PlayerShipController {
 		updatePositions();
 		checkCollisions();
 		executeActiveCommands();
-		notifyObservers();
+//		notifyObservers();
 	}
 
 	private void updatePositions() {
@@ -54,7 +53,7 @@ public class PlayerShipController {
 
 	private void notifyObservers() {
 		// TODO: Make "PLAYER_SHIP" a constant
-		changeSupport.firePropertyChange("PLAYER_SHIP", null, playerShip);
+//		changeSupport.firePropertyChange("PLAYER_SHIP", null, playerShip);
 	}
 
 	private void updateTimes(double delta) {
