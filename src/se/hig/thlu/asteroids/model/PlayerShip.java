@@ -34,31 +34,30 @@ public final class PlayerShip extends Entity implements Shooter {
     }
 
     public PlayerShip accelerate() {
-        System.out.println("Accelerate called");
-        double newSpeed = velocity.getSpeed() + 1.0;
         double newDirection = velocity.getDirection();
-        Velocity v = velocity.composeWith(new Velocity(newSpeed, newDirection));
-        System.out.println(v);
+        Velocity v = velocity.composeWith(new Velocity(1.0, newDirection));
         return new PlayerShip(position, v, lives);
     }
 
     public PlayerShip decelerate() {
-        double speed = getVelocity().getSpeed() - 1.0;
-        double direction = getVelocity().getDirection();
+        if (velocity.getSpeed() < 1) {
+            return (PlayerShip) withVelocityImpl(new Velocity(0, velocity.getDirection()));
+        }
+        double speed = velocity.getSpeed() - 1.0;
+        double direction = velocity.getDirection();
         Velocity v = velocity.composeWith(new Velocity(speed, direction));
         return (PlayerShip) withVelocityImpl(v);
     }
 
     public PlayerShip turnLeft() {
         double speed = velocity.getSpeed();
-        double direction = velocity.getDirection() + 1.0;
-        Velocity v = velocity.composeWith(new Velocity(speed, direction));
+        Velocity v = velocity.composeWith(new Velocity(speed, 1.0));
         return (PlayerShip) withVelocityImpl(v);
     }
 
     public PlayerShip turnRight() {
-        double speed = getVelocity().getSpeed();
-        double direction = getVelocity().getDirection() - 1.0;
+        double speed = velocity.getSpeed();
+        double direction = velocity.getDirection() - 1.0;
         Velocity v = velocity.composeWith(new Velocity(speed, direction));
         return (PlayerShip) withVelocityImpl(v);
     }

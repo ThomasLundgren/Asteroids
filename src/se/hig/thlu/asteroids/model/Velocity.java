@@ -10,7 +10,7 @@ public class Velocity {
 		this.direction = validateDirection(direction);
 	}
 
-	Velocity composeWith(Velocity velocity) {
+	public Velocity composeWith(Velocity velocity) {
 		double x1 = StrictMath.cos(StrictMath.toRadians(direction)) * speed;
 		double y1 = StrictMath.sin(StrictMath.toRadians(direction)) * speed;
 		double x2 = StrictMath.cos(StrictMath.toRadians(velocity.getDirection())) * velocity.getSpeed();
@@ -19,8 +19,16 @@ public class Velocity {
 		double xRes = x1 + x2;
 		double yRes = y1 + y2;
 
-		double newDir = StrictMath.acos(StrictMath.toRadians(xRes));
-		double newSpeed = Math.sqrt(xRes*xRes + yRes*yRes);
+		double newDir = 0.0;
+		if (xRes != 0.0) {
+			newDir = StrictMath.toDegrees(StrictMath.atan(yRes/xRes));
+		} else if (yRes > 0.0) {
+			newDir = 90.0;
+		} else {
+			newDir = 270.0;
+		}
+
+		double newSpeed = StrictMath.sqrt(xRes*xRes + yRes*yRes);
 		return new Velocity(newSpeed, newDir);
 	}
 
@@ -34,11 +42,11 @@ public class Velocity {
 
 	private static double validateDirection(double direction) {
 		final double lap = 360.0;
-		double temp = direction % lap;
-		if (temp < 0.0) {
-			temp = lap - temp;
+		direction = direction % lap;
+		if (direction < 0.0) {
+			direction = direction + lap;
 		}
-		return temp % lap;
+		return direction % lap;
 	}
 
 	private static double validateSpeed(double speed) {

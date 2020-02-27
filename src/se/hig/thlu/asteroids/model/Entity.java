@@ -57,8 +57,6 @@ public abstract class Entity {
         double diffY = StrictMath.sin(StrictMath.toRadians(velocity.getDirection())) * velocity.getSpeed();
 
         Point newPos = new Point(position.getX() + diffX, position.getY() + diffY);
-//        System.out.println(newPos);
-        System.out.println("x=" + diffX + ", y=" + diffY);
         return withPosition(newPos);
     }
 }

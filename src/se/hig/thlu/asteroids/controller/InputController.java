@@ -51,5 +51,6 @@ public class InputController implements StateClient, KeyListener {
 
 	@Override
 	public void keyReleased(KeyEvent e) {
+		// TODO if released key is UP_ARROW, start decelerating
 	}
 }

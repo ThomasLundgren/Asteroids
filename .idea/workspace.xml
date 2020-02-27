@@ -2,11 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="912592ae-0182-4155-a100-0b05ae75298b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/test/se/hig/thlu/asteroids/model/velocity/VelocityTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/se/hig/thlu/asteroids/model/PlayerShipTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/se/hig/thlu/asteroids/model/VelocityTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/controller/InputController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/controller/InputController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/controller/PlayerShipController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/controller/PlayerShipController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/model/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/model/Entity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/model/PlayerShip.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/model/PlayerShip.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/model/Velocity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/model/Velocity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/se/hig/thlu/asteroids/model/velocity/VelocityTest.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,8 +58,8 @@
   </component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.RecentsKey">
-      <recent name="test.se.hig.thlu.asteroids.model.velocity" />
       <recent name="se.hig.thlu.asteroids.model" />
+      <recent name="test.se.hig.thlu.asteroids.model.velocity" />
     </key>
     <key name="CreateClassDialog.RecentsKey">
       <recent name="se.hig.thlu.asteroids.controller" />
@@ -69,7 +73,7 @@
       <recent name="C:\Users\thoma\Documents\Dev\Projects\Asteroids\src" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.AsteroidsApp">
     <configuration name="AsteroidsApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="se.hig.thlu.asteroids.app.AsteroidsApp" />
       <module name="Asteroids" />
@@ -83,9 +87,75 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="PlayerShipTest.accelerate_incrementsSpeed" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Asteroids" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.se.hig.thlu.asteroids.model.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test.se.hig.thlu.asteroids.model" />
+      <option name="MAIN_CLASS_NAME" value="test.se.hig.thlu.asteroids.model.PlayerShipTest" />
+      <option name="METHOD_NAME" value="accelerate_incrementsSpeed" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PlayerShipTest.getSpeed_onNewShip_returnsZero" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Asteroids" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.se.hig.thlu.asteroids.model.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test.se.hig.thlu.asteroids.model" />
+      <option name="MAIN_CLASS_NAME" value="test.se.hig.thlu.asteroids.model.PlayerShipTest" />
+      <option name="METHOD_NAME" value="getSpeed_onNewShip_returnsZero" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="VelocityTest.composeWith_speedsInOrthogonalDirections_returnsVelocityWithSpeedsEqualToHypotenuse" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Asteroids" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.se.hig.thlu.asteroids.model.velocity.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test.se.hig.thlu.asteroids.model.velocity" />
+      <option name="MAIN_CLASS_NAME" value="test.se.hig.thlu.asteroids.model.velocity.VelocityTest" />
+      <option name="METHOD_NAME" value="composeWith_speedsInOrthogonalDirections_returnsVelocityWithSpeedsEqualToHypotenuse" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="test.se.hig.thlu.asteroids.model in Asteroids" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Asteroids" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.se.hig.thlu.asteroids.model.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test.se.hig.thlu.asteroids.model" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.AsteroidsApp" />
+        <item itemvalue="JUnit.test.se.hig.thlu.asteroids.model in Asteroids" />
+        <item itemvalue="JUnit.PlayerShipTest.accelerate_incrementsSpeed" />
+        <item itemvalue="JUnit.PlayerShipTest.getSpeed_onNewShip_returnsZero" />
+        <item itemvalue="JUnit.VelocityTest.composeWith_speedsInOrthogonalDirections_returnsVelocityWithSpeedsEqualToHypotenuse" />
       </list>
     </recent_temporary>
   </component>
@@ -111,6 +181,14 @@
       <screen x="0" y="0" width="1273" height="768" />
     </state>
     <state x="228" y="0" width="816" height="768" key="#Intentions/0.0.1273.768@0.0.1273.768" timestamp="1582271447648" />
+    <state x="90" y="39" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1582758589321">
+      <screen x="0" y="0" width="1273" height="768" />
+    </state>
+    <state x="90" y="39" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1273.768@0.0.1273.768" timestamp="1582758589321" />
+    <state x="92" y="92" width="1089" height="584" key="#com.intellij.execution.junit2.states.ComparisonFailureState$DiffDialog" timestamp="1582761027456">
+      <screen x="0" y="0" width="1273" height="768" />
+    </state>
+    <state x="92" y="92" width="1089" height="584" key="#com.intellij.execution.junit2.states.ComparisonFailureState$DiffDialog/0.0.1273.768@0.0.1273.768" timestamp="1582761027456" />
     <state x="406" y="85" key="#com.intellij.ide.util.MemberChooser" timestamp="1582752893380">
       <screen x="0" y="0" width="1273" height="768" />
     </state>
@@ -143,30 +221,46 @@
       <screen x="0" y="0" width="1273" height="768" />
     </state>
     <state x="416" y="138" key="FileChooserDialogImpl/0.0.1273.768@0.0.1273.768" timestamp="1582052858112" />
-    <state width="1229" height="192" key="GridCell.Tab.0.bottom" timestamp="1582755129300">
+    <state width="1229" height="192" key="GridCell.Tab.0.bottom" timestamp="1582766029964">
       <screen x="0" y="0" width="1273" height="768" />
     </state>
-    <state width="1229" height="192" key="GridCell.Tab.0.bottom/0.0.1273.768@0.0.1273.768" timestamp="1582755129300" />
-    <state width="1229" height="192" key="GridCell.Tab.0.center" timestamp="1582755129299">
+    <state width="1229" height="192" key="GridCell.Tab.0.bottom/0.0.1273.768@0.0.1273.768" timestamp="1582766029964" />
+    <state width="1229" height="192" key="GridCell.Tab.0.center" timestamp="1582766029963">
       <screen x="0" y="0" width="1273" height="768" />
     </state>
-    <state width="1229" height="192" key="GridCell.Tab.0.center/0.0.1273.768@0.0.1273.768" timestamp="1582755129299" />
-    <state width="1229" height="192" key="GridCell.Tab.0.left" timestamp="1582755129299">
+    <state width="1229" height="192" key="GridCell.Tab.0.center/0.0.1273.768@0.0.1273.768" timestamp="1582766029963" />
+    <state width="1229" height="192" key="GridCell.Tab.0.left" timestamp="1582766029963">
       <screen x="0" y="0" width="1273" height="768" />
     </state>
-    <state width="1229" height="192" key="GridCell.Tab.0.left/0.0.1273.768@0.0.1273.768" timestamp="1582755129299" />
-    <state width="1229" height="192" key="GridCell.Tab.0.right" timestamp="1582755129300">
+    <state width="1229" height="192" key="GridCell.Tab.0.left/0.0.1273.768@0.0.1273.768" timestamp="1582766029963" />
+    <state width="1229" height="192" key="GridCell.Tab.0.right" timestamp="1582766029964">
       <screen x="0" y="0" width="1273" height="768" />
     </state>
-    <state width="1229" height="192" key="GridCell.Tab.0.right/0.0.1273.768@0.0.1273.768" timestamp="1582755129300" />
+    <state width="1229" height="192" key="GridCell.Tab.0.right/0.0.1273.768@0.0.1273.768" timestamp="1582766029964" />
+    <state width="1229" height="239" key="GridCell.Tab.1.bottom" timestamp="1582765217288">
+      <screen x="0" y="0" width="1273" height="768" />
+    </state>
+    <state width="1229" height="239" key="GridCell.Tab.1.bottom/0.0.1273.768@0.0.1273.768" timestamp="1582765217288" />
+    <state width="1229" height="239" key="GridCell.Tab.1.center" timestamp="1582765217288">
+      <screen x="0" y="0" width="1273" height="768" />
+    </state>
+    <state width="1229" height="239" key="GridCell.Tab.1.center/0.0.1273.768@0.0.1273.768" timestamp="1582765217288" />
+    <state width="1229" height="239" key="GridCell.Tab.1.left" timestamp="1582765217287">
+      <screen x="0" y="0" width="1273" height="768" />
+    </state>
+    <state width="1229" height="239" key="GridCell.Tab.1.left/0.0.1273.768@0.0.1273.768" timestamp="1582765217287" />
+    <state width="1229" height="239" key="GridCell.Tab.1.right" timestamp="1582765217288">
+      <screen x="0" y="0" width="1273" height="768" />
+    </state>
+    <state width="1229" height="239" key="GridCell.Tab.1.right/0.0.1273.768@0.0.1273.768" timestamp="1582765217288" />
     <state x="333" y="155" width="567" height="570" key="RefactorJ.ExtractClass" timestamp="1582716202726">
       <screen x="0" y="0" width="1273" height="768" />
     </state>
     <state x="333" y="155" width="567" height="570" key="RefactorJ.ExtractClass/0.0.1273.768@0.0.1273.768" timestamp="1582716202725" />
-    <state x="451" y="318" key="ReplaceDuplicatesPrompt" timestamp="1582200742168">
+    <state x="451" y="318" key="ReplaceDuplicatesPrompt" timestamp="1582757535697">
       <screen x="0" y="0" width="1273" height="768" />
     </state>
-    <state x="451" y="318" key="ReplaceDuplicatesPrompt/0.0.1273.768@0.0.1273.768" timestamp="1582200742168" />
+    <state x="451" y="318" key="ReplaceDuplicatesPrompt/0.0.1273.768@0.0.1273.768" timestamp="1582757535697" />
     <state x="137" y="26" key="SettingsEditor" timestamp="1582288507056">
       <screen x="0" y="0" width="1273" height="768" />
     </state>
@@ -179,25 +273,25 @@
       <screen x="0" y="0" width="1273" height="768" />
     </state>
     <state x="341" y="277" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD/0.0.1273.768@0.0.1273.768" timestamp="1582754836639" />
-    <state x="407" y="87" width="494" height="563" key="com.intellij.testIntegration.createTest.CreateTestDialog" timestamp="1582754927166">
+    <state x="407" y="87" width="494" height="563" key="com.intellij.testIntegration.createTest.CreateTestDialog" timestamp="1582760692882">
       <screen x="0" y="0" width="1273" height="768" />
     </state>
-    <state x="407" y="87" width="494" height="563" key="com.intellij.testIntegration.createTest.CreateTestDialog/0.0.1273.768@0.0.1273.768" timestamp="1582754927166" />
-    <state x="366" y="139" width="540" height="496" key="extract.method.dialog" timestamp="1582752261218">
+    <state x="407" y="87" width="494" height="563" key="com.intellij.testIntegration.createTest.CreateTestDialog/0.0.1273.768@0.0.1273.768" timestamp="1582760692882" />
+    <state x="366" y="139" width="540" height="496" key="extract.method.dialog" timestamp="1582757516299">
       <screen x="0" y="0" width="1273" height="768" />
     </state>
-    <state x="366" y="139" width="540" height="496" key="extract.method.dialog/0.0.1273.768@0.0.1273.768" timestamp="1582752261218" />
-    <state x="293" y="172" key="run.anything.popup" timestamp="1582288510105">
+    <state x="366" y="139" width="540" height="496" key="extract.method.dialog/0.0.1273.768@0.0.1273.768" timestamp="1582757516299" />
+    <state x="293" y="172" key="run.anything.popup" timestamp="1582757101620">
       <screen x="0" y="0" width="1273" height="768" />
     </state>
-    <state x="293" y="172" key="run.anything.popup/0.0.1273.768@0.0.1273.768" timestamp="1582288510105" />
+    <state x="293" y="172" key="run.anything.popup/0.0.1273.768@0.0.1273.768" timestamp="1582757101620" />
     <state x="228" y="42" key="scopes" timestamp="1582209063947">
       <screen x="0" y="0" width="1273" height="768" />
     </state>
     <state x="228" y="42" key="scopes/0.0.1273.768@0.0.1273.768" timestamp="1582209063947" />
-    <state x="299" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1582754685856">
+    <state x="299" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1582766097222">
       <screen x="0" y="0" width="1273" height="768" />
     </state>
-    <state x="299" y="89" width="672" height="678" key="search.everywhere.popup/0.0.1273.768@0.0.1273.768" timestamp="1582754685856" />
+    <state x="299" y="89" width="672" height="678" key="search.everywhere.popup/0.0.1273.768@0.0.1273.768" timestamp="1582766097222" />
   </component>
 </project>

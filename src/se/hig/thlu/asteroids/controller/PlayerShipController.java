@@ -14,7 +14,7 @@ public class PlayerShipController {
 	private long nextSpawn = GameConfig.INITIAL_SPAWN_INTERVAL;
 	private double timeSinceLastShot = Long.MAX_VALUE;
 	private int timer = 0;
-	private PlayerShip playerShip = new PlayerShip();
+	private PlayerShip playerShip = (PlayerShip) new PlayerShip().withPosition(new Point(100.0, 100.0));
 	private List<Asteroid> asteroids = new ArrayList<>();
 	private List<EnemyShip> enemyShips = new ArrayList<>();
 	private List<Missile> missiles = new ArrayList<>();
@@ -32,18 +32,26 @@ public class PlayerShipController {
 
 	public void update(double delta) {
 		updateTimes(delta);
+		updatePositions();
 		checkCollisions();
-		// TODO update all positions
-//		if (timer > 100) {
-//			playerShip = (PlayerShip) playerShip.withUpdatedPosition();
-//			timer = 0;
-//		}
-		// TODO if x amount of time has passed since pressing acceleration, start decelerating
+		executeActiveCommands();
 		notifyObservers();
 	}
 
+	private void updatePositions() {
+		if (timer > 100) {
+			playerShip = (PlayerShip) playerShip.withUpdatedPosition();
+			timer = 0;
+		}
+	}
+
+	private void executeActiveCommands() {
+		// TODO Active commands are executed so long as a key is being held down. Command are added when a key is
+		//  pressed down and removed when the key is released
+	}
+
 	private void notifyObservers() {
-		// TODO: Make PLAYER_SHIP a constant
+		// TODO: Make "PLAYER_SHIP" a constant
 		changeSupport.firePropertyChange("PLAYER_SHIP", null, playerShip);
 	}
 
@@ -61,18 +69,40 @@ public class PlayerShipController {
 	public void handleKeyPressed(InputController.PressedKey key) {
 		switch (key) {
 			case LEFT_ARROW:
+				// TODO add turnLeftCommand to list of active commands
+				System.out.println("LEFT");
 				playerShip = playerShip.turnLeft();
+				System.out.println(playerShip.getVelocity());
 				break;
 			case UP_ARROW:
+				// TODO add accelerateCommand to list of active commands
 				System.out.println("UP");
 				playerShip = playerShip.accelerate();
 				System.out.println(playerShip.getPosition());
+				System.out.println(playerShip.getVelocity());
 				break;
 			case RIGHT_ARROW:
+				// TODO add turnRightCommand to list of active commands
 				playerShip = playerShip.turnRight();
 				break;
 			case SPACE_BAR:
 				shoot();
+				break;
+			default:
+				break;
+		}
+	}
+
+	public void handleKeyReleased(InputController.PressedKey key) {
+		switch (key) {
+			case LEFT_ARROW:
+				// TODO remove turnLeftCommand
+				break;
+			case UP_ARROW:
+				// TODO remove accelerateCommand and add decelerateCommand
+				break;
+			case RIGHT_ARROW:
+				// TODO remove turnRightCommand
 				break;
 			default:
 				break;
