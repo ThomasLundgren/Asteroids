@@ -76,7 +76,7 @@ public class PlayerShipController {
 			case UP_ARROW:
 				// TODO add accelerateCommand to list of active commands
 				System.out.println("UP");
-				playerShip = playerShip.accelerated();
+				playerShip = playerShip.withAccelerate();
 				System.out.println(playerShip.getPosition());
 				System.out.println(playerShip.getVelocity());
 				break;

@@ -2,16 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="912592ae-0182-4155-a100-0b05ae75298b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/app/AsteroidsApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/app/AsteroidsApp.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/controller/PlayerShipController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/controller/PlayerShipController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/gamestate/GameLoop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/gamestate/GameLoop.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/graphics/model/PlayerShipGModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/graphics/model/PlayerShipGModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/model/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/model/Entity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/model/PlayerShip.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/model/PlayerShip.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/storage/ImageLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/storage/ImageLoader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/ui/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/ui/GUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/se/hig/thlu/asteroids/model/PlayerShipTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/se/hig/thlu/asteroids/model/PlayerShipTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

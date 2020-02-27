@@ -19,15 +19,15 @@ class PlayerShipTest {
 		Velocity velocity = playerShip.getVelocity();
 		assertEquals(0.0, velocity.getSpeed());
 
-		playerShip = playerShip.accelerated();
+		playerShip = playerShip.withAccelerate();
 		velocity = playerShip.getVelocity();
 		assertEquals(1.0, velocity.getSpeed());
 
-		playerShip = playerShip.accelerated();
+		playerShip = playerShip.withAccelerate();
 		velocity = playerShip.getVelocity();
 		assertEquals(2.0, velocity.getSpeed());
 
-		playerShip = playerShip.accelerated();
+		playerShip = playerShip.withAccelerate();
 		velocity = playerShip.getVelocity();
 		assertEquals(3.0, velocity.getSpeed());
 	}

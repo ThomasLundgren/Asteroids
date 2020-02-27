@@ -33,13 +33,17 @@ public final class PlayerShip extends Entity implements Shooter {
         return new PlayerShip(position, velocity, validatedLives);
     }
 
-    public PlayerShip accelerated() {
+    public PlayerShip withAccelerate() {
+        if (GameConfig.PLAYER_SHIP_UPDATE_MS - velocity.getSpeed() < 1) {
+            Velocity v = new Velocity(GameConfig.PLAYER_SHIP_UPDATE_MS, velocity.getDirection());
+            return new PlayerShip(position, v, lives);
+        }
         double newDirection = velocity.getDirection();
         Velocity v = velocity.composeWith(new Velocity(1.0, newDirection));
         return new PlayerShip(position, v, lives);
     }
 
-    public PlayerShip decelerate() {
+    public PlayerShip withDecelerate() {
         if (velocity.getSpeed() < 1) {
             return (PlayerShip) withVelocityImpl(new Velocity(0, velocity.getDirection()));
         }
@@ -49,13 +53,13 @@ public final class PlayerShip extends Entity implements Shooter {
         return (PlayerShip) withVelocityImpl(v);
     }
 
-    public PlayerShip turnLeft() {
+    public PlayerShip withTurnLeft() {
         double speed = velocity.getSpeed();
         Velocity v = velocity.composeWith(new Velocity(speed, 1.0));
         return (PlayerShip) withVelocityImpl(v);
     }
 
-    public PlayerShip turnRight() {
+    public PlayerShip withTurnRight() {
         double speed = velocity.getSpeed();
         double direction = velocity.getDirection() - 1.0;
         Velocity v = velocity.composeWith(new Velocity(speed, direction));
