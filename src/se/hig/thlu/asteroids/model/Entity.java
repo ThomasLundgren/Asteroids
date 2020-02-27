@@ -6,18 +6,6 @@ public abstract class Entity {
     protected final Velocity velocity;
     protected final boolean isDestroyed;
 
-//    protected Entity() {
-//        position = new Point(0.0, 0.0);
-//        velocity = new Velocity(0.0, 0.0);
-//        isDestroyed = false;
-//    }
-//
-//    protected Entity(double speed) {
-//        position = new Point(0.0, 0.0);
-//        velocity = new Velocity(speed, 0.0);
-//        isDestroyed = false;
-//    }
-
     protected Entity(Point position, Velocity velocity) {
         this.velocity = velocity;
         this.position = position;

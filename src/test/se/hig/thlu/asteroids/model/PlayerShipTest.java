@@ -14,20 +14,20 @@ class PlayerShipTest {
 	}
 
 	@Test
-	public void accelerate_incrementsSpeed() {
+	public void accelerated_incrementsSpeed() {
 		PlayerShip playerShip = new PlayerShip();
 		Velocity velocity = playerShip.getVelocity();
 		assertEquals(0.0, velocity.getSpeed());
 
-		playerShip = playerShip.accelerate();
+		playerShip = playerShip.accelerated();
 		velocity = playerShip.getVelocity();
 		assertEquals(1.0, velocity.getSpeed());
 
-		playerShip = playerShip.accelerate();
+		playerShip = playerShip.accelerated();
 		velocity = playerShip.getVelocity();
 		assertEquals(2.0, velocity.getSpeed());
 
-		playerShip = playerShip.accelerate();
+		playerShip = playerShip.accelerated();
 		velocity = playerShip.getVelocity();
 		assertEquals(3.0, velocity.getSpeed());
 	}

@@ -5,13 +5,14 @@ import se.hig.thlu.asteroids.model.*;
 import se.hig.thlu.asteroids.storage.*;
 
 import java.awt.*;
+import java.io.*;
 
 public class PlayerShipGModel implements GraphicModel {
 
 	private final Image playerShipImage;
 	private final PlayerShip playerShip;
 
-	public PlayerShipGModel(PlayerShip playerShip) {
+	public PlayerShipGModel(PlayerShip playerShip) throws IOException {
 		this.playerShipImage = ImageLoader.getPlayerShipImg();
 		this.playerShip = playerShip;
 	}

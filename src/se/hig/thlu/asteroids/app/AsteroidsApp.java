@@ -2,7 +2,6 @@ package se.hig.thlu.asteroids.app;
 
 import se.hig.thlu.asteroids.controller.*;
 import se.hig.thlu.asteroids.gamestate.*;
-import se.hig.thlu.asteroids.storage.*;
 import se.hig.thlu.asteroids.ui.*;
 
 import javax.swing.*;
@@ -15,16 +14,11 @@ public class AsteroidsApp {
 		} catch (Exception ignored) {
 		}
 
-		ImageLoader loader = new ImageLoader();
-
-		PlayerShipController controller = PlayerShipController.getInstance();
-		InputController inputController = new InputController();
-
 		UI ui = new GUI();
-		ui.addKeyListener(inputController);
-		controller.addPropertyChangeListener(ui);
+		ui.addKeyListener(new InputController());
+		PlayerShipController.getInstance().addPropertyChangeListener(ui);
 
-		GameLoop gameLoop = new GameLoop(controller);
+		GameLoop gameLoop = new GameLoop();
 		gameLoop.gameLoop();
 	}
 

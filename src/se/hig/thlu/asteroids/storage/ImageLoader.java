@@ -7,29 +7,21 @@ import java.net.*;
 
 public class ImageLoader {
 
-	public static Image playerShipImg;
-	public static Image backgroundImg;
+	// TODO turn into singleton with cached images
 
-	public ImageLoader() {
+	public static Image getPlayerShipImg() throws IOException {
 		ClassLoader loader = ImageLoader.class.getClassLoader();
 		URL playerImgUrl = loader.getResource("resources/images/final/player-ship-accel.png");
+
+		// TODO set constants for width and height of image
+		return ImageIO.read(playerImgUrl).getScaledInstance(75, 75, Image.SCALE_SMOOTH);
+	}
+
+	public static Image getBackgroundImg() throws IOException {
+		ClassLoader loader = ImageLoader.class.getClassLoader();
 		URL bgImgUrl = loader.getResource("resources/images/final/background.png");
 
-		if (playerImgUrl != null && bgImgUrl != null) {
-			try {
-				playerShipImg = ImageIO.read(playerImgUrl).getScaledInstance(75, 75, Image.SCALE_SMOOTH);
-				backgroundImg = ImageIO.read(bgImgUrl);
-			} catch (IOException e) {
-				System.err.println("Could not load sprites, make sure that the sprites are in their right location");
-			}
-		}
-	}
-
-	public static Image getPlayerShipImg() {
-		return playerShipImg;
-	}
-
-	public static Image getBackgroundImg() {
-		return backgroundImg;
+		// TODO set constants for width and height of image
+		return ImageIO.read(bgImgUrl);
 	}
 }

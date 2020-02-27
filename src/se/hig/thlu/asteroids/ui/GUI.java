@@ -8,6 +8,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.beans.*;
+import java.io.*;
 import java.util.List;
 import java.util.*;
 
@@ -16,7 +17,7 @@ public class GUI implements UI {
 	private final JFrame frame;
 	private BackgroundPanel backgroundPanel;
 
-	public GUI() {
+	public GUI() throws IOException {
 		frame = new JFrame();
 		backgroundPanel = new BackgroundPanel(ImageLoader.getBackgroundImg());
 		configureFrame();
@@ -33,7 +34,6 @@ public class GUI implements UI {
 
 	@Override
 	public void render(List<GraphicModel> entities) {
-//		bg.setEntities(entities);
 		backgroundPanel.setEntities(entities);
 	}
 
@@ -44,10 +44,10 @@ public class GUI implements UI {
 	@Override
 	public void propertyChange(PropertyChangeEvent evt) {
 		// TODO: Make PLAYER_SHIP a constant
-		if (evt.getPropertyName() == "PLAYER_SHIP") {
+		if (evt.getPropertyName().equals("PLAYER_SHIP")) {
 			PlayerShip playerShip = (PlayerShip) evt.getNewValue();
 			PlayerShipGModel model = new PlayerShipGModel(playerShip);
-			backgroundPanel.setEntities(Arrays.asList(model));
+			backgroundPanel.setEntities(Collections.singletonList(model));
 		}
 	}
 }

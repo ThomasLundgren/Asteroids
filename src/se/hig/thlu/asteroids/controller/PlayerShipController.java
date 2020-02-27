@@ -14,20 +14,22 @@ public class PlayerShipController {
 	private long nextSpawn = GameConfig.INITIAL_SPAWN_INTERVAL;
 	private double timeSinceLastShot = Long.MAX_VALUE;
 	private int timer = 0;
-	private PlayerShip playerShip = (PlayerShip) new PlayerShip().withPosition(new Point(100.0, 100.0));
+	private PlayerShip playerShip;
 	private List<Asteroid> asteroids = new ArrayList<>();
 	private List<EnemyShip> enemyShips = new ArrayList<>();
 	private List<Missile> missiles = new ArrayList<>();
 
 	private PlayerShipController() {
 		changeSupport = new PropertyChangeSupport(this);
+		playerShip = (PlayerShip) new PlayerShip().withPosition(new Point(100.0, 100.0));
 	}
 
 	public static PlayerShipController getInstance() {
 		if (instance == null) {
 			return new PlayerShipController();
+		} else {
+			return instance;
 		}
-		return instance;
 	}
 
 	public void update(double delta) {
@@ -39,10 +41,10 @@ public class PlayerShipController {
 	}
 
 	private void updatePositions() {
-		if (timer > 100) {
-			playerShip = (PlayerShip) playerShip.withUpdatedPosition();
-			timer = 0;
-		}
+//		if (timer > 100) {
+//			playerShip = (PlayerShip) playerShip.withUpdatedPosition();
+//			timer = 0;
+//		}
 	}
 
 	private void executeActiveCommands() {
@@ -70,20 +72,16 @@ public class PlayerShipController {
 		switch (key) {
 			case LEFT_ARROW:
 				// TODO add turnLeftCommand to list of active commands
-				System.out.println("LEFT");
-				playerShip = playerShip.turnLeft();
-				System.out.println(playerShip.getVelocity());
 				break;
 			case UP_ARROW:
 				// TODO add accelerateCommand to list of active commands
 				System.out.println("UP");
-				playerShip = playerShip.accelerate();
+				playerShip = playerShip.accelerated();
 				System.out.println(playerShip.getPosition());
 				System.out.println(playerShip.getVelocity());
 				break;
 			case RIGHT_ARROW:
 				// TODO add turnRightCommand to list of active commands
-				playerShip = playerShip.turnRight();
 				break;
 			case SPACE_BAR:
 				shoot();
