@@ -1,10 +1,8 @@
 package se.hig.thlu.asteroids.controller;
 
-import se.hig.thlu.asteroids.gamestate.*;
-
 import java.awt.event.*;
 
-public class InputController implements StateClient, KeyListener {
+public class InputController implements KeyListener {
 
 	private final GameController controller;
 
@@ -36,7 +34,6 @@ public class InputController implements StateClient, KeyListener {
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		// TODO: Make key bindings configurable
 		PressedKey key;
 		switch (e.getKeyCode()) {
 			case KeyEvent.VK_LEFT:

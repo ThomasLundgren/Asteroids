@@ -1,51 +1,78 @@
 package se.hig.thlu.asteroids.model;
 
+import java.beans.*;
+
 public abstract class Entity {
 
-    protected Point center;
-    protected Velocity velocity;
-    protected boolean isDestroyed;
+	public enum EntityProperty {
 
-    protected Entity(Point center, Velocity velocity) {
-        this.velocity = velocity;
-        this.center = center;
-        isDestroyed = false;
-    }
+		CENTER("CENTER"), IS_DESTROYED("IS_DESTROYED");
 
-    protected Entity(Point center, Velocity velocity, boolean isDestroyed) {
-        this.center = center;
-        this.velocity = velocity;
-        this.isDestroyed = isDestroyed;
-    }
+		private String propertyName;
 
-    public final Point getCenter() {
-        return center;
-    }
+		EntityProperty(String propertyName) {
+			this.propertyName = propertyName;
+		}
 
-    public void setCenter(Point center) {
-        this.center = center;
-    }
+		public String getPropertyName() {
+			return propertyName;
+		}
+	}
 
-    public final Velocity getVelocity() {
-        return velocity;
-    }
+	protected Point center;
+	protected Velocity velocity;
+	protected boolean isDestroyed = false;
+	protected final PropertyChangeSupport changeSupport = new PropertyChangeSupport(this);
 
-    protected final void setVelocity(Velocity velocity) {
-        this.velocity = velocity;
-    }
+	protected Entity(Point center, Velocity velocity) {
+		this.velocity = velocity;
+		this.center = center;
+	}
 
-    public final boolean isDestroyed() {
-        return isDestroyed;
-    }
+	protected Entity(Point center, Velocity velocity, boolean isDestroyed) {
+		this.center = center;
+		this.velocity = velocity;
+		this.isDestroyed = isDestroyed;
+	}
 
-    public void collide() {
-        isDestroyed = true;
-    }
+	public final Point getCenter() {
+		return center;
+	}
 
-    public void updatePosition() {
-        double diffX = StrictMath.cos(StrictMath.toRadians(velocity.getDirection())) * velocity.getSpeed();
-        double diffY = StrictMath.sin(StrictMath.toRadians(velocity.getDirection())) * velocity.getSpeed();
-        Point newPos = new Point(center.getX() + diffX, center.getY() + diffY);
-        setCenter(newPos);
-    }
+	public void addPropertyChangeListener(PropertyChangeListener listener) {
+		changeSupport.addPropertyChangeListener(listener);
+	}
+
+	public void setCenter(Point center) {
+		this.center = center;
+		notifyListeners(EntityProperty.CENTER.getPropertyName(), center);
+	}
+
+	protected void notifyListeners(String propertyName, Object newValue) {
+		changeSupport.firePropertyChange(propertyName, null, newValue);
+	}
+
+	public final Velocity getVelocity() {
+		return velocity;
+	}
+
+	protected final void setVelocity(Velocity velocity) {
+		this.velocity = velocity;
+	}
+
+	public final boolean isDestroyed() {
+		return isDestroyed;
+	}
+
+	public void collide() {
+		isDestroyed = true;
+		notifyListeners(EntityProperty.IS_DESTROYED.getPropertyName(), true);
+	}
+
+	public void updatePosition() {
+		double diffX = StrictMath.cos(StrictMath.toRadians(velocity.getDirection())) * velocity.getSpeed();
+		double diffY = StrictMath.sin(StrictMath.toRadians(velocity.getDirection())) * velocity.getSpeed();
+		Point newPos = new Point(center.getX() + diffX, center.getY() + diffY);
+		setCenter(newPos);
+	}
 }

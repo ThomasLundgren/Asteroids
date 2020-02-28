@@ -14,7 +14,7 @@ public class AsteroidsApp {
 		} catch (Exception ignored) {
 		}
 		GameController shipController = new GameController();
-		UI ui = new GUI();
+		UI ui = new SwingGUI();
 		ui.addKeyListener(new InputController(shipController));
 		shipController.addPropertyChangeListener(ui);
 

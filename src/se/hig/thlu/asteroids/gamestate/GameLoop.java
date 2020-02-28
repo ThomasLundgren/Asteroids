@@ -5,32 +5,31 @@ import se.hig.thlu.asteroids.controller.*;
 /**
  * Credit to http://www.java-gaming.org/index.php?topic=24220.0
  * and http://www.cokeandcode.com/info/showsrc/showsrc.php?src=../spaceinvaders102/org/newdawn/spaceinvaders/Game.java
- *
  */
 public class GameLoop {
 
-    public static final int TARGET_FPS = 60;
-    public static final long MILLION = 1000000L;
-    public static final long BILLION = 1000000000L;
-    public static final long OPTIMAL_TIME = BILLION / (long) TARGET_FPS;
-    private boolean isRunning = true;
-    private final GameController controller;
+	public static final int TARGET_FPS = 60;
+	public static final long MILLION = 1000000L;
+	public static final long BILLION = 1000000000L;
+	public static final long OPTIMAL_TIME = BILLION / (long) TARGET_FPS;
+	private boolean isRunning = true;
+	private final GameController controller;
 
-    public GameLoop(GameController controller) {
-        this.controller = controller;
-    }
+	public GameLoop(GameController controller) {
+		this.controller = controller;
+	}
 
-    public void gameLoop() {
-        long lastLoopTime = System.nanoTime();
-        long lastFpsTime = 0L;
-        int fps = 0;
+	public void gameLoop() {
+		long lastLoopTime = System.nanoTime();
+		long lastFpsTime = 0L;
+		int fps = 0;
 
 
-        while (isRunning) {
-            long now = System.nanoTime();
-            long updateLength = now - lastLoopTime;
-            lastLoopTime = now;
-            double delta = updateLength / ((double) OPTIMAL_TIME);
+		while (isRunning) {
+			long now = System.nanoTime();
+			long updateLength = now - lastLoopTime;
+			lastLoopTime = now;
+			double delta = updateLength / ((double) OPTIMAL_TIME);
 
 //            lastFpsTime += updateLength;
 //            fps++;
@@ -40,17 +39,17 @@ public class GameLoop {
 //                lastFpsTime = 0L;
 //                fps = 0;
 //            }
-            controller.update(delta);
+			controller.update(delta);
 
-            try {
-                long millis = (lastLoopTime - System.nanoTime() + OPTIMAL_TIME) / MILLION;
-                if (millis > 0L) {
-                    Thread.sleep(millis);
-                }
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-    }
+			try {
+				long millis = (lastLoopTime - System.nanoTime() + OPTIMAL_TIME) / MILLION;
+				if (millis > 0L) {
+					Thread.sleep(millis);
+				}
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+	}
 
 }

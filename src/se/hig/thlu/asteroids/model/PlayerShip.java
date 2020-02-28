@@ -8,20 +8,13 @@ public final class PlayerShip extends Entity implements Shooter {
 	private static final double MAX_SPEED = 7.5;
 	private static final double TURNING_DEGREE = 5.0;
 	private static final double ACCELERATION = 0.05;
-	private static final double DECELERATION = 0.04;
+	private static final double DECELERATION = ACCELERATION * 1.0/3.0;
 	private int lives = 3;
 	private double facingDirection = 0.0;
 	private boolean isAccelerating = false;
 
 	public PlayerShip() {
 		super(new Point(0.0, 0.0), new Velocity(0.0, 0.0));
-	}
-
-	private static double lessThanTopSpeed(double speed) {
-		if (speed > MAX_SPEED) {
-			throw new IllegalArgumentException("PlayerShip cannot exceed MAX_SPEED");
-		}
-		return speed;
 	}
 
 	public int getLives() {
@@ -39,6 +32,10 @@ public final class PlayerShip extends Entity implements Shooter {
 
 	public void decelerate() {
 		isAccelerating = false;
+		if (velocity.getSpeed() < DECELERATION) {
+			velocity.setSpeed(0.0);
+			return;
+		}
 		Velocity deceleration = new Velocity(DECELERATION, velocity.getDirection() - 180.0);
 		velocity.composeWith(deceleration);
 	}
@@ -46,11 +43,13 @@ public final class PlayerShip extends Entity implements Shooter {
 	public void turnLeft() {
 		facingDirection -= TURNING_DEGREE;
 		facingDirection = Trigonometry.normalizeDegree(facingDirection);
+		notifyListeners(PlayerShipProperty.FACING_DIRECTION.getPropertyName(), facingDirection);
 	}
 
 	public void turnRight() {
 		facingDirection += TURNING_DEGREE;
 		facingDirection = Trigonometry.normalizeDegree(facingDirection);
+		notifyListeners(PlayerShipProperty.FACING_DIRECTION.getPropertyName(), facingDirection);
 	}
 
 	public double getFacingDirection() {
@@ -64,15 +63,40 @@ public final class PlayerShip extends Entity implements Shooter {
 	@Override
 	public void collide() {
 		if (lives == 1) {
-			isDestroyed = true;
+			collide();
 		} else {
 			lives--;
 		}
+		notifyListeners(PlayerShipProperty.LIVES.getPropertyName(), lives);
+	}
+
+	private static double lessThanTopSpeed(double speed) {
+		if (speed > MAX_SPEED) {
+			throw new IllegalArgumentException("PlayerShip cannot exceed MAX_SPEED");
+		}
+		return speed;
 	}
 
 	@Override
 	public Missile shoot(double direction) {
 		return new Missile(center, velocity.getDirection(), MissileSource.PLAYER);
+	}
+
+	public enum PlayerShipProperty {
+
+		LIVES("LIVES"),
+		FACING_DIRECTION("FACING_DIRECTION"),
+		IS_ACCELERATING("IS_ACCELERATING");
+
+		private String propertyName;
+
+		PlayerShipProperty(String propertyName) {
+			this.propertyName = propertyName;
+		}
+
+		public String getPropertyName() {
+			return propertyName;
+		}
 	}
 
 }

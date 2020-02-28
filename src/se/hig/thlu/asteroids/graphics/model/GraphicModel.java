@@ -1,9 +1,9 @@
 package se.hig.thlu.asteroids.graphics.model;
 
-import java.awt.*;
+import se.hig.thlu.asteroids.graphics.renderer.*;
 
 public interface GraphicModel {
 
-	void draw(Graphics g);
+	void draw(IRenderer renderer);
 
 }

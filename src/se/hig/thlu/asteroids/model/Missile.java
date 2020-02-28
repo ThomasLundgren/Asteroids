@@ -6,6 +6,7 @@ public final class Missile extends Entity {
 
 	private final MissileSource missileSource;
 	private final Point startingPosition;
+
 	protected Missile(Point position, double direction, MissileSource source) {
 		super(position, new Velocity(source.getMissileSpeed(), direction));
 		startingPosition = position;
@@ -16,21 +17,21 @@ public final class Missile extends Entity {
 	public void updatePosition() {
 		super.updatePosition();
 		if (center.distanceTo(startingPosition) > 0.6 * GameConfig.WINDOW_WIDTH) {
-			isDestroyed = true;
+			collide();
 		}
 	}
 
 	public enum MissileSource {
-		PLAYER(5.0), ENEMY(5.0);
+		PLAYER(7.0), ENEMY(5.0);
 
-        final double missileSpeed;
+		final double missileSpeed;
 
-        MissileSource(double missileSpeed) {
-            this.missileSpeed = missileSpeed;
-        }
+		MissileSource(double missileSpeed) {
+			this.missileSpeed = missileSpeed;
+		}
 
-        public double getMissileSpeed() {
-            return missileSpeed;
-        }
-    }
+		private double getMissileSpeed() {
+			return missileSpeed;
+		}
+	}
 }

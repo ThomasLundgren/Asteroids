@@ -13,14 +13,16 @@ import java.beans.*;
 import java.util.List;
 import java.util.*;
 
-public class GUI implements UI {
+public class SwingGUI implements UI {
 
-	private final JFrame frame;
 	private BackgroundPanel backgroundPanel;
+	private final JFrame frame;
+	private final ImageLoader imageLoader;
 
-	public GUI() {
+	public SwingGUI(ImageLoader imageLoader) {
+		this.imageLoader = imageLoader;
 		frame = new JFrame();
-		initBackgroundPanel();
+		backgroundPanel = new BackgroundPanel(imageLoader.getImageResource(ImageLoader.ImageResource.BACKGROUND_PNG));
 		configureFrame();
 	}
 
@@ -41,15 +43,6 @@ public class GUI implements UI {
 			PlayerShip playerShip = (PlayerShip) evt.getNewValue();
 			PlayerShipGModel model = new PlayerShipGModel(playerShip);
 			backgroundPanel.setEntities(Collections.singletonList(model));
-		}
-	}
-
-	private void initBackgroundPanel() {
-		Optional<Image> bgImg = new ImageLoader().loadImage(ImageLoader.ImagePath.BACKGROUND_PNG);
-		if (bgImg.isPresent()) {
-			backgroundPanel = new BackgroundPanel(bgImg.get());
-		} else {
-			throw new RuntimeException("Could not find the background image!");
 		}
 	}
 

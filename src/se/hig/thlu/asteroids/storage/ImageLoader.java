@@ -6,40 +6,39 @@ import javax.imageio.*;
 import java.awt.*;
 import java.io.*;
 import java.util.*;
-import java.util.stream.*;
 
 public class ImageLoader {
 
-	private static final Map<String, Image> imageCache = new HashMap<>(15);
+	private static final Map<ImageResource, Image> imageCache = new EnumMap<ImageResource, Image>(ImageResource.class);
 
-	public ImageLoader() {
-		Stream.of(ImagePath.values()).forEach(this::loadImage);
-	}
-	;
-
-	public Optional<Image> loadImage(ImagePath imagePath) {
-		Image image = imageCache.get(imagePath.getImagePath());
-		if (image != null) {
-			return Optional.of(image);
+	/*
+	Just throwing exception here since we NEED all images.
+	If we cannot load all images, something has gone wrong.
+	 */
+	public ImageLoader() throws IOException {
+		for (ImageResource imageResource : ImageResource.values()) {
+			Image image = loadImage(imageResource);
+			imageCache.put(imageResource, image);
 		}
-		Optional<Image> img;
+	}
+
+	public Image getImageResource(ImageResource imageResource) {
+		return imageCache.get(imageResource);
+	}
+
+	private Image loadImage(ImageResource imageResource) throws IOException {
 		ClassLoader classLoader = ImageLoader.class.getClassLoader();
 
 		try (InputStream stream = Objects.requireNonNull(classLoader
-				.getResourceAsStream(imagePath.getImagePath()))) {
-			img = Optional.ofNullable(ImageIO.read(stream))
-					.map(im -> im.getScaledInstance(
-							imagePath.getWidth(),
-							imagePath.getHeight(),
-							Image.SCALE_SMOOTH));
-		} catch (IOException e) {
-			img = Optional.empty();
+				.getResourceAsStream(imageResource.getImagePath()))) {
+			return ImageIO.read(stream).getScaledInstance(
+					imageResource.getWidth(),
+					imageResource.getHeight(),
+					Image.SCALE_SMOOTH);
 		}
-		img.ifPresent(i -> imageCache.put(imagePath.getImagePath(), i));
-		return img;
 	}
 
-	public enum ImagePath {
+	public enum ImageResource {
 		PLAYER_SHIP_ACCEL_PNG("resources/images/final/player-ship-accel.png", 45, 22),
 		BACKGROUND_PNG("resources/images/final/background.png", GameConfig.WINDOW_WIDTH, GameConfig.WINDOW_HEIGHT),
 		PLAYER_SHIP_PNG("resources/images/final/player-ship.png", 29, 22);
@@ -47,7 +46,7 @@ public class ImageLoader {
 		private final String imagePath;
 		private final int width, height;
 
-		ImagePath(String imagePath, int width, int height) {
+		ImageResource(String imagePath, int width, int height) {
 			this.imagePath = imagePath;
 			this.width = width;
 			this.height = height;

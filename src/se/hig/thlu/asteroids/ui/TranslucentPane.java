@@ -13,7 +13,8 @@ public class TranslucentPane extends JPanel {
 	private float alpha;
 	private List<GraphicModel> entities = new ArrayList();
 
-	public TranslucentPane() {}
+	public TranslucentPane() {
+	}
 
 	public TranslucentPane(int width, int height, float alpha) {
 		this.width = width;

@@ -70,7 +70,7 @@ public class Velocity {
 	}
 
 	private static double validateSpeed(double speed) {
-		if (speed < 0.05) {
+		if (speed < 0.0) {
 			return 0.0;
 		}
 		return speed;

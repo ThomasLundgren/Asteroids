@@ -1,6 +1,6 @@
 package se.hig.thlu.asteroids.config;
 
-import se.hig.thlu.asteroids.model.Asteroid;
+import se.hig.thlu.asteroids.model.*;
 
 public enum GameConfig {
 	;
