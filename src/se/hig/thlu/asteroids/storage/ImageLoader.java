@@ -1,5 +1,7 @@
 package se.hig.thlu.asteroids.storage;
 
+import se.hig.thlu.asteroids.config.*;
+
 import javax.imageio.*;
 import java.awt.*;
 import java.io.*;
@@ -8,9 +10,39 @@ import java.util.stream.*;
 
 public class ImageLoader {
 
+	private static final Map<String, Image> imageCache = new HashMap<>(15);
+
+	public ImageLoader() {
+		Stream.of(ImagePath.values()).forEach(this::loadImage);
+	}
+	;
+
+	public Optional<Image> loadImage(ImagePath imagePath) {
+		Image image = imageCache.get(imagePath.getImagePath());
+		if (image != null) {
+			return Optional.of(image);
+		}
+		Optional<Image> img;
+		ClassLoader classLoader = ImageLoader.class.getClassLoader();
+
+		try (InputStream stream = Objects.requireNonNull(classLoader
+				.getResourceAsStream(imagePath.getImagePath()))) {
+			img = Optional.ofNullable(ImageIO.read(stream))
+					.map(im -> im.getScaledInstance(
+							imagePath.getWidth(),
+							imagePath.getHeight(),
+							Image.SCALE_SMOOTH));
+		} catch (IOException e) {
+			img = Optional.empty();
+		}
+		img.ifPresent(i -> imageCache.put(imagePath.getImagePath(), i));
+		return img;
+	}
+
 	public enum ImagePath {
-		PLAYER_SHIP_ACCEL_PNG("resources/images/final/player-ship-accel.png", 70, 70),
-		BACKGROUND_PNG("resources/images/final/background.png", -1, -1);
+		PLAYER_SHIP_ACCEL_PNG("resources/images/final/player-ship-accel.png", 45, 22),
+		BACKGROUND_PNG("resources/images/final/background.png", GameConfig.windowWidth, GameConfig.windowHeight),
+		PLAYER_SHIP_PNG("resources/images/final/player-ship.png", 29, 22);
 
 		private final String imagePath;
 		private final int width, height;
@@ -25,41 +57,12 @@ public class ImageLoader {
 			return imagePath;
 		}
 
-		private int getWidth() {
+		public int getWidth() {
 			return width;
 		}
 
-		private int getHeight() {
+		public int getHeight() {
 			return height;
 		}
-	}
-
-	private final Map<String, Image> imageCache;
-
-	public ImageLoader() {
-		imageCache = new HashMap<>(15);
-		Stream.of(ImagePath.values()).forEach(this::loadImage);
-	}
-
-	public Optional<Image> loadImage(ImagePath imagePath) {
-		Image image = imageCache.get(imagePath.getImagePath());
-		if (image != null) {
-			return Optional.of(image);
-		}
-		Optional<Image> img;
-		ClassLoader classLoader = ImageLoader.class.getClassLoader();
-
-		try (InputStream stream = Objects.requireNonNull(classLoader
-				.getResourceAsStream(imagePath.getImagePath()))) {
-			img = Optional.ofNullable(ImageIO.read(stream))
-					.map(i -> i.getScaledInstance(
-							imagePath.getWidth(),
-							imagePath.getHeight(),
-							Image.SCALE_SMOOTH));
-		} catch (IOException e) {
-			img = Optional.empty();
-		}
-		img.ifPresent(i -> imageCache.put(imagePath.getImagePath(), i));
-		return img;
 	}
 }

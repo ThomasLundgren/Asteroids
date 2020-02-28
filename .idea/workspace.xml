@@ -2,12 +2,49 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="912592ae-0182-4155-a100-0b05ae75298b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/images/final/player-ship.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/controller/command/AbstractCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/controller/command/AccelerateCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/controller/command/Command.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/controller/command/CommandController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/controller/command/CommandFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/controller/command/DecelerateCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/controller/command/NullCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/controller/command/ShootCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/controller/command/TurnLeftCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/controller/command/TurnRightCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/util/Trigonometry.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/controller/PlayerShipController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/controller/PlayerShipController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Asteroids/resources/images/final/asteroid-large.png" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Asteroids/resources/images/final/asteroid-large.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Asteroids/resources/images/final/asteroid-medium-1.png" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Asteroids/resources/images/final/asteroid-medium-1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Asteroids/resources/images/final/asteroids-arcade.png" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Asteroids/resources/images/final/asteroids-arcade.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Asteroids/resources/images/final/player-ship-accel.png" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Asteroids/resources/images/final/player-ship-accel.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/images/final/asteroid-large.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/images/final/asteroid-large.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/images/final/asteroid-medium-1.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/images/final/asteroid-medium-1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/images/final/asteroids-arcade.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/images/final/asteroids-arcade.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/images/final/player-ship-accel.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/images/final/player-ship-accel.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/app/AsteroidsApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/app/AsteroidsApp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/config/GameConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/config/GameConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/controller/InputController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/controller/InputController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/controller/PlayerShipController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/controller/GameController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/factory/EntityFactory.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/factory/LevelFactory.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/gamestate/GameLoop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/gamestate/GameLoop.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/gamestate/State.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/gamestate/State.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/graphics/model/PlayerShipGModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/graphics/model/PlayerShipGModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/model/Asteroid.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/model/Asteroid.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/model/EnemyShip.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/model/EnemyShip.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/model/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/model/Entity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/model/EntityBuilder.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/model/Missile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/model/Missile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/model/PlayerShip.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/model/PlayerShip.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/model/Point.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/model/Point.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/model/Velocity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/model/Velocity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/storage/ImageLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/storage/ImageLoader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/ui/BackgroundPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/ui/BackgroundPanel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/ui/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/ui/GUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/se/hig/thlu/asteroids/model/PlayerShipTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/se/hig/thlu/asteroids/model/PlayerShipTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/se/hig/thlu/asteroids/model/VelocityTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/se/hig/thlu/asteroids/model/VelocityTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,9 +58,9 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Enum" />
+        <option value="JUnit5 Test Class" />
         <option value="Interface" />
         <option value="Class" />
-        <option value="JUnit5 Test Class" />
       </list>
     </option>
   </component>
@@ -51,6 +88,7 @@
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
     <property name="create.test.in.the.same.root" value="true" />
     <property name="extract.method.default.visibility" value="private" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/se/hig/thlu/asteroids/controller/command" />
     <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
   <component name="RecentsManager">
@@ -84,7 +122,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PlayerShipTest.accelerate_incrementsSpeed" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="PlayerShipTest.accelerating_inAllDirections_increasesSpeed" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Asteroids" />
       <extension name="coverage">
         <pattern>
@@ -94,13 +132,13 @@
       </extension>
       <option name="PACKAGE_NAME" value="test.se.hig.thlu.asteroids.model" />
       <option name="MAIN_CLASS_NAME" value="test.se.hig.thlu.asteroids.model.PlayerShipTest" />
-      <option name="METHOD_NAME" value="accelerate_incrementsSpeed" />
+      <option name="METHOD_NAME" value="accelerating_inAllDirections_increasesSpeed" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PlayerShipTest.getSpeed_onNewShip_returnsZero" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="VelocityTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Asteroids" />
       <extension name="coverage">
         <pattern>
@@ -109,30 +147,13 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="test.se.hig.thlu.asteroids.model" />
-      <option name="MAIN_CLASS_NAME" value="test.se.hig.thlu.asteroids.model.PlayerShipTest" />
-      <option name="METHOD_NAME" value="getSpeed_onNewShip_returnsZero" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="MAIN_CLASS_NAME" value="test.se.hig.thlu.asteroids.model.VelocityTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="VelocityTest.composeWith_speedsInOrthogonalDirections_returnsVelocityWithSpeedsEqualToHypotenuse" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Asteroids" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="test.se.hig.thlu.asteroids.model.velocity.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="test.se.hig.thlu.asteroids.model.velocity" />
-      <option name="MAIN_CLASS_NAME" value="test.se.hig.thlu.asteroids.model.velocity.VelocityTest" />
-      <option name="METHOD_NAME" value="composeWith_speedsInOrthogonalDirections_returnsVelocityWithSpeedsEqualToHypotenuse" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="test.se.hig.thlu.asteroids.model in Asteroids" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="VelocityTest.composeWithTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Asteroids" />
       <extension name="coverage">
         <pattern>
@@ -141,7 +162,25 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="test.se.hig.thlu.asteroids.model" />
-      <option name="TEST_OBJECT" value="package" />
+      <option name="MAIN_CLASS_NAME" value="test.se.hig.thlu.asteroids.model.VelocityTest" />
+      <option name="METHOD_NAME" value="composeWithTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="VelocityTest.constructor_withDirectionLessThanZero_convertsToCorrectDegrees" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Asteroids" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.se.hig.thlu.asteroids.model.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test.se.hig.thlu.asteroids.model" />
+      <option name="MAIN_CLASS_NAME" value="test.se.hig.thlu.asteroids.model.VelocityTest" />
+      <option name="METHOD_NAME" value="constructor_withDirectionLessThanZero_convertsToCorrectDegrees" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -149,10 +188,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.AsteroidsApp" />
-        <item itemvalue="JUnit.test.se.hig.thlu.asteroids.model in Asteroids" />
-        <item itemvalue="JUnit.PlayerShipTest.accelerate_incrementsSpeed" />
-        <item itemvalue="JUnit.PlayerShipTest.getSpeed_onNewShip_returnsZero" />
-        <item itemvalue="JUnit.VelocityTest.composeWith_speedsInOrthogonalDirections_returnsVelocityWithSpeedsEqualToHypotenuse" />
+        <item itemvalue="JUnit.VelocityTest.constructor_withDirectionLessThanZero_convertsToCorrectDegrees" />
+        <item itemvalue="JUnit.VelocityTest" />
+        <item itemvalue="JUnit.PlayerShipTest.accelerating_inAllDirections_increasesSpeed" />
+        <item itemvalue="JUnit.VelocityTest.composeWithTest" />
       </list>
     </recent_temporary>
   </component>
@@ -170,26 +209,26 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="196" y="85" key="#Inspections" timestamp="1582794764952">
+    <state x="196" y="85" key="#Inspections" timestamp="1582848120601">
       <screen x="0" y="0" width="1273" height="768" />
     </state>
-    <state x="196" y="85" key="#Inspections/0.0.1273.768@0.0.1273.768" timestamp="1582794764952" />
+    <state x="196" y="85" key="#Inspections/0.0.1273.768@0.0.1273.768" timestamp="1582848120601" />
     <state x="228" y="0" width="816" height="768" key="#Intentions" timestamp="1582271447648">
       <screen x="0" y="0" width="1273" height="768" />
     </state>
     <state x="228" y="0" width="816" height="768" key="#Intentions/0.0.1273.768@0.0.1273.768" timestamp="1582271447648" />
-    <state x="90" y="39" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1582758589321">
+    <state x="90" y="39" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1582830744039">
       <screen x="0" y="0" width="1273" height="768" />
     </state>
-    <state x="90" y="39" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1273.768@0.0.1273.768" timestamp="1582758589321" />
+    <state x="90" y="39" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1273.768@0.0.1273.768" timestamp="1582830744039" />
     <state x="92" y="92" width="1089" height="584" key="#com.intellij.execution.junit2.states.ComparisonFailureState$DiffDialog" timestamp="1582761027456">
       <screen x="0" y="0" width="1273" height="768" />
     </state>
     <state x="92" y="92" width="1089" height="584" key="#com.intellij.execution.junit2.states.ComparisonFailureState$DiffDialog/0.0.1273.768@0.0.1273.768" timestamp="1582761027456" />
-    <state x="406" y="85" key="#com.intellij.ide.util.MemberChooser" timestamp="1582793265332">
+    <state x="406" y="85" key="#com.intellij.ide.util.MemberChooser" timestamp="1582809306061">
       <screen x="0" y="0" width="1273" height="768" />
     </state>
-    <state x="406" y="85" key="#com.intellij.ide.util.MemberChooser/0.0.1273.768@0.0.1273.768" timestamp="1582793265332" />
+    <state x="406" y="85" key="#com.intellij.ide.util.MemberChooser/0.0.1273.768@0.0.1273.768" timestamp="1582809306061" />
     <state x="366" y="144" key="#com.intellij.ide.util.PackageChooserDialog" timestamp="1582754924687">
       <screen x="0" y="0" width="1273" height="768" />
     </state>
@@ -202,10 +241,14 @@
       <screen x="0" y="0" width="1273" height="768" />
     </state>
     <state x="340" y="152" key="#com.intellij.refactoring.memberPushDown.PushDownDialog/0.0.1273.768@0.0.1273.768" timestamp="1582716097197" />
-    <state x="366" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1582287704221">
+    <state x="432" y="269" width="410" height="237" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1582805679986">
       <screen x="0" y="0" width="1273" height="768" />
     </state>
-    <state x="366" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1273.768@0.0.1273.768" timestamp="1582287704221" />
+    <state x="432" y="269" width="410" height="237" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1273.768@0.0.1273.768" timestamp="1582805679986" />
+    <state x="366" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1582811585717">
+      <screen x="0" y="0" width="1273" height="768" />
+    </state>
+    <state x="366" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1273.768@0.0.1273.768" timestamp="1582811585717" />
     <state x="478" y="294" key="#com.intellij.refactoring.replaceConstructorWithFactory.ReplaceConstructorWithFactoryDialog" timestamp="1582204388436">
       <screen x="0" y="0" width="1273" height="768" />
     </state>
@@ -214,54 +257,54 @@
       <screen x="0" y="0" width="1273" height="768" />
     </state>
     <state x="366" y="131" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1273.768@0.0.1273.768" timestamp="1582271978051" />
-    <state x="416" y="138" key="FileChooserDialogImpl" timestamp="1582052858112">
+    <state x="416" y="138" key="FileChooserDialogImpl" timestamp="1582807400936">
       <screen x="0" y="0" width="1273" height="768" />
     </state>
-    <state x="416" y="138" key="FileChooserDialogImpl/0.0.1273.768@0.0.1273.768" timestamp="1582052858112" />
-    <state width="1229" height="177" key="GridCell.Tab.0.bottom" timestamp="1582767864327">
+    <state x="416" y="138" key="FileChooserDialogImpl/0.0.1273.768@0.0.1273.768" timestamp="1582807400936" />
+    <state width="1229" height="192" key="GridCell.Tab.0.bottom" timestamp="1582847872414">
       <screen x="0" y="0" width="1273" height="768" />
     </state>
-    <state width="1229" height="177" key="GridCell.Tab.0.bottom/0.0.1273.768@0.0.1273.768" timestamp="1582767864327" />
-    <state width="1229" height="177" key="GridCell.Tab.0.center" timestamp="1582767864326">
+    <state width="1229" height="192" key="GridCell.Tab.0.bottom/0.0.1273.768@0.0.1273.768" timestamp="1582847872414" />
+    <state width="1229" height="192" key="GridCell.Tab.0.center" timestamp="1582847872414">
       <screen x="0" y="0" width="1273" height="768" />
     </state>
-    <state width="1229" height="177" key="GridCell.Tab.0.center/0.0.1273.768@0.0.1273.768" timestamp="1582767864326" />
-    <state width="1229" height="177" key="GridCell.Tab.0.left" timestamp="1582767864326">
+    <state width="1229" height="192" key="GridCell.Tab.0.center/0.0.1273.768@0.0.1273.768" timestamp="1582847872414" />
+    <state width="1229" height="192" key="GridCell.Tab.0.left" timestamp="1582847872414">
       <screen x="0" y="0" width="1273" height="768" />
     </state>
-    <state width="1229" height="177" key="GridCell.Tab.0.left/0.0.1273.768@0.0.1273.768" timestamp="1582767864326" />
-    <state width="1229" height="177" key="GridCell.Tab.0.right" timestamp="1582767864327">
+    <state width="1229" height="192" key="GridCell.Tab.0.left/0.0.1273.768@0.0.1273.768" timestamp="1582847872414" />
+    <state width="1229" height="192" key="GridCell.Tab.0.right" timestamp="1582847872414">
       <screen x="0" y="0" width="1273" height="768" />
     </state>
-    <state width="1229" height="177" key="GridCell.Tab.0.right/0.0.1273.768@0.0.1273.768" timestamp="1582767864327" />
-    <state width="1229" height="177" key="GridCell.Tab.1.bottom" timestamp="1582767864328">
+    <state width="1229" height="192" key="GridCell.Tab.0.right/0.0.1273.768@0.0.1273.768" timestamp="1582847872414" />
+    <state width="1229" height="177" key="GridCell.Tab.1.bottom" timestamp="1582846677092">
       <screen x="0" y="0" width="1273" height="768" />
     </state>
-    <state width="1229" height="177" key="GridCell.Tab.1.bottom/0.0.1273.768@0.0.1273.768" timestamp="1582767864328" />
-    <state width="1229" height="177" key="GridCell.Tab.1.center" timestamp="1582767864328">
+    <state width="1229" height="177" key="GridCell.Tab.1.bottom/0.0.1273.768@0.0.1273.768" timestamp="1582846677092" />
+    <state width="1229" height="177" key="GridCell.Tab.1.center" timestamp="1582846677092">
       <screen x="0" y="0" width="1273" height="768" />
     </state>
-    <state width="1229" height="177" key="GridCell.Tab.1.center/0.0.1273.768@0.0.1273.768" timestamp="1582767864328" />
-    <state width="1229" height="177" key="GridCell.Tab.1.left" timestamp="1582767864327">
+    <state width="1229" height="177" key="GridCell.Tab.1.center/0.0.1273.768@0.0.1273.768" timestamp="1582846677092" />
+    <state width="1229" height="177" key="GridCell.Tab.1.left" timestamp="1582846677092">
       <screen x="0" y="0" width="1273" height="768" />
     </state>
-    <state width="1229" height="177" key="GridCell.Tab.1.left/0.0.1273.768@0.0.1273.768" timestamp="1582767864327" />
-    <state width="1229" height="177" key="GridCell.Tab.1.right" timestamp="1582767864328">
+    <state width="1229" height="177" key="GridCell.Tab.1.left/0.0.1273.768@0.0.1273.768" timestamp="1582846677092" />
+    <state width="1229" height="177" key="GridCell.Tab.1.right" timestamp="1582846677092">
       <screen x="0" y="0" width="1273" height="768" />
     </state>
-    <state width="1229" height="177" key="GridCell.Tab.1.right/0.0.1273.768@0.0.1273.768" timestamp="1582767864328" />
+    <state width="1229" height="177" key="GridCell.Tab.1.right/0.0.1273.768@0.0.1273.768" timestamp="1582846677092" />
     <state x="333" y="155" width="567" height="570" key="RefactorJ.ExtractClass" timestamp="1582716202726">
       <screen x="0" y="0" width="1273" height="768" />
     </state>
     <state x="333" y="155" width="567" height="570" key="RefactorJ.ExtractClass/0.0.1273.768@0.0.1273.768" timestamp="1582716202725" />
-    <state x="451" y="318" key="ReplaceDuplicatesPrompt" timestamp="1582757535697">
+    <state x="451" y="318" key="ReplaceDuplicatesPrompt" timestamp="1582807221486">
       <screen x="0" y="0" width="1273" height="768" />
     </state>
-    <state x="451" y="318" key="ReplaceDuplicatesPrompt/0.0.1273.768@0.0.1273.768" timestamp="1582757535697" />
-    <state x="137" y="26" key="SettingsEditor" timestamp="1582288507056">
+    <state x="451" y="318" key="ReplaceDuplicatesPrompt/0.0.1273.768@0.0.1273.768" timestamp="1582807221486" />
+    <state x="137" y="26" key="SettingsEditor" timestamp="1582832351604">
       <screen x="0" y="0" width="1273" height="768" />
     </state>
-    <state x="137" y="26" key="SettingsEditor/0.0.1273.768@0.0.1273.768" timestamp="1582288507056" />
+    <state x="137" y="26" key="SettingsEditor/0.0.1273.768@0.0.1273.768" timestamp="1582832351604" />
     <state x="333" y="208" key="com.intellij.ide.util.TipDialog" timestamp="1582650633755">
       <screen x="0" y="0" width="1273" height="768" />
     </state>
@@ -274,30 +317,39 @@
       <screen x="0" y="0" width="1273" height="768" />
     </state>
     <state x="407" y="87" width="494" height="563" key="com.intellij.testIntegration.createTest.CreateTestDialog/0.0.1273.768@0.0.1273.768" timestamp="1582760692882" />
-    <state x="250" y="111" width="540" height="496" key="extract.method.dialog" timestamp="1582796030871">
+    <state x="250" y="111" width="540" height="496" key="extract.method.dialog" timestamp="1582807218278">
       <screen x="0" y="0" width="1273" height="768" />
     </state>
-    <state x="250" y="111" width="540" height="496" key="extract.method.dialog/0.0.1273.768@0.0.1273.768" timestamp="1582796030871" />
-    <state x="293" y="172" key="run.anything.popup" timestamp="1582757101620">
+    <state x="250" y="111" width="540" height="496" key="extract.method.dialog/0.0.1273.768@0.0.1273.768" timestamp="1582807218278" />
+    <state x="666" y="0" width="607" height="768" key="find.popup" timestamp="1582847440742">
       <screen x="0" y="0" width="1273" height="768" />
     </state>
-    <state x="293" y="172" key="run.anything.popup/0.0.1273.768@0.0.1273.768" timestamp="1582757101620" />
+    <state x="666" y="0" width="607" height="768" key="find.popup/0.0.1273.768@0.0.1273.768" timestamp="1582847440742" />
+    <state x="293" y="172" key="run.anything.popup" timestamp="1582796779112">
+      <screen x="0" y="0" width="1273" height="768" />
+    </state>
+    <state x="293" y="172" key="run.anything.popup/0.0.1273.768@0.0.1273.768" timestamp="1582796779112" />
     <state x="228" y="42" key="scopes" timestamp="1582209063947">
       <screen x="0" y="0" width="1273" height="768" />
     </state>
     <state x="228" y="42" key="scopes/0.0.1273.768@0.0.1273.768" timestamp="1582209063947" />
-    <state x="299" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1582790255343">
+    <state x="299" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1582848181976">
       <screen x="0" y="0" width="1273" height="768" />
     </state>
-    <state x="299" y="89" width="672" height="678" key="search.everywhere.popup/0.0.1273.768@0.0.1273.768" timestamp="1582790255343" />
+    <state x="299" y="89" width="672" height="678" key="search.everywhere.popup/0.0.1273.768@0.0.1273.768" timestamp="1582848181976" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/se/hig/thlu/asteroids/controller/PlayerShipController.java</url>
-          <line>76</line>
-          <option name="timeStamp" value="5" />
+          <url>file://$PROJECT_DIR$/src/se/hig/thlu/asteroids/model/Velocity.java</url>
+          <line>22</line>
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/se/hig/thlu/asteroids/model/PlayerShip.java</url>
+          <line>31</line>
+          <option name="timeStamp" value="12" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

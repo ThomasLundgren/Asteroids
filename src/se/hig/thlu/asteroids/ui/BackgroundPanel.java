@@ -29,6 +29,7 @@ public class BackgroundPanel extends JPanel {
 	/*
 	 *  Set image as the background with the specified style
 	 */
+	// TODO: Don't use scaled version.
 	public BackgroundPanel(Image image) {
 		setImage(image);
 		setLayout(new BorderLayout());

@@ -1,16 +1,25 @@
 package se.hig.thlu.asteroids.model;
 
+import se.hig.thlu.asteroids.util.*;
+
 public class Velocity {
 
-	private final double speed;
-	private final double direction;
+	private double speed;
+	private double direction;
 
 	public Velocity(double speed, double direction) {
-		this.speed = validateSpeed(speed);
-		this.direction = validateDirection(direction);
+		setSpeed(speed);
+		setDirection(direction);
 	}
 
-	public Velocity composeWith(Velocity velocity) {
+	private static double validateSpeed(double speed) {
+		if (speed < 0.0) {
+			return 0.0;
+		}
+		return speed;
+	}
+
+	public void composeWith(Velocity velocity) {
 		double x1 = StrictMath.cos(StrictMath.toRadians(direction)) * speed;
 		double y1 = StrictMath.sin(StrictMath.toRadians(direction)) * speed;
 		double x2 = StrictMath.cos(StrictMath.toRadians(velocity.getDirection())) * velocity.getSpeed();
@@ -19,41 +28,44 @@ public class Velocity {
 		double xRes = x1 + x2;
 		double yRes = y1 + y2;
 
+
+		double quotient = yRes / xRes;
+//		double dotProd = (x1 * x2) + (y1 * y2);
+//		double mag1 = Trigonometry.hypotenuse(x1, y1);
+//		double mag2 = Trigonometry.hypotenuse(x2, y2);
+//		double newDir = StrictMath.toDegrees(StrictMath.acos(dotProd / (mag1 * mag2)));
 		double newDir = 0.0;
 		if (xRes != 0.0) {
-			newDir = StrictMath.toDegrees(StrictMath.atan(yRes/xRes));
+			// TODO: This is wrong. Only works for degrees between 0-90, 270-359
+			newDir = StrictMath.toDegrees(StrictMath.atan((yRes / xRes)));
+			if (xRes < 0.0) {
+				newDir += 180.0;
+			}
 		} else if (yRes > 0.0) {
 			newDir = 90.0;
 		} else {
 			newDir = 270.0;
 		}
 
-		double newSpeed = StrictMath.sqrt(xRes*xRes + yRes*yRes);
-		return new Velocity(newSpeed, newDir);
+		double newSpeed = Trigonometry.hypotenuse(xRes, yRes);
+		setDirection(newDir);
+		setSpeed(newSpeed);
 	}
 
 	public double getSpeed() {
 		return speed;
 	}
 
+	void setSpeed(double speed) {
+		this.speed = validateSpeed(speed);
+	}
+
 	public double getDirection() {
 		return direction;
 	}
 
-	private static double validateDirection(double direction) {
-		final double lap = 360.0;
-		direction = direction % lap;
-		if (direction < 0.0) {
-			direction = direction + lap;
-		}
-		return direction % lap;
-	}
-
-	private static double validateSpeed(double speed) {
-		if (speed < 0.0) {
-			throw new IllegalArgumentException("Speed cannot be less than zero");
-		}
-		return speed;
+	void setDirection(double direction) {
+		this.direction = Trigonometry.normalizeDegree(direction);
 	}
 
 	@Override

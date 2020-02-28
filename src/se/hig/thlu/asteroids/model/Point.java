@@ -2,7 +2,7 @@ package se.hig.thlu.asteroids.model;
 
 public class Point {
 
-	private final double x, y;
+	private double x, y;
 
 	public Point(double x, double y) {
 		this.x = x;
@@ -10,21 +10,26 @@ public class Point {
 	}
 
 	public double distanceTo(Point point) {
-		// TODO
-		return 0d;
+		double dx = this.x - point.x;
+		double dy = this.y - point.y;
+		return Math.sqrt(dx * dx + dy * dy);
 	}
 
-	public Point withX(double x) {
-		return new Point(this.x, y);
+	public double getX() {
+		return x;
 	}
 
-	public Point withY(double y) {
-		return new Point(x, this.y);
+	public void setX(double x) {
+		this.x = x;
 	}
 
-	public double getX() { return x; }
+	public double getY() {
+		return y;
+	}
 
-	public double getY() { return y; }
+	public void setY(double y) {
+		this.y = y;
+	}
 
 	@Override
 	public String toString() {

@@ -14,11 +14,17 @@ public class GameLoop {
     public static final long BILLION = 1000000000L;
     public static final long OPTIMAL_TIME = BILLION / (long) TARGET_FPS;
     private boolean isRunning = true;
+    private final GameController controller;
+
+    public GameLoop(GameController controller) {
+        this.controller = controller;
+    }
 
     public void gameLoop() {
         long lastLoopTime = System.nanoTime();
         long lastFpsTime = 0L;
         int fps = 0;
+
 
         while (isRunning) {
             long now = System.nanoTime();
@@ -34,7 +40,7 @@ public class GameLoop {
 //                lastFpsTime = 0L;
 //                fps = 0;
 //            }
-            PlayerShipController.getInstance().update(delta);
+            controller.update(delta);
 
             try {
                 long millis = (lastLoopTime - System.nanoTime() + OPTIMAL_TIME) / MILLION;

@@ -2,49 +2,50 @@ package se.hig.thlu.asteroids.model;
 
 public abstract class Entity {
 
-    protected final Point position;
-    protected final Velocity velocity;
-    protected final boolean isDestroyed;
+    protected Point center;
+    protected Velocity velocity;
+    protected boolean isDestroyed;
 
-    protected Entity(Point position, Velocity velocity) {
+    protected Entity(Point center, Velocity velocity) {
         this.velocity = velocity;
-        this.position = position;
+        this.center = center;
         isDestroyed = false;
     }
 
-    protected Entity(Point position, Velocity velocity, boolean isDestroyed) {
-        this.position = position;
+    protected Entity(Point center, Velocity velocity, boolean isDestroyed) {
+        this.center = center;
         this.velocity = velocity;
         this.isDestroyed = isDestroyed;
     }
 
-    public final Point getPosition() {
-        return position;
+    public final Point getCenter() {
+        return center;
     }
 
-    protected abstract Entity withPosition(Point position);
+    public void setCenter(Point center) {
+        this.center = center;
+    }
 
     public final Velocity getVelocity() {
         return velocity;
     }
 
-    protected final Entity withVelocity(Velocity velocity) {
-        return withVelocityImpl(velocity);
+    protected final void setVelocity(Velocity velocity) {
+        this.velocity = velocity;
     }
-
-    protected abstract Entity withVelocityImpl(Velocity velocity);
 
     public final boolean isDestroyed() {
         return isDestroyed;
     }
 
-    public abstract Entity destroy();
+    public void collide() {
+        isDestroyed = true;
+    }
 
-    public Entity withUpdatedPosition() {
+    public void updatePosition() {
         double diffX = StrictMath.cos(StrictMath.toRadians(velocity.getDirection())) * velocity.getSpeed();
         double diffY = StrictMath.sin(StrictMath.toRadians(velocity.getDirection())) * velocity.getSpeed();
-
-        Point newPos = new Point(position.getX() + diffX, position.getY() + diffY);
-        return withPosition(newPos);
+        Point newPos = new Point(center.getX() + diffX, center.getY() + diffY);
+        setCenter(newPos);
     }
 }

@@ -1,105 +1,83 @@
 package se.hig.thlu.asteroids.model;
 
-import se.hig.thlu.asteroids.config.GameConfig;
-import se.hig.thlu.asteroids.model.Missile.MissileSource;
+import se.hig.thlu.asteroids.model.Missile.*;
+import se.hig.thlu.asteroids.util.*;
 
 public final class PlayerShip extends Entity implements Shooter {
 
-    private final int lives;
+	private static final double MAX_SPEED = 7.5;
+	private static final double TURNING_DEGREE = 5.0;
+	private static final double ACCELERATION = 0.05;
+	private static final double DECELERATION = 0.04;
+	private int lives = 3;
+	private double facingDirection = 0.0;
+	private boolean isAccelerating = false;
 
-    public PlayerShip() {
-        super(new Point(0.0, 0.0), new Velocity(0.0, 0.0));
-        lives = 3;
-    }
+	public PlayerShip() {
+		super(new Point(0.0, 0.0), new Velocity(0.0, 0.0));
+	}
 
-    private PlayerShip(Point position, Velocity velocity, int lives) {
-        super(position, velocity);
-        lessThanTopSpeed(velocity.getSpeed());
-        this.lives = validateLives(lives);
-    }
+	private static double lessThanTopSpeed(double speed) {
+		if (speed > MAX_SPEED) {
+			throw new IllegalArgumentException("PlayerShip cannot exceed MAX_SPEED");
+		}
+		return speed;
+	}
 
-    private PlayerShip(Point position, Velocity velocity, boolean isDestroyed, int lives) {
-        super(position, velocity, isDestroyed);
-        lessThanTopSpeed(velocity.getSpeed());
-        this.lives = validateLives(lives);
-    }
+	public int getLives() {
+		return lives;
+	}
 
-    public int getLives() {
-        return lives;
-    }
+	public void accelerate() {
+		isAccelerating = true;
+		Velocity acceleration = new Velocity(ACCELERATION, facingDirection);
+		velocity.composeWith(acceleration);
+		if (velocity.getSpeed() > MAX_SPEED) {
+			velocity.setSpeed(MAX_SPEED);
+		}
+		System.out.println(velocity);
+	}
 
-    private PlayerShip withLives(int lives) {
-        int validatedLives = validateLives(lives);
-        return new PlayerShip(position, velocity, validatedLives);
-    }
+	public void decelerate() {
+		isAccelerating = false;
+		if (velocity.getSpeed() < DECELERATION) {
+			velocity.setSpeed(0.0);
+			return;
+		}
+		Velocity deceleration = new Velocity(DECELERATION, velocity.getDirection() - 180.0);
+		velocity.composeWith(deceleration);
+	}
 
-    public PlayerShip withAccelerate() {
-        if (GameConfig.PLAYER_SHIP_UPDATE_MS - velocity.getSpeed() < 1) {
-            Velocity v = new Velocity(GameConfig.PLAYER_SHIP_UPDATE_MS, velocity.getDirection());
-            return new PlayerShip(position, v, lives);
-        }
-        double newDirection = velocity.getDirection();
-        Velocity v = velocity.composeWith(new Velocity(1.0, newDirection));
-        return new PlayerShip(position, v, lives);
-    }
+	public void turnLeft() {
+		facingDirection -= TURNING_DEGREE;
+		facingDirection = Trigonometry.normalizeDegree(facingDirection);
+	}
 
-    public PlayerShip withDecelerate() {
-        if (velocity.getSpeed() < 1) {
-            return (PlayerShip) withVelocityImpl(new Velocity(0, velocity.getDirection()));
-        }
-        double speed = velocity.getSpeed() - 1.0;
-        double direction = velocity.getDirection();
-        Velocity v = velocity.composeWith(new Velocity(speed, direction));
-        return (PlayerShip) withVelocityImpl(v);
-    }
+	public void turnRight() {
+		facingDirection += TURNING_DEGREE;
+		facingDirection = Trigonometry.normalizeDegree(facingDirection);
+	}
 
-    public PlayerShip withTurnLeft() {
-        double speed = velocity.getSpeed();
-        Velocity v = velocity.composeWith(new Velocity(speed, 1.0));
-        return (PlayerShip) withVelocityImpl(v);
-    }
+	public double getFacingDirection() {
+		return facingDirection;
+	}
 
-    public PlayerShip withTurnRight() {
-        double speed = velocity.getSpeed();
-        double direction = velocity.getDirection() - 1.0;
-        Velocity v = velocity.composeWith(new Velocity(speed, direction));
-        return (PlayerShip) withVelocityImpl(v);
-    }
+	public boolean isAccelerating() {
+		return isAccelerating;
+	}
 
-    @Override
-    public Entity withPosition(Point position) {
-        return new PlayerShip(position, velocity, lives);
-    }
+	@Override
+	public void collide() {
+		if (lives == 1) {
+			isDestroyed = true;
+		} else {
+			lives--;
+		}
+	}
 
-    @Override
-    public Entity destroy() {
-        return lives == 1 ?
-                new PlayerShip(position, new Velocity(0.0, 0.0), true, 0)
-                : this.withLives(lives - 1);
-    }
+	@Override
+	public Missile shoot(double direction) {
+		return new Missile(center, velocity.getDirection(), MissileSource.PLAYER);
+	}
 
-    @Override
-    public Missile shoot(double direction) {
-        return new Missile(position, direction, MissileSource.PLAYER);
-    }
-
-    @Override
-    protected Entity withVelocityImpl(Velocity velocity) {
-        lessThanTopSpeed(velocity.getSpeed());
-        return new PlayerShip(position, velocity, lives);
-    }
-
-    private static int validateLives(int lives) {
-        if (lives < 0) {
-            throw new IllegalArgumentException("Lives must be between 0 and 3");
-        }
-        return lives;
-    }
-
-    private static double lessThanTopSpeed(double speed) {
-        if (speed > GameConfig.PLAYER_SHIP_UPDATE_MS) {
-            throw new IllegalArgumentException("PlayerShip cannot exceed GameConfig.PLAYER_MAX_SPEED");
-        }
-        return speed;
-    }
 }

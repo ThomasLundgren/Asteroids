@@ -67,7 +67,6 @@ public abstract class State {
 //
 //	protected void shoot() {
 //		if (timeSinceLastShot > GameConfig.PLAYER_SHOOTING_DELAY_MS) {
-//			System.out.println("shoot");
 //			timeSinceLastShot = 0.0;
 //		}
 //	}
