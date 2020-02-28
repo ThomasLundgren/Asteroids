@@ -11,7 +11,7 @@ public class TranslucentPane extends JPanel {
 
 	private int width, height;
 	private float alpha;
-	private List<GraphicModel> entities = new ArrayList();
+	private List<EntityDrawer> entities = new ArrayList();
 
 	public TranslucentPane() {
 	}
@@ -42,7 +42,7 @@ public class TranslucentPane extends JPanel {
 		g2d.dispose();
 	}
 
-	public void setEntities(List<GraphicModel> entities) {
+	public void setEntities(List<EntityDrawer> entities) {
 		this.entities = entities;
 		repaint();
 	}

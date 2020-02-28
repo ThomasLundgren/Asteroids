@@ -1,11 +1,9 @@
 package se.hig.thlu.asteroids.ui;
 
-import se.hig.thlu.asteroids.graphics.model.*;
+import se.hig.thlu.asteroids.graphics.renderer.*;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.List;
-import java.util.*;
 
 /*
  *  Support custom painting on a panel in the form of
@@ -20,17 +18,16 @@ import java.util.*;
 public class BackgroundPanel extends JPanel {
 
 	private Paint painter;
-	private Image image;
+	private IImage image;
 	private double alignmentX = 0.5;
 	private double alignmentY = 0.5;
 	private boolean isTransparentAdd = true;
-	private List<GraphicModel> entities = new ArrayList();
 
 	/*
 	 *  Set image as the background with the specified style
 	 */
 	// TODO: Don't use scaled version.
-	public BackgroundPanel(Image image) {
+	public BackgroundPanel(IImage image) {
 		setImage(image);
 		setLayout(new BorderLayout());
 	}
@@ -38,7 +35,7 @@ public class BackgroundPanel extends JPanel {
 	/*
 	 *  Set image as the backround with the specified style and alignment
 	 */
-	public BackgroundPanel(Image image, float alignmentX, float alignmentY) {
+	public BackgroundPanel(IImage image, float alignmentX, float alignmentY) {
 		setImage(image);
 		setImageAlignmentX(alignmentX);
 		setImageAlignmentY(alignmentY);
@@ -53,15 +50,10 @@ public class BackgroundPanel extends JPanel {
 		setLayout(new BorderLayout());
 	}
 
-	public void setEntities(List<GraphicModel> entities) {
-		this.entities = entities;
-		repaint();
-	}
-
 	/*
 	 *	Set the image used as the background
 	 */
-	public void setImage(Image image) {
+	public void setImage(IImage image) {
 		this.image = image;
 		repaint();
 	}
@@ -106,7 +98,7 @@ public class BackgroundPanel extends JPanel {
 		if (image == null)
 			return super.getPreferredSize();
 		else
-			return new Dimension(image.getWidth(null), image.getHeight(null));
+			return new Dimension(image.getWidth(), image.getHeight());
 	}
 
 	/*
@@ -157,19 +149,15 @@ public class BackgroundPanel extends JPanel {
 
 		if (image == null) return;
 		//  Draw the image
-		drawScaled(g);
+		drawScaled((AwtRenderer) g);
 	}
 
 	/*
 	 *  Custom painting code for drawing a SCALED image as the background
 	 */
-	private void drawScaled(Graphics g) {
+	private void drawScaled(IRenderer renderer) {
 		Dimension d = getSize();
-		g.drawImage(image, 0, 0, d.width, d.height, null);
-
-		entities.forEach(e -> {
-			e.draw(g);
-		});
+		renderer.drawImage(image, 0, 0, d.width, d.height);
 	}
 
 }

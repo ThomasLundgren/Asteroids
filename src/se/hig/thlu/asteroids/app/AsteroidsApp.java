@@ -13,12 +13,11 @@ public class AsteroidsApp {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		} catch (Exception ignored) {
 		}
-		GameController shipController = new GameController();
+		GameController gameController = new GameController();
 		UI ui = new SwingGUI();
-		ui.addKeyListener(new InputController(shipController));
-		shipController.addPropertyChangeListener(ui);
+		ui.addKeyListener(new InputController(gameController));
 
-		GameLoop gameLoop = new GameLoop(shipController);
+		GameLoop gameLoop = new GameLoop(gameController);
 		gameLoop.gameLoop();
 	}
 

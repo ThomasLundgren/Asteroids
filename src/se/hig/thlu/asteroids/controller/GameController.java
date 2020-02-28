@@ -5,7 +5,6 @@ import se.hig.thlu.asteroids.controller.command.*;
 import se.hig.thlu.asteroids.controller.command.CommandController.*;
 import se.hig.thlu.asteroids.model.*;
 
-import java.beans.*;
 import java.util.*;
 
 public class GameController {
@@ -14,14 +13,12 @@ public class GameController {
 	private static long totalGameTime = 0L;
 	private static long nextSpawn = (long) GameConfig.INITIAL_SPAWN_INTERVAL;
 	private static double timeSinceLastShot = Double.MAX_VALUE;
-	private static PropertyChangeSupport changeSupport;
 	private static final PlayerShip playerShip = new PlayerShip();
 	private static final List<Asteroid> asteroids = new ArrayList<>(30);
 	private static final List<EnemyShip> enemyShips = new ArrayList<>(5);
 	private static final List<Missile> missiles = new ArrayList<>(30);
 
 	public GameController() {
-		changeSupport = new PropertyChangeSupport(this);
 		commandController = new CommandController(playerShip);
 		playerShip.setCenter(new Point((double) (GameConfig.WINDOW_WIDTH / 2), (double) (GameConfig.WINDOW_HEIGHT / 2)));
 	}
@@ -31,11 +28,6 @@ public class GameController {
 		executeActiveCommands();
 		updatePositions();
 		checkCollisions();
-		notifyObservers();
-	}
-
-	public void addPropertyChangeListener(PropertyChangeListener listener) {
-		changeSupport.addPropertyChangeListener(listener);
 	}
 
 	public void handleKeyPressed(InputController.PressedKey key) {
@@ -103,10 +95,6 @@ public class GameController {
 
 	private void executeActiveCommands() {
 		commandController.executeCommands();
-	}
-
-	private void notifyObservers() {
-		changeSupport.firePropertyChange(Property.PLAYER_SHIP.getPropertyName(), null, playerShip);
 	}
 
 	private void updateTimes(double delta) {
