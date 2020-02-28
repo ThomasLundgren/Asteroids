@@ -9,8 +9,8 @@ import static se.hig.thlu.asteroids.controller.command.CommandController.Command
 
 public class CommandController {
 
-	private final Map<CommandType, Command> commands = new EnumMap<CommandType, Command>(CommandType.class);
-	private final CommandFactory factory = new CommandFactory();
+	private static final Map<CommandType, Command> commands = new EnumMap<CommandType, Command>(CommandType.class);
+	private static final CommandFactory factory = new CommandFactory();
 	private final PlayerShip playerShip;
 
 	public CommandController(PlayerShip playerShip) {

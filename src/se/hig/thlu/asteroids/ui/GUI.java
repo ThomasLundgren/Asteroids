@@ -56,7 +56,7 @@ public class GUI implements UI {
 	private void configureFrame() {
 		// TODO: Make JFrame always square and resize all graphics accordingly
 		frame.setResizable(false);
-		frame.setSize(new Dimension(GameConfig.windowWidth, GameConfig.windowHeight));
+		frame.setSize(new Dimension(GameConfig.WINDOW_WIDTH, GameConfig.WINDOW_HEIGHT));
 		frame.add(backgroundPanel);
 		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		frame.pack();

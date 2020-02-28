@@ -12,13 +12,6 @@ public class Velocity {
 		setDirection(direction);
 	}
 
-	private static double validateSpeed(double speed) {
-		if (speed < 0.0) {
-			return 0.0;
-		}
-		return speed;
-	}
-
 	public void composeWith(Velocity velocity) {
 		double x1 = StrictMath.cos(StrictMath.toRadians(direction)) * speed;
 		double y1 = StrictMath.sin(StrictMath.toRadians(direction)) * speed;
@@ -74,5 +67,12 @@ public class Velocity {
 				"speed=" + speed +
 				", direction=" + direction +
 				'}';
+	}
+
+	private static double validateSpeed(double speed) {
+		if (speed < 0.05) {
+			return 0.0;
+		}
+		return speed;
 	}
 }

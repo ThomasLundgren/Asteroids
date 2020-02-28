@@ -15,7 +15,7 @@ public final class Missile extends Entity {
 	@Override
 	public void updatePosition() {
 		super.updatePosition();
-		if (center.distanceTo(startingPosition) > 0.6 * GameConfig.windowWidth) {
+		if (center.distanceTo(startingPosition) > 0.6 * GameConfig.WINDOW_WIDTH) {
 			isDestroyed = true;
 		}
 	}

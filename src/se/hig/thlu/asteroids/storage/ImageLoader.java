@@ -41,7 +41,7 @@ public class ImageLoader {
 
 	public enum ImagePath {
 		PLAYER_SHIP_ACCEL_PNG("resources/images/final/player-ship-accel.png", 45, 22),
-		BACKGROUND_PNG("resources/images/final/background.png", GameConfig.windowWidth, GameConfig.windowHeight),
+		BACKGROUND_PNG("resources/images/final/background.png", GameConfig.WINDOW_WIDTH, GameConfig.WINDOW_HEIGHT),
 		PLAYER_SHIP_PNG("resources/images/final/player-ship.png", 29, 22);
 
 		private final String imagePath;

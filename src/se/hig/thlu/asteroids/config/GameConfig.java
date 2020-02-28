@@ -30,8 +30,8 @@ public enum GameConfig {
 	public static final double ENEMY_MISSILE_UPDATE_MS = 2.0;
 	public static final double PLAYER_MISSILE_UPDATE_MS = 2.0;
 	public static final double PLAYER_SHOOTING_DELAY_MS = 12.0;
-	public static int windowWidth = 600;
-	public static int windowHeight = 600;
+	public static final int WINDOW_WIDTH = 600;
+	public static final int WINDOW_HEIGHT = 600;
 
 
 }

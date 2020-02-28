@@ -35,15 +35,10 @@ public final class PlayerShip extends Entity implements Shooter {
 		if (velocity.getSpeed() > MAX_SPEED) {
 			velocity.setSpeed(MAX_SPEED);
 		}
-		System.out.println(velocity);
 	}
 
 	public void decelerate() {
 		isAccelerating = false;
-		if (velocity.getSpeed() < DECELERATION) {
-			velocity.setSpeed(0.0);
-			return;
-		}
 		Velocity deceleration = new Velocity(DECELERATION, velocity.getDirection() - 180.0);
 		velocity.composeWith(deceleration);
 	}
