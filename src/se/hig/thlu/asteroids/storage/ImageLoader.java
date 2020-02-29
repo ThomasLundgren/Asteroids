@@ -1,7 +1,6 @@
 package se.hig.thlu.asteroids.storage;
 
 import se.hig.thlu.asteroids.config.*;
-import se.hig.thlu.asteroids.graphics.renderer.*;
 
 import javax.imageio.*;
 import java.awt.*;
@@ -10,8 +9,8 @@ import java.util.*;
 
 public class ImageLoader {
 
-	private static final Map<ImageResource, IImage> imageCache =
-			new EnumMap<ImageResource, IImage>(ImageResource.class);
+	private static final Map<ImageResource, Image> imageCache =
+			new EnumMap<ImageResource, Image>(ImageResource.class);
 
 	/*
 	Just throwing exception here since we NEED all images.
@@ -19,21 +18,21 @@ public class ImageLoader {
 	 */
 	public ImageLoader() throws IOException {
 		for (ImageResource imageResource : ImageResource.values()) {
-			IImage image = loadImage(imageResource);
+			Image image = loadImage(imageResource);
 			imageCache.put(imageResource, image);
 		}
 	}
 
-	public IImage getImageResource(ImageResource imageResource) {
+	public Image getImageResource(ImageResource imageResource) {
 		return imageCache.get(imageResource);
 	}
 
-	private IImage loadImage(ImageResource imageResource) throws IOException {
+	private Image loadImage(ImageResource imageResource) throws IOException {
 		ClassLoader classLoader = ImageLoader.class.getClassLoader();
 
 		try (InputStream stream = Objects.requireNonNull(classLoader
 				.getResourceAsStream(imageResource.getImagePath()))) {
-			return (AwtImage) ImageIO.read(stream).getScaledInstance(
+			return ImageIO.read(stream).getScaledInstance(
 					imageResource.getWidth(),
 					imageResource.getHeight(),
 					Image.SCALE_SMOOTH);

@@ -1,6 +1,6 @@
 package se.hig.thlu.asteroids.ui;
 
-import se.hig.thlu.asteroids.graphics.renderer.*;
+import se.hig.thlu.asteroids.graphics.awtdrawer.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,8 +17,9 @@ import java.awt.*;
  */
 public class BackgroundPanel extends JPanel {
 
+	private final AwtPlayerShipDrawer playerShipDrawer;
 	private Paint painter;
-	private IImage image;
+	private Image image;
 	private double alignmentX = 0.5;
 	private double alignmentY = 0.5;
 	private boolean isTransparentAdd = true;
@@ -27,7 +28,8 @@ public class BackgroundPanel extends JPanel {
 	 *  Set image as the background with the specified style
 	 */
 	// TODO: Don't use scaled version.
-	public BackgroundPanel(IImage image) {
+	public BackgroundPanel(AwtPlayerShipDrawer playerShipDrawer, Image image) {
+		this.playerShipDrawer = playerShipDrawer;
 		setImage(image);
 		setLayout(new BorderLayout());
 	}
@@ -35,25 +37,25 @@ public class BackgroundPanel extends JPanel {
 	/*
 	 *  Set image as the backround with the specified style and alignment
 	 */
-	public BackgroundPanel(IImage image, float alignmentX, float alignmentY) {
-		setImage(image);
-		setImageAlignmentX(alignmentX);
-		setImageAlignmentY(alignmentY);
-		setLayout(new BorderLayout());
-	}
-
-	/*
-	 *  Use the Paint interface to paint a background
-	 */
-	public BackgroundPanel(Paint painter) {
-		setPaint(painter);
-		setLayout(new BorderLayout());
-	}
+//	public BackgroundPanel(Image image, float alignmentX, float alignmentY) {
+//		setImage(image);
+//		setImageAlignmentX(alignmentX);
+//		setImageAlignmentY(alignmentY);
+//		setLayout(new BorderLayout());
+//	}
+//
+//	/*
+//	 *  Use the Paint interface to paint a background
+//	 */
+//	public BackgroundPanel(Paint painter) {
+//		setPaint(painter);
+//		setLayout(new BorderLayout());
+//	}
 
 	/*
 	 *	Set the image used as the background
 	 */
-	public void setImage(IImage image) {
+	public void setImage(Image image) {
 		this.image = image;
 		repaint();
 	}
@@ -98,7 +100,7 @@ public class BackgroundPanel extends JPanel {
 		if (image == null)
 			return super.getPreferredSize();
 		else
-			return new Dimension(image.getWidth(), image.getHeight());
+			return new Dimension(image.getWidth(null), image.getHeight(null));
 	}
 
 	/*
@@ -149,15 +151,17 @@ public class BackgroundPanel extends JPanel {
 
 		if (image == null) return;
 		//  Draw the image
-		drawScaled((AwtRenderer) g);
+		drawScaled(g);
 	}
 
 	/*
 	 *  Custom painting code for drawing a SCALED image as the background
 	 */
-	private void drawScaled(IRenderer renderer) {
+	private void drawScaled(Graphics g) {
 		Dimension d = getSize();
-		renderer.drawImage(image, 0, 0, d.width, d.height);
+		g.drawImage(image, 0, 0, d.width, d.height, null);
+		playerShipDrawer.draw((Graphics2D) g);
+		repaint();
 	}
 
 }

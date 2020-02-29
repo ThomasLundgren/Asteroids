@@ -5,6 +5,7 @@ import se.hig.thlu.asteroids.controller.command.*;
 import se.hig.thlu.asteroids.controller.command.CommandController.*;
 import se.hig.thlu.asteroids.model.*;
 
+import java.beans.*;
 import java.util.*;
 
 public class GameController {
@@ -120,6 +121,10 @@ public class GameController {
 		public String getPropertyName() {
 			return propertyName;
 		}
+	}
+
+	public void addListenerForShip(PropertyChangeListener listener) {
+		playerShip.addPropertyChangeListener(listener);
 	}
 
 }

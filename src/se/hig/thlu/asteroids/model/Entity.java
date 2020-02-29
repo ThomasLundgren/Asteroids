@@ -74,5 +74,6 @@ public abstract class Entity {
 		double diffY = StrictMath.sin(StrictMath.toRadians(velocity.getDirection())) * velocity.getSpeed();
 		Point newPos = new Point(center.getX() + diffX, center.getY() + diffY);
 		setCenter(newPos);
+		notifyListeners(EntityProperty.CENTER.getPropertyName(), center);
 	}
 }
