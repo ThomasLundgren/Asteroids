@@ -1,21 +1,21 @@
 package se.hig.thlu.asteroids.ui;
 
-import se.hig.thlu.asteroids.config.*;
-import se.hig.thlu.asteroids.graphics.awtdrawer.*;
-import se.hig.thlu.asteroids.storage.*;
+import se.hig.thlu.asteroids.config.GameConfig;
+import se.hig.thlu.asteroids.graphics.entitydrawer.PlayerShipDrawerAwt;
+import se.hig.thlu.asteroids.storage.ImageLoader;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
-import java.io.*;
+import java.awt.event.KeyListener;
+import java.io.IOException;
 
 public class SwingGUI implements UI {
 
 	private BackgroundPanel backgroundPanel;
-	private final JFrame frame = new JFrame();
 	private ImageLoader imageLoader;
+	private final JFrame frame = new JFrame();
 
-	public SwingGUI(AwtPlayerShipDrawer playerShipDrawer) {
+	public SwingGUI(PlayerShipDrawerAwt playerShipDrawer) {
 		try {
 			imageLoader = new ImageLoader();
 			backgroundPanel =

@@ -13,34 +13,28 @@ public final class PlayerShip extends Entity implements Shooter {
 	private static final double DECELERATION = ACCELERATION / 3.0;
 	private int lives = 3;
 	private double facingDirection = 0.0;
-	private boolean isAccelerating = false;
 
 	public PlayerShip() {
 		super(new Point(0.0, 0.0), new Velocity(0.0, 0.0));
 	}
 
-	public int getLives() {
-		return lives;
-	}
-
 	public void accelerate() {
+		if (velocity.getSpeed() >= MAX_SPEED) {
+			velocity = new Velocity(MAX_SPEED, velocity.getDirection());
+			return;
+		}
 		Velocity acceleration = new Velocity(ACCELERATION, facingDirection);
 		velocity.composeWith(acceleration);
-		if (velocity.getSpeed() > MAX_SPEED) {
-			velocity.setSpeed(MAX_SPEED);
-		}
-		isAccelerating = true;
 		notifyListeners(IS_ACCELERATING.getPropertyName(), true);
 	}
 
 	public void decelerate() {
 		if (velocity.getSpeed() < DECELERATION) {
-			velocity.setSpeed(0.0);
+			velocity = new Velocity(0.0, velocity.getDirection());
 			return;
 		}
 		Velocity deceleration = new Velocity(DECELERATION, velocity.getDirection() - 180.0);
 		velocity.composeWith(deceleration);
-		isAccelerating = false;
 		notifyListeners(IS_ACCELERATING.getPropertyName(), false);
 	}
 
@@ -60,20 +54,17 @@ public final class PlayerShip extends Entity implements Shooter {
 		return facingDirection;
 	}
 
-	public boolean isAccelerating() {
-		return isAccelerating;
-	}
-
 	@Override
 	public void collide() {
 		if (lives == 1) {
-			collide();
+			super.collide();
 		} else {
 			lives--;
 		}
 		notifyListeners(LIVES.getPropertyName(), lives);
 	}
 
+	//TODO: remove direction argument from missile
 	@Override
 	public Missile shoot(double direction) {
 		return new Missile(center, velocity.getDirection(), MissileSource.PLAYER);

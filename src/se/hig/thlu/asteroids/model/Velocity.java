@@ -15,18 +15,13 @@ public class Velocity {
 	public void composeWith(Velocity velocity) {
 		double x1 = StrictMath.cos(StrictMath.toRadians(direction)) * speed;
 		double y1 = StrictMath.sin(StrictMath.toRadians(direction)) * speed;
-		double x2 = StrictMath.cos(StrictMath.toRadians(velocity.getDirection())) * velocity.getSpeed();
+		double x2 = StrictMath.cos(StrictMath.toRadians(velocity.direction)) * velocity.speed;
 		double y2 = StrictMath.sin(StrictMath.toRadians(velocity.getDirection())) * velocity.getSpeed();
 
 		double xRes = x1 + x2;
 		double yRes = y1 + y2;
 
 
-		double quotient = yRes / xRes;
-//		double dotProd = (x1 * x2) + (y1 * y2);
-//		double mag1 = Trigonometry.hypotenuse(x1, y1);
-//		double mag2 = Trigonometry.hypotenuse(x2, y2);
-//		double newDir = StrictMath.toDegrees(StrictMath.acos(dotProd / (mag1 * mag2)));
 		double newDir = 0.0;
 		if (xRes != 0.0) {
 			// TODO: This is wrong. Only works for degrees between 0-90, 270-359
@@ -49,7 +44,7 @@ public class Velocity {
 		return speed;
 	}
 
-	void setSpeed(double speed) {
+	private void setSpeed(double speed) {
 		this.speed = validateSpeed(speed);
 	}
 
@@ -57,7 +52,7 @@ public class Velocity {
 		return direction;
 	}
 
-	void setDirection(double direction) {
+	private void setDirection(double direction) {
 		this.direction = Trigonometry.normalizeDegree(direction);
 	}
 
