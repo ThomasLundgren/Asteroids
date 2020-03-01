@@ -1,7 +1,7 @@
 package se.hig.thlu.asteroids.model;
 
 import se.hig.thlu.asteroids.model.Missile.MissileSource;
-import se.hig.thlu.asteroids.util.Trigonometry;
+import se.hig.thlu.asteroids.mathutil.Trigonometry;
 
 import static se.hig.thlu.asteroids.model.PlayerShip.PlayerShipProperty.*;
 
@@ -26,6 +26,7 @@ public final class PlayerShip extends Entity implements Shooter {
 		Velocity acceleration = new Velocity(ACCELERATION, facingDirection);
 		velocity.composeWith(acceleration);
 		notifyListeners(IS_ACCELERATING.getPropertyName(), true);
+		System.out.println(center);
 	}
 
 	public void decelerate() {

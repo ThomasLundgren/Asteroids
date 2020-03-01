@@ -1,6 +1,7 @@
 package se.hig.thlu.asteroids.graphics.entitydrawer;
 
-import se.hig.thlu.asteroids.storage.ImageLoader;
+import se.hig.thlu.asteroids.storage.AbstractImageLoader.ImageResource;
+import se.hig.thlu.asteroids.storage.ImageLoaderAwt;
 
 import java.awt.*;
 import java.awt.geom.AffineTransform;
@@ -14,7 +15,7 @@ public class PlayerShipDrawerAwt extends AwtEntityDrawer {
 	private static final double SPRITE_X_CENTER_PIXEL = 19.0;
 	private static final double SPRITE_Y_CENTER_PIXEL = 10.0;
 
-	public PlayerShipDrawerAwt(ImageLoader imageLoader) {
+	public PlayerShipDrawerAwt(ImageLoaderAwt imageLoader) {
 		super(imageLoader);
 		setImage(false);
 	}
@@ -45,7 +46,7 @@ public class PlayerShipDrawerAwt extends AwtEntityDrawer {
 	// TODO: Move to ABC and override?
 	private void setImage(boolean isAccelerating) {
 		sprite = isAccelerating
-				? imageLoader.getImageResource(ImageLoader.ImageResource.PLAYER_SHIP_ACCEL_PNG)
-				: imageLoader.getImageResource(ImageLoader.ImageResource.PLAYER_SHIP_PNG);
+				? imageLoader.getImageResource(ImageResource.PLAYER_SHIP_ACCEL_PNG)
+				: imageLoader.getImageResource(ImageResource.PLAYER_SHIP_PNG);
 	}
 }

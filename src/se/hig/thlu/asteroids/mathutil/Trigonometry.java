@@ -1,4 +1,4 @@
-package se.hig.thlu.asteroids.util;
+package se.hig.thlu.asteroids.mathutil;
 
 public class Trigonometry {
 

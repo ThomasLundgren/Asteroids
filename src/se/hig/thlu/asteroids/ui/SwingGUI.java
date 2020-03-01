@@ -2,7 +2,8 @@ package se.hig.thlu.asteroids.ui;
 
 import se.hig.thlu.asteroids.config.GameConfig;
 import se.hig.thlu.asteroids.graphics.entitydrawer.PlayerShipDrawerAwt;
-import se.hig.thlu.asteroids.storage.ImageLoader;
+import se.hig.thlu.asteroids.storage.AbstractImageLoader.ImageResource;
+import se.hig.thlu.asteroids.storage.ImageLoaderAwt;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,15 +13,15 @@ import java.io.IOException;
 public class SwingGUI implements UI {
 
 	private BackgroundPanel backgroundPanel;
-	private ImageLoader imageLoader;
+	private ImageLoaderAwt imageLoader;
 	private final JFrame frame = new JFrame();
 
 	public SwingGUI(PlayerShipDrawerAwt playerShipDrawer) {
 		try {
-			imageLoader = new ImageLoader();
+			imageLoader = new ImageLoaderAwt();
 			backgroundPanel =
 					new BackgroundPanel(playerShipDrawer,
-							imageLoader.getImageResource(ImageLoader.ImageResource.BACKGROUND_PNG));
+							imageLoader.getImageResource(ImageResource.BACKGROUND_PNG));
 			frame.add(backgroundPanel);
 		} catch (IOException e) {
 			frame.add(new JLabel("Could not load image resources."));

@@ -2,7 +2,7 @@ package se.hig.thlu.asteroids.graphics.entitydrawer;
 
 import se.hig.thlu.asteroids.model.Entity.EntityProperty;
 import se.hig.thlu.asteroids.model.Point;
-import se.hig.thlu.asteroids.storage.ImageLoader;
+import se.hig.thlu.asteroids.storage.ImageLoaderAwt;
 
 import java.awt.*;
 import java.beans.PropertyChangeEvent;
@@ -10,11 +10,11 @@ import java.beans.PropertyChangeListener;
 
 public abstract class AwtEntityDrawer implements PropertyChangeListener {
 
-	protected final ImageLoader imageLoader;
+	protected final ImageLoaderAwt imageLoader;
 	protected Image sprite;
 	protected double angle, x, y;
 
-	protected AwtEntityDrawer(ImageLoader imageLoader) {
+	protected AwtEntityDrawer(ImageLoaderAwt imageLoader) {
 		this.imageLoader = imageLoader;
 	}
 
