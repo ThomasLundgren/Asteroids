@@ -1,6 +1,8 @@
 package se.hig.thlu.asteroids.ui;
 
 import se.hig.thlu.asteroids.graphics.entitydrawer.PlayerShipDrawerAwt;
+import se.hig.thlu.asteroids.graphics.renderer.AwtGraphicsAdapter;
+import se.hig.thlu.asteroids.graphics.renderer.GraphicsAdapter;
 
 import javax.swing.*;
 import java.awt.*;
@@ -160,7 +162,11 @@ public class BackgroundPanel extends JPanel {
 		Dimension d = getSize();
 		g.drawImage(image, 0, 0, d.width, d.height, null);
 		Graphics2D g2d = (Graphics2D) g;
-		playerShipDrawer.draw((Graphics2D) g2d);
+
+//		playerShipDrawer.draw((Graphics2D) g2d);
+		GraphicsAdapter graphics = new AwtGraphicsAdapter(g2d);
+		playerShipDrawer.draw(graphics);
+
 		repaint();
 	}
 

@@ -1,10 +1,10 @@
 package se.hig.thlu.asteroids.graphics.entitydrawer;
 
+import se.hig.thlu.asteroids.graphics.image.ImageAdapter;
+import se.hig.thlu.asteroids.graphics.renderer.GraphicsAdapter;
 import se.hig.thlu.asteroids.storage.AbstractImageLoader.ImageResource;
 import se.hig.thlu.asteroids.storage.ImageLoaderAwt;
 
-import java.awt.*;
-import java.awt.geom.AffineTransform;
 import java.beans.PropertyChangeEvent;
 
 import static se.hig.thlu.asteroids.model.PlayerShip.PlayerShipProperty.FACING_DIRECTION;
@@ -21,15 +21,19 @@ public class PlayerShipDrawerAwt extends AwtEntityDrawer {
 	}
 
 	@Override
-	public void draw(Graphics2D g2d) {
-		AffineTransform backup = g2d.getTransform();
-		double angleRad = StrictMath.toRadians(angle);
-		AffineTransform op = AffineTransform.getRotateInstance(angleRad, x, y);
-		g2d.setTransform(op);
-		int xCorner = (int) x - sprite.getWidth() + SPRITE_X_CENTER_PIXEL;
+	public void draw(GraphicsAdapter<ImageAdapter> graphics) {
+				int xCorner = (int) x - sprite.getWidth() + SPRITE_X_CENTER_PIXEL;
 		int yCorner = (int) y - sprite.getHeight() + SPRITE_Y_CENTER_PIXEL;
-		g2d.drawImage(sprite, (int) xCorner, (int) yCorner, null);
-		g2d.setTransform(backup);
+		graphics.drawImageWithRotation(sprite, angle, x, y, xCorner, yCorner);
+		
+//		AffineTransform backup = g2d.getTransform();
+//		double angleRad = StrictMath.toRadians(angle);
+//		AffineTransform op = AffineTransform.getRotateInstance(angleRad, x, y);
+//		g2d.setTransform(op);
+//		int xCorner = (int) x - sprite.getWidth() + SPRITE_X_CENTER_PIXEL;
+//		int yCorner = (int) y - sprite.getHeight() + SPRITE_Y_CENTER_PIXEL;
+//		g2d.drawImage(sprite, (int) xCorner, (int) yCorner, null);
+//		g2d.setTransform(backup);
 	}
 
 	@Override
