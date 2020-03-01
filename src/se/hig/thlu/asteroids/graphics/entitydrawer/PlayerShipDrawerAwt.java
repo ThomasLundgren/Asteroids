@@ -12,8 +12,8 @@ import static se.hig.thlu.asteroids.model.PlayerShip.PlayerShipProperty.IS_ACCEL
 
 public class PlayerShipDrawerAwt extends AwtEntityDrawer {
 
-	private static final double SPRITE_X_CENTER_PIXEL = 19.0;
-	private static final double SPRITE_Y_CENTER_PIXEL = 10.0;
+	private static final int SPRITE_X_CENTER_PIXEL = 19;
+	private static final int SPRITE_Y_CENTER_PIXEL = 10;
 
 	public PlayerShipDrawerAwt(ImageLoaderAwt imageLoader) {
 		super(imageLoader);
@@ -26,8 +26,8 @@ public class PlayerShipDrawerAwt extends AwtEntityDrawer {
 		double angleRad = StrictMath.toRadians(angle);
 		AffineTransform op = AffineTransform.getRotateInstance(angleRad, x, y);
 		g2d.setTransform(op);
-		double xCorner = x - sprite.getWidth(null) + SPRITE_X_CENTER_PIXEL;
-		double yCorner = y - sprite.getHeight(null) + SPRITE_Y_CENTER_PIXEL;
+		int xCorner = (int) x - sprite.getWidth() + SPRITE_X_CENTER_PIXEL;
+		int yCorner = (int) y - sprite.getHeight() + SPRITE_Y_CENTER_PIXEL;
 		g2d.drawImage(sprite, (int) xCorner, (int) yCorner, null);
 		g2d.setTransform(backup);
 	}

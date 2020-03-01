@@ -1,12 +1,12 @@
 package se.hig.thlu.asteroids.storage;
 
 import se.hig.thlu.asteroids.config.GameConfig;
-import se.hig.thlu.asteroids.graphics.image.IImage;
+import se.hig.thlu.asteroids.graphics.image.ImageAdapter;
 
 import java.io.IOException;
 import java.util.EnumMap;
 
-public abstract class AbstractImageLoader<T extends IImage> {
+public abstract class AbstractImageLoader<T extends ImageAdapter> {
 
 	protected final EnumMap<ImageResource, T> imageCache =
 			new EnumMap<>(ImageResource.class);

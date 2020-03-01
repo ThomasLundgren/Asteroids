@@ -1,6 +1,6 @@
 package se.hig.thlu.asteroids.storage;
 
-import se.hig.thlu.asteroids.graphics.image.AwtImage;
+import se.hig.thlu.asteroids.graphics.image.AwtImageAdapter;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -9,13 +9,13 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Objects;
 
-public class ImageLoaderAwt extends AbstractImageLoader<AwtImage> {
+public class ImageLoaderAwt extends AbstractImageLoader<AwtImageAdapter> {
 
 	public ImageLoaderAwt() throws IOException {
 	}
 
 	@Override
-	protected AwtImage loadImage(ImageResource imageResource) throws IOException {
+	protected AwtImageAdapter loadImage(ImageResource imageResource) throws IOException {
 		ClassLoader classLoader = ImageLoaderAwt.class.getClassLoader();
 
 		try (InputStream stream = Objects.requireNonNull(classLoader
@@ -32,7 +32,7 @@ public class ImageLoaderAwt extends AbstractImageLoader<AwtImage> {
 			Graphics g = bufferedImage.getGraphics();
 			g.drawImage(img, 0, 0, null);
 			g.dispose();
-			return new AwtImage(bufferedImage);
+			return new AwtImageAdapter(bufferedImage);
 		}
 	}
 }
