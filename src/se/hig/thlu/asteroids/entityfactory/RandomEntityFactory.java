@@ -11,12 +11,31 @@ import java.util.concurrent.ThreadLocalRandom;
 
 import static se.hig.thlu.asteroids.model.Asteroid.AsteroidSize.*;
 
-public class RandomEntityFactory implements EntityFactory {
+public final class RandomEntityFactory implements EntityFactory {
 
-	private static final PlayerShip playerShip = PlayerShip.createPlayerShip();
+	private final PlayerShip playerShip = PlayerShip.createPlayerShip();
+	private int level = 0;
+
+	private RandomEntityFactory() {
+	}
+
+	public static RandomEntityFactory createRandomEntityFactory() {
+		return new RandomEntityFactory();
+	}
 
 	@Override
-	public Asteroid createLargeAsteroid(Point center) {
+	public List<Asteroid> nextLevel() {
+		level++;
+		List<Asteroid> asteroids = new ArrayList<>(10);
+		for (int i = 0; i < level; i++) {
+			// TODO: Randomize starting point along edge of screen - off-screen
+			Asteroid newAsteroid = createLargeAsteroid(new Point(0.0, 0.0));
+			asteroids.add(newAsteroid);
+		}
+		return asteroids;
+	}
+
+	private static Asteroid createLargeAsteroid(Point center) {
 		double min = LARGE.getMinSpeed();
 		double max = LARGE.getMaxSpeed();
 		double speed = randomSpeed(min, max);
@@ -29,7 +48,7 @@ public class RandomEntityFactory implements EntityFactory {
 		Point pos = destroyedAsteroid.getCenter();
 		double minSpeed = destroyedAsteroid.getVelocity().getSpeed();
 		double maxSpeed = 0.0;
-		Asteroid.AsteroidSize newSize = LARGE;
+		Asteroid.AsteroidSize newSize;
 		switch (destroyedAsteroid.getAsteroidSize()) {
 			case LARGE:
 				minSpeed = Math.max(minSpeed, MEDIUM.getMinSpeed());
@@ -38,23 +57,23 @@ public class RandomEntityFactory implements EntityFactory {
 				break;
 			case MEDIUM:
 				minSpeed = Math.max(minSpeed, SMALL.getMinSpeed());
-				SMALL.getMaxSpeed();
+				maxSpeed = SMALL.getMaxSpeed();
 				newSize = SMALL;
 				break;
 			default:
-				return new ArrayList<>();
+				return new ArrayList<>(0);
 		}
 		return createAsteroids(pos, minSpeed, maxSpeed, newSize);
 	}
 
 	@Override
-	public PlayerShip createPlayerShip() {
-		return playerShip;
+	public EnemyShip createEnemyShip() {
+		return null;
 	}
 
 	@Override
-	public EnemyShip createEnemyShip() {
-		return null;
+	public PlayerShip createPlayerShip() {
+		return playerShip;
 	}
 
 	private static double randomSpeed(double min, double max) {
@@ -74,6 +93,7 @@ public class RandomEntityFactory implements EntityFactory {
 			double randSpeed = randomSpeed(minSpeed, maxSpeed);
 			double dir = randomDirection();
 			Asteroid newAsteroid = Asteroid.createAsteroid(center, randSpeed, dir, size);
+			asteroids.add(newAsteroid);
 		}
 		return asteroids;
 	}

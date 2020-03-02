@@ -15,7 +15,7 @@ public abstract class Entity {
 	protected Velocity velocity;
 	protected boolean isDestroyed = false;
 	protected double facingDirection = 0.0;
-	// TODO: Store size information in here
+	// TODO: Store size information in here?
 	
 	protected Entity(Point center, Velocity velocity, double turningDegree) {
 		this.velocity = velocity;
@@ -80,7 +80,9 @@ public abstract class Entity {
 
 	public enum EntityProperty {
 
-		CENTER("CENTER"), IS_DESTROYED("IS_DESTROYED");
+		CREATED("CREATED"),
+		CENTER("CENTER"),
+		IS_DESTROYED("IS_DESTROYED");
 
 		private String propertyName;
 

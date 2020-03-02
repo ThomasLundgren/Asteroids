@@ -14,6 +14,7 @@ public class PlayerShipDrawer extends EntityDrawer {
 	private final ImageAdapter accelerating;
 	private final ImageAdapter notAccelerating;
 
+	// TODO: Change so that this always draws the non-accelerating sprite. Create decorator that draws the "exhausts".
 	private PlayerShipDrawer(ImageAdapter accelerating, ImageAdapter notAccelerating) {
 		super(notAccelerating);
 		this.accelerating = accelerating;
