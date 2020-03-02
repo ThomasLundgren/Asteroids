@@ -22,17 +22,18 @@ public final class GameController {
 	private long nextSpawn = (long) INITIAL_SPAWN_INTERVAL;
 	private double timeSinceLastShot = Double.MAX_VALUE;
 
-	private GameController(EntityFactory factory, CommandController commandController) {
+	private GameController(EntityFactory factory, CommandController commandController, PlayerShip playerShip) {
 		this.factory = factory;
-		playerShip = factory.createPlayerShip();
 		this.commandController = commandController;
+		this.playerShip = playerShip;
 		playerShip.setCenter(new Point((double) (WINDOW_WIDTH / 2),
 				(double) (WINDOW_HEIGHT / 2)));
 		asteroids.addAll(factory.nextLevel());
 	}
 
-	public static GameController createGameController(EntityFactory factory, CommandController commandController) {
-		return new GameController(factory, commandController);
+	public static GameController createGameController(EntityFactory factory, CommandController commandController,
+													  PlayerShip playerShip) {
+		return new GameController(factory, commandController, playerShip);
 	}
 
 	public void update(double delta) {

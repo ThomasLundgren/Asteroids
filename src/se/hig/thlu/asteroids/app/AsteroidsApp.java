@@ -3,11 +3,13 @@ package se.hig.thlu.asteroids.app;
 import se.hig.thlu.asteroids.controller.GameController;
 import se.hig.thlu.asteroids.controller.InputController;
 import se.hig.thlu.asteroids.controller.command.CommandController;
+import se.hig.thlu.asteroids.entityfactory.EntityFactory;
 import se.hig.thlu.asteroids.entityfactory.RandomEntityFactory;
 import se.hig.thlu.asteroids.gamestate.GameLoop;
 import se.hig.thlu.asteroids.graphics.entitydrawer.AsteroidDrawer;
 import se.hig.thlu.asteroids.graphics.entitydrawer.PlayerShipDrawer;
 import se.hig.thlu.asteroids.graphics.image.ImageAdapter;
+import se.hig.thlu.asteroids.model.PlayerShip;
 import se.hig.thlu.asteroids.storage.ImageLoader;
 import se.hig.thlu.asteroids.storage.ImageLoaderAwt;
 import se.hig.thlu.asteroids.ui.SwingGUI;
@@ -26,9 +28,10 @@ public class AsteroidsApp {
 		} catch (Exception ignored) {
 		}
 		try {
-			RandomEntityFactory factory = RandomEntityFactory.createRandomEntityFactory();
-			CommandController cController = CommandController.createCommandController(factory.createPlayerShip());
-			GameController gameController = GameController.createGameController(factory, cController);
+			EntityFactory factory = RandomEntityFactory.createRandomEntityFactory();
+			PlayerShip playerShip = factory.createPlayerShip();
+			CommandController cController = CommandController.createCommandController(playerShip);
+			GameController gameController = GameController.createGameController(factory, cController, playerShip);
 			InputController inputController = InputController.createInputController(cController);
 
 			ImageLoader imageLoader = new ImageLoaderAwt();

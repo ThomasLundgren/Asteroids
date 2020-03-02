@@ -26,24 +26,8 @@ public final class CommandController {
 		return new CommandController(playerShip);
 	}
 
-	private void activate(CommandType commandType) {
-		commands.put(commandType, getCommand(commandType));
-	}
-
-	private void deactivate(CommandType commandType) {
-		commands.put(commandType, getCommand(NULL));
-	}
-
 	public void executeCommands() {
 		commands.forEach((type, command) -> command.execute());
-	}
-
-	private Command getCommand(CommandType commandType) {
-		return factory.createCommand(commandType, playerShip);
-	}
-
-	public enum CommandType {
-		ACCELERATE, DECELERATE, TURN_LEFT, TURN_RIGHT, NULL;
 	}
 
 	public void handleKeyPressed(InputController.PressedKey key) {
@@ -84,4 +68,21 @@ public final class CommandController {
 				break;
 		}
 	}
+
+	private void activate(CommandType commandType) {
+		commands.put(commandType, getCommand(commandType));
+	}
+
+	private void deactivate(CommandType commandType) {
+		commands.put(commandType, getCommand(NULL));
+	}
+
+	private Command getCommand(CommandType commandType) {
+		return factory.createCommand(commandType, playerShip);
+	}
+
+	public enum CommandType {
+		ACCELERATE, DECELERATE, TURN_LEFT, TURN_RIGHT, NULL;
+	}
+
 }
