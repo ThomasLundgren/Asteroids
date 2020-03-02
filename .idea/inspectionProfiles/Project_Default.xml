@@ -586,6 +586,7 @@
     <inspection_tool class="StaticImport" enabled="true" level="WARNING" enabled_by_default="true">
       <option name="allowedClasses">
         <set>
+          <option value="se.hig.thlu.asteroids.model.Asteroid.AsteroidSize" />
           <option value="se.hig.thlu.asteroids.model.PlayerShip.PlayerShipProperty" />
         </set>
       </option>

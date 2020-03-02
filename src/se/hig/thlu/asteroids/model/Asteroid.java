@@ -2,7 +2,7 @@ package se.hig.thlu.asteroids.model;
 
 import se.hig.thlu.asteroids.mathutil.Trigonometry;
 
-import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class Asteroid extends Entity {
 
@@ -12,8 +12,7 @@ public class Asteroid extends Entity {
 	private Asteroid(Point position, Velocity velocity, AsteroidSize size) {
 		super(position, velocity, velocity.getSpeed());
 		asteroidSize = size;
-		Random rand = new Random();
-		int r = rand.nextInt(1);
+		int r = ThreadLocalRandom.current().nextInt(2);
 		rotationDirection = r == 0 ? RotationDirection.LEFT : RotationDirection.RIGHT;
 	}
 

@@ -15,6 +15,7 @@ public abstract class Entity {
 	protected Velocity velocity;
 	protected boolean isDestroyed = false;
 	protected double facingDirection = 0.0;
+	// TODO: Store size information in here
 	
 	protected Entity(Point center, Velocity velocity, double turningDegree) {
 		this.velocity = velocity;
@@ -23,7 +24,7 @@ public abstract class Entity {
 	}
 
 	public final Point getCenter() {
-		return center;
+		return new Point(center.getX(), center.getY());
 	}
 
 	public void setCenter(Point center) {
@@ -57,7 +58,7 @@ public abstract class Entity {
 	}
 
 	public final Velocity getVelocity() {
-		return velocity;
+		return new Velocity(velocity.getSpeed(), velocity.getDirection());
 	}
 
 	public final boolean isDestroyed() {
