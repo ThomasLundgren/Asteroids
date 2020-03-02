@@ -9,16 +9,17 @@ import static se.hig.thlu.asteroids.model.PlayerShip.PlayerShipProperty.FACING_D
 
 public abstract class Entity {
 
-	private static final double TURNING_DEGREE = 5.0;
+	protected final double turningDegree;
 	protected final PropertyChangeSupport changeSupport = new PropertyChangeSupport(this);
 	protected Point center;
 	protected Velocity velocity;
 	protected boolean isDestroyed = false;
 	protected double facingDirection = 0.0;
 	
-	protected Entity(Point center, Velocity velocity) {
+	protected Entity(Point center, Velocity velocity, double turningDegree) {
 		this.velocity = velocity;
 		this.center = center;
+		this.turningDegree = turningDegree;
 	}
 
 	public final Point getCenter() {
@@ -29,14 +30,15 @@ public abstract class Entity {
 		this.center = center;
 		notifyListeners(EntityProperty.CENTER.getPropertyName(), center);
 	}
-	public void turnLeft() {
-		facingDirection -= TURNING_DEGREE;
+
+	protected void turnLeft() {
+		facingDirection -= turningDegree;
 		facingDirection = Trigonometry.normalizeDegree(facingDirection);
 		notifyListeners(FACING_DIRECTION.getPropertyName(), facingDirection);
 	}
 
-	public void turnRight() {
-		facingDirection += TURNING_DEGREE;
+	protected void turnRight() {
+		facingDirection += turningDegree;
 		facingDirection = Trigonometry.normalizeDegree(facingDirection);
 		notifyListeners(FACING_DIRECTION.getPropertyName(), facingDirection);
 	}

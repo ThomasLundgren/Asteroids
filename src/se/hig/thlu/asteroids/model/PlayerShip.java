@@ -13,7 +13,7 @@ public final class PlayerShip extends Entity implements Shooter {
 	private int lives = 3;
 
 	private PlayerShip() {
-		super(new Point(0.0, 0.0), new Velocity(0.0, 0.0));
+		super(new Point(0.0, 0.0), new Velocity(0.0, 0.0), 5.0);
 	}
 
 	public static PlayerShip createPlayerShip() {
@@ -39,6 +39,16 @@ public final class PlayerShip extends Entity implements Shooter {
 		Velocity deceleration = new Velocity(DECELERATION, velocity.getDirection() - 180.0);
 		velocity.composeWith(deceleration);
 		notifyListeners(IS_ACCELERATING.getPropertyName(), false);
+	}
+
+	@Override
+	public void turnLeft() {
+		super.turnLeft();
+	}
+
+	@Override
+	public void turnRight() {
+		super.turnRight();
 	}
 
 	@Override
