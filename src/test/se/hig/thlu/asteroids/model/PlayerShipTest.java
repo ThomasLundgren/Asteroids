@@ -11,7 +11,7 @@ class PlayerShipTest {
 
 	@BeforeEach
 	public void setUp() {
-		playerShip = new PlayerShip();
+		playerShip = PlayerShip.createPlayerShip();
 	}
 
 	@AfterEach

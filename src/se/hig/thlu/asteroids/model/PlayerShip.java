@@ -1,21 +1,23 @@
 package se.hig.thlu.asteroids.model;
 
 import se.hig.thlu.asteroids.model.Missile.MissileSource;
-import se.hig.thlu.asteroids.mathutil.Trigonometry;
 
-import static se.hig.thlu.asteroids.model.PlayerShip.PlayerShipProperty.*;
+import static se.hig.thlu.asteroids.model.PlayerShip.PlayerShipProperty.IS_ACCELERATING;
+import static se.hig.thlu.asteroids.model.PlayerShip.PlayerShipProperty.LIVES;
 
 public final class PlayerShip extends Entity implements Shooter {
 
 	private static final double MAX_SPEED = 7.5;
-	private static final double TURNING_DEGREE = 5.0;
 	private static final double ACCELERATION = 0.05;
 	private static final double DECELERATION = ACCELERATION / 3.0;
 	private int lives = 3;
-	private double facingDirection = 0.0;
 
-	public PlayerShip() {
+	private PlayerShip() {
 		super(new Point(0.0, 0.0), new Velocity(0.0, 0.0));
+	}
+
+	public static PlayerShip createPlayerShip() {
+		return new PlayerShip();
 	}
 
 	public void accelerate() {
@@ -37,22 +39,6 @@ public final class PlayerShip extends Entity implements Shooter {
 		Velocity deceleration = new Velocity(DECELERATION, velocity.getDirection() - 180.0);
 		velocity.composeWith(deceleration);
 		notifyListeners(IS_ACCELERATING.getPropertyName(), false);
-	}
-
-	public void turnLeft() {
-		facingDirection -= TURNING_DEGREE;
-		facingDirection = Trigonometry.normalizeDegree(facingDirection);
-		notifyListeners(FACING_DIRECTION.getPropertyName(), facingDirection);
-	}
-
-	public void turnRight() {
-		facingDirection += TURNING_DEGREE;
-		facingDirection = Trigonometry.normalizeDegree(facingDirection);
-		notifyListeners(FACING_DIRECTION.getPropertyName(), facingDirection);
-	}
-
-	public double getFacingDirection() {
-		return facingDirection;
 	}
 
 	@Override

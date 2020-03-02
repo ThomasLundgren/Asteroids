@@ -5,7 +5,6 @@ import se.hig.thlu.asteroids.graphics.renderer.GraphicsAdapter;
 
 import java.beans.PropertyChangeEvent;
 
-import static se.hig.thlu.asteroids.model.PlayerShip.PlayerShipProperty.FACING_DIRECTION;
 import static se.hig.thlu.asteroids.model.PlayerShip.PlayerShipProperty.IS_ACCELERATING;
 
 public class PlayerShipDrawer extends EntityDrawer {
@@ -36,9 +35,7 @@ public class PlayerShipDrawer extends EntityDrawer {
 	@Override
 	public void propertyChange(PropertyChangeEvent evt) {
 		super.propertyChange(evt);
-		if (evt.getPropertyName().equals(FACING_DIRECTION.getPropertyName())) {
-			angle = (double) evt.getNewValue();
-		} else if (evt.getPropertyName().equals(IS_ACCELERATING.getPropertyName())) {
+		if (evt.getPropertyName().equals(IS_ACCELERATING.getPropertyName())) {
 			boolean isAccelerating = (boolean) evt.getNewValue();
 			activeSprite = isAccelerating ? accelerating : notAccelerating;
 		}

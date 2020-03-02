@@ -1,15 +1,20 @@
 package se.hig.thlu.asteroids.model;
 
+import se.hig.thlu.asteroids.mathutil.Trigonometry;
+
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
+import static se.hig.thlu.asteroids.model.PlayerShip.PlayerShipProperty.FACING_DIRECTION;
+
 public abstract class Entity {
 
-	// TODO: All entity classes needs to have a "FacingDirection" to allow rotation
+	private static final double TURNING_DEGREE = 5.0;
 	protected final PropertyChangeSupport changeSupport = new PropertyChangeSupport(this);
 	protected Point center;
 	protected Velocity velocity;
 	protected boolean isDestroyed = false;
+	protected double facingDirection = 0.0;
 	
 	protected Entity(Point center, Velocity velocity) {
 		this.velocity = velocity;
@@ -24,6 +29,22 @@ public abstract class Entity {
 		this.center = center;
 		notifyListeners(EntityProperty.CENTER.getPropertyName(), center);
 	}
+	public void turnLeft() {
+		facingDirection -= TURNING_DEGREE;
+		facingDirection = Trigonometry.normalizeDegree(facingDirection);
+		notifyListeners(FACING_DIRECTION.getPropertyName(), facingDirection);
+	}
+
+	public void turnRight() {
+		facingDirection += TURNING_DEGREE;
+		facingDirection = Trigonometry.normalizeDegree(facingDirection);
+		notifyListeners(FACING_DIRECTION.getPropertyName(), facingDirection);
+	}
+
+	public double getFacingDirection() {
+		return facingDirection;
+	}
+
 
 	public void addPropertyChangeListener(PropertyChangeListener listener) {
 		changeSupport.addPropertyChangeListener(listener);

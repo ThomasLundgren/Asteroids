@@ -2,17 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="912592ae-0182-4155-a100-0b05ae75298b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/resources/images/final/asteroid-small-1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resources/images/final/enemy-ship-small.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resources/images/final/missile-player.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/graphics/entitydrawer/AsteroidDrawer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/app/AsteroidsApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/app/AsteroidsApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/graphics/entitydrawer/AwtEntityDrawer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/graphics/entitydrawer/EntityDrawer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/graphics/entitydrawer/PlayerShipDrawerAwt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/graphics/entitydrawer/PlayerShipDrawer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/storage/ImageLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/storage/ImageLoader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/ui/BackgroundPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/ui/BackgroundPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/ui/SwingGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/ui/SwingGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/controller/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/controller/GameController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/graphics/entitydrawer/EntityDrawer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/graphics/entitydrawer/EntityDrawer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/graphics/entitydrawer/PlayerShipDrawer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/graphics/entitydrawer/PlayerShipDrawer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/model/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/model/Entity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/model/PlayerShip.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/model/PlayerShip.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/se/hig/thlu/asteroids/model/PlayerShipTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/se/hig/thlu/asteroids/model/PlayerShipTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -222,10 +218,10 @@
       <screen x="0" y="0" width="1273" height="768" />
     </state>
     <state x="124" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1273.768@0.0.1273.768" timestamp="1583110741405" />
-    <state x="478" y="294" key="#com.intellij.refactoring.replaceConstructorWithFactory.ReplaceConstructorWithFactoryDialog" timestamp="1583151159137">
+    <state x="478" y="294" key="#com.intellij.refactoring.replaceConstructorWithFactory.ReplaceConstructorWithFactoryDialog" timestamp="1583154969749">
       <screen x="0" y="0" width="1273" height="768" />
     </state>
-    <state x="478" y="294" key="#com.intellij.refactoring.replaceConstructorWithFactory.ReplaceConstructorWithFactoryDialog/0.0.1273.768@0.0.1273.768" timestamp="1583151159137" />
+    <state x="478" y="294" key="#com.intellij.refactoring.replaceConstructorWithFactory.ReplaceConstructorWithFactoryDialog/0.0.1273.768@0.0.1273.768" timestamp="1583154969749" />
     <state x="366" y="131" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1583100252483">
       <screen x="0" y="0" width="1273" height="768" />
     </state>
@@ -298,10 +294,10 @@
       <screen x="0" y="0" width="1273" height="768" />
     </state>
     <state x="250" y="111" width="540" height="496" key="extract.method.dialog/0.0.1273.768@0.0.1273.768" timestamp="1582807218278" />
-    <state x="666" y="0" width="607" height="768" key="find.popup" timestamp="1583106600887">
+    <state x="666" y="0" width="607" height="768" key="find.popup" timestamp="1583154894299">
       <screen x="0" y="0" width="1273" height="768" />
     </state>
-    <state x="666" y="0" width="607" height="768" key="find.popup/0.0.1273.768@0.0.1273.768" timestamp="1583106600887" />
+    <state x="666" y="0" width="607" height="768" key="find.popup/0.0.1273.768@0.0.1273.768" timestamp="1583154894299" />
     <state x="343" y="12" key="refactoring.ChangeSignatureDialog" timestamp="1583107854486">
       <screen x="0" y="0" width="1273" height="768" />
     </state>
@@ -314,10 +310,10 @@
       <screen x="0" y="0" width="1273" height="768" />
     </state>
     <state x="228" y="42" key="scopes/0.0.1273.768@0.0.1273.768" timestamp="1582209063947" />
-    <state x="299" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1583154127620">
+    <state x="299" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1583154952506">
       <screen x="0" y="0" width="1273" height="768" />
     </state>
-    <state x="299" y="89" width="672" height="678" key="search.everywhere.popup/0.0.1273.768@0.0.1273.768" timestamp="1583154127620" />
+    <state x="299" y="89" width="672" height="678" key="search.everywhere.popup/0.0.1273.768@0.0.1273.768" timestamp="1583154952506" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

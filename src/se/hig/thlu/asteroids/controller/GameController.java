@@ -14,7 +14,7 @@ public class GameController {
 	private static long totalGameTime = 0L;
 	private static long nextSpawn = (long) GameConfig.INITIAL_SPAWN_INTERVAL;
 	private static double timeSinceLastShot = Double.MAX_VALUE;
-	private static final PlayerShip playerShip = new PlayerShip();
+	private static final PlayerShip playerShip = PlayerShip.createPlayerShip();
 	private static final List<Asteroid> asteroids = new ArrayList<>(30);
 	private static final List<EnemyShip> enemyShips = new ArrayList<>(5);
 	private static final List<Missile> missiles = new ArrayList<>(30);
