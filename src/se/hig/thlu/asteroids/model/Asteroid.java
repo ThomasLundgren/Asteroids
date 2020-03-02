@@ -2,6 +2,7 @@ package se.hig.thlu.asteroids.model;
 
 import se.hig.thlu.asteroids.mathutil.Trigonometry;
 
+import java.beans.PropertyChangeListener;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Asteroid extends Entity {
@@ -52,6 +53,12 @@ public class Asteroid extends Entity {
 		return asteroidSize;
 	}
 
+	@Override
+	public void addPropertyChangeListener(PropertyChangeListener listener) {
+		super.addPropertyChangeListener(listener);
+		notifyListeners(AsteroidProperty.SIZE.getPropertyName(), asteroidSize);
+	}
+
 	private enum RotationDirection {LEFT, RIGHT}
 
 	public enum AsteroidSize {
@@ -71,6 +78,21 @@ public class Asteroid extends Entity {
 
 		public double getMinSpeed() {
 			return minSpeed;
+		}
+	}
+
+	public enum AsteroidProperty {
+
+		SIZE("SIZE");
+
+		private final String propertyName;
+
+		AsteroidProperty(String propertyName) {
+			this.propertyName = propertyName;
+		}
+
+		public String getPropertyName() {
+			return propertyName;
 		}
 	}
 }

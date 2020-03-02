@@ -3,12 +3,7 @@ package se.hig.thlu.asteroids.controller;
 import se.hig.thlu.asteroids.controller.command.CommandController;
 import se.hig.thlu.asteroids.controller.command.CommandController.CommandType;
 import se.hig.thlu.asteroids.entityfactory.EntityFactory;
-import se.hig.thlu.asteroids.model.Asteroid;
-import se.hig.thlu.asteroids.model.EnemyShip;
-import se.hig.thlu.asteroids.model.Entity;
-import se.hig.thlu.asteroids.model.Missile;
-import se.hig.thlu.asteroids.model.PlayerShip;
-import se.hig.thlu.asteroids.model.Point;
+import se.hig.thlu.asteroids.model.*;
 
 import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
@@ -19,14 +14,14 @@ import static se.hig.thlu.asteroids.config.GameConfig.*;
 public final class GameController {
 
 	private final CommandController commandController;
-	private long totalGameTime = 0L;
-	private long nextSpawn = (long) INITIAL_SPAWN_INTERVAL;
-	private double timeSinceLastShot = Double.MAX_VALUE;
 	private final PlayerShip playerShip;
 	private final List<Asteroid> asteroids = new ArrayList<>(30);
 	private final List<EnemyShip> enemyShips = new ArrayList<>(5);
 	private final List<Missile> missiles = new ArrayList<>(30);
 	private final EntityFactory factory;
+	private long totalGameTime = 0L;
+	private long nextSpawn = (long) INITIAL_SPAWN_INTERVAL;
+	private double timeSinceLastShot = Double.MAX_VALUE;
 
 	private GameController(EntityFactory factory, CommandController commandController) {
 		this.factory = factory;

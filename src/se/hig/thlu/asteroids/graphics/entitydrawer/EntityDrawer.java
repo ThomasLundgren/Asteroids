@@ -8,8 +8,6 @@ import se.hig.thlu.asteroids.model.Point;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
-import static se.hig.thlu.asteroids.model.PlayerShip.PlayerShipProperty.FACING_DIRECTION;
-
 public abstract class EntityDrawer implements PropertyChangeListener {
 
 	protected double angle = 0.0, x = 0.0, y = 0.0;
@@ -28,7 +26,7 @@ public abstract class EntityDrawer implements PropertyChangeListener {
 			Point center = (Point) evt.getNewValue();
 			x = center.getX();
 			y = center.getY();
-		} else if (evt.getPropertyName().equals(FACING_DIRECTION.getPropertyName())) {
+		} else if (evt.getPropertyName().equals(EntityProperty.FACING_DIRECTION.getPropertyName())) {
 			angle = (double) evt.getNewValue();
 		}
 	}

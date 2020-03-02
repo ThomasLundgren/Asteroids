@@ -5,7 +5,7 @@ import se.hig.thlu.asteroids.model.Missile.*;
 public final class EnemyShip extends Entity implements Shooter {
 
 	protected EnemyShip(Point position, Velocity velocity) {
-		super(position, velocity);
+		super(position, velocity, 0.0);
 	}
 
 	@Override

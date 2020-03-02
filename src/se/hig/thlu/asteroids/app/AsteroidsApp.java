@@ -2,7 +2,10 @@ package se.hig.thlu.asteroids.app;
 
 import se.hig.thlu.asteroids.controller.GameController;
 import se.hig.thlu.asteroids.controller.InputController;
+import se.hig.thlu.asteroids.controller.command.CommandController;
+import se.hig.thlu.asteroids.entityfactory.RandomEntityFactory;
 import se.hig.thlu.asteroids.gamestate.GameLoop;
+import se.hig.thlu.asteroids.graphics.entitydrawer.AsteroidDrawer;
 import se.hig.thlu.asteroids.graphics.entitydrawer.PlayerShipDrawer;
 import se.hig.thlu.asteroids.graphics.image.ImageAdapter;
 import se.hig.thlu.asteroids.storage.ImageLoader;
@@ -13,6 +16,8 @@ import se.hig.thlu.asteroids.ui.UI;
 import javax.swing.*;
 import java.io.IOException;
 
+import static se.hig.thlu.asteroids.storage.ImageLoader.ImageResource.*;
+
 public class AsteroidsApp {
 
 	public static void main(String[] args) {
@@ -21,14 +26,25 @@ public class AsteroidsApp {
 		} catch (Exception ignored) {
 		}
 		try {
-			GameController gameController = GameController.createGameController();
+			RandomEntityFactory factory = RandomEntityFactory.createRandomEntityFactory();
+			CommandController cController = CommandController.createCommandController(factory.createPlayerShip());
+			GameController gameController = GameController.createGameController(factory, cController);
+
 			ImageLoader imageLoader = new ImageLoaderAwt();
 			ImageAdapter accel =
-					imageLoader.getImageResource(ImageLoader.ImageResource.PLAYER_SHIP_ACCEL_PNG);
-			ImageAdapter nonAccel = imageLoader.getImageResource(ImageLoader.ImageResource.PLAYER_SHIP_PNG);
+					imageLoader.getImageResource(PLAYER_SHIP_ACCEL_PNG);
+			ImageAdapter nonAccel = imageLoader.getImageResource(PLAYER_SHIP_PNG);
+			ImageAdapter large = imageLoader.getImageResource(ASTEROID_LARGE_PNG);
+			ImageAdapter medium = imageLoader.getImageResource(ASTEROID_MEDIUM_PNG);
+			ImageAdapter small = imageLoader.getImageResource(ASTEROID_SMALL_PNG);
+
 			PlayerShipDrawer playerShipDrawer = PlayerShipDrawer.createPlayerShipDrawer(accel, nonAccel);
+			AsteroidDrawer asteroidDrawer = AsteroidDrawer.createAsteroidDrawer(small, medium, large);
+
 			gameController.addListenerForShip(playerShipDrawer);
-			UI ui = new SwingGUI(playerShipDrawer);
+			gameController.addListenerForAsteroids(asteroidDrawer);
+
+			UI ui = new SwingGUI(playerShipDrawer, asteroidDrawer);
 			ui.addKeyListener(new InputController(gameController));
 
 			GameLoop gameLoop = new GameLoop(gameController);

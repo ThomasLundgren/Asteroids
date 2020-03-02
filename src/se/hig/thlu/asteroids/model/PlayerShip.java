@@ -70,7 +70,6 @@ public final class PlayerShip extends Entity implements Shooter {
 	public enum PlayerShipProperty {
 
 		LIVES("LIVES"),
-		FACING_DIRECTION("FACING_DIRECTION"),
 		IS_ACCELERATING("IS_ACCELERATING");
 
 		private String propertyName;

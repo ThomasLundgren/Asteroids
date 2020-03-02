@@ -2,6 +2,9 @@ package se.hig.thlu.asteroids.graphics.entitydrawer;
 
 import se.hig.thlu.asteroids.graphics.image.ImageAdapter;
 import se.hig.thlu.asteroids.graphics.renderer.GraphicsAdapter;
+import se.hig.thlu.asteroids.model.Asteroid;
+
+import java.beans.PropertyChangeEvent;
 
 public class AsteroidDrawer extends EntityDrawer {
 
@@ -33,4 +36,22 @@ public class AsteroidDrawer extends EntityDrawer {
 		activeSprite = sprite;
 	}
 
+	@Override
+	public void propertyChange(PropertyChangeEvent evt) {
+		super.propertyChange(evt);
+		if (evt.getPropertyName().equals(Asteroid.AsteroidProperty.SIZE.getPropertyName())) {
+			Asteroid.AsteroidSize size = (Asteroid.AsteroidSize) evt.getNewValue();
+			switch (size) {
+				case LARGE:
+					activeSprite = large;
+					break;
+				case MEDIUM:
+					activeSprite = medium;
+					break;
+				case SMALL:
+					activeSprite = small;
+					break;
+			}
+		}
+	}
 }

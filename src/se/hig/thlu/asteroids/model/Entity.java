@@ -5,8 +5,6 @@ import se.hig.thlu.asteroids.mathutil.Trigonometry;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
-import static se.hig.thlu.asteroids.model.PlayerShip.PlayerShipProperty.FACING_DIRECTION;
-
 public abstract class Entity {
 
 	protected final double turningDegree;
@@ -16,7 +14,8 @@ public abstract class Entity {
 	protected boolean isDestroyed = false;
 	protected double facingDirection = 0.0;
 	// TODO: Store size information in here?
-	
+
+	// TODO: subclasses have hard-coded turning degrees
 	protected Entity(Point center, Velocity velocity, double turningDegree) {
 		this.velocity = velocity;
 		this.center = center;
@@ -35,13 +34,13 @@ public abstract class Entity {
 	protected void turnLeft() {
 		facingDirection -= turningDegree;
 		facingDirection = Trigonometry.normalizeDegree(facingDirection);
-		notifyListeners(FACING_DIRECTION.getPropertyName(), facingDirection);
+		notifyListeners(EntityProperty.FACING_DIRECTION.getPropertyName(), facingDirection);
 	}
 
 	protected void turnRight() {
 		facingDirection += turningDegree;
 		facingDirection = Trigonometry.normalizeDegree(facingDirection);
-		notifyListeners(FACING_DIRECTION.getPropertyName(), facingDirection);
+		notifyListeners(EntityProperty.FACING_DIRECTION.getPropertyName(), facingDirection);
 	}
 
 	public double getFacingDirection() {
@@ -80,8 +79,8 @@ public abstract class Entity {
 
 	public enum EntityProperty {
 
-		CREATED("CREATED"),
 		CENTER("CENTER"),
+		FACING_DIRECTION("FACING_DIRECTION"),
 		IS_DESTROYED("IS_DESTROYED");
 
 		private String propertyName;

@@ -8,7 +8,7 @@ public final class Missile extends Entity {
 	private final Point startingPosition;
 
 	protected Missile(Point position, double direction, MissileSource source) {
-		super(position, new Velocity(source.getMissileSpeed(), direction));
+		super(position, new Velocity(source.getMissileSpeed(), direction), 0.0);
 		startingPosition = position;
 		missileSource = source;
 	}
