@@ -24,8 +24,8 @@ public class AsteroidDrawer extends EntityDrawer {
 	@Override
 	public void draw(GraphicsAdapter<ImageAdapter> graphics) {
 		// TODO: Broken, must rotate around center
-		int cornerX = (int) x - activeSprite.getWidth();
-		int cornerY = (int) y - activeSprite.getHeight();
+		int cornerX = (int) x - activeSprite.getWidth() / 2;
+		int cornerY = (int) y - activeSprite.getHeight() / 2;
 		graphics.drawImageWithRotation(activeSprite,
 				angle,
 				x,

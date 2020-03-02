@@ -29,6 +29,7 @@ public class AsteroidsApp {
 			RandomEntityFactory factory = RandomEntityFactory.createRandomEntityFactory();
 			CommandController cController = CommandController.createCommandController(factory.createPlayerShip());
 			GameController gameController = GameController.createGameController(factory, cController);
+			InputController inputController = InputController.createInputController(cController);
 
 			ImageLoader imageLoader = new ImageLoaderAwt();
 			ImageAdapter accel =
@@ -45,7 +46,7 @@ public class AsteroidsApp {
 			gameController.addListenerForAsteroids(asteroidDrawer);
 
 			UI ui = new SwingGUI(playerShipDrawer, asteroidDrawer);
-			ui.addKeyListener(new InputController(gameController));
+			ui.addKeyListener(inputController);
 
 			GameLoop gameLoop = new GameLoop(gameController);
 			gameLoop.gameLoop();

@@ -1,13 +1,19 @@
 package se.hig.thlu.asteroids.controller;
 
+import se.hig.thlu.asteroids.controller.command.CommandController;
+
 import java.awt.event.*;
 
 public class InputController implements KeyListener {
 
-	private final GameController controller;
+	private final CommandController commandController;
 
-	public InputController(GameController controller) {
-		this.controller = controller;
+	private InputController(CommandController commandController) {
+		this.commandController = commandController;
+	}
+
+	public static InputController createInputController(CommandController commandController) {
+		return new InputController(commandController);
 	}
 
 	public enum PressedKey {
@@ -49,7 +55,7 @@ public class InputController implements KeyListener {
 				key = PressedKey.UNDEFINED;
 				break;
 		}
-		controller.handleKeyPressed(key);
+		commandController.handleKeyPressed(key);
 	}
 
 	@Override
@@ -69,6 +75,6 @@ public class InputController implements KeyListener {
 				key = PressedKey.UNDEFINED;
 				break;
 		}
-		controller.handleKeyReleased(key);
+		commandController.handleKeyReleased(key);
 	}
 }
