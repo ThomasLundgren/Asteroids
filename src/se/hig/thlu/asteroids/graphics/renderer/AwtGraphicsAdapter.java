@@ -33,6 +33,11 @@ public class AwtGraphicsAdapter extends Graphics2D implements GraphicsAdapter<Aw
 	}
 
 	@Override
+	public void drawImage(AwtImageAdapter image, int x, int y, int width, int height) {
+		g2d.drawImage(image, x, y, width, height, null);
+	}
+
+	@Override
 	public void draw3DRect(int x, int y, int width, int height, boolean raised) {
 		g2d.draw3DRect(x, y, width, height, raised);
 	}

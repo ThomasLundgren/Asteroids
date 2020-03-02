@@ -1,6 +1,7 @@
 package se.hig.thlu.asteroids.ui;
 
 import se.hig.thlu.asteroids.graphics.entitydrawer.PlayerShipDrawerAwt;
+import se.hig.thlu.asteroids.graphics.image.ImageAdapter;
 import se.hig.thlu.asteroids.graphics.renderer.AwtGraphicsAdapter;
 import se.hig.thlu.asteroids.graphics.renderer.GraphicsAdapter;
 
@@ -21,7 +22,7 @@ public class BackgroundPanel extends JPanel {
 
 	private final PlayerShipDrawerAwt playerShipDrawer;
 	private Paint painter;
-	private Image image;
+	private ImageAdapter image;
 	private double alignmentX = 0.5;
 	private double alignmentY = 0.5;
 	private boolean isTransparentAdd = true;
@@ -29,69 +30,20 @@ public class BackgroundPanel extends JPanel {
 	/*
 	 *  Set image as the background with the specified style
 	 */
-	public BackgroundPanel(PlayerShipDrawerAwt playerShipDrawer, Image image) {
+	public BackgroundPanel(PlayerShipDrawerAwt playerShipDrawer, ImageAdapter image) {
 		this.playerShipDrawer = playerShipDrawer;
 		setImage(image);
 		setLayout(new BorderLayout());
 	}
 
 	/*
-	 *  Set image as the backround with the specified style and alignment
-	 */
-//	public BackgroundPanel(Image image, float alignmentX, float alignmentY) {
-//		setImage(image);
-//		setImageAlignmentX(alignmentX);
-//		setImageAlignmentY(alignmentY);
-//		setLayout(new BorderLayout());
-//	}
-//
-//	/*
-//	 *  Use the Paint interface to paint a background
-//	 */
-//	public BackgroundPanel(Paint painter) {
-//		setPaint(painter);
-//		setLayout(new BorderLayout());
-//	}
-
-	/*
 	 *	Set the image used as the background
 	 */
-	public void setImage(Image image) {
+	public void setImage(ImageAdapter image) {
 		this.image = image;
 		repaint();
 	}
 
-	/*
-	 *	Set the Paint object used to paint the background
-	 */
-	public void setPaint(Paint painter) {
-		this.painter = painter;
-		repaint();
-	}
-
-	/*
-	 *  Specify the horizontal alignment of the image when using ACTUAL style
-	 */
-	public void setImageAlignmentX(float alignmentX) {
-		this.alignmentX = alignmentX > 1.0f ? 1.0f : alignmentX < 0.0f ? 0.0f : alignmentX;
-		repaint();
-	}
-
-	/*
-	 *  Specify the horizontal alignment of the image when using ACTUAL style
-	 */
-	public void setImageAlignmentY(float alignmentY) {
-		this.alignmentY = alignmentY > 1.0f ? 1.0f : alignmentY < 0.0f ? 0.0f : alignmentY;
-		repaint();
-	}
-
-	/*
-	 *  Override method so we can make the component transparent
-	 */
-	public void add(JComponent component) {
-		super.add(component);
-//		add(component, null);
-	}
 
 	/*
 	 *  Override to provide a preferred size equal to the image size
@@ -101,28 +53,9 @@ public class BackgroundPanel extends JPanel {
 		if (image == null)
 			return super.getPreferredSize();
 		else
-			return new Dimension(image.getWidth(null), image.getHeight(null));
+			return new Dimension(image.getWidth(), image.getHeight());
 	}
 
-	/*
-	 *  Override method so we can make the component transparent
-	 */
-//	public void add(JComponent component, Object constraints) {
-//		if (isTransparentAdd) {
-//			makeComponentTransparent(component);
-//		}
-//
-//		super.add(component, constraints);
-//	}
-
-	/*
-	 *  Controls whether components added to this panel should automatically
-	 *  be made transparent. That is, setOpaque(false) will be invoked.
-	 *  The default is set to true.
-	 */
-	public void setTransparentAdd(boolean isTransparentAdd) {
-		this.isTransparentAdd = isTransparentAdd;
-	}
 
 	/*
 	 *	Try to make the component transparent.
@@ -159,12 +92,12 @@ public class BackgroundPanel extends JPanel {
 	 *  Custom painting code for drawing a SCALED image as the background
 	 */
 	private void drawScaled(Graphics g) {
-		Dimension d = getSize();
-		g.drawImage(image, 0, 0, d.width, d.height, null);
 		Graphics2D g2d = (Graphics2D) g;
-
-//		playerShipDrawer.draw((Graphics2D) g2d);
 		GraphicsAdapter graphics = new AwtGraphicsAdapter(g2d);
+
+		Dimension dim = getSize();
+		graphics.drawImage(image, 0, 0, dim.width, dim.height);
+
 		playerShipDrawer.draw(graphics);
 
 		repaint();

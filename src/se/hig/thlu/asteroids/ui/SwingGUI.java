@@ -2,7 +2,7 @@ package se.hig.thlu.asteroids.ui;
 
 import se.hig.thlu.asteroids.config.GameConfig;
 import se.hig.thlu.asteroids.graphics.entitydrawer.PlayerShipDrawerAwt;
-import se.hig.thlu.asteroids.storage.AbstractImageLoader.ImageResource;
+import se.hig.thlu.asteroids.storage.ImageLoader.ImageResource;
 import se.hig.thlu.asteroids.storage.ImageLoaderAwt;
 
 import javax.swing.*;

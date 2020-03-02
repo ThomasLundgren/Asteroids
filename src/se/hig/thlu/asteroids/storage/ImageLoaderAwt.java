@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Objects;
 
-public class ImageLoaderAwt extends AbstractImageLoader<AwtImageAdapter> {
+public class ImageLoaderAwt extends ImageLoader<AwtImageAdapter> {
 
 	public ImageLoaderAwt() throws IOException {
 	}

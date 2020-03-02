@@ -6,7 +6,7 @@ import se.hig.thlu.asteroids.graphics.image.ImageAdapter;
 import java.io.IOException;
 import java.util.EnumMap;
 
-public abstract class AbstractImageLoader<T extends ImageAdapter> {
+public abstract class ImageLoader<T extends ImageAdapter> {
 
 	protected final EnumMap<ImageResource, T> imageCache =
 			new EnumMap<>(ImageResource.class);
@@ -15,7 +15,7 @@ public abstract class AbstractImageLoader<T extends ImageAdapter> {
 	Not handling the Exception here since we NEED all images.
 	If we cannot load all images, something has gone wrong and the program can't run.
 	 */
-	public AbstractImageLoader() throws IOException {
+	public ImageLoader() throws IOException {
 		loadAllImages();
 	}
 
