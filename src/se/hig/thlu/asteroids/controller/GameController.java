@@ -3,6 +3,7 @@ package se.hig.thlu.asteroids.controller;
 import se.hig.thlu.asteroids.config.*;
 import se.hig.thlu.asteroids.controller.command.*;
 import se.hig.thlu.asteroids.controller.command.CommandController.*;
+import se.hig.thlu.asteroids.entityfactory.EntityFactory;
 import se.hig.thlu.asteroids.model.*;
 
 import java.beans.*;
@@ -10,18 +11,26 @@ import java.util.*;
 
 public class GameController {
 
-	private static CommandController commandController;
-	private static long totalGameTime = 0L;
-	private static long nextSpawn = (long) GameConfig.INITIAL_SPAWN_INTERVAL;
-	private static double timeSinceLastShot = Double.MAX_VALUE;
-	private static final PlayerShip playerShip = PlayerShip.createPlayerShip();
-	private static final List<Asteroid> asteroids = new ArrayList<>(30);
-	private static final List<EnemyShip> enemyShips = new ArrayList<>(5);
-	private static final List<Missile> missiles = new ArrayList<>(30);
+	private CommandController commandController;
+	private long totalGameTime = 0L;
+	private long nextSpawn = (long) GameConfig.INITIAL_SPAWN_INTERVAL;
+	private double timeSinceLastShot = Double.MAX_VALUE;
+	private final PlayerShip playerShip;
+	private final List<Asteroid> asteroids = new ArrayList<>(30);
+	private final List<EnemyShip> enemyShips = new ArrayList<>(5);
+	private final List<Missile> missiles = new ArrayList<>(30);
+	private final EntityFactory factory;
 
-	public GameController() {
-		commandController = new CommandController(playerShip);
-		playerShip.setCenter(new Point((double) (GameConfig.WINDOW_WIDTH / 2), (double) (GameConfig.WINDOW_HEIGHT / 2)));
+	private GameController(EntityFactory factory, CommandController commandController) {
+		this.factory = factory;
+		playerShip = factory.createPlayerShip();
+		this.commandController = new CommandController(playerShip);
+		playerShip.setCenter(new Point((double) (GameConfig.WINDOW_WIDTH / 2),
+				(double) (GameConfig.WINDOW_HEIGHT / 2)));
+	}
+
+	public static GameController createGameController(EntityFactory factory, CommandController commandController) {
+		return new GameController(factory, commandController);
 	}
 
 	public void update(double delta) {
@@ -71,9 +80,11 @@ public class GameController {
 	}
 
 	private void updatePositions() {
+		asteroids.forEach(Asteroid::updatePosition);
+		enemyShips.forEach(EnemyShip::updatePosition);
 		playerShip.updatePosition();
-		double x = playerShip.getCenter().getX();
-		double y = playerShip.getCenter().getY();
+		asteroids.forEach(this::handleOverFlow);
+		enemyShips.forEach(this::handleOverFlow);
 		handleOverFlow(playerShip);
 	}
 

@@ -21,7 +21,7 @@ public class AsteroidsApp {
 		} catch (Exception ignored) {
 		}
 		try {
-			GameController gameController = new GameController();
+			GameController gameController = GameController.createGameController();
 			ImageLoader imageLoader = new ImageLoaderAwt();
 			ImageAdapter accel =
 					imageLoader.getImageResource(ImageLoader.ImageResource.PLAYER_SHIP_ACCEL_PNG);
