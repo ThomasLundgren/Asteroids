@@ -2,8 +2,6 @@ package se.hig.thlu.asteroids.graphics.entitydrawer;
 
 import se.hig.thlu.asteroids.graphics.image.ImageAdapter;
 import se.hig.thlu.asteroids.graphics.renderer.GraphicsAdapter;
-import se.hig.thlu.asteroids.storage.ImageLoader;
-import se.hig.thlu.asteroids.storage.ImageLoader.ImageResource;
 
 import java.beans.PropertyChangeEvent;
 
@@ -14,26 +12,22 @@ public class PlayerShipDrawerAwt extends AwtEntityDrawer {
 
 	private static final int SPRITE_X_CENTER_PIXEL = 19;
 	private static final int SPRITE_Y_CENTER_PIXEL = 10;
+	private final ImageAdapter accelerating;
+	private final ImageAdapter notAccelerating;
+	private ImageAdapter activeSprite;
 
-	public PlayerShipDrawerAwt(ImageLoader<ImageAdapter> imageLoader) {
-		super(imageLoader);
+	public PlayerShipDrawerAwt(ImageAdapter accelerating, ImageAdapter notAccelerating) {
+		this.accelerating = accelerating;
+		this.notAccelerating = notAccelerating;
+		activeSprite = notAccelerating;
 		setImage(false);
 	}
 
 	@Override
 	public void draw(GraphicsAdapter<ImageAdapter> graphics) {
-				int xCorner = (int) x - sprite.getWidth() + SPRITE_X_CENTER_PIXEL;
-		int yCorner = (int) y - sprite.getHeight() + SPRITE_Y_CENTER_PIXEL;
-		graphics.drawImageWithRotation(sprite, angle, x, y, xCorner, yCorner);
-
-//		AffineTransform backup = g2d.getTransform();
-//		double angleRad = StrictMath.toRadians(angle);
-//		AffineTransform op = AffineTransform.getRotateInstance(angleRad, x, y);
-//		g2d.setTransform(op);
-//		int xCorner = (int) x - sprite.getWidth() + SPRITE_X_CENTER_PIXEL;
-//		int yCorner = (int) y - sprite.getHeight() + SPRITE_Y_CENTER_PIXEL;
-//		g2d.drawImage(sprite, (int) xCorner, (int) yCorner, null);
-//		g2d.setTransform(backup);
+				int xCorner = (int) x - activeSprite.getWidth() + SPRITE_X_CENTER_PIXEL;
+		int yCorner = (int) y - activeSprite.getHeight() + SPRITE_Y_CENTER_PIXEL;
+		graphics.drawImageWithRotation(activeSprite, angle, x, y, xCorner, yCorner);
 	}
 
 	@Override
@@ -47,10 +41,7 @@ public class PlayerShipDrawerAwt extends AwtEntityDrawer {
 		}
 	}
 
-	// TODO: Move to ABC and override?
 	private void setImage(boolean isAccelerating) {
-		sprite = isAccelerating
-				? imageLoader.getImageResource(ImageResource.PLAYER_SHIP_ACCEL_PNG)
-				: imageLoader.getImageResource(ImageResource.PLAYER_SHIP_PNG);
+		activeSprite = isAccelerating ? accelerating : notAccelerating;
 	}
 }

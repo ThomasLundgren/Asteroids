@@ -4,20 +4,14 @@ import se.hig.thlu.asteroids.graphics.image.ImageAdapter;
 import se.hig.thlu.asteroids.graphics.renderer.GraphicsAdapter;
 import se.hig.thlu.asteroids.model.Entity.EntityProperty;
 import se.hig.thlu.asteroids.model.Point;
-import se.hig.thlu.asteroids.storage.ImageLoader;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
 public abstract class AwtEntityDrawer implements PropertyChangeListener {
 
-	protected final ImageLoader<ImageAdapter> imageLoader;
-	protected ImageAdapter sprite;
-	protected double angle, x, y;
-
-	protected AwtEntityDrawer(ImageLoader<ImageAdapter> imageLoader) {
-		this.imageLoader = imageLoader;
-	}
+	// TODO: Shouldn't have a reference to ImageLoader? Should just have an ImageAdapter?
+	protected double angle = 0.0, x = 0.0, y = 0.0;
 
 	// TODO: Understand generics.......?
 	abstract void draw(GraphicsAdapter<ImageAdapter> graphics);
