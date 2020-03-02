@@ -5,6 +5,7 @@ import java.beans.PropertyChangeSupport;
 
 public abstract class Entity {
 
+	// TODO: All entity classes needs to have a "FacingDirection" to allow rotation
 	protected final PropertyChangeSupport changeSupport = new PropertyChangeSupport(this);
 	protected Point center;
 	protected Velocity velocity;

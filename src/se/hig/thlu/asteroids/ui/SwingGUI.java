@@ -1,7 +1,7 @@
 package se.hig.thlu.asteroids.ui;
 
 import se.hig.thlu.asteroids.config.GameConfig;
-import se.hig.thlu.asteroids.graphics.entitydrawer.PlayerShipDrawerAwt;
+import se.hig.thlu.asteroids.graphics.entitydrawer.PlayerShipDrawer;
 import se.hig.thlu.asteroids.storage.ImageLoader.ImageResource;
 import se.hig.thlu.asteroids.storage.ImageLoaderAwt;
 
@@ -16,7 +16,7 @@ public class SwingGUI implements UI {
 	private ImageLoaderAwt imageLoader;
 	private final JFrame frame = new JFrame();
 
-	public SwingGUI(PlayerShipDrawerAwt playerShipDrawer) {
+	public SwingGUI(PlayerShipDrawer playerShipDrawer) {
 		try {
 			imageLoader = new ImageLoaderAwt();
 			backgroundPanel =

@@ -1,6 +1,6 @@
 package se.hig.thlu.asteroids.ui;
 
-import se.hig.thlu.asteroids.graphics.entitydrawer.PlayerShipDrawerAwt;
+import se.hig.thlu.asteroids.graphics.entitydrawer.PlayerShipDrawer;
 import se.hig.thlu.asteroids.graphics.image.ImageAdapter;
 import se.hig.thlu.asteroids.graphics.renderer.AwtGraphicsAdapter;
 import se.hig.thlu.asteroids.graphics.renderer.GraphicsAdapter;
@@ -20,7 +20,7 @@ import java.awt.*;
  */
 public class BackgroundPanel extends JPanel {
 
-	private final PlayerShipDrawerAwt playerShipDrawer;
+	private final PlayerShipDrawer playerShipDrawer;
 	private Paint painter;
 	private ImageAdapter image;
 	private double alignmentX = 0.5;
@@ -30,7 +30,7 @@ public class BackgroundPanel extends JPanel {
 	/*
 	 *  Set image as the background with the specified style
 	 */
-	public BackgroundPanel(PlayerShipDrawerAwt playerShipDrawer, ImageAdapter image) {
+	public BackgroundPanel(PlayerShipDrawer playerShipDrawer, ImageAdapter image) {
 		this.playerShipDrawer = playerShipDrawer;
 		setImage(image);
 		setLayout(new BorderLayout());

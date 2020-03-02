@@ -8,13 +8,17 @@ import se.hig.thlu.asteroids.model.Point;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
-public abstract class AwtEntityDrawer implements PropertyChangeListener {
+public abstract class EntityDrawer implements PropertyChangeListener {
 
-	// TODO: Shouldn't have a reference to ImageLoader? Should just have an ImageAdapter?
 	protected double angle = 0.0, x = 0.0, y = 0.0;
+	protected ImageAdapter activeSprite;
+
+	protected EntityDrawer(ImageAdapter sprite) {
+		this.activeSprite = activeSprite;
+	}
 
 	// TODO: Understand generics.......?
-	abstract void draw(GraphicsAdapter<ImageAdapter> graphics);
+	public abstract void draw(GraphicsAdapter<ImageAdapter> graphics);
 
 	@Override
 	public void propertyChange(PropertyChangeEvent evt) {
@@ -24,5 +28,6 @@ public abstract class AwtEntityDrawer implements PropertyChangeListener {
 			y = center.getY();
 		}
 	}
+
 
 }

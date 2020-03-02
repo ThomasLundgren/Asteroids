@@ -3,11 +3,13 @@ package se.hig.thlu.asteroids.storage;
 import se.hig.thlu.asteroids.config.GameConfig;
 import se.hig.thlu.asteroids.graphics.image.ImageAdapter;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.EnumMap;
 
 public abstract class ImageLoader<T extends ImageAdapter> {
 
+	public static final String FS = File.separator;
 	protected final EnumMap<ImageResource, T> imageCache =
 			new EnumMap<>(ImageResource.class);
 
@@ -15,7 +17,7 @@ public abstract class ImageLoader<T extends ImageAdapter> {
 	Not handling the Exception here since we NEED all images.
 	If we cannot load all images, something has gone wrong and the program can't run.
 	 */
-	public ImageLoader() throws IOException {
+	protected ImageLoader() throws IOException {
 		loadAllImages();
 	}
 
@@ -25,17 +27,39 @@ public abstract class ImageLoader<T extends ImageAdapter> {
 
 	protected abstract T loadImage(ImageResource imageResource) throws IOException;
 
-	protected void loadAllImages() throws IOException {
+	protected final void loadAllImages() throws IOException {
 		for (ImageResource imageResource : ImageResource.values()) {
 			T image = loadImage(imageResource);
+			System.out.println(imageResource.imagePath + ": " + image);
 			imageCache.put(imageResource, image);
 		}
 	}
 
 	public enum ImageResource {
-		PLAYER_SHIP_ACCEL_PNG("resources/images/final/player-ship-accel.png", 45, 22),
-		BACKGROUND_PNG("resources/images/final/background.png", GameConfig.WINDOW_WIDTH, GameConfig.WINDOW_HEIGHT),
-		PLAYER_SHIP_PNG("resources/images/final/player-ship.png", 29, 22);
+		BACKGROUND_PNG(String.format("resources%simages%<sfinal%<sbackground.png", FS),
+				GameConfig.WINDOW_WIDTH,
+				GameConfig.WINDOW_HEIGHT),
+		PLAYER_SHIP_ACCEL_PNG(String.format("resources%simages%<sfinal%<splayer-ship-accel.png", FS),
+				45,
+				22),
+		PLAYER_SHIP_PNG(String.format("resources%simages%<sfinal%<splayer-ship.png", FS),
+				29,
+				22),
+		ASTEROID_LARGE_PNG(String.format("resources%simages%<sfinal%<sasteroid-large.png", FS),
+				61,
+				58),
+		ASTEROID_MEDIUM_PNG(String.format("resources%simages%<sfinal%<sasteroid-medium-1.png", FS),
+				27,
+				25),
+		ASTEROID_SMALL_PNG(String.format("resources%simages%<sfinal%<sasteroid-small-1.png", FS),
+				14,
+				14),
+		ENEMY_SHIP_SMALL(String.format("resources%simages%<sfinal%<senemy-ship-small.png", FS),
+				23,
+				16),
+		MISSILE_PLAYER(String.format("resources%simages%<sfinal%<smissile-player.png", FS),
+				11,
+				6);
 
 		private final String imagePath;
 		private final int width, height;

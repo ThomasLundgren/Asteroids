@@ -3,7 +3,7 @@ package se.hig.thlu.asteroids.app;
 import se.hig.thlu.asteroids.controller.GameController;
 import se.hig.thlu.asteroids.controller.InputController;
 import se.hig.thlu.asteroids.gamestate.GameLoop;
-import se.hig.thlu.asteroids.graphics.entitydrawer.PlayerShipDrawerAwt;
+import se.hig.thlu.asteroids.graphics.entitydrawer.PlayerShipDrawer;
 import se.hig.thlu.asteroids.graphics.image.ImageAdapter;
 import se.hig.thlu.asteroids.storage.ImageLoader;
 import se.hig.thlu.asteroids.storage.ImageLoaderAwt;
@@ -26,7 +26,7 @@ public class AsteroidsApp {
 			ImageAdapter accel =
 					imageLoader.getImageResource(ImageLoader.ImageResource.PLAYER_SHIP_ACCEL_PNG);
 			ImageAdapter nonAccel = imageLoader.getImageResource(ImageLoader.ImageResource.PLAYER_SHIP_PNG);
-			PlayerShipDrawerAwt playerShipDrawer = new PlayerShipDrawerAwt(accel, nonAccel);
+			PlayerShipDrawer playerShipDrawer = PlayerShipDrawer.createPlayerShipDrawer(accel, nonAccel);
 			gameController.addListenerForShip(playerShipDrawer);
 			UI ui = new SwingGUI(playerShipDrawer);
 			ui.addKeyListener(new InputController(gameController));
