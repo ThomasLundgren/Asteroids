@@ -6,8 +6,9 @@ import se.hig.thlu.asteroids.controller.command.CommandController;
 import se.hig.thlu.asteroids.entityfactory.EntityFactory;
 import se.hig.thlu.asteroids.entityfactory.RandomEntityFactory;
 import se.hig.thlu.asteroids.gamestate.GameLoop;
-import se.hig.thlu.asteroids.graphics.entitydrawer.AsteroidDrawer;
-import se.hig.thlu.asteroids.graphics.entitydrawer.PlayerShipDrawer;
+import se.hig.thlu.asteroids.graphics.drawer.AsteroidDrawer;
+import se.hig.thlu.asteroids.graphics.drawer.PlayerMissileDrawer;
+import se.hig.thlu.asteroids.graphics.drawer.PlayerShipDrawer;
 import se.hig.thlu.asteroids.graphics.image.ImageAdapter;
 import se.hig.thlu.asteroids.model.PlayerShip;
 import se.hig.thlu.asteroids.storage.ImageLoader;
@@ -32,23 +33,12 @@ public class AsteroidsApp {
 			PlayerShip playerShip = factory.createPlayerShip();
 			CommandController cController = CommandController.createCommandController(playerShip);
 			GameController gameController = GameController.createGameController(factory, cController, playerShip);
-			InputController inputController = InputController.createInputController(cController);
+			InputController inputController = InputController.createInputController(gameController);
 
-			ImageLoader imageLoader = new ImageLoaderAwt();
-			ImageAdapter accel =
-					imageLoader.getImageResource(PLAYER_SHIP_ACCEL_PNG);
-			ImageAdapter nonAccel = imageLoader.getImageResource(PLAYER_SHIP_PNG);
-			ImageAdapter large = imageLoader.getImageResource(ASTEROID_LARGE_PNG);
-			ImageAdapter medium = imageLoader.getImageResource(ASTEROID_MEDIUM_PNG);
-			ImageAdapter small = imageLoader.getImageResource(ASTEROID_SMALL_PNG);
 
-			PlayerShipDrawer playerShipDrawer = PlayerShipDrawer.createPlayerShipDrawer(accel, nonAccel);
-			AsteroidDrawer asteroidDrawer = AsteroidDrawer.createAsteroidDrawer(small, medium, large);
 
-			gameController.addListenerForShip(playerShipDrawer);
-			gameController.addListenerForAsteroids(asteroidDrawer);
 
-			UI ui = new SwingGUI(playerShipDrawer, asteroidDrawer);
+			UI ui = new SwingGUI();
 			ui.addKeyListener(inputController);
 
 			GameLoop gameLoop = new GameLoop(gameController);

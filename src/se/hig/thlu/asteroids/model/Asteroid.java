@@ -1,27 +1,32 @@
 package se.hig.thlu.asteroids.model;
 
-import se.hig.thlu.asteroids.mathutil.Trigonometry;
+import se.hig.thlu.asteroids.graphics.image.ImageAdapter;
+import se.hig.thlu.asteroids.graphics.renderer.GraphicsAdapter;
+import se.hig.thlu.asteroids.storage.ImageLoader;
 
-import java.beans.PropertyChangeListener;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class Asteroid extends Entity {
+public final class Asteroid extends Entity {
 
 	private final AsteroidSize asteroidSize;
 	private final RotationDirection rotationDirection;
+	private ImageAdapter asteroidSprite;
 
-	private Asteroid(Point position, Velocity velocity, AsteroidSize size) {
-		super(position, velocity, velocity.getSpeed());
+	private Asteroid(Point position, Velocity velocity, AsteroidSize size, ImageLoader<ImageAdapter> imageLoader) {
+		super(position,
+				velocity,
+				velocity.getSpeed(),
+				imageLoader);
 		asteroidSize = size;
 		int r = ThreadLocalRandom.current().nextInt(2);
 		rotationDirection = r == 0 ? RotationDirection.LEFT : RotationDirection.RIGHT;
 	}
 
-	public static Asteroid createAsteroid(Point position, double speed, double direction, AsteroidSize size) {
-		double dir = Trigonometry.normalizeDegree(direction);
-		double spd = validateSpeed(speed, size);
-		Velocity v = new Velocity(spd, dir);
-		return new Asteroid(position, v, size);
+	public static Asteroid createAsteroid(Point position, Velocity velocity, AsteroidSize size,
+										  ImageLoader<ImageAdapter> imageLoader) {
+		double spd = validateSpeed(velocity.getSpeed(), size);
+		Velocity v = new Velocity(spd, velocity.getDirection());
+		return new Asteroid(position, v, size, imageLoader);
 	}
 
 	private static double validateSpeed(double speed, AsteroidSize asteroidSize) {
@@ -32,6 +37,43 @@ public class Asteroid extends Entity {
 			return asteroidSize.getMinSpeed();
 		}
 		return speed;
+	}
+
+	@Override
+	protected void loadImages() {
+		switch (asteroidSize) {
+			case LARGE:
+				asteroidSprite = imageLoader.getImageResource(ImageLoader.ImageResource.ASTEROID_LARGE_PNG);
+				break;
+			case MEDIUM:
+				asteroidSprite = imageLoader.getImageResource(ImageLoader.ImageResource.ASTEROID_MEDIUM_PNG);
+				break;
+			case SMALL:
+				asteroidSprite = imageLoader.getImageResource(ImageLoader.ImageResource.ASTEROID_SMALL_PNG);
+				break;
+		}
+	}
+
+	@Override
+	protected void setWidth() {
+		width = asteroidSprite.getWidth();
+	}
+
+	@Override
+	protected void setHeight() {
+		height = asteroidSprite.getHeight();
+	}
+
+	@Override
+	public void draw(GraphicsAdapter<ImageAdapter> graphics) {
+		int cornerX = (int) center.getX() - width / 2;
+		int cornerY = (int) center.getY() - height / 2;
+		graphics.drawImageWithRotation(asteroidSprite,
+				facingDirection,
+				center.getX(),
+				center.getY(),
+				(int) cornerX,
+				(int) cornerY);
 	}
 
 	@Override
@@ -53,12 +95,6 @@ public class Asteroid extends Entity {
 		return asteroidSize;
 	}
 
-	@Override
-	public void addPropertyChangeListener(PropertyChangeListener listener) {
-		super.addPropertyChangeListener(listener);
-		notifyListeners(AsteroidProperty.SIZE.getPropertyName(), asteroidSize);
-	}
-
 	private enum RotationDirection {LEFT, RIGHT}
 
 	public enum AsteroidSize {
@@ -78,21 +114,6 @@ public class Asteroid extends Entity {
 
 		public double getMinSpeed() {
 			return minSpeed;
-		}
-	}
-
-	public enum AsteroidProperty {
-
-		SIZE("SIZE");
-
-		private final String propertyName;
-
-		AsteroidProperty(String propertyName) {
-			this.propertyName = propertyName;
-		}
-
-		public String getPropertyName() {
-			return propertyName;
 		}
 	}
 }

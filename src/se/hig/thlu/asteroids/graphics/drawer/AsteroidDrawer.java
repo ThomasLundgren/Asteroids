@@ -1,4 +1,4 @@
-package se.hig.thlu.asteroids.graphics.entitydrawer;
+package se.hig.thlu.asteroids.graphics.drawer;
 
 import se.hig.thlu.asteroids.graphics.image.ImageAdapter;
 import se.hig.thlu.asteroids.graphics.renderer.GraphicsAdapter;
@@ -22,8 +22,8 @@ public class AsteroidDrawer extends EntityDrawer {
 	}
 
 	@Override
+	// TODO: Understand generics.......?
 	public void draw(GraphicsAdapter<ImageAdapter> graphics) {
-		// TODO: Broken, must rotate around center
 		int cornerX = (int) x - activeSprite.getWidth() / 2;
 		int cornerY = (int) y - activeSprite.getHeight() / 2;
 		graphics.drawImageWithRotation(activeSprite,
@@ -32,11 +32,6 @@ public class AsteroidDrawer extends EntityDrawer {
 				y,
 				(int) cornerX,
 				(int) cornerY);
-	}
-
-	// TODO: Get rid of this method?
-	protected void setImage(ImageAdapter sprite) {
-		activeSprite = sprite;
 	}
 
 	@Override

@@ -1,6 +1,5 @@
 package se.hig.thlu.asteroids.controller.command;
 
-import se.hig.thlu.asteroids.controller.InputController;
 import se.hig.thlu.asteroids.model.PlayerShip;
 
 import java.util.EnumMap;
@@ -30,50 +29,11 @@ public final class CommandController {
 		commands.forEach((type, command) -> command.execute());
 	}
 
-	public void handleKeyPressed(InputController.PressedKey key) {
-		switch (key) {
-			case LEFT_ARROW:
-				activate(CommandType.TURN_LEFT);
-				deactivate(CommandType.TURN_RIGHT);
-				break;
-			case UP_ARROW:
-				activate(CommandType.ACCELERATE);
-				deactivate(CommandType.DECELERATE);
-				break;
-			case RIGHT_ARROW:
-				activate(CommandType.TURN_RIGHT);
-				deactivate(CommandType.TURN_LEFT);
-				break;
-			case SPACE_BAR:
-				playerShip.shoot(playerShip.getFacingDirection());
-				break;
-			default:
-				break;
-		}
-	}
-
-	public void handleKeyReleased(InputController.PressedKey key) {
-		switch (key) {
-			case LEFT_ARROW:
-				deactivate(CommandType.TURN_LEFT);
-				break;
-			case UP_ARROW:
-				deactivate(CommandType.ACCELERATE);
-				activate(CommandType.DECELERATE);
-				break;
-			case RIGHT_ARROW:
-				deactivate(CommandType.TURN_RIGHT);
-				break;
-			default:
-				break;
-		}
-	}
-
-	private void activate(CommandType commandType) {
+	public void activate(CommandType commandType) {
 		commands.put(commandType, getCommand(commandType));
 	}
 
-	private void deactivate(CommandType commandType) {
+	public void deactivate(CommandType commandType) {
 		commands.put(commandType, getCommand(NULL));
 	}
 

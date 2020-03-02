@@ -1,4 +1,4 @@
-package se.hig.thlu.asteroids.graphics.entitydrawer;
+package se.hig.thlu.asteroids.graphics.drawer;
 
 import se.hig.thlu.asteroids.graphics.image.ImageAdapter;
 import se.hig.thlu.asteroids.graphics.renderer.GraphicsAdapter;
@@ -14,7 +14,8 @@ public class PlayerShipDrawer extends EntityDrawer {
 	private final ImageAdapter accelerating;
 	private final ImageAdapter notAccelerating;
 
-	// TODO: Change so that this always draws the non-accelerating sprite. Create decorator that draws the "exhausts".
+	// TODO: Change so that this class always draws the non-accelerating sprite. Create decorator that draws the
+	//  "exhausts".
 	private PlayerShipDrawer(ImageAdapter accelerating, ImageAdapter notAccelerating) {
 		super(notAccelerating);
 		this.accelerating = accelerating;

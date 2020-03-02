@@ -2,7 +2,7 @@ package se.hig.thlu.asteroids.controller.command;
 
 import se.hig.thlu.asteroids.model.*;
 
-public class TurnLeftCommand extends AbstractCommand {
+class TurnLeftCommand extends AbstractCommand {
 
 	protected TurnLeftCommand(PlayerShip playerShip) {
 		super(playerShip);

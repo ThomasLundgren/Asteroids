@@ -30,7 +30,6 @@ public abstract class ImageLoader<T extends ImageAdapter> {
 	protected final void loadAllImages() throws IOException {
 		for (ImageResource imageResource : ImageResource.values()) {
 			T image = loadImage(imageResource);
-			System.out.println(imageResource.imagePath + ": " + image);
 			imageCache.put(imageResource, image);
 		}
 	}
@@ -39,9 +38,9 @@ public abstract class ImageLoader<T extends ImageAdapter> {
 		BACKGROUND_PNG(String.format("resources%simages%<sfinal%<sbackground.png", FS),
 				GameConfig.WINDOW_WIDTH,
 				GameConfig.WINDOW_HEIGHT),
-		PLAYER_SHIP_ACCEL_PNG(String.format("resources%simages%<sfinal%<splayer-ship-accel.png", FS),
-				45,
-				22),
+		PLAYER_SHIP_ACCELERATION_PNG(String.format("resources%simages%<sfinal%<splayer-ship-acceleration.png", FS),
+				17,
+				18),
 		PLAYER_SHIP_PNG(String.format("resources%simages%<sfinal%<splayer-ship.png", FS),
 				29,
 				22),
@@ -59,7 +58,10 @@ public abstract class ImageLoader<T extends ImageAdapter> {
 				16),
 		MISSILE_PLAYER(String.format("resources%simages%<sfinal%<smissile-player.png", FS),
 				11,
-				6);
+				6),
+		MISSILE_ENEMY(String.format("resources%simages%<sfinal%<smissile-enemy.png", FS),
+				6,
+				4);;
 
 		private final String imagePath;
 		private final int width, height;

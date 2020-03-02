@@ -1,4 +1,4 @@
-package se.hig.thlu.asteroids.graphics.entitydrawer;
+package se.hig.thlu.asteroids.graphics.drawer;
 
 import se.hig.thlu.asteroids.graphics.image.ImageAdapter;
 import se.hig.thlu.asteroids.graphics.renderer.GraphicsAdapter;
@@ -14,10 +14,9 @@ public abstract class EntityDrawer implements PropertyChangeListener {
 	protected ImageAdapter activeSprite;
 
 	protected EntityDrawer(ImageAdapter sprite) {
-		this.activeSprite = activeSprite;
+		activeSprite = sprite;
 	}
 
-	// TODO: Understand generics.......?
 	public abstract void draw(GraphicsAdapter<ImageAdapter> graphics);
 
 	@Override
