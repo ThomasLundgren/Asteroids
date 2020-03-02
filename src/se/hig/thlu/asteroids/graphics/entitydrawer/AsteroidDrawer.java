@@ -23,12 +23,15 @@ public class AsteroidDrawer extends EntityDrawer {
 
 	@Override
 	public void draw(GraphicsAdapter<ImageAdapter> graphics) {
+		// TODO: Broken, must rotate around center
+		int cornerX = (int) x - activeSprite.getWidth();
+		int cornerY = (int) y - activeSprite.getHeight();
 		graphics.drawImageWithRotation(activeSprite,
 				angle,
 				x,
 				y,
-				(int) x,
-				(int) y);
+				(int) cornerX,
+				(int) cornerY);
 	}
 
 	// TODO: Get rid of this method?
