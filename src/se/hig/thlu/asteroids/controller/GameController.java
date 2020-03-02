@@ -1,19 +1,26 @@
 package se.hig.thlu.asteroids.controller;
 
-import se.hig.thlu.asteroids.config.*;
-import se.hig.thlu.asteroids.controller.command.*;
-import se.hig.thlu.asteroids.controller.command.CommandController.*;
+import se.hig.thlu.asteroids.controller.command.CommandController;
+import se.hig.thlu.asteroids.controller.command.CommandController.CommandType;
 import se.hig.thlu.asteroids.entityfactory.EntityFactory;
-import se.hig.thlu.asteroids.model.*;
+import se.hig.thlu.asteroids.model.Asteroid;
+import se.hig.thlu.asteroids.model.EnemyShip;
+import se.hig.thlu.asteroids.model.Entity;
+import se.hig.thlu.asteroids.model.Missile;
+import se.hig.thlu.asteroids.model.PlayerShip;
+import se.hig.thlu.asteroids.model.Point;
 
-import java.beans.*;
-import java.util.*;
+import java.beans.PropertyChangeListener;
+import java.util.ArrayList;
+import java.util.List;
 
-public class GameController {
+import static se.hig.thlu.asteroids.config.GameConfig.*;
 
-	private CommandController commandController;
+public final class GameController {
+
+	private final CommandController commandController;
 	private long totalGameTime = 0L;
-	private long nextSpawn = (long) GameConfig.INITIAL_SPAWN_INTERVAL;
+	private long nextSpawn = (long) INITIAL_SPAWN_INTERVAL;
 	private double timeSinceLastShot = Double.MAX_VALUE;
 	private final PlayerShip playerShip;
 	private final List<Asteroid> asteroids = new ArrayList<>(30);
@@ -24,9 +31,10 @@ public class GameController {
 	private GameController(EntityFactory factory, CommandController commandController) {
 		this.factory = factory;
 		playerShip = factory.createPlayerShip();
-		this.commandController = new CommandController(playerShip);
-		playerShip.setCenter(new Point((double) (GameConfig.WINDOW_WIDTH / 2),
-				(double) (GameConfig.WINDOW_HEIGHT / 2)));
+		this.commandController = commandController;
+		playerShip.setCenter(new Point((double) (WINDOW_WIDTH / 2),
+				(double) (WINDOW_HEIGHT / 2)));
+		asteroids.addAll(factory.nextLevel());
 	}
 
 	public static GameController createGameController(EntityFactory factory, CommandController commandController) {
@@ -40,6 +48,7 @@ public class GameController {
 		checkCollisions();
 	}
 
+	// TODO: Move to CommandController?
 	public void handleKeyPressed(InputController.PressedKey key) {
 		switch (key) {
 			case LEFT_ARROW:
@@ -62,6 +71,7 @@ public class GameController {
 		}
 	}
 
+	// TODO: Move to CommandController?
 	public void handleKeyReleased(InputController.PressedKey key) {
 		switch (key) {
 			case LEFT_ARROW:
@@ -91,17 +101,17 @@ public class GameController {
 	private void handleOverFlow(Entity entity) {
 		double x = entity.getCenter().getX();
 		double y = entity.getCenter().getY();
-		if (x > (double) GameConfig.WINDOW_WIDTH) {
+		if (x > (double) WINDOW_WIDTH) {
 			entity.setCenter(new Point(0.0, y));
 		}
 		if (x < 0.0) {
-			entity.setCenter(new Point((double) GameConfig.WINDOW_WIDTH, y));
+			entity.setCenter(new Point((double) WINDOW_WIDTH, y));
 		}
-		if (y > GameConfig.WINDOW_HEIGHT) {
+		if (y > (double) WINDOW_HEIGHT) {
 			entity.setCenter(new Point(x, 0.0));
 		}
 		if (y < 0.0) {
-			entity.setCenter(new Point(x, (double) GameConfig.WINDOW_HEIGHT));
+			entity.setCenter(new Point(x, (double) WINDOW_HEIGHT));
 		}
 	}
 
@@ -119,23 +129,11 @@ public class GameController {
 		// TODO
 	}
 
-	public enum Property {
-
-		PLAYER_SHIP("PLAYER_SHIP");
-
-		private String propertyName;
-
-		Property(String propertyName) {
-			this.propertyName = propertyName;
-		}
-
-		public String getPropertyName() {
-			return propertyName;
-		}
-	}
-
 	public void addListenerForShip(PropertyChangeListener listener) {
 		playerShip.addPropertyChangeListener(listener);
 	}
 
+	public void addListenerForAsteroids(PropertyChangeListener listener) {
+		asteroids.forEach(a -> a.addPropertyChangeListener(listener));
+	}
 }
