@@ -8,13 +8,13 @@ import se.hig.thlu.asteroids.storage.ImageLoader;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
 import java.util.Collection;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public final class BackgroundPanel extends JPanel {
 
 	private ImageAdapter image;
-	private Collection<Entity> entities = new ArrayList<>(0);
+	private final Collection<Entity> entities = new CopyOnWriteArrayList<>();
 
 	public BackgroundPanel(ImageLoader<? extends ImageAdapter> imageLoader) {
 		setImage(imageLoader.getImageResource(ImageLoader.ImageResource.BACKGROUND_PNG));
@@ -48,8 +48,18 @@ public final class BackgroundPanel extends JPanel {
 		repaint();
 	}
 
-	public void setEntities(Collection<Entity> entities) {
-		this.entities = entities;
+	public void addEntity(Entity entity) {
+		entities.add(entity);
+		repaint();
+	}
+
+	public void removeEntity(Entity entity) {
+		entities.remove(entity);
+		repaint();
+	}
+
+	public void addEntities(Collection<Entity> entities) {
+		this.entities.addAll(entities);
 		repaint();
 	}
 }

@@ -5,16 +5,14 @@ import se.hig.thlu.asteroids.graphics.renderer.GraphicsAdapter;
 import se.hig.thlu.asteroids.model.Missile.MissileSource;
 import se.hig.thlu.asteroids.storage.ImageLoader;
 
-import java.util.concurrent.ThreadLocalRandom;
-
 public final class EnemyShip extends Entity implements Shooter {
 
-	private static final double ENEMY_SHIP_SPEED = 4.0;
+	private static final double ENEMY_SHIP_SPEED = 2.0;
 	private ImageAdapter shipSprite;
 
-	private EnemyShip(ImageLoader<? extends ImageAdapter> imageLoader) {
+	private EnemyShip(ImageLoader<? extends ImageAdapter> imageLoader, double direction) {
 		super(new Point(0.0, 0.0),
-				new Velocity(ENEMY_SHIP_SPEED, (double) ThreadLocalRandom.current().nextInt(3) * 180.0),
+				new Velocity(ENEMY_SHIP_SPEED, direction),
 				0.0,
 				imageLoader);
 		loadImages(imageLoader);
@@ -22,8 +20,8 @@ public final class EnemyShip extends Entity implements Shooter {
 		setHeight();
 	}
 
-	public static EnemyShip createEnemyShip(ImageLoader<? extends ImageAdapter> imageLoader) {
-		return new EnemyShip(imageLoader);
+	public static EnemyShip createEnemyShip(ImageLoader<? extends ImageAdapter> imageLoader, double direction) {
+		return new EnemyShip(imageLoader, direction);
 	}
 
 	@Override

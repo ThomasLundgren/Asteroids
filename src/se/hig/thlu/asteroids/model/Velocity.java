@@ -7,6 +7,8 @@ public class Velocity {
 	private double speed;
 	private double direction;
 
+	public Velocity() { }
+
 	public Velocity(double speed, double direction) {
 		setSpeed(speed);
 		setDirection(direction);

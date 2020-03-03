@@ -4,6 +4,7 @@ import se.hig.thlu.asteroids.graphics.image.ImageAdapter;
 import se.hig.thlu.asteroids.graphics.renderer.GraphicsAdapter;
 import se.hig.thlu.asteroids.storage.ImageLoader;
 
+import java.util.Optional;
 import java.util.concurrent.ThreadLocalRandom;
 
 public final class Asteroid extends Entity {
@@ -78,6 +79,23 @@ public final class Asteroid extends Entity {
 		super.updatePosition();
 	}
 
+	@Override
+	public Optional<Explosion> collide() {
+		isDestroyed = true;
+		Explosion.ExplosionSize size;
+		switch (asteroidSize) {
+			case LARGE:
+				size = Explosion.ExplosionSize.FOUR;
+				break;
+			case MEDIUM:
+				size = Explosion.ExplosionSize.THREE;
+				break;
+			default:
+				size = Explosion.ExplosionSize.TWO;
+		}
+		return Optional.of(new Explosion(center, imageLoader, size));
+	}
+
 	public AsteroidSize getAsteroidSize() {
 		return asteroidSize;
 	}
@@ -85,7 +103,7 @@ public final class Asteroid extends Entity {
 	private enum RotationDirection {LEFT, RIGHT}
 
 	public enum AsteroidSize {
-		LARGE(1.0, 2.0), MEDIUM(1.5, 3.0), SMALL(2.0, 4.0);
+		LARGE(1.0, 1.5), MEDIUM(1.25, 1.875), SMALL(1.5625, 2.34375);
 
 		private final double minSpeed;
 		private final double maxSpeed;

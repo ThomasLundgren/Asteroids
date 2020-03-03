@@ -13,7 +13,6 @@ import java.util.Collection;
 public class SwingGUI extends JFrame implements GUI<AwtKeyboardAdapter> {
 
 	private final ImageLoader<? extends ImageAdapter> imageLoader;
-//	private Collection<Entity> entities = new ArrayList<>(0);
 	private BackgroundPanel backgroundPanel;
 
 	public SwingGUI(ImageLoader<? extends ImageAdapter> imageLoader) {
@@ -24,28 +23,24 @@ public class SwingGUI extends JFrame implements GUI<AwtKeyboardAdapter> {
 	}
 
 	@Override
-	public void paintComponents(Graphics g) {
-		super.paintComponents(g);
-//		Graphics2D g2d = (Graphics2D) g;
-//		GraphicsAdapter graphics = new AwtGraphicsAdapter(g2d);
-//		render(graphics);
-	}
-
-	@Override
 	public void addEventListener(AwtKeyboardAdapter listener) {
 		addKeyListener(listener);
 	}
 
-//	@Override
-//	public void render(GraphicsAdapter<ImageAdapter> graphics) {
-//		entities.forEach(entity -> entity.draw(graphics));
-//	}
+	@Override
+	public void addEntities(Collection<Entity> entities) {
+		backgroundPanel.addEntities(entities);
+	}
 
 	@Override
-	public void setEntities(Collection<Entity> entities) {
-//		this.entities = entities;
-		backgroundPanel.setEntities(entities);
-		repaint();
+	public void removeEntity(Entity entity) {
+		backgroundPanel.removeEntity(entity);
+	}
+
+	@Override
+	public void addEntity(Entity entity) {
+		backgroundPanel.addEntity(entity);
+//		repaint(); // TODO: Not needed?
 	}
 
 	private void configureFrame() {

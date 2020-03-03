@@ -49,8 +49,8 @@ public final class Missile extends Entity {
 
 	@Override
 	public void draw(GraphicsAdapter<? super ImageAdapter> graphics) {
-		int cornerX = (int) center.getX() - width / 2;
-		int cornerY = (int) center.getY() - height / 2;
+		int cornerX = (int) center.getX() - width / 2 + 19;
+		int cornerY = (int) center.getY() - height / 2 - 2;
 		graphics.drawImageWithRotation(missileSprite,
 				facingDirection,
 				center.getX(),
@@ -62,22 +62,31 @@ public final class Missile extends Entity {
 	@Override
 	public void updatePosition() {
 		super.updatePosition();
-		if (center.distanceTo(startingPosition) > 0.6 * GameConfig.WINDOW_WIDTH) {
+		distanceTravelled += missileSource.missileSpeed;
+		if (distanceTravelled > missileSource.missileDistance * (double) GameConfig.WINDOW_WIDTH) {
 			collide();
 		}
 	}
 
+	private double distanceTravelled = 0.0;
+
 	public enum MissileSource {
-		PLAYER(9.0), ENEMY(5.0);
+		PLAYER(9.0, 0.6), ENEMY(5.0, 0.3);
 
-		final double missileSpeed;
+		private final double missileSpeed;
+		private final double missileDistance;
 
-		MissileSource(double missileSpeed) {
+		MissileSource(double missileSpeed, double missileDistance) {
 			this.missileSpeed = missileSpeed;
+			this.missileDistance = missileDistance;
 		}
 
 		private double getMissileSpeed() {
 			return missileSpeed;
+		}
+
+		public double getMissileDistance() {
+			return missileDistance;
 		}
 	}
 }

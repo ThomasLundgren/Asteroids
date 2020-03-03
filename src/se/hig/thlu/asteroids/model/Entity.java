@@ -30,7 +30,15 @@ public abstract class Entity {
 
 	protected abstract void setWidth();
 
+	public int getWidth() {
+		return width;
+	}
+
 	protected abstract void setHeight();
+
+	public int getHeight() {
+		return height;
+	}
 
 	public final Point getCenter() {
 		return new Point(center.getX(), center.getY());
@@ -40,6 +48,8 @@ public abstract class Entity {
 		this.center = center;
 	}
 
+	// TODO: Replace this method with an injected DrawingStrategy. The DrawingStrategy can then be passed to the UI
+	//  so that the UI has no knowledge of Entity objects
 	public abstract void draw(GraphicsAdapter<? super ImageAdapter> graphics);
 
 	protected void turnLeft() {
@@ -50,12 +60,12 @@ public abstract class Entity {
 		setFacingDirection(facingDirection + turningDegree);
 	}
 
-	protected void setFacingDirection(double direction) {
-		facingDirection = Trigonometry.normalizeDegree(direction);
-	}
-
 	public double getFacingDirection() {
 		return facingDirection;
+	}
+
+	protected void setFacingDirection(double direction) {
+		facingDirection = Trigonometry.normalizeDegree(direction);
 	}
 
 	public final Velocity getVelocity() {
@@ -76,6 +86,23 @@ public abstract class Entity {
 		double diffY = StrictMath.sin(StrictMath.toRadians(velocity.getDirection())) * velocity.getSpeed();
 		Point newPos = new Point(center.getX() + diffX, center.getY() + diffY);
 		setCenter(newPos);
+	}
+
+	public boolean intersectsWith(Entity entity) {
+		int otherWidth = entity.getWidth();
+		int otherHeight = entity.getHeight();
+		int thisX = (int) getCenter().getX() - width / 2;
+		int thisY = (int) getCenter().getY() - height / 2;
+		int otherX = (int) entity.getCenter().getX() - otherWidth / 2;
+		int otherY = (int) entity.getCenter().getY() - otherHeight / 2;
+
+		if (thisX < otherX + otherWidth &&
+				thisX + width > otherX &&
+				thisY < otherY + otherHeight &&
+				thisY + height > otherY) {
+			return true;
+		}
+		return false;
 	}
 
 }

@@ -54,6 +54,9 @@ public final class InputController extends KeyAdapter implements EventListenerAd
 			case KeyEvent.VK_RIGHT:
 				key = PressedKey.RIGHT_ARROW;
 				break;
+			case KeyEvent.VK_SPACE:
+				key = PressedKey.SPACE_BAR;
+				break;
 			default:
 				key = PressedKey.UNDEFINED;
 				break;

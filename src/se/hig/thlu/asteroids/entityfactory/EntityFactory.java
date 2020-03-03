@@ -1,18 +1,16 @@
 package se.hig.thlu.asteroids.entityfactory;
 
-import se.hig.thlu.asteroids.model.Asteroid;
-import se.hig.thlu.asteroids.model.EnemyShip;
-import se.hig.thlu.asteroids.model.PlayerShip;
+import se.hig.thlu.asteroids.model.*;
 
 import java.util.List;
 
 public interface EntityFactory {
 
-	List<Asteroid> nextLevel();
+	List<Asteroid> nextLevel(Point playerCenter);
 
-	List<Asteroid> shatterAsteroid(Asteroid destroyedAsteroid);
+	List<Entity> shatterAsteroid(Asteroid destroyedAsteroid);
 
-	EnemyShip createEnemyShip();
+	EnemyShip createEnemyShip(Point playerCenter);
 
 	PlayerShip createPlayerShip();
 

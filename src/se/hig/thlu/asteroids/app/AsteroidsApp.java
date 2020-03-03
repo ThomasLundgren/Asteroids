@@ -4,7 +4,7 @@ import se.hig.thlu.asteroids.controller.GameController;
 import se.hig.thlu.asteroids.controller.InputController;
 import se.hig.thlu.asteroids.controller.command.CommandController;
 import se.hig.thlu.asteroids.entityfactory.EntityFactory;
-import se.hig.thlu.asteroids.entityfactory.RandomEntityFactory;
+import se.hig.thlu.asteroids.entityfactory.DefaultFactory;
 import se.hig.thlu.asteroids.gamestate.GameLoop;
 import se.hig.thlu.asteroids.graphics.image.ImageAdapter;
 import se.hig.thlu.asteroids.gui.GUI;
@@ -27,7 +27,7 @@ public class AsteroidsApp {
 		}
 		try {
 			ImageLoader<? extends ImageAdapter> imgLoader = new ImageLoaderAwt();
-			EntityFactory factory = new RandomEntityFactory(imgLoader);
+			EntityFactory factory = new DefaultFactory(imgLoader);
 			PlayerShip playerShip = factory.createPlayerShip();
 			CommandController cmdController = CommandController.createCommandController(playerShip);
 			GUI<AwtKeyboardAdapter> gui = new SwingGUI(imgLoader);

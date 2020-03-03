@@ -10,8 +10,10 @@ public interface GUI<T extends EventListenerAdapter<? extends EventAdapter>> {
 
 	void addEventListener(T listener);
 
-//	void render(GraphicsAdapter<ImageAdapter> graphics);
+	void addEntities(Collection<Entity> entities);
 
-	void setEntities(Collection<Entity> entities);
+	void removeEntity(Entity entity);
+
+	void addEntity(Entity entity);
 
 }
