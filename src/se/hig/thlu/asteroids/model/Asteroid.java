@@ -26,23 +26,6 @@ public final class Asteroid extends Entity {
 		setHeight();
 	}
 
-//	public static Asteroid createAsteroid(Point position, Velocity velocity, AsteroidSize size,
-//										  ImageLoader<? extends ImageAdapter> imageLoader) {
-//		double spd = validateSpeed(velocity.getSpeed(), size);
-//		Velocity v = new Velocity(spd, velocity.getDirection());
-//		return new Asteroid(position, v, size, imageLoader);
-//	}
-
-	private static double validateSpeed(double speed, AsteroidSize asteroidSize) {
-		if (speed > asteroidSize.getMaxSpeed()) {
-			return asteroidSize.getMaxSpeed();
-		}
-		if (speed < asteroidSize.getMinSpeed()) {
-			return asteroidSize.getMinSpeed();
-		}
-		return speed;
-	}
-
 	@Override
 	protected void loadImages(ImageLoader<? extends ImageAdapter> imageLoader) {
 		switch (asteroidSize) {

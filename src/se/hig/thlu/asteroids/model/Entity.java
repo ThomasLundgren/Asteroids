@@ -5,6 +5,8 @@ import se.hig.thlu.asteroids.graphics.renderer.GraphicsAdapter;
 import se.hig.thlu.asteroids.mathutil.Trigonometry;
 import se.hig.thlu.asteroids.storage.ImageLoader;
 
+import java.util.Optional;
+
 public abstract class Entity {
 
 	protected final double turningDegree;
@@ -64,8 +66,9 @@ public abstract class Entity {
 		return isDestroyed;
 	}
 
-	public void collide() {
+	public Optional<Explosion> collide() {
 		isDestroyed = true;
+		return Optional.empty();
 	}
 
 	public void updatePosition() {

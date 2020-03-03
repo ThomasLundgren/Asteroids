@@ -6,6 +6,8 @@ import se.hig.thlu.asteroids.model.Missile.MissileSource;
 import se.hig.thlu.asteroids.storage.ImageLoader;
 import se.hig.thlu.asteroids.storage.ImageLoader.ImageResource;
 
+import java.util.Optional;
+
 public final class PlayerShip extends Entity implements Shooter {
 
 	private static final double MAX_SPEED = 7.0;
@@ -99,11 +101,16 @@ public final class PlayerShip extends Entity implements Shooter {
 	}
 
 	@Override
-	public void collide() {
+	public Optional<Explosion> collide() {
 		if (lives == 1) {
-			super.collide();
+			isDestroyed = true;
+			return Optional.of(new Explosion(center,
+					new Velocity(0.0, 0.0),
+					imageLoader,
+					Explosion.ExplosionSize.THREE));
 		} else {
 			lives--;
+			return Optional.empty();
 		}
 	}
 
