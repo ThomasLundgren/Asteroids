@@ -12,19 +12,22 @@ public final class EnemyShip extends Entity implements Shooter {
 	private static final double ENEMY_SHIP_SPEED = 4.0;
 	private ImageAdapter shipSprite;
 
-	private EnemyShip(ImageLoader<ImageAdapter> imageLoader) {
+	private EnemyShip(ImageLoader<? extends ImageAdapter> imageLoader) {
 		super(new Point(0.0, 0.0),
 				new Velocity(ENEMY_SHIP_SPEED, (double) ThreadLocalRandom.current().nextInt(3) * 180.0),
 				0.0,
 				imageLoader);
+		loadImages(imageLoader);
+		setWidth();
+		setHeight();
 	}
 
-	public static EnemyShip createEnemyShip(ImageLoader<ImageAdapter> imageLoader) {
+	public static EnemyShip createEnemyShip(ImageLoader<? extends ImageAdapter> imageLoader) {
 		return new EnemyShip(imageLoader);
 	}
 
 	@Override
-	public void draw(GraphicsAdapter<ImageAdapter> graphics) {
+	public void draw(GraphicsAdapter<? super ImageAdapter> graphics) {
 		graphics.drawImage(shipSprite,
 				(int) center.getX(),
 				(int) center.getY(),
@@ -38,7 +41,7 @@ public final class EnemyShip extends Entity implements Shooter {
 	}
 
 	@Override
-	protected void loadImages() {
+	protected void loadImages(ImageLoader<? extends ImageAdapter> imageLoader) {
 		shipSprite = imageLoader.getImageResource(ImageLoader.ImageResource.ENEMY_SHIP_SMALL);
 	}
 

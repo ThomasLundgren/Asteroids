@@ -6,20 +6,17 @@ import se.hig.thlu.asteroids.controller.command.CommandController;
 import se.hig.thlu.asteroids.entityfactory.EntityFactory;
 import se.hig.thlu.asteroids.entityfactory.RandomEntityFactory;
 import se.hig.thlu.asteroids.gamestate.GameLoop;
-import se.hig.thlu.asteroids.graphics.drawer.AsteroidDrawer;
-import se.hig.thlu.asteroids.graphics.drawer.PlayerMissileDrawer;
-import se.hig.thlu.asteroids.graphics.drawer.PlayerShipDrawer;
 import se.hig.thlu.asteroids.graphics.image.ImageAdapter;
+import se.hig.thlu.asteroids.gui.GUI;
+import se.hig.thlu.asteroids.gui.SwingGUI;
+import se.hig.thlu.asteroids.gui.eventlistener.AwtKeyboardAdapter;
 import se.hig.thlu.asteroids.model.PlayerShip;
 import se.hig.thlu.asteroids.storage.ImageLoader;
 import se.hig.thlu.asteroids.storage.ImageLoaderAwt;
-import se.hig.thlu.asteroids.ui.SwingGUI;
-import se.hig.thlu.asteroids.ui.UI;
 
 import javax.swing.*;
+import java.awt.event.KeyAdapter;
 import java.io.IOException;
-
-import static se.hig.thlu.asteroids.storage.ImageLoader.ImageResource.*;
 
 public class AsteroidsApp {
 
@@ -29,20 +26,32 @@ public class AsteroidsApp {
 		} catch (Exception ignored) {
 		}
 		try {
-			EntityFactory factory = RandomEntityFactory.createRandomEntityFactory();
+			ImageLoader<? extends ImageAdapter> imgLoader = new ImageLoaderAwt();
+			EntityFactory factory = new RandomEntityFactory(imgLoader);
 			PlayerShip playerShip = factory.createPlayerShip();
-			CommandController cController = CommandController.createCommandController(playerShip);
-			GameController gameController = GameController.createGameController(factory, cController, playerShip);
-			InputController inputController = InputController.createInputController(gameController);
-
-
-
-
-			UI ui = new SwingGUI();
-			ui.addKeyListener(inputController);
-
+			CommandController cmdController = CommandController.createCommandController(playerShip);
+			GUI<AwtKeyboardAdapter> gui = new SwingGUI(imgLoader);
+			GameController gameController = new GameController(factory, cmdController, playerShip,
+					gui);
 			GameLoop gameLoop = new GameLoop(gameController);
+			KeyAdapter inputController =
+					InputController.createInputController(gameController);
+			AwtKeyboardAdapter keyboardAdapter = new AwtKeyboardAdapter(inputController);
+			gui.addEventListener(keyboardAdapter);
+
 			gameLoop.gameLoop();
+
+//			EntityFactory factory = RandomEntityFactory.createRandomEntityFactory();
+//			PlayerShip playerShip = factory.createPlayerShip();
+//			CommandController cController = CommandController.createCommandController(playerShip);
+//			GameController gameController = GameController.createGameController(factory, cController, playerShip);
+//			InputController inputController = InputController.createInputController(gameController);
+//
+//			GUI GUI = new SwingGOOOEY();
+//			GUI.addEventListener(inputController);
+//
+//			GameLoop gameLoop = new GameLoop(gameController);
+//			gameLoop.gameLoop();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

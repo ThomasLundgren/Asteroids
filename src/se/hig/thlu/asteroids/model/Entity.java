@@ -8,28 +8,23 @@ import se.hig.thlu.asteroids.storage.ImageLoader;
 public abstract class Entity {
 
 	protected final double turningDegree;
-//	protected final PropertyChangeSupport changeSupport = new PropertyChangeSupport(this);
+	protected ImageLoader<? extends ImageAdapter> imageLoader;
 	protected Point center;
 	protected Velocity velocity;
 	protected boolean isDestroyed = false;
 	protected double facingDirection = 0.0;
 	protected int width, height;
-	protected final ImageLoader<ImageAdapter> imageLoader;
-	// TODO: Store size information in here?
 
 	// TODO: subclasses have hard-coded turning degrees
 	protected Entity(Point center, Velocity velocity, double turningDegree,
-					 ImageLoader<ImageAdapter> imageLoader) {
-		loadImages();
-		setWidth();
-		setHeight();
+					 ImageLoader<? extends ImageAdapter> imageLoader) {
+		this.imageLoader = imageLoader;
 		this.velocity = velocity;
 		this.center = center;
 		this.turningDegree = turningDegree;
-		this.imageLoader = imageLoader;
 	}
 
-	protected abstract void loadImages();
+	protected abstract void loadImages(ImageLoader<? extends ImageAdapter> imageLoader);
 
 	protected abstract void setWidth();
 
@@ -43,14 +38,14 @@ public abstract class Entity {
 		this.center = center;
 	}
 
-	public abstract void draw(GraphicsAdapter<ImageAdapter> graphics);
+	public abstract void draw(GraphicsAdapter<? super ImageAdapter> graphics);
 
 	protected void turnLeft() {
-		setFacingDirection(facingDirection - 1.0);
+		setFacingDirection(facingDirection - turningDegree);
 	}
 
 	protected void turnRight() {
-		setFacingDirection(facingDirection + 1.0);
+		setFacingDirection(facingDirection + turningDegree);
 	}
 
 	protected void setFacingDirection(double direction) {

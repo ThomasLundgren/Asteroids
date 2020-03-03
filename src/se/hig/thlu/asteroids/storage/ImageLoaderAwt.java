@@ -35,4 +35,11 @@ public class ImageLoaderAwt extends ImageLoader<AwtImageAdapter> {
 			return new AwtImageAdapter(bufferedImage);
 		}
 	}
+
+	@Override
+	public String toString() {
+		return "ImageLoaderAwt{" +
+				"imageCache=" + imageCache +
+				'}';
+	}
 }

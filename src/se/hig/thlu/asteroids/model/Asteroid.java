@@ -12,7 +12,8 @@ public final class Asteroid extends Entity {
 	private final RotationDirection rotationDirection;
 	private ImageAdapter asteroidSprite;
 
-	private Asteroid(Point position, Velocity velocity, AsteroidSize size, ImageLoader<ImageAdapter> imageLoader) {
+	public Asteroid(Point position, Velocity velocity, AsteroidSize size,
+				 ImageLoader<? extends ImageAdapter> imageLoader) {
 		super(position,
 				velocity,
 				velocity.getSpeed(),
@@ -20,14 +21,17 @@ public final class Asteroid extends Entity {
 		asteroidSize = size;
 		int r = ThreadLocalRandom.current().nextInt(2);
 		rotationDirection = r == 0 ? RotationDirection.LEFT : RotationDirection.RIGHT;
+		loadImages(imageLoader);
+		setWidth();
+		setHeight();
 	}
 
-	public static Asteroid createAsteroid(Point position, Velocity velocity, AsteroidSize size,
-										  ImageLoader<ImageAdapter> imageLoader) {
-		double spd = validateSpeed(velocity.getSpeed(), size);
-		Velocity v = new Velocity(spd, velocity.getDirection());
-		return new Asteroid(position, v, size, imageLoader);
-	}
+//	public static Asteroid createAsteroid(Point position, Velocity velocity, AsteroidSize size,
+//										  ImageLoader<? extends ImageAdapter> imageLoader) {
+//		double spd = validateSpeed(velocity.getSpeed(), size);
+//		Velocity v = new Velocity(spd, velocity.getDirection());
+//		return new Asteroid(position, v, size, imageLoader);
+//	}
 
 	private static double validateSpeed(double speed, AsteroidSize asteroidSize) {
 		if (speed > asteroidSize.getMaxSpeed()) {
@@ -40,7 +44,7 @@ public final class Asteroid extends Entity {
 	}
 
 	@Override
-	protected void loadImages() {
+	protected void loadImages(ImageLoader<? extends ImageAdapter> imageLoader) {
 		switch (asteroidSize) {
 			case LARGE:
 				asteroidSprite = imageLoader.getImageResource(ImageLoader.ImageResource.ASTEROID_LARGE_PNG);
@@ -65,7 +69,7 @@ public final class Asteroid extends Entity {
 	}
 
 	@Override
-	public void draw(GraphicsAdapter<ImageAdapter> graphics) {
+	public void draw(GraphicsAdapter<? super ImageAdapter> graphics) {
 		int cornerX = (int) center.getX() - width / 2;
 		int cornerY = (int) center.getY() - height / 2;
 		graphics.drawImageWithRotation(asteroidSprite,

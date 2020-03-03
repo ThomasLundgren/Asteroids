@@ -28,7 +28,7 @@ public enum GameConfig {
 	public static final double PLAYER_SHIP_UPDATE_MS = 5.0;
 	public static final double ENEMY_SHIP_SPEED = 5.0;
 	public static final double ENEMY_MISSILE_UPDATE_MS = 2.0;
-	public static final double PLAYER_MISSILE_UPDATE_MS = 2.0;
+	public static final int PLAYER_MISSILE_UPDATE_MS = 50;
 	public static final double PLAYER_SHOOTING_DELAY_MS = 12.0;
 	public static final int WINDOW_WIDTH = 600;
 	public static final int WINDOW_HEIGHT = 600;

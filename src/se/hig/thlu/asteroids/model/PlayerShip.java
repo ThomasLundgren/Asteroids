@@ -16,14 +16,17 @@ public final class PlayerShip extends Entity implements Shooter {
 	private int lives = 3;
 	private boolean isAccelerating = false;
 
-	private PlayerShip(ImageLoader<ImageAdapter> imageLoader) {
+	private PlayerShip(ImageLoader<? extends ImageAdapter> imageLoader) {
 		super(new Point(0.0, 0.0),
 				new Velocity(0.0, 0.0),
 				5.0,
 				imageLoader);
+		loadImages(imageLoader);
+		setWidth();
+		setHeight();
 	}
 
-	public static PlayerShip createPlayerShip(ImageLoader<ImageAdapter> imageLoader) {
+	public static PlayerShip createPlayerShip(ImageLoader<? extends ImageAdapter> imageLoader) {
 		return new PlayerShip(imageLoader);
 	}
 
@@ -48,7 +51,7 @@ public final class PlayerShip extends Entity implements Shooter {
 	}
 
 	@Override
-	protected void loadImages() {
+	protected void loadImages(ImageLoader<? extends ImageAdapter> imageLoader) {
 		shipSprite = imageLoader.getImageResource(ImageResource.PLAYER_SHIP_PNG);
 		accelerationSprite = imageLoader.getImageResource(ImageResource.PLAYER_SHIP_ACCELERATION_PNG);
 	}
@@ -64,9 +67,9 @@ public final class PlayerShip extends Entity implements Shooter {
 	}
 
 	@Override
-	public void draw(GraphicsAdapter<ImageAdapter> graphics) {
-		int xCorner = (int) center.getX() - width / 2;
-		int yCorner = (int) center.getY() - height / 2;
+	public void draw(GraphicsAdapter<? super ImageAdapter> graphics) {
+		int xCorner = (int) center.getX() - width + 19;
+		int yCorner = (int) center.getY() - height + 10;
 		graphics.drawImageWithRotation(shipSprite,
 				facingDirection,
 				center.getX(),
@@ -74,11 +77,9 @@ public final class PlayerShip extends Entity implements Shooter {
 				xCorner,
 				yCorner);
 		if (isAccelerating) {
-			xCorner -= accelerationSprite.getWidth();
-			yCorner -= accelerationSprite.getHeight();
-			double anchorX = 0.0;
-			double anchorY = 0.0;
-			graphics.drawImageWithRotation(shipSprite,
+			xCorner -= accelerationSprite.getWidth() - 2;
+			yCorner += 2;
+			graphics.drawImageWithRotation(accelerationSprite,
 					facingDirection,
 					center.getX(),
 					center.getY(),
@@ -104,29 +105,12 @@ public final class PlayerShip extends Entity implements Shooter {
 		} else {
 			lives--;
 		}
-//		notifyListeners(LIVES.getPropertyName(), lives);
 	}
 
 	//TODO: remove direction argument from missile
 	@Override
 	public Missile shoot(double direction) {
-		return new Missile(center, velocity.getDirection(), MissileSource.PLAYER, imageLoader);
+		return new Missile(center, facingDirection, MissileSource.PLAYER, imageLoader);
 	}
-
-//	public enum PlayerShipProperty {
-//
-//		LIVES("LIVES"),
-//		IS_ACCELERATING("IS_ACCELERATING");
-//
-//		private String propertyName;
-//
-//		PlayerShipProperty(String propertyName) {
-//			this.propertyName = propertyName;
-//		}
-//
-//		public String getPropertyName() {
-//			return propertyName;
-//		}
-//	}
 
 }

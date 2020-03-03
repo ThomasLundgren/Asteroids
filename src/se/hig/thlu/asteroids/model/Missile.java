@@ -11,18 +11,22 @@ public final class Missile extends Entity {
 	private ImageAdapter missileSprite;
 	private final Point startingPosition;
 
-	Missile(Point position, double direction, MissileSource source, ImageLoader<ImageAdapter> imageLoader) {
+	Missile(Point position, double direction, MissileSource source, ImageLoader<? extends ImageAdapter> imageLoader) {
 		super(position,
 				new Velocity(source.getMissileSpeed(),
 						direction),
 				0.0,
 				imageLoader);
+		facingDirection = direction;
 		startingPosition = position;
 		missileSource = source;
+		loadImages(imageLoader);
+		setWidth();
+		setHeight();
 	}
 
 	@Override
-	protected void loadImages() {
+	protected void loadImages(ImageLoader<? extends ImageAdapter> imageLoader) {
 		switch (missileSource) {
 			case PLAYER:
 				missileSprite = imageLoader.getImageResource(ImageLoader.ImageResource.MISSILE_PLAYER);
@@ -44,7 +48,7 @@ public final class Missile extends Entity {
 	}
 
 	@Override
-	public void draw(GraphicsAdapter<ImageAdapter> graphics) {
+	public void draw(GraphicsAdapter<? super ImageAdapter> graphics) {
 		int cornerX = (int) center.getX() - width / 2;
 		int cornerY = (int) center.getY() - height / 2;
 		graphics.drawImageWithRotation(missileSprite,
