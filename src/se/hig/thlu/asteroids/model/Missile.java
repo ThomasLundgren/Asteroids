@@ -68,7 +68,7 @@ public final class Missile extends Entity {
 	}
 
 	public enum MissileSource {
-		PLAYER(1.0), ENEMY(5.0);
+		PLAYER(9.0), ENEMY(5.0);
 
 		final double missileSpeed;
 

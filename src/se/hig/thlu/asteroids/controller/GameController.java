@@ -20,10 +20,8 @@ public final class GameController {
 	private final CommandController commandController;
 	private final PlayerShip playerShip;
 	private final GUI<? extends EventListenerAdapter<? extends EventAdapter>> gui;
-//	private final Collection<Asteroid> asteroids = new ArrayList<>(30);
-//	private final List<EnemyShip> enemyShips = new ArrayList<>(5);
-//	private final Collection<Missile> missiles = new ArrayList<>(30);
-	private final List<Entity> entities = new CopyOnWriteArrayList<Entity>();
+	private final List<Missile> playerMissiles = new CopyOnWriteArrayList();
+	private final List<Entity> entities = new CopyOnWriteArrayList();
 	private final EntityFactory factory;
 	private long totalGameTime = 0L;
 	private long nextSpawn = (long) GameConfig.INITIAL_SPAWN_INTERVAL;
@@ -46,8 +44,10 @@ public final class GameController {
 	public void update(double delta) {
 		updateTimes(delta);
 		executeActiveCommands();
-		updatePositions();
-		checkCollisions();
+		entities.forEach(entity -> {
+			updatePosition(entity);
+			checkCollision(entity);
+		});
 		gui.setEntities(entities);
 	}
 
@@ -69,8 +69,7 @@ public final class GameController {
 				timeSinceLastShot = System.currentTimeMillis();
 				if (timeSinceLastShot > GameConfig.PLAYER_MISSILE_UPDATE_MS) {
 					Missile missile = playerShip.shoot(playerShip.getFacingDirection());
-					System.out.println(playerShip.getFacingDirection());
-					entities.add(missile);
+					playerMissiles.add(missile);
 				}
 				break;
 			default:
@@ -95,13 +94,12 @@ public final class GameController {
 		}
 	}
 
-
-	private void updatePositions() {
-		entities.forEach(Entity::updatePosition);
-		entities.forEach(this::handleOverFlow);
+	private void updatePosition(Entity entity) {
+		entity.updatePosition();
+		handleOverflow(entity);
 	}
 
-	private void handleOverFlow(Entity entity) {
+	private void handleOverflow(Entity entity) {
 		double x = entity.getCenter().getX();
 		double y = entity.getCenter().getY();
 		if (x > (double) GameConfig.WINDOW_WIDTH) {
@@ -128,7 +126,7 @@ public final class GameController {
 		timeSinceLastShot += delta;
 	}
 
-	private void checkCollisions() {
+	private void checkCollision(Entity entity) {
 
 	}
 

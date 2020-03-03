@@ -11,6 +11,5 @@ class TurnLeftCommand extends AbstractCommand {
 	@Override
 	public void execute() {
 		playerShip.turnLeft();
-		System.out.println(playerShip.getFacingDirection());
 	}
 }
