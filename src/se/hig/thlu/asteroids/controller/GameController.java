@@ -10,6 +10,7 @@ import se.hig.thlu.asteroids.gui.eventlistener.EventListenerAdapter;
 import se.hig.thlu.asteroids.model.*;
 
 import java.math.BigDecimal;
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -19,10 +20,9 @@ public final class GameController {
 	private final CommandController commandController;
 	private final PlayerShip playerShip;
 	private final GUI<? extends EventListenerAdapter<? extends EventAdapter>> gui;
-	private final List<Entity> missiles = new CopyOnWriteArrayList<>();
-	private final List<Entity> asteroids = new CopyOnWriteArrayList<>();
-	private final List<Entity> enemyShips = new CopyOnWriteArrayList<>();
-	private final List<Entity> explosions = new CopyOnWriteArrayList<>();
+	private final Collection<Entity> missiles = new CopyOnWriteArrayList<>();
+	private final Collection<Entity> enemies = new CopyOnWriteArrayList<>();
+	private final Collection<Entity> explosions = new CopyOnWriteArrayList<>();
 	private final EntityFactory factory;
 	private BigDecimal totalGameTime = new BigDecimal("0.0");
 	private double timeSinceLastShot = Double.MAX_VALUE;
@@ -50,21 +50,20 @@ public final class GameController {
 	}
 
 	private void updatePositions() {
-		asteroids.forEach(this::updatePosition);
 		missiles.forEach(this::updatePosition);
-		enemyShips.forEach(this::updatePosition);
+		enemies.forEach(this::updatePosition);
 		updatePosition(playerShip);
 	}
 
 	private void spawnEnemies() {
-		if (asteroids.isEmpty() && enemyShips.isEmpty()) {
-			asteroids.addAll(factory.nextLevel(playerShip.getCenter()));
-			gui.addEntities(asteroids);
+		if (enemies.isEmpty()) {
+			enemies.addAll(factory.nextLevel(playerShip.getCenter()));
+			gui.addEntities(enemies);
 		}
 		if (enemyShipSpawnTimer > GameConfig.ENEMY_SHIP_SPAWN_TIME) {
 			enemyShipSpawnTimer = 0.0;
 			EnemyShip enemyShip = factory.createEnemyShip(playerShip.getCenter());
-			enemyShips.add(enemyShip);
+			enemies.add(enemyShip);
 			gui.addEntity(enemyShip);
 		}
 	}
@@ -87,7 +86,7 @@ public final class GameController {
 				if (timeSinceLastShot > GameConfig.PLAYER_MISSILE_RECHARGE_MS && canShoot) {
 					canShoot = false;
 					timeSinceLastShot = 0.0;
-					Missile missile = playerShip.shoot(playerShip.getFacingDirection());
+					Missile missile = playerShip.shoot(playerShip.getRotation());
 					missiles.add(missile);
 					gui.addEntity(missile);
 				}
@@ -153,73 +152,58 @@ public final class GameController {
 	}
 
 	private void checkCollisions() {
-		for (Entity asteroid : asteroids) {
-			if (playerShip.intersectsWith(asteroid)) {
-				System.out.println("PlayerShip and Asteroid collision");
-				Optional<Explosion> explosion = playerShip.collide();
-				explosion.ifPresent(expl -> {
-					centerPlayerShip();
-					explosions.add(expl);
-					gui.addEntity(expl);
-				});
-				explosion = asteroid.collide();
-				explosion.ifPresent(expl -> {
-					explosions.add(expl);
-					gui.addEntity(expl);
-				});
-				List<Entity> newAsteroids = factory.shatterAsteroid((Asteroid) asteroid);
-				asteroids.addAll(newAsteroids);
-				gui.addEntities(newAsteroids);
-				asteroids.remove(asteroid);
-				gui.removeEntity(asteroid);
+		for (Entity enemy : enemies) {
+			if (playerShip.intersectsWith(enemy)) {
+				collideEntities(playerShip, enemy);
 			}
 			for (Entity missile : missiles) {
-				if (missile.isDestroyed()) {
+				if (missile.intersectsWith(enemy)) {
+					collideEntities(missile, enemy);
+				} else if (missile.isDestroyed()) {
+					// Missile has selfdestructed
 					missiles.remove(missile);
 					gui.removeEntity(missile);
-				}
-				if (missile.intersectsWith(asteroid)) {
-					missile.collide();
-					Optional<Explosion> explosion = asteroid.collide();
-					explosion.ifPresent(expl -> {
-						explosions.add(expl);
-						gui.addEntity(expl);
-					});
-					List<Entity> newAsteroids = factory.shatterAsteroid((Asteroid) asteroid);
-					asteroids.addAll(newAsteroids);
-					gui.addEntities(newAsteroids);
-					missiles.remove(missile);
-					gui.removeEntity(missile);
-					asteroids.remove(asteroid);
-					gui.removeEntity(asteroid);
-				}
-			}
-		}
-		for (Entity enemyShip : enemyShips) {
-			if (playerShip.intersectsWith(enemyShip)) {
-				playerShip.collide();
-				enemyShip.collide();
-				enemyShips.remove(enemyShip);
-				gui.removeEntity(enemyShip);
-			}
-			for (Entity missile : missiles) {
-				if (missile.intersectsWith(enemyShip)) {
-					missile.collide();
-					enemyShip.collide();
-					missiles.remove(missile);
-					gui.removeEntity(missile);
-					enemyShips.remove(enemyShip);
-					gui.removeEntity(enemyShip);
 				}
 			}
 		}
 		explosions.stream()
 				.filter(Entity::isDestroyed)
 				.forEach(explosion -> {
-					System.out.println("Explosion removed");
 					explosions.remove(explosion);
 					gui.removeEntity(explosion);
 				});
+	}
+
+	private void collideEntities(Entity friendly, Entity enemy) {
+		Optional<Explosion> friendlyExplosion = friendly.collide();
+		Optional<Explosion> enemyExplosion = enemy.collide();
+
+		friendlyExplosion.ifPresent(this::addExplosion);
+		enemyExplosion.ifPresent(this::addExplosion);
+		if (friendly == playerShip) {
+			centerPlayerShip();
+		}
+		if (enemy instanceof Asteroid) {
+			List<Entity> newAsteroids = factory.shatterAsteroid((Asteroid) enemy);
+			addEnemies(newAsteroids);
+		}
+		enemies.remove(enemy);
+		gui.removeEntity(enemy);
+	}
+
+	private void addEnemies(Collection<Entity> newEnemies) {
+		enemies.addAll(newEnemies);
+		gui.addEntities(newEnemies);
+	}
+
+	private void addExplosion(Entity explosion) {
+		explosions.add(explosion);
+		gui.addEntity(explosion);
+	}
+
+	private void removeMissile(Entity missile) {
+		missiles.remove(missile);
+		gui.removeEntity(missile);
 	}
 
 	private void centerPlayerShip() {
