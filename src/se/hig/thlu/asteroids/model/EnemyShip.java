@@ -15,6 +15,7 @@ public final class EnemyShip extends Entity implements Shooter {
 				new Velocity(ENEMY_SHIP_SPEED, direction),
 				0.0,
 				imageLoader);
+		setFacingDirection(direction);
 		loadImages(imageLoader);
 		setWidth();
 		setHeight();
@@ -26,11 +27,14 @@ public final class EnemyShip extends Entity implements Shooter {
 
 	@Override
 	public void draw(GraphicsAdapter<? super ImageAdapter> graphics) {
-		graphics.drawImage(shipSprite,
+		int xCorner = (int) center.getX() - width / 2;
+		int yCorner = (int) center.getY() - height / 2;
+		graphics.drawImageWithRotation(shipSprite,
+				facingDirection,
 				(int) center.getX(),
 				(int) center.getY(),
-				width,
-				height);
+				xCorner,
+				yCorner);
 	}
 
 	@Override

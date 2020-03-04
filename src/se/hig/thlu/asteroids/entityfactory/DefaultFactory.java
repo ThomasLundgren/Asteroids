@@ -78,7 +78,7 @@ public final class DefaultFactory implements EntityFactory {
 		int shipX = 0;
 		double direction = 0.0;
 
-		int randomX = ThreadLocalRandom.current().nextInt(0, 1);
+		int randomX = ThreadLocalRandom.current().nextInt(0, 2);
 		if (randomX == 1) {
 			shipX = GameConfig.WINDOW_WIDTH;
 			direction = -180.0;

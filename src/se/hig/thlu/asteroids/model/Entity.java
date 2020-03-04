@@ -17,7 +17,6 @@ public abstract class Entity {
 	protected double facingDirection = 0.0;
 	protected int width, height;
 
-	// TODO: subclasses have hard-coded turning degrees
 	protected Entity(Point center, Velocity velocity, double turningDegree,
 					 ImageLoader<? extends ImageAdapter> imageLoader) {
 		this.imageLoader = imageLoader;
