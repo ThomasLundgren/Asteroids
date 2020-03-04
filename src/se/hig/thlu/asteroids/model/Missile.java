@@ -17,7 +17,7 @@ public final class Missile extends Entity {
 						direction),
 				0.0,
 				imageLoader);
-		facingDirection = direction;
+		rotation = direction;
 		startingPosition = position;
 		missileSource = source;
 		loadImages(imageLoader);
@@ -49,10 +49,10 @@ public final class Missile extends Entity {
 
 	@Override
 	public void draw(GraphicsAdapter<? super ImageAdapter> graphics) {
-		int cornerX = (int) center.getX() - width / 2 + 19;
-		int cornerY = (int) center.getY() - height / 2 - 2;
+		int cornerX = (int) center.getX() - width / 2;
+		int cornerY = (int) center.getY() - height / 2;
 		graphics.drawImageWithRotation(missileSprite,
-				facingDirection,
+				rotation,
 				center.getX(),
 				center.getY(),
 				(int) cornerX,

@@ -17,7 +17,7 @@ public class Velocity {
 	public void composeWith(Velocity velocity) {
 		double x1 = StrictMath.cos(StrictMath.toRadians(direction)) * speed;
 		double y1 = StrictMath.sin(StrictMath.toRadians(direction)) * speed;
-		double x2 = StrictMath.cos(StrictMath.toRadians(velocity.direction)) * velocity.speed;
+		double x2 = StrictMath.cos(StrictMath.toRadians(velocity.getDirection())) * velocity.getSpeed();
 		double y2 = StrictMath.sin(StrictMath.toRadians(velocity.getDirection())) * velocity.getSpeed();
 
 		double xRes = x1 + x2;
@@ -26,9 +26,9 @@ public class Velocity {
 
 		double newDir = 0.0;
 		if (xRes != 0.0) {
-			// TODO: This is wrong. Only works for degrees between 0-90, 270-359
 			newDir = StrictMath.toDegrees(StrictMath.atan((yRes / xRes)));
 			if (xRes < 0.0) {
+				// 90 < degree < 270-359
 				newDir += 180.0;
 			}
 		} else if (yRes > 0.0) {

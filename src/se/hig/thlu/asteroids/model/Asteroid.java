@@ -57,7 +57,7 @@ public final class Asteroid extends Entity {
 		int cornerX = (int) center.getX() - width / 2;
 		int cornerY = (int) center.getY() - height / 2;
 		graphics.drawImageWithRotation(asteroidSprite,
-				facingDirection,
+				rotation,
 				center.getX(),
 				center.getY(),
 				cornerX,

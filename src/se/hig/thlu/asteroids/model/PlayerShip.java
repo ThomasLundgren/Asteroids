@@ -2,6 +2,7 @@ package se.hig.thlu.asteroids.model;
 
 import se.hig.thlu.asteroids.graphics.image.ImageAdapter;
 import se.hig.thlu.asteroids.graphics.renderer.GraphicsAdapter;
+import se.hig.thlu.asteroids.mathutil.Trigonometry;
 import se.hig.thlu.asteroids.model.Missile.MissileSource;
 import se.hig.thlu.asteroids.storage.ImageLoader;
 import se.hig.thlu.asteroids.storage.ImageLoader.ImageResource;
@@ -34,7 +35,7 @@ public final class PlayerShip extends Entity implements Shooter {
 
 	public void accelerate() {
 		isAccelerating = true;
-		Velocity acceleration = new Velocity(ACCELERATION, facingDirection);
+		Velocity acceleration = new Velocity(ACCELERATION, rotation);
 		velocity.composeWith(acceleration);
 		if (velocity.getSpeed() >= MAX_SPEED) {
 			velocity = new Velocity(MAX_SPEED, velocity.getDirection());
@@ -54,10 +55,10 @@ public final class PlayerShip extends Entity implements Shooter {
 	@Override
 	public void draw(GraphicsAdapter<? super ImageAdapter> graphics) {
 		// TODO: Fix magic numbers
-		int xCorner = (int) center.getX() - width + 19;
-		int yCorner = (int) center.getY() - height + 10;
+		int xCorner = (int) center.getX() - width / 2;
+		int yCorner = (int) center.getY() - height / 2;
 		graphics.drawImageWithRotation(shipSprite,
-				facingDirection,
+				rotation,
 				center.getX(),
 				center.getY(),
 				xCorner,
@@ -65,7 +66,7 @@ public final class PlayerShip extends Entity implements Shooter {
 		if (isAccelerating) {
 			xCorner -= accelerationSprite.getWidth() - 1;
 			graphics.drawImageWithRotation(accelerationSprite,
-					facingDirection,
+					rotation,
 					center.getX(),
 					center.getY(),
 					xCorner,
@@ -100,7 +101,11 @@ public final class PlayerShip extends Entity implements Shooter {
 	//TODO: remove direction argument from missile
 	@Override
 	public Missile shoot(double direction) {
-		return new Missile(center, facingDirection, MissileSource.PLAYER, imageLoader);
+		double centerToFrontDistance = (double) (width / 2);
+		Point missileStart = Trigonometry.rotateAroundPoint(center,
+				rotation,
+				centerToFrontDistance);
+		return new Missile(missileStart, rotation, MissileSource.PLAYER, imageLoader);
 	}
 
 	@Override

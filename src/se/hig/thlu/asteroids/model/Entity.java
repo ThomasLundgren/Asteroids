@@ -1,5 +1,6 @@
 package se.hig.thlu.asteroids.model;
 
+import se.hig.thlu.asteroids.config.GameConfig;
 import se.hig.thlu.asteroids.graphics.image.ImageAdapter;
 import se.hig.thlu.asteroids.graphics.renderer.GraphicsAdapter;
 import se.hig.thlu.asteroids.mathutil.Trigonometry;
@@ -14,7 +15,7 @@ public abstract class Entity {
 	protected Point center;
 	protected Velocity velocity;
 	protected boolean isDestroyed = false;
-	protected double facingDirection = 0.0;
+	protected double rotation = 0.0;
 	protected int width, height;
 
 	protected Entity(Point center, Velocity velocity, double turningDegree,
@@ -52,19 +53,19 @@ public abstract class Entity {
 	public abstract void draw(GraphicsAdapter<? super ImageAdapter> graphics);
 
 	protected void turnLeft() {
-		setFacingDirection(facingDirection - turningDegree);
+		setRotation(rotation - turningDegree);
 	}
 
 	protected void turnRight() {
-		setFacingDirection(facingDirection + turningDegree);
+		setRotation(rotation + turningDegree);
 	}
 
-	public double getFacingDirection() {
-		return facingDirection;
+	public double getRotation() {
+		return rotation;
 	}
 
-	protected void setFacingDirection(double direction) {
-		facingDirection = Trigonometry.normalizeDegree(direction);
+	protected void setRotation(double rotation) {
+		this.rotation = Trigonometry.normalizeDegree(rotation);
 	}
 
 	public final Velocity getVelocity() {
@@ -84,7 +85,8 @@ public abstract class Entity {
 		double diffX = StrictMath.cos(StrictMath.toRadians(velocity.getDirection())) * velocity.getSpeed();
 		double diffY = StrictMath.sin(StrictMath.toRadians(velocity.getDirection())) * velocity.getSpeed();
 		Point newPos = new Point(center.getX() + diffX, center.getY() + diffY);
-		setCenter(newPos);
+		center = newPos;
+		handleOverflow();
 	}
 
 	public boolean intersectsWith(Entity entity) {
@@ -102,6 +104,26 @@ public abstract class Entity {
 			return true;
 		}
 		return false;
+	}
+
+	protected void handleOverflow() {
+		int x = (int) center.getX();
+		int y = (int) center.getY();
+		int halfWidth = width / 2;
+		int halfHeight = height / 2;
+
+		if (x - halfWidth > GameConfig.WINDOW_WIDTH) {
+			center = new Point(0.0, (double) y);
+		}
+		if (x + halfWidth < 0) {
+			center = new Point((double) GameConfig.WINDOW_WIDTH, (double) y);
+		}
+		if (y - halfHeight > GameConfig.WINDOW_HEIGHT) {
+			center = new Point((double) x, 0.0);
+		}
+		if (y + halfHeight < 0) {
+			center = new Point((double) x, (double) GameConfig.WINDOW_HEIGHT);
+		}
 	}
 
 }
