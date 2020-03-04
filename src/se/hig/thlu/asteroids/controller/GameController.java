@@ -123,19 +123,22 @@ public final class GameController {
 	}
 
 	private void handleOverflow(Entity entity) {
-		double x = entity.getCenter().getX();
-		double y = entity.getCenter().getY();
-		if (x > (double) GameConfig.WINDOW_WIDTH) {
-			entity.setCenter(new Point(0.0, y));
+		int x = (int) entity.getCenter().getX();
+		int y = (int) entity.getCenter().getY();
+		int halfWidth = entity.getWidth()/2;
+		int halfHeight = entity.getHeight()/2;
+
+		if (x - halfWidth > GameConfig.WINDOW_WIDTH) {
+			entity.setCenter(new Point(0.0, (double) y));
 		}
-		if (x < 0.0) {
-			entity.setCenter(new Point((double) GameConfig.WINDOW_WIDTH, y));
+		if (x + halfWidth < 0) {
+			entity.setCenter(new Point((double) GameConfig.WINDOW_WIDTH, (double) y));
 		}
-		if (y > (double) GameConfig.WINDOW_HEIGHT) {
-			entity.setCenter(new Point(x, 0.0));
+		if (y - halfHeight > GameConfig.WINDOW_HEIGHT) {
+			entity.setCenter(new Point((double) x, 0.0));
 		}
-		if (y < 0.0) {
-			entity.setCenter(new Point(x, (double) GameConfig.WINDOW_HEIGHT));
+		if (y + halfHeight < 0) {
+			entity.setCenter(new Point((double) x, (double) GameConfig.WINDOW_HEIGHT));
 		}
 	}
 
