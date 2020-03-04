@@ -2,11 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="912592ae-0182-4155-a100-0b05ae75298b" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/model/drawingstrategy/CenteredDrawingStrategy.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/model/drawingstrategy/DrawingStrategy.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/config/GameConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/config/GameConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/entityfactory/DefaultFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/entityfactory/DefaultFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/model/EnemyShip.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/model/EnemyShip.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/model/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/model/Entity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/graphics/renderer/GraphicsAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/graphics/renderer/GraphicsAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/model/Asteroid.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/model/Asteroid.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -193,10 +193,10 @@
       <screen x="0" y="0" width="1273" height="768" />
     </state>
     <state x="92" y="92" width="1089" height="584" key="#com.intellij.execution.junit2.states.ComparisonFailureState$DiffDialog/0.0.1273.768@0.0.1273.768" timestamp="1582761027456" />
-    <state x="406" y="85" width="530" height="568" key="#com.intellij.ide.util.MemberChooser" timestamp="1583272612898">
+    <state x="406" y="85" width="530" height="568" key="#com.intellij.ide.util.MemberChooser" timestamp="1583319631674">
       <screen x="0" y="0" width="1273" height="768" />
     </state>
-    <state x="406" y="85" width="530" height="568" key="#com.intellij.ide.util.MemberChooser/0.0.1273.768@0.0.1273.768" timestamp="1583272612898" />
+    <state x="406" y="85" width="530" height="568" key="#com.intellij.ide.util.MemberChooser/0.0.1273.768@0.0.1273.768" timestamp="1583319631674" />
     <state x="366" y="144" key="#com.intellij.ide.util.PackageChooserDialog" timestamp="1582754924687">
       <screen x="0" y="0" width="1273" height="768" />
     </state>
@@ -213,18 +213,18 @@
       <screen x="0" y="0" width="1273" height="768" />
     </state>
     <state x="432" y="269" width="410" height="237" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1273.768@0.0.1273.768" timestamp="1582805679986" />
-    <state x="124" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1583271487404">
+    <state x="124" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1583319685924">
       <screen x="0" y="0" width="1273" height="768" />
     </state>
-    <state x="124" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1273.768@0.0.1273.768" timestamp="1583271487404" />
+    <state x="124" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1273.768@0.0.1273.768" timestamp="1583319685924" />
     <state x="478" y="294" key="#com.intellij.refactoring.replaceConstructorWithFactory.ReplaceConstructorWithFactoryDialog" timestamp="1583237635724">
       <screen x="0" y="0" width="1273" height="768" />
     </state>
     <state x="478" y="294" key="#com.intellij.refactoring.replaceConstructorWithFactory.ReplaceConstructorWithFactoryDialog/0.0.1273.768@0.0.1273.768" timestamp="1583237635724" />
-    <state x="366" y="131" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1583191423743">
+    <state x="366" y="131" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1583319649779">
       <screen x="0" y="0" width="1273" height="768" />
     </state>
-    <state x="366" y="131" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1273.768@0.0.1273.768" timestamp="1583191423743" />
+    <state x="366" y="131" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1273.768@0.0.1273.768" timestamp="1583319649779" />
     <state x="416" y="138" key="FileChooserDialogImpl" timestamp="1582807400936">
       <screen x="0" y="0" width="1273" height="768" />
     </state>
@@ -297,10 +297,10 @@
       <screen x="0" y="0" width="1273" height="768" />
     </state>
     <state x="666" y="0" width="607" height="768" key="find.popup/0.0.1273.768@0.0.1273.768" timestamp="1583272130244" />
-    <state x="343" y="6" key="refactoring.ChangeSignatureDialog" timestamp="1583199423603">
+    <state x="343" y="6" key="refactoring.ChangeSignatureDialog" timestamp="1583319757784">
       <screen x="0" y="0" width="1273" height="768" />
     </state>
-    <state x="343" y="6" key="refactoring.ChangeSignatureDialog/0.0.1273.768@0.0.1273.768" timestamp="1583199423603" />
+    <state x="343" y="6" key="refactoring.ChangeSignatureDialog/0.0.1273.768@0.0.1273.768" timestamp="1583319757784" />
     <state x="293" y="172" key="run.anything.popup" timestamp="1583264322338">
       <screen x="0" y="0" width="1273" height="768" />
     </state>
@@ -309,10 +309,10 @@
       <screen x="0" y="0" width="1273" height="768" />
     </state>
     <state x="228" y="42" key="scopes/0.0.1273.768@0.0.1273.768" timestamp="1582209063947" />
-    <state x="299" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1583317606564">
+    <state x="299" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1583318509346">
       <screen x="0" y="0" width="1273" height="768" />
     </state>
-    <state x="299" y="89" width="672" height="678" key="search.everywhere.popup/0.0.1273.768@0.0.1273.768" timestamp="1583317606564" />
+    <state x="299" y="89" width="672" height="678" key="search.everywhere.popup/0.0.1273.768@0.0.1273.768" timestamp="1583318509346" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

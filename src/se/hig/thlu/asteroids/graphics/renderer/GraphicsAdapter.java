@@ -9,4 +9,6 @@ public interface GraphicsAdapter<T extends ImageAdapter> {
 
 	void drawImage(T image, int x, int y, int width, int height);
 
+//	void drawCircularImage(T image, int x, int y, int width, int height);
+
 }

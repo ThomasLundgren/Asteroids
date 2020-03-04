@@ -60,8 +60,8 @@ public final class Asteroid extends Entity {
 				facingDirection,
 				center.getX(),
 				center.getY(),
-				(int) cornerX,
-				(int) cornerY);
+				cornerX,
+				cornerY);
 	}
 
 	@Override
