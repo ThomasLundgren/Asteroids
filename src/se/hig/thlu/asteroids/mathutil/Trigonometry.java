@@ -1,5 +1,7 @@
 package se.hig.thlu.asteroids.mathutil;
 
+import se.hig.thlu.asteroids.model.Point;
+
 public class Trigonometry {
 
 	private Trigonometry() {
@@ -22,5 +24,13 @@ public class Trigonometry {
 
 	public static double hypotenuse(double a, double b) {
 		return StrictMath.sqrt((a * a) + (b * b));
+	}
+
+	public static Point rotateAroundPoint(Point rotationPoint, double angle, double distance) {
+		double xRad = StrictMath.cos(StrictMath.toRadians(angle));
+		double yRad = StrictMath.sin(StrictMath.toRadians(angle));
+		double x = rotationPoint.getX() + xRad * distance;
+		double y = rotationPoint.getY() + yRad * distance;
+		return new Point(x, y);
 	}
 }
