@@ -59,9 +59,9 @@ public abstract class ImageLoader<T extends ImageAdapter> {
 		MISSILE_PLAYER(String.format("resources%simages%<sfinal%<smissile-player.png", FS),
 				(int) (11.0 * 1.5),
 				(int) (6.0 * 1.5)),
-		MISSILE_ENEMY(String.format("resources%simages%<sfinal%<smissile-enemy.png", FS),
-				6,
-				4),
+		MISSILE_ENEMY(String.format("resources%simages%<sfinal%<smissile-enemy-blue.png", FS),
+				9,
+				6),
 		EXPLOSION_1(String.format("resources%simages%<sfinal%<sexplosion-1.png", FS),
 				6,
 				6),
@@ -79,6 +79,7 @@ public abstract class ImageLoader<T extends ImageAdapter> {
 		private final String imagePath;
 		private final int width, height;
 
+		// TODO: Move width and height out to Entity classes
 		ImageResource(String imagePath, int width, int height) {
 			this.imagePath = imagePath;
 			this.width = width;

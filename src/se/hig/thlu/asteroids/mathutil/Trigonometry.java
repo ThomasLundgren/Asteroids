@@ -2,10 +2,8 @@ package se.hig.thlu.asteroids.mathutil;
 
 import se.hig.thlu.asteroids.model.Point;
 
-public class Trigonometry {
-
-	private Trigonometry() {
-	}
+public enum Trigonometry {
+	;
 
 	/**
 	 * Normalizes a degree to the range 0 through 360.

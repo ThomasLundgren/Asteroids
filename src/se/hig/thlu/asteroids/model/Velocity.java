@@ -14,17 +14,17 @@ public class Velocity {
 		setDirection(direction);
 	}
 
-	public void composeWith(Velocity velocity) {
-		double x1 = StrictMath.cos(StrictMath.toRadians(direction)) * speed;
-		double y1 = StrictMath.sin(StrictMath.toRadians(direction)) * speed;
-		double x2 = StrictMath.cos(StrictMath.toRadians(velocity.getDirection())) * velocity.getSpeed();
-		double y2 = StrictMath.sin(StrictMath.toRadians(velocity.getDirection())) * velocity.getSpeed();
+	public static Velocity compose(Velocity v1, Velocity v2) {
+		double x1 = StrictMath.cos(StrictMath.toRadians(v1.getDirection())) * v1.getSpeed();
+		double y1 = StrictMath.sin(StrictMath.toRadians(v1.getDirection())) * v1.getSpeed();
+		double x2 = StrictMath.cos(StrictMath.toRadians(v2.getDirection())) * v2.getSpeed();
+		double y2 = StrictMath.sin(StrictMath.toRadians(v2.getDirection())) * v2.getSpeed();
 
 		double xRes = x1 + x2;
 		double yRes = y1 + y2;
 
-
 		double newDir = 0.0;
+
 		if (xRes != 0.0) {
 			newDir = StrictMath.toDegrees(StrictMath.atan((yRes / xRes)));
 			if (xRes < 0.0) {
@@ -38,8 +38,13 @@ public class Velocity {
 		}
 
 		double newSpeed = Trigonometry.hypotenuse(xRes, yRes);
-		setDirection(newDir);
-		setSpeed(newSpeed);
+		return new Velocity(newSpeed, newDir);
+	}
+
+	public void composeWith(Velocity velocity) {
+		Velocity composed = compose(this, velocity);
+		setDirection(composed.getDirection());
+		setSpeed(composed.getSpeed());
 	}
 
 	public double getSpeed() {

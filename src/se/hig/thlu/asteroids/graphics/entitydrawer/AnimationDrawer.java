@@ -1,0 +1,60 @@
+package se.hig.thlu.asteroids.graphics.entitydrawer;
+
+import se.hig.thlu.asteroids.graphics.graphicsadapter.GraphicsAdapter;
+import se.hig.thlu.asteroids.graphics.image.ImageAdapter;
+import se.hig.thlu.asteroids.model.Point;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
+public class AnimationDrawer implements Animation {
+
+	private final List<ImageAdapter> images = new ArrayList<>(4);
+	private final Point center;
+	private final int totalFrames;
+	private final int framesPerImage;
+	private boolean isFinished = false;
+	private int counter = 0;
+	private int currentImageIndex = 0;
+
+	public AnimationDrawer(Collection<ImageAdapter> images, Point center, int totalFrames, int framesPerImage) {
+		this.images.addAll(images);
+		this.center = center;
+		this.totalFrames = totalFrames;
+		this.framesPerImage = framesPerImage;
+	}
+
+	@Override
+	public void draw(GraphicsAdapter<ImageAdapter> graphics) {
+		if (isFinished) {
+			return;
+		}
+		ImageAdapter currentImage = images.get(currentImageIndex);
+		int width = currentImage.getWidth();
+		int height = currentImage.getHeight();
+		int xCorner = (int) center.getX() - width / 2;
+		int yCorner = (int) center.getY() - height / 2;
+		graphics.drawImage(currentImage, xCorner, yCorner, width, height);
+		nextFrame();
+	}
+
+	@Override
+	public boolean isFinished() {
+		return isFinished;
+	}
+
+	private void nextFrame() {
+		counter++;
+		if (counter == framesPerImage) {
+			counter = 0;
+			if (currentImageIndex < images.size() - 1) {
+				currentImageIndex++;
+			} else {
+				isFinished = true;
+			}
+		}
+	}
+
+
+}

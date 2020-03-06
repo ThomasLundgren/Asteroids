@@ -1,4 +1,4 @@
-package se.hig.thlu.asteroids.graphics.renderer;
+package se.hig.thlu.asteroids.graphics.graphicsadapter;
 
 import se.hig.thlu.asteroids.graphics.image.AwtImageAdapter;
 
