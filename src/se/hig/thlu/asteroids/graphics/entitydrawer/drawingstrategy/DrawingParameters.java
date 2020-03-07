@@ -12,14 +12,6 @@ public class DrawingParameters {
 	private int width;
 	private int height;
 
-	public DrawingParameters() {
-		image = null;
-		center = new Point();
-		rotation = 0.0;
-		width = 0;
-		height = 0;
-	}
-
 	public DrawingParameters(ImageAdapter image, Point center, double rotation, int width, int height) {
 		this.image = image;
 		this.center = center;

@@ -1,50 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="912592ae-0182-4155-a100-0b05ae75298b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/thoma.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resources/images/Spaceship_01_BLUE_v3png.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resources/images/asteroid-medium-1-2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resources/images/asteroids-medium-1-1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resources/images/blueship2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resources/images/expl/explosions-3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resources/images/final/explosions-all.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resources/images/player-ship-red.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/graphics/entitydrawer/AccelerationDrawer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/graphics/entitydrawer/drawingstrategy/AbstractDrawingStrategy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Asteroids/resources/images/final/Spaceship_01_BLUE_v3png.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Asteroids/resources/images/final/asteroid-medium-1-2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Asteroids/resources/images/final/asteroids-medium-1-1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Asteroids/resources/images/final/blueship2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Asteroids/resources/images/final/player-ship-red.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/images/final/Spaceship_01_BLUE_v3png.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/images/final/asteroid-medium-1-2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/images/final/asteroids-medium-1-1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/images/final/blueship2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/images/final/player-ship-red.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/controller/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/controller/GameController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/factory/DefaultFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/factory/DefaultFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/factory/EntityFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/factory/EntityFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/graphics/entitydrawer/Animation.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/graphics/entitydrawer/AnimationDrawer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/graphics/entitydrawer/AnimationDrawer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/graphics/entitydrawer/Drawer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/graphics/entitydrawer/Drawer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/graphics/entitydrawer/EntityDrawer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/graphics/entitydrawer/EntityDrawer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/graphics/entitydrawer/EntityDrawerDecorator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/graphics/entitydrawer/EntityDrawerDecorator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/graphics/entitydrawer/drawingstrategy/AccelerationDrawingStrategy.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/graphics/entitydrawer/drawingstrategy/CenteredDrawingStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/graphics/entitydrawer/drawingstrategy/CenteredDrawingStrategy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/gui/BackgroundPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/gui/BackgroundPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/gui/SwingGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/gui/SwingGUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/model/AbstractEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/model/AbstractEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/model/Asteroid.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/model/Asteroid.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/model/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/model/Entity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/model/EntityProperty.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/model/EntityProperty.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/model/Missile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/model/Missile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/model/PlayerShip.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/model/PlayerShip.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/model/Shatterable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/model/Shatterable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/storage/ImageLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/storage/ImageLoader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/storage/ImageLoaderAwt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/storage/ImageLoaderAwt.java" afterDir="false" />
-    </list>
+    <list default="true" id="912592ae-0182-4155-a100-0b05ae75298b" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -358,11 +315,11 @@
       <screen x="0" y="0" width="1273" height="768" />
     </state>
     <state x="228" y="42" key="scopes/0.0.1273.768@0.0.1273.768" timestamp="1582209063947" />
-    <state x="299" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1583581490049">
+    <state x="299" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1583581597465">
       <screen x="0" y="0" width="1273" height="768" />
     </state>
     <state x="279" y="83" width="672" height="636" key="search.everywhere.popup/0.0.1187.720@0.0.1187.720" timestamp="1583529226834" />
-    <state x="299" y="89" width="672" height="678" key="search.everywhere.popup/0.0.1273.768@0.0.1273.768" timestamp="1583581490049" />
+    <state x="299" y="89" width="672" height="678" key="search.everywhere.popup/0.0.1273.768@0.0.1273.768" timestamp="1583581597465" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Asteroids$AsteroidsApp.ic" NAME="AsteroidsApp Coverage Results" MODIFIED="1582873866383" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
