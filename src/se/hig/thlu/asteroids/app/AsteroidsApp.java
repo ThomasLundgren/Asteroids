@@ -10,7 +10,7 @@ import se.hig.thlu.asteroids.graphics.image.AwtImageAdapter;
 import se.hig.thlu.asteroids.gui.GUI;
 import se.hig.thlu.asteroids.gui.SwingGUI;
 import se.hig.thlu.asteroids.gui.eventlistener.AwtKeyboardAdapter;
-import se.hig.thlu.asteroids.model.PlayerShip;
+import se.hig.thlu.asteroids.model.entity.PlayerShip;
 import se.hig.thlu.asteroids.storage.ImageLoader;
 import se.hig.thlu.asteroids.storage.ImageLoaderAwt;
 

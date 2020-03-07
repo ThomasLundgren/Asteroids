@@ -1,7 +1,7 @@
 package se.hig.thlu.asteroids.controller.command;
 
 import se.hig.thlu.asteroids.controller.command.CommandController.*;
-import se.hig.thlu.asteroids.model.*;
+import se.hig.thlu.asteroids.model.entity.PlayerShip;
 
 class CommandFactory {
 

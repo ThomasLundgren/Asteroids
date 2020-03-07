@@ -1,6 +1,9 @@
-package se.hig.thlu.asteroids.model;
+package se.hig.thlu.asteroids.model.entity;
 
 import se.hig.thlu.asteroids.mathutil.Randomizer;
+import se.hig.thlu.asteroids.model.Explosion;
+import se.hig.thlu.asteroids.model.Point;
+import se.hig.thlu.asteroids.model.Velocity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,8 +11,8 @@ import java.util.Optional;
 import java.util.concurrent.ThreadLocalRandom;
 
 import static se.hig.thlu.asteroids.mathutil.Randomizer.randomSpeed;
-import static se.hig.thlu.asteroids.model.Asteroid.AsteroidSize.MEDIUM;
-import static se.hig.thlu.asteroids.model.Asteroid.AsteroidSize.SMALL;
+import static se.hig.thlu.asteroids.model.entity.Asteroid.AsteroidSize.MEDIUM;
+import static se.hig.thlu.asteroids.model.entity.Asteroid.AsteroidSize.SMALL;
 
 public final class Asteroid extends AbstractEntity implements Shatterable {
 

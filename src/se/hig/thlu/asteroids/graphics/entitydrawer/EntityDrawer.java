@@ -4,7 +4,7 @@ import se.hig.thlu.asteroids.graphics.entitydrawer.drawingstrategy.DrawingParame
 import se.hig.thlu.asteroids.graphics.entitydrawer.drawingstrategy.DrawingStrategy;
 import se.hig.thlu.asteroids.graphics.graphicsadapter.GraphicsAdapter;
 import se.hig.thlu.asteroids.graphics.image.ImageAdapter;
-import se.hig.thlu.asteroids.model.EntityProperty;
+import se.hig.thlu.asteroids.model.entity.EntityProperty;
 import se.hig.thlu.asteroids.model.Point;
 import se.hig.thlu.asteroids.observer.Event;
 import se.hig.thlu.asteroids.observer.IObserver;

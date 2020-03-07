@@ -1,5 +1,7 @@
-package se.hig.thlu.asteroids.model;
+package se.hig.thlu.asteroids.model.entity;
 
+import se.hig.thlu.asteroids.model.Explosion;
+import se.hig.thlu.asteroids.model.Point;
 import se.hig.thlu.asteroids.observer.IObservable;
 
 import java.util.Optional;

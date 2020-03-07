@@ -3,12 +3,16 @@ package se.hig.thlu.asteroids.factory;
 import se.hig.thlu.asteroids.config.GameConfig;
 import se.hig.thlu.asteroids.mathutil.Randomizer;
 import se.hig.thlu.asteroids.model.*;
+import se.hig.thlu.asteroids.model.entity.Asteroid;
+import se.hig.thlu.asteroids.model.entity.EnemyShip;
+import se.hig.thlu.asteroids.model.entity.Entity;
+import se.hig.thlu.asteroids.model.entity.PlayerShip;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
-import static se.hig.thlu.asteroids.model.Asteroid.AsteroidSize.LARGE;
+import static se.hig.thlu.asteroids.model.entity.Asteroid.AsteroidSize.LARGE;
 
 public final class DefaultFactory implements EntityFactory {
 

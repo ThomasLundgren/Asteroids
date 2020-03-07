@@ -1,6 +1,8 @@
-package se.hig.thlu.asteroids.model;
+package se.hig.thlu.asteroids.model.entity;
 
 import se.hig.thlu.asteroids.config.GameConfig;
+import se.hig.thlu.asteroids.model.Point;
+import se.hig.thlu.asteroids.model.Velocity;
 
 public final class Missile extends AbstractEntity {
 

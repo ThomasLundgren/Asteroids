@@ -1,7 +1,10 @@
-package se.hig.thlu.asteroids.model;
+package se.hig.thlu.asteroids.model.entity;
 
 import se.hig.thlu.asteroids.mathutil.Trigonometry;
-import se.hig.thlu.asteroids.model.Missile.MissileSource;
+import se.hig.thlu.asteroids.model.Explosion;
+import se.hig.thlu.asteroids.model.Point;
+import se.hig.thlu.asteroids.model.Velocity;
+import se.hig.thlu.asteroids.model.entity.Missile.MissileSource;
 
 import java.util.Optional;
 

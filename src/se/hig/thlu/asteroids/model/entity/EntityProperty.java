@@ -1,4 +1,4 @@
-package se.hig.thlu.asteroids.model;
+package se.hig.thlu.asteroids.model.entity;
 
 public enum EntityProperty {
 

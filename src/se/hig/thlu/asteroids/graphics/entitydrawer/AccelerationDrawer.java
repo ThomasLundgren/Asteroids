@@ -4,7 +4,7 @@ import se.hig.thlu.asteroids.graphics.entitydrawer.drawingstrategy.AbstractDrawi
 import se.hig.thlu.asteroids.graphics.entitydrawer.drawingstrategy.DrawingParameters;
 import se.hig.thlu.asteroids.graphics.graphicsadapter.GraphicsAdapter;
 import se.hig.thlu.asteroids.graphics.image.ImageAdapter;
-import se.hig.thlu.asteroids.model.EntityProperty;
+import se.hig.thlu.asteroids.model.entity.EntityProperty;
 import se.hig.thlu.asteroids.observer.Event;
 
 public class AccelerationDrawer extends EntityDrawerDecorator {

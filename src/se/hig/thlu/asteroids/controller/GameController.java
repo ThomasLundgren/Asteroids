@@ -5,6 +5,7 @@ import se.hig.thlu.asteroids.controller.command.CommandController;
 import se.hig.thlu.asteroids.controller.command.CommandController.CommandType;
 import se.hig.thlu.asteroids.factory.EntityFactory;
 import se.hig.thlu.asteroids.model.*;
+import se.hig.thlu.asteroids.model.entity.*;
 import se.hig.thlu.asteroids.observer.Event;
 import se.hig.thlu.asteroids.observer.IObservable;
 import se.hig.thlu.asteroids.observer.IObserver;

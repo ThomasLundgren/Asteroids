@@ -1,6 +1,9 @@
 package se.hig.thlu.asteroids.factory;
 
 import se.hig.thlu.asteroids.model.*;
+import se.hig.thlu.asteroids.model.entity.EnemyShip;
+import se.hig.thlu.asteroids.model.entity.Entity;
+import se.hig.thlu.asteroids.model.entity.PlayerShip;
 
 import java.util.List;
 

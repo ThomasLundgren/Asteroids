@@ -11,6 +11,7 @@ import se.hig.thlu.asteroids.graphics.entitydrawer.drawingstrategy.DrawingParame
 import se.hig.thlu.asteroids.graphics.image.ImageAdapter;
 import se.hig.thlu.asteroids.gui.eventlistener.AwtKeyboardAdapter;
 import se.hig.thlu.asteroids.model.*;
+import se.hig.thlu.asteroids.model.entity.*;
 import se.hig.thlu.asteroids.observer.Event;
 import se.hig.thlu.asteroids.storage.ImageLoader;
 
@@ -59,7 +60,7 @@ public class SwingGUI extends JFrame implements GUI<AwtKeyboardAdapter> {
 						imageLoader.getAnimationResource(ImageLoader.AnimationResource.EXPLOSIONS_ALL);
 				Drawer explAnimation = new AnimationDrawer(images,
 						explosion.getCenter(),
-						1);
+						2);
 				backgroundPanel.addDrawer(explAnimation);
 			} else if (newValue instanceof Entity) {
 				Optional<Drawer> entityDrawer = getDrawerFromEntity(event.getValue());
