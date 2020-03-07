@@ -4,6 +4,7 @@ import se.hig.thlu.asteroids.config.GameConfig;
 import se.hig.thlu.asteroids.controller.GameController;
 import se.hig.thlu.asteroids.graphics.entitydrawer.AccelerationDrawer;
 import se.hig.thlu.asteroids.graphics.entitydrawer.AnimationDrawer;
+import se.hig.thlu.asteroids.graphics.entitydrawer.Drawer;
 import se.hig.thlu.asteroids.graphics.entitydrawer.EntityDrawer;
 import se.hig.thlu.asteroids.graphics.entitydrawer.drawingstrategy.CenteredDrawingStrategy;
 import se.hig.thlu.asteroids.graphics.entitydrawer.drawingstrategy.DrawingParameters;
@@ -47,28 +48,29 @@ public class SwingGUI extends JFrame implements GUI<AwtKeyboardAdapter> {
 
 	@Override
 	public void onNotify(String propertyName, Event event) {
-		if (propertyName.equals(GameController.Action.REMOVE.toString())) {
-			backgroundPanel.removeEntityDrawer(event.getId());
-		} else if (propertyName.equals(GameController.Action.ADD.toString())) {
+//		if (propertyName.equals(GameController.Action.REMOVE.toString())) {
+//			backgroundPanel.removeEntityDrawer(event.getId());
+//		} else
+			if (propertyName.equals(GameController.Action.ADD.toString())) {
 			Object newValue = event.getValue();
 			if (newValue instanceof Explosion) {
 				Explosion explosion = (Explosion) newValue;
 				List<? extends ImageAdapter> images =
 						imageLoader.getAnimationResource(ImageLoader.AnimationResource.EXPLOSIONS_ALL);
-				AnimationDrawer explAnimation = new AnimationDrawer(images,
+				Drawer explAnimation = new AnimationDrawer(images,
 						explosion.getCenter(),
 						1);
-				backgroundPanel.addAnimationDrawer(explAnimation);
+				backgroundPanel.addDrawer(explAnimation);
 			} else if (newValue instanceof Entity) {
-				Optional<EntityDrawer> entityDrawer = getDrawerFromEntity(event.getValue());
-				entityDrawer.ifPresent(drawer -> backgroundPanel.addEntityDrawer(event.getId(), drawer));
+				Optional<Drawer> entityDrawer = getDrawerFromEntity(event.getValue());
+				entityDrawer.ifPresent(drawer -> backgroundPanel.addDrawer(drawer));
 			}
 		}
 	}
 
 	// TODO: This is not clean... Store images inside of Entities? Or create a hashmap with mappings from properties
 	//  to Images?
-	private Optional<EntityDrawer> getDrawerFromEntity(Object entity) {
+	private Optional<Drawer> getDrawerFromEntity(Object entity) {
 		ImageAdapter image = null;
 
 		if (entity instanceof Asteroid) {

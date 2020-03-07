@@ -14,7 +14,6 @@ import java.util.*;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import static se.hig.thlu.asteroids.controller.GameController.Action.ADD;
-import static se.hig.thlu.asteroids.controller.GameController.Action.REMOVE;
 
 public final class GameController implements IObservable {
 
@@ -155,7 +154,6 @@ public final class GameController implements IObservable {
 				} else if (missile.isDestroyed()) {
 					// Missile has selfdestructed
 					missiles.remove(missile);
-					notifyObservers(REMOVE, missile);
 				}
 			}
 		}
@@ -169,7 +167,6 @@ public final class GameController implements IObservable {
 				} else if (missile.isDestroyed()) {
 					// Missile has selfdestructed
 					missiles.remove(missile);
-					notifyObservers(REMOVE, missile);
 				}
 			}
 		}
@@ -195,7 +192,6 @@ public final class GameController implements IObservable {
 		} else {
 			enemyShips.remove((EnemyShip) enemy);
 		}
-		notifyObservers(REMOVE, enemy);
 	}
 
 	private void addMissile(Missile missile) {
@@ -230,6 +226,6 @@ public final class GameController implements IObservable {
 	}
 
 	public enum Action {
-		ADD, REMOVE;
+		ADD;
 	}
 }

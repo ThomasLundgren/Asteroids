@@ -86,6 +86,7 @@ public abstract class AbstractEntity implements Entity {
 
 	public Optional<Explosion> destroy() {
 		isDestroyed = true;
+		notifyObservers(EntityProperty.IS_DESTROYED, true);
 		observers = new ArrayList<>(1);
 		return Optional.empty();
 	}
