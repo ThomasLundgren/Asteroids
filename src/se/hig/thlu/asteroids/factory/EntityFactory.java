@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface EntityFactory {
 
-	List<Asteroid> nextLevel(Point playerCenter);
+	List<Entity> nextLevel(Point playerCenter);
 
 	EnemyShip createEnemyShip(Point playerCenter);
 

@@ -5,7 +5,7 @@ import se.hig.thlu.asteroids.graphics.entitydrawer.Drawer;
 import se.hig.thlu.asteroids.graphics.entitydrawer.EntityDrawer;
 import se.hig.thlu.asteroids.graphics.graphicsadapter.AwtGraphicsAdapter;
 import se.hig.thlu.asteroids.graphics.graphicsadapter.GraphicsAdapter;
-import se.hig.thlu.asteroids.graphics.image.AwtImageAdapter;
+import se.hig.thlu.asteroids.graphics.image.ImageAdapter;
 import se.hig.thlu.asteroids.storage.ImageLoader;
 
 import javax.swing.*;
@@ -18,16 +18,16 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 public final class BackgroundPanel extends JPanel {
 
-	private AwtImageAdapter image;
+	private ImageAdapter image;
 	private final Map<UUID, Drawer> drawers = new ConcurrentHashMap<>(100);
 	private final Collection<AnimationDrawer> animationDrawers = new CopyOnWriteArrayList<>();
 
-	public BackgroundPanel(ImageLoader<AwtImageAdapter> imageLoader) {
+	public BackgroundPanel(ImageLoader<? extends ImageAdapter> imageLoader) {
 		setImage(imageLoader.getImageResource(ImageLoader.ImageResource.BACKGROUND_PNG));
 		setLayout(new BorderLayout());
 	}
 
-	public void setImage(AwtImageAdapter image) {
+	public void setImage(ImageAdapter image) {
 		this.image = image;
 		repaint();
 	}

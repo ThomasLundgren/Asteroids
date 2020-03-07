@@ -23,7 +23,7 @@ public final class GameController implements IObservable {
 	private final CommandController commandController;
 	private final PlayerShip playerShip;
 	private final Collection<Missile> missiles = new CopyOnWriteArrayList<>();
-	private final Collection<Asteroid> asteroids = new CopyOnWriteArrayList<>();
+	private final Collection<Entity> asteroids = new CopyOnWriteArrayList<>();
 	private final Collection<EnemyShip> enemyShips = new CopyOnWriteArrayList<>();
 	private final EntityFactory factory;
 	private final List<IObserver> observers = new ArrayList<>(1);
@@ -54,13 +54,13 @@ public final class GameController implements IObservable {
 	private void updatePositions() {
 		missiles.forEach(this::updatePosition);
 		asteroids.forEach(this::updatePosition);
-		enemyShips.forEach(Entity::updatePosition);
+		enemyShips.forEach(Entity::update);
 		updatePosition(playerShip);
 	}
 
 	private void spawnEnemies() {
 		if (asteroids.isEmpty() && enemyShips.isEmpty()) {
-			List<Asteroid> newAsteroids = factory.nextLevel(playerShip.getCenter());
+			List<Entity> newAsteroids = factory.nextLevel(playerShip.getCenter());
 			addAsteroids(newAsteroids);
 		}
 		if (enemyShipSpawnTimer > GameConfig.ENEMY_SHIP_SPAWN_TIME) {
@@ -131,7 +131,7 @@ public final class GameController implements IObservable {
 	}
 
 	private void updatePosition(Entity entity) {
-		entity.updatePosition();
+		entity.update();
 	}
 
 	private void executeActiveCommands() {
@@ -145,7 +145,7 @@ public final class GameController implements IObservable {
 	}
 
 	private void checkCollisions() {
-		for (Asteroid asteroid : asteroids) {
+		for (Entity asteroid : asteroids) {
 			if (playerShip.intersectsWith(asteroid)) {
 				collideEntities(playerShip, asteroid);
 			}
@@ -184,9 +184,12 @@ public final class GameController implements IObservable {
 
 		if (friendly == playerShip) {
 			centerPlayerShip();
+			if (playerShip.isDestroyed()) {
+				System.out.println("Game over");
+			}
 		}
 		if (enemy instanceof Asteroid) {
-			List<Asteroid> newAsteroids = ((Asteroid) enemy).shatter();
+			List<Entity> newAsteroids = ((Asteroid) enemy).shatter();
 			addAsteroids(newAsteroids);
 			asteroids.remove(enemy);
 		} else {
@@ -200,7 +203,7 @@ public final class GameController implements IObservable {
 		notifyObservers(ADD, missile);
 	}
 
-	private void addAsteroids(Collection<Asteroid> asteroids) {
+	private void addAsteroids(Collection<Entity> asteroids) {
 		this.asteroids.addAll(asteroids);
 		asteroids.forEach(a -> notifyObservers(ADD, a));
 	}

@@ -2,13 +2,11 @@ package se.hig.thlu.asteroids.gui;
 
 import se.hig.thlu.asteroids.config.GameConfig;
 import se.hig.thlu.asteroids.controller.GameController;
+import se.hig.thlu.asteroids.graphics.entitydrawer.AccelerationDrawer;
 import se.hig.thlu.asteroids.graphics.entitydrawer.AnimationDrawer;
 import se.hig.thlu.asteroids.graphics.entitydrawer.EntityDrawer;
-import se.hig.thlu.asteroids.graphics.entitydrawer.EntityDrawerDecorator;
-import se.hig.thlu.asteroids.graphics.entitydrawer.drawingstrategy.AccelerationDrawingStrategy;
 import se.hig.thlu.asteroids.graphics.entitydrawer.drawingstrategy.CenteredDrawingStrategy;
 import se.hig.thlu.asteroids.graphics.entitydrawer.drawingstrategy.DrawingParameters;
-import se.hig.thlu.asteroids.graphics.image.AwtImageAdapter;
 import se.hig.thlu.asteroids.graphics.image.ImageAdapter;
 import se.hig.thlu.asteroids.gui.eventlistener.AwtKeyboardAdapter;
 import se.hig.thlu.asteroids.model.*;
@@ -17,7 +15,6 @@ import se.hig.thlu.asteroids.storage.ImageLoader;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,7 +24,7 @@ public class SwingGUI extends JFrame implements GUI<AwtKeyboardAdapter> {
 	private final ImageLoader<? extends ImageAdapter> imageLoader;
 	private BackgroundPanel backgroundPanel;
 
-	public SwingGUI(ImageLoader<AwtImageAdapter> imageLoader) {
+	public SwingGUI(ImageLoader<? extends ImageAdapter> imageLoader) {
 		this.imageLoader = imageLoader;
 		backgroundPanel = new BackgroundPanel(imageLoader);
 		add(backgroundPanel);
@@ -56,42 +53,17 @@ public class SwingGUI extends JFrame implements GUI<AwtKeyboardAdapter> {
 			Object newValue = event.getValue();
 			if (newValue instanceof Explosion) {
 				Explosion explosion = (Explosion) newValue;
-				List<ImageAdapter> images = getExplosionImages(explosion);
+				List<? extends ImageAdapter> images =
+						imageLoader.getAnimationResource(ImageLoader.AnimationResource.EXPLOSIONS_ALL);
 				AnimationDrawer explAnimation = new AnimationDrawer(images,
 						explosion.getCenter(),
-						images.size() * 2,
-						2);
+						1);
 				backgroundPanel.addAnimationDrawer(explAnimation);
 			} else if (newValue instanceof Entity) {
 				Optional<EntityDrawer> entityDrawer = getDrawerFromEntity(event.getValue());
 				entityDrawer.ifPresent(drawer -> backgroundPanel.addEntityDrawer(event.getId(), drawer));
 			}
 		}
-	}
-
-	private List<ImageAdapter> getExplosionImages(Explosion explosion) {
-		List<ImageAdapter> images = new ArrayList<>(4);
-		switch (explosion.getSize()) {
-			case ONE:
-				images.add(imageLoader.getImageResource(ImageLoader.ImageResource.EXPLOSION_1));
-				break;
-			case TWO:
-				images.add(imageLoader.getImageResource(ImageLoader.ImageResource.EXPLOSION_1));
-				images.add(imageLoader.getImageResource(ImageLoader.ImageResource.EXPLOSION_2));
-				break;
-			case THREE:
-				images.add(imageLoader.getImageResource(ImageLoader.ImageResource.EXPLOSION_1));
-				images.add(imageLoader.getImageResource(ImageLoader.ImageResource.EXPLOSION_2));
-				images.add(imageLoader.getImageResource(ImageLoader.ImageResource.EXPLOSION_3));
-				break;
-			case FOUR:
-				images.add(imageLoader.getImageResource(ImageLoader.ImageResource.EXPLOSION_1));
-				images.add(imageLoader.getImageResource(ImageLoader.ImageResource.EXPLOSION_2));
-				images.add(imageLoader.getImageResource(ImageLoader.ImageResource.EXPLOSION_3));
-				images.add(imageLoader.getImageResource(ImageLoader.ImageResource.EXPLOSION_4));
-				break;
-		}
-		return images;
 	}
 
 	// TODO: This is not clean... Store images inside of Entities? Or create a hashmap with mappings from properties
@@ -112,22 +84,6 @@ public class SwingGUI extends JFrame implements GUI<AwtKeyboardAdapter> {
 					image = imageLoader.getImageResource(ImageLoader.ImageResource.ASTEROID_SMALL_PNG);
 					break;
 			}
-		} else if (entity instanceof Explosion) {
-			Explosion explosion = (Explosion) entity;
-			switch (explosion.getSize()) {
-				case ONE:
-					image = imageLoader.getImageResource(ImageLoader.ImageResource.EXPLOSION_1);
-					break;
-				case TWO:
-					image = imageLoader.getImageResource(ImageLoader.ImageResource.EXPLOSION_2);
-					break;
-				case THREE:
-					image = imageLoader.getImageResource(ImageLoader.ImageResource.EXPLOSION_3);
-					break;
-				case FOUR:
-					image = imageLoader.getImageResource(ImageLoader.ImageResource.EXPLOSION_4);
-					break;
-			}
 		} else if (entity instanceof EnemyShip) {
 			image = imageLoader.getImageResource(ImageLoader.ImageResource.ENEMY_SHIP_SMALL);
 		} else if (entity instanceof PlayerShip) {
@@ -138,8 +94,7 @@ public class SwingGUI extends JFrame implements GUI<AwtKeyboardAdapter> {
 			Entity ent = (Entity) entity;
 			EntityDrawer shipDrawer = new EntityDrawer(new CenteredDrawingStrategy(),
 					DrawingParameters.fromEntity(ent, image));
-			EntityDrawer acceleration = new EntityDrawerDecorator(new AccelerationDrawingStrategy(),
-					DrawingParameters.fromEntity(ent, image),
+			EntityDrawer acceleration = new AccelerationDrawer(DrawingParameters.fromEntity(ent, accelerationImg),
 					shipDrawer);
 
 			ent.addObserver(acceleration);

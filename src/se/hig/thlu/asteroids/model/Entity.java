@@ -23,7 +23,7 @@ public interface Entity extends IObservable {
 
 	Optional<Explosion> destroy();
 
-	void updatePosition();
+	void update();
 
 	boolean intersectsWith(Entity other);
 

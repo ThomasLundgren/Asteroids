@@ -8,20 +8,18 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-public class AnimationDrawer implements Animation {
+public class AnimationDrawer implements Drawer {
 
 	private final List<ImageAdapter> images = new ArrayList<>(4);
 	private final Point center;
-	private final int totalFrames;
 	private final int framesPerImage;
 	private boolean isFinished = false;
 	private int counter = 0;
 	private int currentImageIndex = 0;
 
-	public AnimationDrawer(Collection<ImageAdapter> images, Point center, int totalFrames, int framesPerImage) {
+	public AnimationDrawer(Collection<? extends ImageAdapter> images, Point center, int framesPerImage) {
 		this.images.addAll(images);
 		this.center = center;
-		this.totalFrames = totalFrames;
 		this.framesPerImage = framesPerImage;
 	}
 

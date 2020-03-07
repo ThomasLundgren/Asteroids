@@ -11,7 +11,7 @@ import static se.hig.thlu.asteroids.mathutil.Randomizer.randomSpeed;
 import static se.hig.thlu.asteroids.model.Asteroid.AsteroidSize.MEDIUM;
 import static se.hig.thlu.asteroids.model.Asteroid.AsteroidSize.SMALL;
 
-public final class Asteroid extends AbstractEntity implements Shatterable<Asteroid> {
+public final class Asteroid extends AbstractEntity implements Shatterable {
 
 	private final AsteroidSize asteroidSize;
 	private final RotationDirection rotationDirection;
@@ -28,7 +28,7 @@ public final class Asteroid extends AbstractEntity implements Shatterable<Astero
 	}
 
 	@Override
-	public void updatePosition() {
+	public void update() {
 		switch (rotationDirection) {
 			case LEFT:
 				turnLeft();
@@ -39,7 +39,7 @@ public final class Asteroid extends AbstractEntity implements Shatterable<Astero
 			default:
 				break;
 		}
-		super.updatePosition();
+		super.update();
 	}
 
 	@Override
@@ -64,7 +64,7 @@ public final class Asteroid extends AbstractEntity implements Shatterable<Astero
 	}
 
 	@Override
-	public List<Asteroid> shatter() {
+	public List<Entity> shatter() {
 		Asteroid.AsteroidSize newSize;
 		switch (asteroidSize) {
 			case LARGE:
@@ -83,11 +83,11 @@ public final class Asteroid extends AbstractEntity implements Shatterable<Astero
 		return createAsteroids(center, minSpeed, maxSpeed, newSize);
 	}
 
-	private List<Asteroid> createAsteroids(Point center, double minSpeed, double maxSpeed,
+	private List<Entity> createAsteroids(Point center, double minSpeed, double maxSpeed,
 										   Asteroid.AsteroidSize size) {
-		List<Asteroid> asteroids = new ArrayList<>(2);
+		List<Entity> asteroids = new ArrayList<>(2);
 		double parentDir = velocity.getDirection();
-		double deviationDeg = 30.0;
+		double deviationDeg = 75.0;
 		for (int i = 0; i < 2; i++) {
 			double randSpeed = randomSpeed(minSpeed, maxSpeed);
 			double randomDir = Randomizer.randomDirection(parentDir - deviationDeg, parentDir + deviationDeg);

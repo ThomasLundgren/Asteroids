@@ -16,6 +16,11 @@ public class EntityDrawerDecorator extends EntityDrawer {
 		this.decoratee = decoratee;
 	}
 
+	protected EntityDrawerDecorator (DrawingParameters drawingParameters, EntityDrawer decoratee) {
+		super(drawingParameters);
+		this.decoratee = decoratee;
+	}
+
 	@Override
 	public void draw(GraphicsAdapter<ImageAdapter> graphics) {
 		decoratee.draw(graphics);
@@ -24,12 +29,12 @@ public class EntityDrawerDecorator extends EntityDrawer {
 
 	@Override
 	public int getWidth() {
-		return StrictMath.max(decoratee.getWidth(), super.getWidth());
+		return drawingParameters.getWidth() + decoratee.getWidth();
 	}
 
 	@Override
 	public int getHeight() {
-		return StrictMath.max(decoratee.getHeight(), super.getHeight());
+		return drawingParameters.getHeight() + decoratee.getHeight();
 	}
 
 	@Override

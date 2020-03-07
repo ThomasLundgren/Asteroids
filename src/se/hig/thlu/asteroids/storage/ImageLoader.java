@@ -6,12 +6,15 @@ import se.hig.thlu.asteroids.graphics.image.ImageAdapter;
 import java.io.File;
 import java.io.IOException;
 import java.util.EnumMap;
+import java.util.List;
 
 public abstract class ImageLoader<T extends ImageAdapter> {
 
 	public static final String FS = File.separator;
 	protected final EnumMap<ImageResource, T> imageCache =
 			new EnumMap<>(ImageResource.class);
+	protected final EnumMap<AnimationResource, List<T>> animationCache =
+			new EnumMap<>(AnimationResource.class);
 
 	/*
 	Not handling the Exception here since we NEED all images.
@@ -27,10 +30,57 @@ public abstract class ImageLoader<T extends ImageAdapter> {
 
 	protected abstract T loadImage(ImageResource imageResource) throws IOException;
 
+	public List<T> getAnimationResource(AnimationResource animationResource) {
+		return animationCache.get(animationResource);
+	}
+
+	protected abstract List<T> loadAnimation(AnimationResource animationResource) throws IOException;
+
 	protected final void loadAllImages() throws IOException {
 		for (ImageResource imageResource : ImageResource.values()) {
 			T image = loadImage(imageResource);
 			imageCache.put(imageResource, image);
+		}
+		for (AnimationResource animationResource : AnimationResource.values()) {
+			List<T> animation = loadAnimation(animationResource);
+			animationCache.put(animationResource, animation);
+		}
+	}
+
+	public enum AnimationResource {
+		EXPLOSIONS_ALL(String.format("resources%simages%<sfinal%<sexplosions-all.png", FS),
+				1024, 768, 6, 8);
+
+		private final String imagePath;
+		private final int width, height, rows, columns;
+
+		// TODO: Move width and height out to Entity classes
+		AnimationResource(String imagePath, int width, int height, int rows, int columns) {
+			this.imagePath = imagePath;
+			this.width = width;
+			this.height = height;
+			this.rows = rows;
+			this.columns = columns;
+		}
+
+		protected String getImagePath() {
+			return imagePath;
+		}
+
+		public int getWidth() {
+			return width;
+		}
+
+		public int getHeight() {
+			return height;
+		}
+
+		public int getRows() {
+			return rows;
+		}
+
+		public int getColumns() {
+			return columns;
 		}
 	}
 
@@ -61,20 +111,7 @@ public abstract class ImageLoader<T extends ImageAdapter> {
 				(int) (6.0 * 1.5)),
 		MISSILE_ENEMY(String.format("resources%simages%<sfinal%<smissile-enemy-blue.png", FS),
 				9,
-				6),
-		EXPLOSION_1(String.format("resources%simages%<sfinal%<sexplosion-1.png", FS),
-				6,
-				6),
-		EXPLOSION_2(String.format("resources%simages%<sfinal%<sexplosion-2.png", FS),
-				18,
-				16),
-		EXPLOSION_3(String.format("resources%simages%<sfinal%<sexplosion-3.png", FS),
-				34,
-				36),
-		EXPLOSION_4(String.format("resources%simages%<sfinal%<sexplosion-4.png", FS),
-				52,
-				48),
-		;
+				6);
 
 		private final String imagePath;
 		private final int width, height;

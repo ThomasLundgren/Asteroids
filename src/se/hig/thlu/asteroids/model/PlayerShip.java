@@ -72,6 +72,8 @@ public final class PlayerShip extends AbstractEntity implements Shooter {
 		Point missileStart = Trigonometry.rotateAroundPoint(center,
 				rotation,
 				centerFrontDistance);
+		// TODO: Magic number...
+//		missileStart.setY(missileStart.getY() + 5.0);
 		return new Missile(missileStart, rotation, MissileSource.PLAYER);
 	}
 

@@ -90,7 +90,7 @@ public abstract class AbstractEntity implements Entity {
 		return Optional.empty();
 	}
 
-	public void updatePosition() {
+	public void update() {
 		double diffX = StrictMath.cos(StrictMath.toRadians(velocity.getDirection())) * velocity.getSpeed();
 		double diffY = StrictMath.sin(StrictMath.toRadians(velocity.getDirection())) * velocity.getSpeed();
 		Point newPos = new Point(center.getX() + diffX, center.getY() + diffY);

@@ -15,9 +15,9 @@ public final class DefaultFactory implements EntityFactory {
 	private int level = 0;
 
 	@Override
-	public List<Asteroid> nextLevel(Point playerCenter) {
+	public List<Entity> nextLevel(Point playerCenter) {
 		level++;
-		List<Asteroid> asteroids = new ArrayList<>(level);
+		List<Entity> asteroids = new ArrayList<>(level);
 		for (int i = 0; i < level; i++) {
 			Point randomPoint = randomPoint(playerCenter);
 			Asteroid newAsteroid = createLargeAsteroid(randomPoint);

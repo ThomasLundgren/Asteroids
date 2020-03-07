@@ -11,17 +11,34 @@ import se.hig.thlu.asteroids.observer.IObserver;
 
 public class EntityDrawer implements Drawer, IObserver {
 
-	private final DrawingStrategy drawingStrategy;
-	private final DrawingParameters drawingParameters;
+	protected DrawingStrategy drawingStrategy;
+	protected final DrawingParameters drawingParameters;
+	protected boolean isFinished = false;
 
 	public EntityDrawer(DrawingStrategy drawingStrategy, DrawingParameters initialParameters) {
 		this.drawingStrategy = drawingStrategy;
 		drawingParameters = initialParameters;
 	}
 
+	protected EntityDrawer(DrawingParameters drawingParameters) {
+		this.drawingParameters = drawingParameters;
+	}
+
+	protected final void setDrawingStrategy(DrawingStrategy drawingStrategy) {
+		this.drawingStrategy = drawingStrategy;
+	}
+
 	@Override
 	public void draw(GraphicsAdapter<ImageAdapter> graphics) {
+		if (isFinished) {
+			return;
+		}
 		drawingStrategy.draw(graphics, drawingParameters);
+	}
+
+	@Override
+	public boolean isFinished() {
+		return isFinished;
 	}
 
 	public int getWidth() {
@@ -43,6 +60,8 @@ public class EntityDrawer implements Drawer, IObserver {
 			drawingParameters.setWidth((int) value);
 		} else if (propertyName.equals(EntityProperty.HEIGHT.toString())) {
 			drawingParameters.setHeight((int) value);
+		} else if (propertyName.equals(EntityProperty.IS_DESTROYED.toString())) {
+			isFinished = (boolean) value;
 		}
 	}
 }

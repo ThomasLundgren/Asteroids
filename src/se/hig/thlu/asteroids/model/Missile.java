@@ -23,8 +23,8 @@ public final class Missile extends AbstractEntity {
 	}
 
 	@Override
-	public void updatePosition() {
-		super.updatePosition();
+	public void update() {
+		super.update();
 		distanceTravelled += missileSource.getMissileSpeed();
 		if (distanceTravelled > missileSource.getMissileDistance() * (double) GameConfig.WINDOW_WIDTH) {
 			destroy();
@@ -34,7 +34,7 @@ public final class Missile extends AbstractEntity {
 	private double distanceTravelled = 0.0;
 
 	public enum MissileSource {
-		PLAYER(9.0, 0.6, 17, 21),
+		PLAYER(9.0, 0.6, 17, 9),
 		ENEMY(5.0, 0.3, 9, 6);
 
 		private final double missileSpeed;
