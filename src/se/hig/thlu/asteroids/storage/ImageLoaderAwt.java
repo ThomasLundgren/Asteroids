@@ -7,6 +7,8 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class ImageLoaderAwt extends ImageLoader<AwtImageAdapter> {
@@ -15,17 +17,39 @@ public class ImageLoaderAwt extends ImageLoader<AwtImageAdapter> {
 	}
 
 	@Override
-	protected AwtImageAdapter loadImage(ImageResource imageResource) throws IOException {
+	protected List<AwtImageAdapter> spriteSheetToImageList(AwtImageAdapter spriteSheet, AnimationResource animation) {
+		int columns = animation.getColumns();
+		int rows = animation.getRows();
+		List<AwtImageAdapter> images = new ArrayList<>(rows * columns);
+
+		int width = spriteSheet.getWidth();
+		int height = spriteSheet.getHeight();
+		int stepX = width / columns;
+		int stepY = height / rows;
+		int x = 0;
+		int y = 0;
+		for (int i = 0; i < rows; i++) {
+			x = 0;
+			for (int j = 0; j < columns; j++) {
+				BufferedImage image = spriteSheet.getSubimage(x, y, stepX, stepY);
+				x += stepX;
+				images.add(new AwtImageAdapter(image));
+			}
+			y += stepY;
+		}
+		return images;
+	}
+
+	@Override
+	protected AwtImageAdapter loadImageFromString(String path, int width, int height) throws IOException {
 		ClassLoader classLoader = ImageLoaderAwt.class.getClassLoader();
 
 		try (InputStream stream = Objects.requireNonNull(classLoader
-				.getResourceAsStream(imageResource.getImagePath()))) {
+				.getResourceAsStream(path))) {
 			Image img = ImageIO.read(stream).getScaledInstance(
-					imageResource.getWidth(),
-					imageResource.getHeight(),
+					width,
+					height,
 					Image.SCALE_SMOOTH);
-			int width = img.getWidth(null);
-			int height = img.getHeight(null);
 
 			BufferedImage bufferedImage = new BufferedImage(width, height,
 					BufferedImage.TYPE_INT_ARGB);
@@ -36,10 +60,25 @@ public class ImageLoaderAwt extends ImageLoader<AwtImageAdapter> {
 		}
 	}
 
-	@Override
-	public String toString() {
-		return "ImageLoaderAwt{" +
-				"imageCache=" + imageCache +
-				'}';
-	}
+//	@Override
+//	protected List<AwtImageAdapter> loadAnimation(AnimationResource animationResource) throws IOException {
+//		ClassLoader classLoader = ImageLoaderAwt.class.getClassLoader();
+//		try (InputStream stream = Objects.requireNonNull(classLoader
+//				.getResourceAsStream(animationResource.getImagePath()))) {
+//			Image img = ImageIO.read(stream).getScaledInstance(
+//					animationResource.getWidth(),
+//					animationResource.getHeight(),
+//					Image.SCALE_SMOOTH);
+//			int width = img.getWidth(null);
+//			int height = img.getHeight(null);
+//
+//			BufferedImage bufferedImage = new BufferedImage(width, height,
+//					BufferedImage.TYPE_INT_ARGB);
+//			Graphics g = bufferedImage.getGraphics();
+//			g.drawImage(img, 0, 0, null);
+//			g.dispose();
+//
+//
+//		}
+//	}
 }

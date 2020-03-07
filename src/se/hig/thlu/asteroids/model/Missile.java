@@ -1,84 +1,51 @@
 package se.hig.thlu.asteroids.model;
 
 import se.hig.thlu.asteroids.config.GameConfig;
-import se.hig.thlu.asteroids.graphics.image.ImageAdapter;
-import se.hig.thlu.asteroids.graphics.renderer.GraphicsAdapter;
-import se.hig.thlu.asteroids.storage.ImageLoader;
 
-public final class Missile extends Entity {
+public final class Missile extends AbstractEntity {
 
 	private final MissileSource missileSource;
-	private ImageAdapter missileSprite;
 	private final Point startingPosition;
 
-	Missile(Point position, double direction, MissileSource source, ImageLoader<? extends ImageAdapter> imageLoader) {
+	Missile(Point position, double direction, MissileSource source) {
 		super(position,
-				new Velocity(source.getMissileSpeed(),
-						direction),
+				new Velocity(source.getMissileSpeed(), direction),
 				0.0,
-				imageLoader);
+				source.getWidth(),
+				source.getHeight());
 		rotation = direction;
 		startingPosition = position;
 		missileSource = source;
-		loadImages(imageLoader);
-		setWidth();
-		setHeight();
+	}
+
+	public MissileSource getMissileSource() {
+		return missileSource;
 	}
 
 	@Override
-	protected void loadImages(ImageLoader<? extends ImageAdapter> imageLoader) {
-		switch (missileSource) {
-			case PLAYER:
-				missileSprite = imageLoader.getImageResource(ImageLoader.ImageResource.MISSILE_PLAYER);
-				break;
-			case ENEMY:
-				missileSprite = imageLoader.getImageResource(ImageLoader.ImageResource.MISSILE_ENEMY);
-				break;
-		}
-	}
-
-	@Override
-	protected void setWidth() {
-		width = missileSprite.getWidth();
-	}
-
-	@Override
-	protected void setHeight() {
-		height = missileSprite.getHeight();
-	}
-
-	@Override
-	public void draw(GraphicsAdapter<? super ImageAdapter> graphics) {
-		int cornerX = (int) center.getX() - width / 2;
-		int cornerY = (int) center.getY() - height / 2;
-		graphics.drawImageWithRotation(missileSprite,
-				rotation,
-				center.getX(),
-				center.getY(),
-				(int) cornerX,
-				(int) cornerY);
-	}
-
-	@Override
-	public void updatePosition() {
-		super.updatePosition();
-		distanceTravelled += missileSource.missileSpeed;
-		if (distanceTravelled > missileSource.missileDistance * (double) GameConfig.WINDOW_WIDTH) {
-			collide();
+	public void update() {
+		super.update();
+		distanceTravelled += missileSource.getMissileSpeed();
+		if (distanceTravelled > missileSource.getMissileDistance() * (double) GameConfig.WINDOW_WIDTH) {
+			destroy();
 		}
 	}
 
 	private double distanceTravelled = 0.0;
 
 	public enum MissileSource {
-		PLAYER(9.0, 0.6), ENEMY(5.0, 0.3);
+		PLAYER(9.0, 0.6, 17, 9),
+		ENEMY(5.0, 0.3, 9, 6);
 
 		private final double missileSpeed;
 		private final double missileDistance;
+		private final int width, height;
 
-		MissileSource(double missileSpeed, double missileDistance) {
+		MissileSource(double missileSpeed, double missileDistance, int width, int height) {
 			this.missileSpeed = missileSpeed;
 			this.missileDistance = missileDistance;
+			this.width = width;
+			this.height = height;
 		}
 
 		private double getMissileSpeed() {
@@ -87,6 +54,14 @@ public final class Missile extends Entity {
 
 		public double getMissileDistance() {
 			return missileDistance;
+		}
+
+		public int getWidth() {
+			return width;
+		}
+
+		public int getHeight() {
+			return height;
 		}
 	}
 }

@@ -1,9 +1,9 @@
 package se.hig.thlu.asteroids.gui;
 
+import se.hig.thlu.asteroids.graphics.entitydrawer.Drawer;
+import se.hig.thlu.asteroids.graphics.graphicsadapter.AwtGraphicsAdapter;
+import se.hig.thlu.asteroids.graphics.graphicsadapter.GraphicsAdapter;
 import se.hig.thlu.asteroids.graphics.image.ImageAdapter;
-import se.hig.thlu.asteroids.graphics.renderer.AwtGraphicsAdapter;
-import se.hig.thlu.asteroids.graphics.renderer.GraphicsAdapter;
-import se.hig.thlu.asteroids.model.Entity;
 import se.hig.thlu.asteroids.storage.ImageLoader;
 
 import javax.swing.*;
@@ -13,8 +13,10 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 public final class BackgroundPanel extends JPanel {
 
+	//	private final Map<UUID, Drawer> drawers = new ConcurrentHashMap<>(100);
+//	private final Collection<AnimationDrawer> animationDrawers = new CopyOnWriteArrayList<>();
+	private final Collection<Drawer> drawers = new CopyOnWriteArrayList<>();
 	private ImageAdapter image;
-	private final Collection<Entity> entities = new CopyOnWriteArrayList<>();
 
 	public BackgroundPanel(ImageLoader<? extends ImageAdapter> imageLoader) {
 		setImage(imageLoader.getImageResource(ImageLoader.ImageResource.BACKGROUND_PNG));
@@ -43,23 +45,38 @@ public final class BackgroundPanel extends JPanel {
 		Dimension dim = getSize();
 		graphics.drawImage(image, 0, 0, dim.width, dim.height);
 
-		entities.forEach(entity -> entity.draw(graphics));
+		drawers.forEach(drawer -> {
+			drawer.draw(graphics);
+			if (drawer.isFinished()) {
+				drawers.remove(drawer);
+			}
+		});
 
+//		drawers.forEach((id, drawer) -> drawer.draw(graphics));
+//		drawers.forEach(aniDrawer -> {
+//			if (aniDrawer.isFinished()) {
+//				drawers.remove(aniDrawer);
+//			} else {
+//				aniDrawer.draw(graphics);
+//			}
+//		});
 		repaint();
 	}
 
-	public void addEntity(Entity entity) {
-		entities.add(entity);
-		repaint();
+	public void addDrawer(Drawer drawer) {
+		drawers.add(drawer);
 	}
 
-	public void removeEntity(Entity entity) {
-		entities.remove(entity);
-		repaint();
-	}
+//	public void addAnimationDrawer(AnimationDrawer animationDrawer) {
+//		animationDrawers.add(animationDrawer);
+//	}
+//
+//	public void addEntityDrawer(UUID id, EntityDrawer entityDrawer) {
+//		drawers.put(id, entityDrawer);
+//	}
+//
+//	public void removeEntityDrawer(UUID id) {
+//		Drawer er = drawers.remove(id);
+//	}
 
-	public void addEntities(Collection<Entity> entities) {
-		this.entities.addAll(entities);
-		repaint();
-	}
 }
