@@ -14,8 +14,6 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 public final class BackgroundPanel extends JPanel {
 
-	//	private final Map<UUID, Drawer> drawers = new ConcurrentHashMap<>(100);
-//	private final Collection<AnimationDrawer> animationDrawers = new CopyOnWriteArrayList<>();
 	private final Collection<Drawer> drawers = new CopyOnWriteArrayList<>();
 	private ImageAdapter image;
 
@@ -52,32 +50,11 @@ public final class BackgroundPanel extends JPanel {
 				drawers.remove(drawer);
 			}
 		});
-
-//		drawers.forEach((id, drawer) -> drawer.draw(graphics));
-//		drawers.forEach(aniDrawer -> {
-//			if (aniDrawer.isFinished()) {
-//				drawers.remove(aniDrawer);
-//			} else {
-//				aniDrawer.draw(graphics);
-//			}
-//		});
 		repaint();
 	}
 
 	public void addDrawer(Drawer drawer) {
 		drawers.add(drawer);
 	}
-
-//	public void addAnimationDrawer(AnimationDrawer animationDrawer) {
-//		animationDrawers.add(animationDrawer);
-//	}
-//
-//	public void addEntityDrawer(UUID id, EntityDrawer entityDrawer) {
-//		drawers.put(id, entityDrawer);
-//	}
-//
-//	public void removeEntityDrawer(UUID id) {
-//		Drawer er = drawers.remove(id);
-//	}
 
 }
