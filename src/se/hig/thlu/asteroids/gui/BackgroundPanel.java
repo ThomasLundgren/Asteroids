@@ -5,6 +5,7 @@ import se.hig.thlu.asteroids.graphics.graphicsadapter.AwtGraphicsAdapter;
 import se.hig.thlu.asteroids.graphics.graphicsadapter.GraphicsAdapter;
 import se.hig.thlu.asteroids.graphics.image.ImageAdapter;
 import se.hig.thlu.asteroids.storage.ImageLoader;
+import se.hig.thlu.asteroids.storage.ImageResource;
 
 import javax.swing.*;
 import java.awt.*;
@@ -19,7 +20,7 @@ public final class BackgroundPanel extends JPanel {
 	private ImageAdapter image;
 
 	public BackgroundPanel(ImageLoader<? extends ImageAdapter> imageLoader) {
-		setImage(imageLoader.getImageResource(ImageLoader.ImageResource.BACKGROUND_PNG));
+		setImage(imageLoader.getImageResource(ImageResource.BACKGROUND_PNG));
 		setLayout(new BorderLayout());
 	}
 

@@ -10,10 +10,12 @@ import se.hig.thlu.asteroids.graphics.entitydrawer.drawingstrategy.CenteredDrawi
 import se.hig.thlu.asteroids.graphics.entitydrawer.drawingstrategy.DrawingParameters;
 import se.hig.thlu.asteroids.graphics.image.ImageAdapter;
 import se.hig.thlu.asteroids.gui.eventlistener.AwtKeyboardAdapter;
-import se.hig.thlu.asteroids.model.*;
+import se.hig.thlu.asteroids.model.Explosion;
 import se.hig.thlu.asteroids.model.entity.*;
 import se.hig.thlu.asteroids.observer.Event;
+import se.hig.thlu.asteroids.storage.AnimationResource;
 import se.hig.thlu.asteroids.storage.ImageLoader;
+import se.hig.thlu.asteroids.storage.ImageResource;
 
 import javax.swing.*;
 import java.awt.*;
@@ -57,7 +59,7 @@ public class SwingGUI extends JFrame implements GUI<AwtKeyboardAdapter> {
 			if (newValue instanceof Explosion) {
 				Explosion explosion = (Explosion) newValue;
 				List<? extends ImageAdapter> images =
-						imageLoader.getAnimationResource(ImageLoader.AnimationResource.EXPLOSIONS_ALL);
+						imageLoader.getAnimationResource(AnimationResource.EXPLOSIONS_ALL);
 				Drawer explAnimation = new AnimationDrawer(images,
 						explosion.getCenter(),
 						2);
@@ -78,21 +80,21 @@ public class SwingGUI extends JFrame implements GUI<AwtKeyboardAdapter> {
 			Asteroid asteroid = (Asteroid) entity;
 			switch (asteroid.getAsteroidSize()) {
 				case LARGE:
-					image = imageLoader.getImageResource(ImageLoader.ImageResource.ASTEROID_LARGE_PNG);
+					image = imageLoader.getImageResource(ImageResource.ASTEROID_LARGE_PNG);
 					break;
 				case MEDIUM:
-					image = imageLoader.getImageResource(ImageLoader.ImageResource.ASTEROID_MEDIUM_PNG);
+					image = imageLoader.getImageResource(ImageResource.ASTEROID_MEDIUM_PNG);
 					break;
 				case SMALL:
-					image = imageLoader.getImageResource(ImageLoader.ImageResource.ASTEROID_SMALL_PNG);
+					image = imageLoader.getImageResource(ImageResource.ASTEROID_SMALL_PNG);
 					break;
 			}
 		} else if (entity instanceof EnemyShip) {
-			image = imageLoader.getImageResource(ImageLoader.ImageResource.ENEMY_SHIP_SMALL);
+			image = imageLoader.getImageResource(ImageResource.ENEMY_SHIP_SMALL);
 		} else if (entity instanceof PlayerShip) {
 			ImageAdapter accelerationImg =
-					imageLoader.getImageResource(ImageLoader.ImageResource.PLAYER_SHIP_ACCELERATION_PNG);
-			image = imageLoader.getImageResource(ImageLoader.ImageResource.PLAYER_SHIP_PNG);
+					imageLoader.getImageResource(ImageResource.PLAYER_SHIP_ACCELERATION_PNG);
+			image = imageLoader.getImageResource(ImageResource.PLAYER_SHIP_PNG);
 
 			Entity ent = (Entity) entity;
 			EntityDrawer shipDrawer = new EntityDrawer(new CenteredDrawingStrategy(),
@@ -106,9 +108,9 @@ public class SwingGUI extends JFrame implements GUI<AwtKeyboardAdapter> {
 		} else if (entity instanceof Missile) {
 			Missile missile = (Missile) entity;
 			if (missile.getMissileSource() == Missile.MissileSource.PLAYER) {
-				image = imageLoader.getImageResource(ImageLoader.ImageResource.MISSILE_PLAYER);
+				image = imageLoader.getImageResource(ImageResource.MISSILE_PLAYER);
 			} else {
-				image = imageLoader.getImageResource(ImageLoader.ImageResource.MISSILE_ENEMY);
+				image = imageLoader.getImageResource(ImageResource.MISSILE_ENEMY);
 			}
 		}
 
