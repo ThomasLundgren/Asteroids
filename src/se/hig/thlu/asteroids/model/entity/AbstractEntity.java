@@ -62,10 +62,12 @@ public abstract class AbstractEntity implements Entity {
 
 	protected void turnLeft() {
 		setRotation(rotation - turningDegree);
+		notifyObservers(EntityProperty.TURN_LEFT, true);
 	}
 
 	protected void turnRight() {
 		setRotation(rotation + turningDegree);
+		notifyObservers(EntityProperty.TURN_LEFT, true);
 	}
 
 	public double getRotation() {
