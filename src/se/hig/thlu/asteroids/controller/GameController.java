@@ -22,8 +22,8 @@ public final class GameController implements IObservable {
 	private final CommandController commandController;
 	private final PlayerShip playerShip;
 	private final Collection<Missile> missiles = new CopyOnWriteArrayList<>();
-	private final Collection<Entity> asteroids = new CopyOnWriteArrayList<>();
-	private final Collection<EnemyShip> enemyShips = new CopyOnWriteArrayList<>();
+	private final Collection<Entity> enemies = new CopyOnWriteArrayList<>();
+//	private final Collection<EnemyShip> enemyShips = new CopyOnWriteArrayList<>();
 	private final EntityFactory factory;
 	private final List<IObserver> observers = new ArrayList<>(1);
 	private BigDecimal totalGameTime = new BigDecimal("0.0");
@@ -40,8 +40,6 @@ public final class GameController implements IObservable {
 		centerPlayerShip();
 	}
 
-	//TODO: Inform GUI of new and destroyed Entities through propertyChangeSupport
-
 	public void update(double delta) {
 		updateTimes(delta);
 		spawnEnemies();
@@ -52,20 +50,19 @@ public final class GameController implements IObservable {
 
 	private void updatePositions() {
 		missiles.forEach(this::updatePosition);
-		asteroids.forEach(this::updatePosition);
-		enemyShips.forEach(Entity::update);
+		enemies.forEach(this::updatePosition);
 		updatePosition(playerShip);
 	}
 
 	private void spawnEnemies() {
-		if (asteroids.isEmpty() && enemyShips.isEmpty()) {
-			List<Entity> newAsteroids = factory.nextLevel(playerShip.getCenter());
-			addAsteroids(newAsteroids);
+		if (enemies.isEmpty()) {
+			List<Entity> newEnemies = factory.nextLevel(playerShip.getCenter());
+			addEnemies(newEnemies);
 		}
 		if (enemyShipSpawnTimer > GameConfig.ENEMY_SHIP_SPAWN_TIME) {
 			enemyShipSpawnTimer = 0.0;
 			EnemyShip enemyShip = factory.createEnemyShip(playerShip.getCenter());
-			addEnemyShip(enemyShip);
+			addEnemy(enemyShip);
 		}
 	}
 
@@ -144,26 +141,13 @@ public final class GameController implements IObservable {
 	}
 
 	private void checkCollisions() {
-		for (Entity asteroid : asteroids) {
+		for (Entity asteroid : enemies) {
 			if (playerShip.intersectsWith(asteroid)) {
 				collideEntities(playerShip, asteroid);
 			}
 			for (Missile missile : missiles) {
 				if (missile.intersectsWith(asteroid)) {
 					collideEntities(missile, asteroid);
-				} else if (missile.isDestroyed()) {
-					// Missile has selfdestructed
-					missiles.remove(missile);
-				}
-			}
-		}
-		for (EnemyShip enemyShip : enemyShips) {
-			if (playerShip.intersectsWith(enemyShip)) {
-				collideEntities(playerShip, enemyShip);
-			}
-			for (Missile missile : missiles) {
-				if (missile.intersectsWith(enemyShip)) {
-					collideEntities(missile, enemyShip);
 				} else if (missile.isDestroyed()) {
 					// Missile has selfdestructed
 					missiles.remove(missile);
@@ -185,13 +169,11 @@ public final class GameController implements IObservable {
 				System.out.println("Game over");
 			}
 		}
-		if (enemy instanceof Asteroid) {
-			List<Entity> newAsteroids = ((Asteroid) enemy).shatter();
-			addAsteroids(newAsteroids);
-			asteroids.remove(enemy);
-		} else {
-			enemyShips.remove((EnemyShip) enemy);
+		if (enemy instanceof Shatterable) {
+			List<Entity> newAsteroids = ((Shatterable) enemy).shatter();
+			addEnemies(newAsteroids);
 		}
+		enemies.remove(enemy);
 	}
 
 	private void addMissile(Missile missile) {
@@ -199,14 +181,14 @@ public final class GameController implements IObservable {
 		notifyObservers(ADD, missile);
 	}
 
-	private void addAsteroids(Collection<Entity> asteroids) {
-		this.asteroids.addAll(asteroids);
-		asteroids.forEach(a -> notifyObservers(ADD, a));
+	private void addEnemies(Collection<Entity> enemies) {
+		this.enemies.addAll(enemies);
+		enemies.forEach(a -> notifyObservers(ADD, a));
 	}
 
-	private void addEnemyShip(EnemyShip enemyShip) {
-		enemyShips.add(enemyShip);
-		notifyObservers(ADD, enemyShip);
+	private void addEnemy(Entity enemy) {
+		enemies.add(enemy);
+		notifyObservers(ADD, enemy);
 	}
 
 	private void addExplosion(Explosion explosion) {
