@@ -67,14 +67,8 @@ public final class GameController implements IObservable {
 	}
 
 	private void notifyObservers(Action action, Object object) {
-		UUID id = null;
-		if (object instanceof Entity) {
-			id = ((Entity) object).getId();
-		} else {
-			id = UUID.randomUUID();
-		}
 		for (IObserver observer : observers) {
-			Event event = new Event(object, id);
+			Event event = new Event(object);
 			observer.onNotify(action.toString(), event);
 		}
 	}

@@ -12,11 +12,6 @@ public class Event {
 		id = UUID.randomUUID();
 	}
 
-	public Event(Object value, UUID id) {
-		this.value = value;
-		this.id = id;
-	}
-
 	public UUID getId() {
 		return id;
 	}

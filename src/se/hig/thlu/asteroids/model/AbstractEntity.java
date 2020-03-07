@@ -8,13 +8,11 @@ import se.hig.thlu.asteroids.observer.IObserver;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Optional;
-import java.util.UUID;
 
 public abstract class AbstractEntity implements Entity {
 
 	protected final double turningDegree;
 	protected Collection<IObserver> observers = new ArrayList<>(1);
-	protected final UUID id = UUID.randomUUID();
 	// TODO: Extract the three rows below into separate object Position or smth?
 	protected Point center;
 	protected double rotation = 0.0;
@@ -28,10 +26,6 @@ public abstract class AbstractEntity implements Entity {
 		this.turningDegree = turningDegree;
 		this.width = width;
 		this.height = height;
-	}
-
-	public UUID getId() {
-		return id;
 	}
 
 	public int getWidth() {
