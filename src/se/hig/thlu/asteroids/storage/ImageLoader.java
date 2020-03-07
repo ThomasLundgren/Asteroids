@@ -28,13 +28,26 @@ public abstract class ImageLoader<T extends ImageAdapter> {
 		return imageCache.get(imageResource);
 	}
 
-	protected abstract T loadImage(ImageResource imageResource) throws IOException;
-
 	public List<T> getAnimationResource(AnimationResource animationResource) {
 		return animationCache.get(animationResource);
 	}
 
-	protected abstract List<T> loadAnimation(AnimationResource animationResource) throws IOException;
+	protected T loadImage(ImageResource image) throws IOException {
+		return loadImageFromString(image.imagePath,
+				image.getWidth(),
+				image.getHeight());
+	}
+
+	protected List<T> loadAnimation(AnimationResource animation) throws IOException {
+		T spriteSheet = loadImageFromString(animation.getImagePath(),
+				animation.getWidth(),
+				animation.getHeight());
+		return spriteSheetToImageList(spriteSheet, animation);
+	}
+
+	protected abstract List<T> spriteSheetToImageList(T spriteSheet, AnimationResource animation);
+
+	protected abstract T loadImageFromString(String path, int width, int height) throws IOException;
 
 	protected final void loadAllImages() throws IOException {
 		for (ImageResource imageResource : ImageResource.values()) {
