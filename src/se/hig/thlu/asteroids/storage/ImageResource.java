@@ -30,8 +30,8 @@ public enum ImageResource {
 			(int) (11.0 * 1.5),
 			(int) (6.0 * 1.5)),
 	MISSILE_ENEMY(String.format("resources%simages%<sfinal%<smissile-enemy-blue.png", FS),
-			9,
-			6);
+			(int) (9.0 * 1.0),
+			(int) (6.0 * 1.0));
 
 	private final String imagePath;
 	private final int width, height;

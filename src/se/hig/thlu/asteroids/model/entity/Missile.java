@@ -8,13 +8,16 @@ public final class Missile extends AbstractEntity {
 
 	private final MissileSource missileSource;
 	private final Point startingPosition;
+	private double distanceTravelled = 0.0;
+	private final double maxDistance;
 
-	Missile(Point position, double direction, MissileSource source) {
+	Missile(Point position, double direction, MissileSource source, double maxDistance) {
 		super(position,
 				new Velocity(source.getMissileSpeed(), direction),
 				0.0,
 				source.getWidth(),
 				source.getHeight());
+		this.maxDistance = maxDistance;
 		rotation = direction;
 		startingPosition = position;
 		missileSource = source;
@@ -28,34 +31,28 @@ public final class Missile extends AbstractEntity {
 	public void update() {
 		super.update();
 		distanceTravelled += missileSource.getMissileSpeed();
-		if (distanceTravelled > missileSource.getMissileDistance() * (double) GameConfig.WINDOW_WIDTH) {
+		if (distanceTravelled > maxDistance * (double) GameConfig.WINDOW_WIDTH) {
 			destroy();
 		}
 	}
 
-	private double distanceTravelled = 0.0;
-
 	public enum MissileSource {
-		PLAYER(9.0, 0.6, 17, 9),
-		ENEMY(5.0, 0.3, 9, 6);
+		PLAYER(9.0,  17, 9, 12),
+		ENEMY(4.0,  9, 6, 310);
 
 		private final double missileSpeed;
-		private final double missileDistance;
 		private final int width, height;
+		private final int coolDown;
 
-		MissileSource(double missileSpeed, double missileDistance, int width, int height) {
+		MissileSource(double missileSpeed, int width, int height, int coolDown) {
 			this.missileSpeed = missileSpeed;
-			this.missileDistance = missileDistance;
 			this.width = width;
 			this.height = height;
+			this.coolDown = coolDown;
 		}
 
 		private double getMissileSpeed() {
 			return missileSpeed;
-		}
-
-		public double getMissileDistance() {
-			return missileDistance;
 		}
 
 		public int getWidth() {
@@ -64,6 +61,10 @@ public final class Missile extends AbstractEntity {
 
 		public int getHeight() {
 			return height;
+		}
+
+		public int getCoolDown() {
+			return coolDown;
 		}
 	}
 }

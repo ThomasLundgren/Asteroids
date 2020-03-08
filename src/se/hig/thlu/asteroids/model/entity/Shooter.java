@@ -1,10 +1,10 @@
 package se.hig.thlu.asteroids.model.entity;
 
-import se.hig.thlu.asteroids.model.entity.Missile;
+import java.util.Optional;
 
 @FunctionalInterface
 public interface Shooter {
 
-	Missile shoot(double direction);
+	Optional<Missile> shoot(double direction, double distance);
 
 }

@@ -31,4 +31,11 @@ public enum Trigonometry {
 		double y = rotationPoint.getY() + yRad * distance;
 		return new Point(x, y);
 	}
+
+	public static double getAngle(Point origin, Point target) {
+		double angle = Math.toDegrees(StrictMath.atan2(target.getY() - origin.getY(),
+				target.getX() - origin.getX()));
+
+		return (angle + 360.0) % 360.0;
+	}
 }

@@ -4,14 +4,19 @@ import se.hig.thlu.asteroids.config.GameConfig;
 import se.hig.thlu.asteroids.controller.command.CommandController;
 import se.hig.thlu.asteroids.controller.command.CommandController.CommandType;
 import se.hig.thlu.asteroids.factory.EntityFactory;
-import se.hig.thlu.asteroids.model.*;
+import se.hig.thlu.asteroids.mathutil.Trigonometry;
+import se.hig.thlu.asteroids.model.Explosion;
+import se.hig.thlu.asteroids.model.Point;
 import se.hig.thlu.asteroids.model.entity.*;
 import se.hig.thlu.asteroids.observer.Event;
 import se.hig.thlu.asteroids.observer.IObservable;
 import se.hig.thlu.asteroids.observer.IObserver;
 
 import java.math.BigDecimal;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import static se.hig.thlu.asteroids.controller.GameController.Action.ADD;
@@ -24,11 +29,9 @@ public final class GameController implements IObservable {
 	private final PlayerShip playerShip;
 	private final Collection<Missile> missiles = new CopyOnWriteArrayList<>();
 	private final Collection<Entity> enemies = new CopyOnWriteArrayList<>();
-//	private final Collection<EnemyShip> enemyShips = new CopyOnWriteArrayList<>();
 	private final EntityFactory factory;
 	private final List<IObserver> observers = new ArrayList<>(1);
 	private BigDecimal totalGameTime = new BigDecimal("0.0");
-	private double timeSinceLastShot = Double.MAX_VALUE;
 	private double enemyShipSpawnTimer = 0.0;
 	private boolean canShoot = true;
 
@@ -45,14 +48,14 @@ public final class GameController implements IObservable {
 		updateTimes(delta);
 		spawnEnemies();
 		executeActiveCommands();
-		updatePositions();
+		updateEntities();
 		checkCollisions();
 	}
 
-	private void updatePositions() {
-		missiles.forEach(this::updatePosition);
-		enemies.forEach(this::updatePosition);
-		updatePosition(playerShip);
+	private void updateEntities() {
+		missiles.forEach(this::updateEntity);
+		enemies.forEach(this::updateEntity);
+		updateEntity(playerShip);
 	}
 
 	private void spawnEnemies() {
@@ -89,12 +92,10 @@ public final class GameController implements IObservable {
 				commandController.deactivate(CommandType.TURN_LEFT);
 				break;
 			case SPACE_BAR:
-				if (timeSinceLastShot > GameConfig.PLAYER_MISSILE_RECHARGE_MS && canShoot) {
-					canShoot = false;
-					timeSinceLastShot = 0.0;
-					Missile missile = playerShip.shoot(playerShip.getRotation());
-					addMissile(missile);
-				}
+//				canShoot = false;
+				timeSinceLastShot = 0.0;
+				Optional<Missile> missile = playerShip.shoot(playerShip.getRotation(), 0.6);
+				missile.ifPresent(this::addMissile);
 				break;
 			default:
 				break;
@@ -114,15 +115,22 @@ public final class GameController implements IObservable {
 				commandController.deactivate(CommandType.TURN_RIGHT);
 				break;
 			case SPACE_BAR:
-				canShoot = true;
+//				canShoot = true;
 				break;
 			default:
 				break;
 		}
 	}
 
-	private void updatePosition(Entity entity) {
+	private void updateEntity(Entity entity) {
 		entity.update();
+		if (entity instanceof Shooter && entity != playerShip) {
+			double direction = Trigonometry.getAngle(entity.getCenter(), playerShip.getCenter());
+			double distance = entity.getCenter().distanceTo(playerShip.getCenter()) + 50.0;
+			distance /= (double) GameConfig.WINDOW_WIDTH;
+			Optional<Missile> missile = ((Shooter) entity).shoot(direction, distance);
+			missile.ifPresent(this::addEnemy);
+		}
 	}
 
 	private void executeActiveCommands() {
@@ -136,13 +144,16 @@ public final class GameController implements IObservable {
 	}
 
 	private void checkCollisions() {
-		for (Entity asteroid : enemies) {
-			if (playerShip.intersectsWith(asteroid)) {
-				collideEntities(playerShip, asteroid);
+		for (Entity enemy : enemies) {
+			if (playerShip.intersectsWith(enemy)) {
+				collideEntities(playerShip, enemy);
+			}
+			if (enemy.isDestroyed()) {
+				enemies.remove(enemy);
 			}
 			for (Missile missile : missiles) {
-				if (missile.intersectsWith(asteroid)) {
-					collideEntities(missile, asteroid);
+				if (missile.intersectsWith(enemy)) {
+					collideEntities(missile, enemy);
 				} else if (missile.isDestroyed()) {
 					// Missile has selfdestructed
 					missiles.remove(missile);

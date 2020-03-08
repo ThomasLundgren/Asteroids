@@ -76,7 +76,6 @@ public class SwingGUI extends JFrame implements GUI<AwtKeyboardAdapter> {
 	//  to Images?
 	private Optional<Drawer> getDrawerFromEntity(Object entity) {
 		ImageAdapter image = null;
-
 		if (entity instanceof Asteroid) {
 			Asteroid asteroid = (Asteroid) entity;
 			switch (asteroid.getAsteroidSize()) {

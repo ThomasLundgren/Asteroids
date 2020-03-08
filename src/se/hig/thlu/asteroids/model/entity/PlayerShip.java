@@ -14,7 +14,7 @@ public final class PlayerShip extends AbstractEntity implements Shooter {
 	private static final double ACCELERATION = 0.04;
 	private static final double DECELERATION = ACCELERATION / 2.5;
 	private int lives = 3;
-	private boolean isAccelerating = false;
+	private int ticksSinceLastShot = 1337;
 
 	public PlayerShip() {
 		super(new Point(),
@@ -25,7 +25,6 @@ public final class PlayerShip extends AbstractEntity implements Shooter {
 	}
 
 	public void accelerate() {
-		isAccelerating = true;
 		notifyObservers(EntityProperty.IS_ACCELERATING,true);
 
 		Velocity acceleration = new Velocity(ACCELERATION, rotation);
@@ -36,7 +35,6 @@ public final class PlayerShip extends AbstractEntity implements Shooter {
 	}
 
 	public void decelerate() {
-		isAccelerating = false;
 		notifyObservers(EntityProperty.IS_ACCELERATING,false);
 		if (velocity.getSpeed() < DECELERATION) {
 			velocity = new Velocity(0.0, velocity.getDirection());
@@ -70,14 +68,24 @@ public final class PlayerShip extends AbstractEntity implements Shooter {
 	}
 
 	@Override
-	public Missile shoot(double direction) {
-		double centerFrontDistance = (double) (width / 2);
+	public Optional<Missile> shoot(double direction, double distance) {
+		if (ticksSinceLastShot < MissileSource.PLAYER.getCoolDown()) {
+			System.out.println("Empty");
+			return Optional.empty();
+		}
+		ticksSinceLastShot = 0;
+		double centerFrontDistance = ((double) width / 2.0);
 		Point missileStart = Trigonometry.rotateAroundPoint(center,
 				rotation,
 				centerFrontDistance);
-		// TODO: Magic number...
-//		missileStart.setY(missileStart.getY() + 5.0);
-		return new Missile(missileStart, rotation, MissileSource.PLAYER);
+		Missile missile = new Missile(missileStart, rotation, MissileSource.PLAYER, 0.6);
+		System.out.println("Shot");
+		return Optional.of(missile);
 	}
 
+	@Override
+	public void update() {
+		super.update();
+		ticksSinceLastShot++;
+	}
 }
