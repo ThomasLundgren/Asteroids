@@ -1,7 +1,7 @@
 package se.hig.thlu.asteroids.storage;
 
 import se.hig.thlu.asteroids.graphics.image.ImageAdapter;
-import se.hig.thlu.asteroids.model.Dimension;
+import se.hig.thlu.asteroids.model.Dim;
 
 import java.io.File;
 import java.io.IOException;
@@ -13,9 +13,11 @@ public abstract class AbstractImageLoader<T extends ImageAdapter> implements Ima
 	public static final String FS = File.separator;
 	protected final EnumMap<ImageResource, T> imageCache =
 			new EnumMap<>(ImageResource.class);
+	protected final EnumMap<ImageResource, Map<Dim, T>> sizedImageCache =
+			new EnumMap<>(ImageResource.class);
 	protected final EnumMap<AnimationResource, List<T>> animationCache =
 			new EnumMap<>(AnimationResource.class);
-	protected final EnumMap<AnimationResource, Map<Dimension, List<T>>> sizedAnimationCache =
+	protected final EnumMap<AnimationResource, Map<Dim, List<T>>> sizedAnimationCache =
 			new EnumMap<>(AnimationResource.class);
 
 	/*
@@ -27,17 +29,19 @@ public abstract class AbstractImageLoader<T extends ImageAdapter> implements Ima
 	}
 
 	@Override
-	public T getImage(ImageResource imageResource) {
-		return imageCache.get(imageResource);
+	public T getImage(ImageResource imageResource, Dim dimension) {
+		Optional<T> resizedImage = getFromImageResizeCache(imageResource, dimension);
+		System.out.println("ResizedImage present? " + resizedImage.isPresent());
+		return resizedImage.orElseGet(() -> resizeAndCacheImage(imageResource, dimension));
 	}
 
 	@Override
-	public List<T> getAnimation(AnimationResource animationResource, Dimension dimension) {
-		List<T> resizedAnimation = getFromResizeCache(animationResource, dimension);
+	public List<T> getAnimation(AnimationResource animationResource, Dim dimension) {
+		List<T> resizedAnimation = getFromAnimationResizeCache(animationResource, dimension);
 		if (!resizedAnimation.isEmpty()) {
 			return resizedAnimation;
 		}
-		return resizeAndCache(animationResource, dimension);
+		return resizeAndCacheAnimation(animationResource, dimension);
 	}
 
 	protected abstract List<T> spriteSheetToImageList(T spriteSheet, AnimationResource animation);
@@ -68,10 +72,18 @@ public abstract class AbstractImageLoader<T extends ImageAdapter> implements Ima
 		}
 	}
 
+	protected Optional<T> getFromImageResizeCache(ImageResource imageResource, Dim dimension) {
+		Optional<T> cachedResized = Optional.empty();
+		Map<Dim, T> imageMap = sizedImageCache.get(imageResource);
+		if (imageMap != null) {
+			cachedResized = Optional.ofNullable(imageMap.get(dimension));
+		}
+		return cachedResized;
+	}
 
-	protected List<T> getFromResizeCache(AnimationResource animationResource, Dimension dimension) {
+	protected List<T> getFromAnimationResizeCache(AnimationResource animationResource, Dim dimension) {
 		List<T> cachedImages = new ArrayList<>(50);
-		Map<Dimension, List<T>> animationList = sizedAnimationCache.get(animationResource);
+		Map<Dim, List<T>> animationList = sizedAnimationCache.get(animationResource);
 		if (animationList != null) {
 			// Animation was cached
 			List<T> cachedResized = animationList.get(dimension);
@@ -82,15 +94,29 @@ public abstract class AbstractImageLoader<T extends ImageAdapter> implements Ima
 		return cachedImages;
 	}
 
-	protected List<T> resizeAndCache(AnimationResource animationResource, Dimension dimension) {
+	protected T resizeAndCacheImage(ImageResource imageResource, Dim dimension) {
+		T resizedImage = imageCache.get(imageResource)
+				.resizeTo(dimension);
+		if (sizedImageCache.containsKey(imageResource)) {
+			sizedImageCache.get(imageResource)
+					.put(dimension, resizedImage);
+		} else {
+			Map<Dim, T> newMapping = new HashMap<>(50);
+			sizedImageCache.put(imageResource, newMapping);
+		}
+		return resizedImage;
+	}
+
+	protected List<T> resizeAndCacheAnimation(AnimationResource animationResource, Dim dimension) {
 		List<T> animation = animationCache.get(animationResource);
 		List<T> resizedImages = animation.parallelStream()
-					.map(image -> image.<T>resizeTo(dimension.getWidth(), dimension.getHeight()))
-					.collect(Collectors.toList());
+				.map(image -> image.<T>resizeTo(dimension))
+				.collect(Collectors.toList());
 		if (sizedAnimationCache.containsKey(animationResource)) {
-			sizedAnimationCache.get(animationResource).put(dimension, resizedImages);
+			sizedAnimationCache.get(animationResource)
+					.put(dimension, resizedImages);
 		} else {
-			Map<Dimension, List<T>> newMapping = new HashMap<>(10);
+			Map<Dim, List<T>> newMapping = new HashMap<>(10);
 			newMapping.put(dimension, resizedImages);
 			sizedAnimationCache.put(animationResource, newMapping);
 		}

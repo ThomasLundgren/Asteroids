@@ -2,6 +2,7 @@ package se.hig.thlu.asteroids.model.entity;
 
 import se.hig.thlu.asteroids.config.GameConfig;
 import se.hig.thlu.asteroids.mathutil.Trigonometry;
+import se.hig.thlu.asteroids.model.Dim;
 import se.hig.thlu.asteroids.model.Explosion;
 import se.hig.thlu.asteroids.model.Point;
 import se.hig.thlu.asteroids.model.Velocity;
@@ -15,34 +16,32 @@ import java.util.Optional;
 public abstract class AbstractEntity implements Entity {
 
 	protected final double turningDegree;
+	private final Dim dimensions;
 	protected Collection<IObserver> observers = new ArrayList<>(1);
 	// TODO: Extract the three rows below into separate object Position or smth?
 	protected Point center;
 	protected double rotation = 0.0;
-	protected int width, height;
 	protected Velocity velocity;
 	protected boolean isDestroyed = false;
 
-	protected AbstractEntity(Point center, Velocity velocity, double turningDegree, int width, int height) {
+	protected AbstractEntity(Point center, Velocity velocity, double turningDegree, Dim dimensions) {
 		this.velocity = velocity;
 		this.center = center;
 		this.turningDegree = turningDegree;
-		this.width = width;
-		this.height = height;
+		this.dimensions = dimensions;
 	}
 
-	public int getWidth() {
-		return width;
+	@Override
+	public Dim getDimensions() {
+		return new Dim(dimensions.getWidth(), dimensions.getHeight());
 	}
 
-	public int getHeight() {
-		return height;
-	}
-
+	@Override
 	public final Point getCenter() {
 		return new Point(center.getX(), center.getY());
 	}
 
+	@Override
 	public void setCenter(Point center) {
 		this.center = center;
 		notifyObservers(EntityProperty.CENTER, center);
@@ -70,6 +69,7 @@ public abstract class AbstractEntity implements Entity {
 		notifyObservers(EntityProperty.TURN_LEFT, true);
 	}
 
+	@Override
 	public double getRotation() {
 		return rotation;
 	}
@@ -79,10 +79,12 @@ public abstract class AbstractEntity implements Entity {
 		notifyObservers(EntityProperty.ROTATION, rotation);
 	}
 
+	@Override
 	public final boolean isDestroyed() {
 		return isDestroyed;
 	}
 
+	@Override
 	public Optional<Explosion> destroy() {
 		isDestroyed = true;
 		notifyObservers(EntityProperty.IS_DESTROYED, true);
@@ -90,6 +92,7 @@ public abstract class AbstractEntity implements Entity {
 		return Optional.empty();
 	}
 
+	@Override
 	public void update() {
 		double diffX = StrictMath.cos(StrictMath.toRadians(velocity.getDirection())) * velocity.getSpeed();
 		double diffY = StrictMath.sin(StrictMath.toRadians(velocity.getDirection())) * velocity.getSpeed();
@@ -98,9 +101,13 @@ public abstract class AbstractEntity implements Entity {
 		handleOverflow();
 	}
 
+	@Override
 	public boolean intersectsWith(Entity other) {
-		int otherWidth = other.getWidth();
-		int otherHeight = other.getHeight();
+		Dim otherDim = other.getDimensions();
+		int otherWidth = otherDim.getWidth();
+		int otherHeight = otherDim.getHeight();
+		int width = dimensions.getWidth();
+		int height = dimensions.getHeight();
 		int thisX = (int) getCenter().getX() - width / 2;
 		int thisY = (int) getCenter().getY() - height / 2;
 		int otherX = (int) other.getCenter().getX() - otherWidth / 2;
@@ -118,8 +125,8 @@ public abstract class AbstractEntity implements Entity {
 	protected void handleOverflow() {
 		int x = (int) center.getX();
 		int y = (int) center.getY();
-		int halfWidth = width / 2;
-		int halfHeight = height / 2;
+		int halfWidth = dimensions.getWidth() / 2;
+		int halfHeight = dimensions.getHeight() / 2;
 
 		Point newCenter = null;
 

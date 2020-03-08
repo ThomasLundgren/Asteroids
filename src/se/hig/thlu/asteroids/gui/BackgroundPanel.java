@@ -1,9 +1,11 @@
 package se.hig.thlu.asteroids.gui;
 
+import se.hig.thlu.asteroids.config.GameConfig;
 import se.hig.thlu.asteroids.graphics.entitydrawer.Drawer;
 import se.hig.thlu.asteroids.graphics.graphicsadapter.AwtGraphicsAdapter;
 import se.hig.thlu.asteroids.graphics.graphicsadapter.GraphicsAdapter;
 import se.hig.thlu.asteroids.graphics.image.ImageAdapter;
+import se.hig.thlu.asteroids.model.Dim;
 import se.hig.thlu.asteroids.storage.AbstractImageLoader;
 import se.hig.thlu.asteroids.storage.ImageResource;
 
@@ -18,7 +20,8 @@ public final class BackgroundPanel extends JPanel {
 	private ImageAdapter image;
 
 	public BackgroundPanel(AbstractImageLoader<? extends ImageAdapter> imageLoader) {
-		setImage(imageLoader.getImage(ImageResource.BACKGROUND_PNG));
+		setImage(imageLoader.getImage(ImageResource.BACKGROUND_PNG,
+				new Dim(GameConfig.WINDOW_WIDTH, GameConfig.WINDOW_HEIGHT)));
 		setLayout(new BorderLayout());
 		setDoubleBuffered(true);
 	}

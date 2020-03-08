@@ -1,6 +1,7 @@
 package se.hig.thlu.asteroids.model.entity;
 
 import se.hig.thlu.asteroids.mathutil.Randomizer;
+import se.hig.thlu.asteroids.model.Dim;
 import se.hig.thlu.asteroids.model.Explosion;
 import se.hig.thlu.asteroids.model.Point;
 import se.hig.thlu.asteroids.model.Velocity;
@@ -23,8 +24,7 @@ public final class Asteroid extends AbstractEntity implements Shatterable {
 		super(position,
 				velocity,
 				velocity.getSpeed(),
-				size.getWidth(),
-				size.getHeight());
+				new Dim(size.getWidth(), size.getHeight()));
 		asteroidSize = size;
 		int randomRotation = ThreadLocalRandom.current().nextInt(2);
 		rotationDirection = randomRotation == 0 ? RotationDirection.LEFT : RotationDirection.RIGHT;

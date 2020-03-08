@@ -2,25 +2,25 @@ package se.hig.thlu.asteroids.model;
 
 import java.util.Objects;
 
-public class Dimension {
+public class Dim {
 
 	private final int width, height;
 
-	public Dimension(int width, int height) {
+	public Dim(int width, int height) {
 		this.width = width;
 		this.height = height;
 	}
 
-	public Dimension withWidth(int width) {
-		return new Dimension(width, height);
+	public Dim withWidth(int width) {
+		return new Dim(width, height);
 	}
 
 	public int getWidth() {
 		return width;
 	}
 
-	public Dimension withHeight(int height) {
-		return new Dimension(width, height);
+	public Dim withHeight(int height) {
+		return new Dim(width, height);
 	}
 
 	public int getHeight() {
@@ -31,7 +31,7 @@ public class Dimension {
 	public boolean equals(Object o) {
 		if (this == o) return true;
 		if (o == null || getClass() != o.getClass()) return false;
-		Dimension dimension = (Dimension) o;
+		Dim dimension = (Dim) o;
 		return width == dimension.getWidth() &&
 				height == dimension.getHeight();
 	}

@@ -69,7 +69,7 @@ public class DrawingParameters {
 		return new DrawingParameters(image,
 				entity.getCenter(),
 				entity.getRotation(),
-				entity.getWidth(),
-				entity.getHeight());
+				entity.getDimensions().getWidth(),
+				entity.getDimensions().getHeight());
 	}
 }

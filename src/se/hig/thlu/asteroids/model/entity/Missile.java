@@ -1,6 +1,7 @@
 package se.hig.thlu.asteroids.model.entity;
 
 import se.hig.thlu.asteroids.config.GameConfig;
+import se.hig.thlu.asteroids.model.Dim;
 import se.hig.thlu.asteroids.model.Point;
 import se.hig.thlu.asteroids.model.Velocity;
 
@@ -15,8 +16,8 @@ public final class Missile extends AbstractEntity {
 		super(position,
 				new Velocity(source.getMissileSpeed(), direction),
 				0.0,
-				source.getWidth(),
-				source.getHeight());
+				new Dim(source.getWidth(),
+						source.getHeight()));
 		this.maxDistance = maxDistance;
 		rotation = direction;
 		startingPosition = position;

@@ -1,5 +1,7 @@
 package se.hig.thlu.asteroids.graphics.image;
 
+import se.hig.thlu.asteroids.model.Dim;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
@@ -13,7 +15,9 @@ public class AwtImageAdapter extends BufferedImage implements ImageAdapter {
 	}
 
 	@Override
-	public <T extends ImageAdapter> T resizeTo(int width, int height) {
+	public <T extends ImageAdapter> T resizeTo(Dim dimension) {
+		int width = dimension.getWidth();
+		int height = dimension.getHeight();
 		Image newImage = image.getScaledInstance(width, height, Image.SCALE_SMOOTH);
 		BufferedImage bufferedImage = new BufferedImage(width, height,
 				BufferedImage.TYPE_INT_ARGB);

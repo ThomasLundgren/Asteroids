@@ -1,6 +1,7 @@
 package se.hig.thlu.asteroids.model.entity;
 
 import se.hig.thlu.asteroids.mathutil.Trigonometry;
+import se.hig.thlu.asteroids.model.Dim;
 import se.hig.thlu.asteroids.model.Explosion;
 import se.hig.thlu.asteroids.model.Point;
 import se.hig.thlu.asteroids.model.Velocity;
@@ -20,8 +21,8 @@ public final class PlayerShip extends AbstractEntity implements Shooter {
 		super(new Point(),
 				new Velocity(),
 				5.0,
-				35,
-				26);
+				new Dim(35,
+						26));
 	}
 
 	public void accelerate() {
@@ -73,7 +74,7 @@ public final class PlayerShip extends AbstractEntity implements Shooter {
 			return Optional.empty();
 		}
 		ticksSinceLastShot = 0;
-		double centerFrontDistance = ((double) width / 2.0);
+		double centerFrontDistance = ((double) getDimensions().getWidth() / 2.0);
 		Point missileStart = Trigonometry.rotateAroundPoint(center,
 				rotation,
 				centerFrontDistance);
