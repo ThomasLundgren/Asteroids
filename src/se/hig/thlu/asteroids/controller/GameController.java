@@ -4,7 +4,7 @@ import se.hig.thlu.asteroids.config.GameConfig;
 import se.hig.thlu.asteroids.controller.command.CommandController;
 import se.hig.thlu.asteroids.controller.command.CommandController.CommandType;
 import se.hig.thlu.asteroids.factory.EntityFactory;
-import se.hig.thlu.asteroids.mathutil.Trigonometry;
+import se.hig.thlu.asteroids.util.Trigonometry;
 import se.hig.thlu.asteroids.model.Explosion;
 import se.hig.thlu.asteroids.model.Point;
 import se.hig.thlu.asteroids.model.entity.*;

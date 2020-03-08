@@ -1,7 +1,7 @@
 package se.hig.thlu.asteroids.factory;
 
 import se.hig.thlu.asteroids.config.GameConfig;
-import se.hig.thlu.asteroids.mathutil.Randomizer;
+import se.hig.thlu.asteroids.util.Randomizer;
 import se.hig.thlu.asteroids.model.*;
 import se.hig.thlu.asteroids.model.entity.Asteroid;
 import se.hig.thlu.asteroids.model.entity.EnemyShip;

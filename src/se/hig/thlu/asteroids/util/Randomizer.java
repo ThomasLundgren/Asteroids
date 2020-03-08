@@ -1,4 +1,4 @@
-package se.hig.thlu.asteroids.mathutil;
+package se.hig.thlu.asteroids.util;
 
 import java.util.concurrent.ThreadLocalRandom;
 

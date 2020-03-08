@@ -1,4 +1,4 @@
-package se.hig.thlu.asteroids.mathutil;
+package se.hig.thlu.asteroids.util;
 
 import se.hig.thlu.asteroids.model.Point;
 

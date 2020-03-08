@@ -5,7 +5,7 @@ import se.hig.thlu.asteroids.controller.InputController;
 import se.hig.thlu.asteroids.controller.command.CommandController;
 import se.hig.thlu.asteroids.factory.DefaultFactory;
 import se.hig.thlu.asteroids.factory.EntityFactory;
-import se.hig.thlu.asteroids.gamestate.GameLoop;
+import se.hig.thlu.asteroids.gameloop.GameLoop;
 import se.hig.thlu.asteroids.graphics.image.AwtImageAdapter;
 import se.hig.thlu.asteroids.gui.GUI;
 import se.hig.thlu.asteroids.gui.SwingGUI;

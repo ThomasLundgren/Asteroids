@@ -1,6 +1,6 @@
 package se.hig.thlu.asteroids.model.entity;
 
-import se.hig.thlu.asteroids.mathutil.Trigonometry;
+import se.hig.thlu.asteroids.util.Trigonometry;
 import se.hig.thlu.asteroids.model.Dim;
 import se.hig.thlu.asteroids.model.Explosion;
 import se.hig.thlu.asteroids.model.Point;

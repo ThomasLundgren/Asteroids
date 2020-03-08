@@ -1,6 +1,6 @@
 package se.hig.thlu.asteroids.model;
 
-import se.hig.thlu.asteroids.mathutil.*;
+import se.hig.thlu.asteroids.util.*;
 
 public class Velocity {
 

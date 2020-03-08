@@ -1,4 +1,4 @@
-package se.hig.thlu.asteroids.gamestate;
+package se.hig.thlu.asteroids.gameloop;
 
 import se.hig.thlu.asteroids.controller.GameController;
 
