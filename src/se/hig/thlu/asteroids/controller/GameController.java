@@ -77,51 +77,6 @@ public final class GameController implements IObservable {
 		}
 	}
 
-	public void handleKeyPressed(InputController.PressedKey key) {
-		switch (key) {
-			case LEFT_ARROW:
-				commandController.activate(CommandType.TURN_LEFT);
-				commandController.deactivate(CommandType.TURN_RIGHT);
-				break;
-			case UP_ARROW:
-				commandController.activate(CommandType.ACCELERATE);
-				commandController.deactivate(CommandType.DECELERATE);
-				break;
-			case RIGHT_ARROW:
-				commandController.activate(CommandType.TURN_RIGHT);
-				commandController.deactivate(CommandType.TURN_LEFT);
-				break;
-			case SPACE_BAR:
-//				canShoot = false;
-				timeSinceLastShot = 0.0;
-				Optional<Missile> missile = playerShip.shoot(playerShip.getRotation(), 0.6);
-				missile.ifPresent(this::addMissile);
-				break;
-			default:
-				break;
-		}
-	}
-
-	public void handleKeyReleased(InputController.PressedKey key) {
-		switch (key) {
-			case LEFT_ARROW:
-				commandController.deactivate(CommandType.TURN_LEFT);
-				break;
-			case UP_ARROW:
-				commandController.deactivate(CommandType.ACCELERATE);
-				commandController.activate(CommandType.DECELERATE);
-				break;
-			case RIGHT_ARROW:
-				commandController.deactivate(CommandType.TURN_RIGHT);
-				break;
-			case SPACE_BAR:
-//				canShoot = true;
-				break;
-			default:
-				break;
-		}
-	}
-
 	private void updateEntity(Entity entity) {
 		entity.update();
 		if (entity instanceof Shooter && entity != playerShip) {
@@ -139,7 +94,6 @@ public final class GameController implements IObservable {
 
 	private void updateTimes(double delta) {
 		totalGameTime = totalGameTime.add(new BigDecimal(delta));
-		timeSinceLastShot += delta;
 		enemyShipSpawnTimer += delta;
 	}
 
@@ -159,6 +113,63 @@ public final class GameController implements IObservable {
 					missiles.remove(missile);
 				}
 			}
+		}
+	}
+
+	@Override
+	public void addObserver(IObserver observer) {
+		observers.add(observer);
+		// TODO: MOve this to a new start() method
+		notifyObservers(ADD, playerShip);
+	}
+
+	public enum Action {
+		ADD;
+	}
+
+	public void handleKeyPressed(InputController.PressedKey key) {
+		switch (key) {
+			case LEFT_ARROW:
+				commandController.activate(CommandType.TURN_LEFT);
+				commandController.deactivate(CommandType.TURN_RIGHT);
+				break;
+			case UP_ARROW:
+				commandController.activate(CommandType.ACCELERATE);
+				commandController.deactivate(CommandType.DECELERATE);
+				break;
+			case RIGHT_ARROW:
+				commandController.activate(CommandType.TURN_RIGHT);
+				commandController.deactivate(CommandType.TURN_LEFT);
+				break;
+			case SPACE_BAR:
+				if (canShoot) {
+					canShoot = false;
+					Optional<Missile> missile = playerShip.shoot(playerShip.getRotation(), 0.6);
+					missile.ifPresent(this::addMissile);
+				}
+				break;
+			default:
+				break;
+		}
+	}
+
+	public void handleKeyReleased(InputController.PressedKey key) {
+		switch (key) {
+			case LEFT_ARROW:
+				commandController.deactivate(CommandType.TURN_LEFT);
+				break;
+			case UP_ARROW:
+				commandController.deactivate(CommandType.ACCELERATE);
+				commandController.activate(CommandType.DECELERATE);
+				break;
+			case RIGHT_ARROW:
+				commandController.deactivate(CommandType.TURN_RIGHT);
+				break;
+			case SPACE_BAR:
+				canShoot = true;
+				break;
+			default:
+				break;
 		}
 	}
 
@@ -206,14 +217,4 @@ public final class GameController implements IObservable {
 				(double) (GameConfig.WINDOW_HEIGHT / 2)));
 	}
 
-	@Override
-	public void addObserver(IObserver observer) {
-		observers.add(observer);
-		// TODO: MOve this to a new start() method
-		notifyObservers(ADD, playerShip);
-	}
-
-	public enum Action {
-		ADD;
-	}
 }

@@ -6,6 +6,7 @@ import se.hig.thlu.asteroids.model.Dimension;
 import java.io.File;
 import java.io.IOException;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public abstract class AbstractImageLoader<T extends ImageAdapter> implements ImageLoader<T> {
 
@@ -83,11 +84,9 @@ public abstract class AbstractImageLoader<T extends ImageAdapter> implements Ima
 
 	protected List<T> resizeAndCache(AnimationResource animationResource, Dimension dimension) {
 		List<T> animation = animationCache.get(animationResource);
-		List<T> resizedImages = new ArrayList<>(animation.size());
-		for (T image : animation) {
-			T resized = image.resizeTo(dimension.getWidth(), dimension.getHeight());
-			resizedImages.add(resized);
-		}
+		List<T> resizedImages = animation.parallelStream()
+					.map(image -> image.<T>resizeTo(dimension.getWidth(), dimension.getHeight()))
+					.collect(Collectors.toList());
 		if (sizedAnimationCache.containsKey(animationResource)) {
 			sizedAnimationCache.get(animationResource).put(dimension, resizedImages);
 		} else {

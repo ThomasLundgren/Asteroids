@@ -37,8 +37,8 @@ public final class Missile extends AbstractEntity {
 	}
 
 	public enum MissileSource {
-		PLAYER(9.0,  17, 9, 12),
-		ENEMY(4.0,  9, 6, 310);
+		PLAYER(9.0,  17, 9, 9),
+		ENEMY(3.5,  9, 6, 310);
 
 		private final double missileSpeed;
 		private final int width, height;

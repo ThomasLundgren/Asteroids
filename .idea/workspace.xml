@@ -4,14 +4,9 @@
     <list default="true" id="912592ae-0182-4155-a100-0b05ae75298b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/controller/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/controller/GameController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/graphics/graphicsadapter/AwtGraphicsAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/graphics/graphicsadapter/AwtGraphicsAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/gui/SwingGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/gui/SwingGUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/mathutil/Trigonometry.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/mathutil/Trigonometry.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/model/entity/EnemyShip.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/model/entity/EnemyShip.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/model/entity/Missile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/model/entity/Missile.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/model/entity/PlayerShip.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/model/entity/PlayerShip.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/model/entity/Shooter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/model/entity/Shooter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/storage/ImageResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/storage/ImageResource.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/storage/AbstractImageLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/storage/AbstractImageLoader.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -178,10 +173,10 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="196" y="85" key="#Inspections" timestamp="1583694030177">
+    <state x="196" y="85" key="#Inspections" timestamp="1583704276297">
       <screen x="0" y="0" width="1273" height="768" />
     </state>
-    <state x="196" y="85" key="#Inspections/0.0.1273.768@0.0.1273.768" timestamp="1583694030177" />
+    <state x="196" y="85" key="#Inspections/0.0.1273.768@0.0.1273.768" timestamp="1583704276297" />
     <state x="228" y="0" width="816" height="768" key="#Intentions" timestamp="1583694041923">
       <screen x="0" y="0" width="1273" height="768" />
     </state>
@@ -242,26 +237,26 @@
       <screen x="0" y="0" width="1273" height="768" />
     </state>
     <state x="416" y="138" key="FileChooserDialogImpl/0.0.1273.768@0.0.1273.768" timestamp="1582807400936" />
-    <state width="1230" height="208" key="GridCell.Tab.0.bottom" timestamp="1583703264113">
+    <state width="1230" height="208" key="GridCell.Tab.0.bottom" timestamp="1583704746676">
       <screen x="0" y="0" width="1273" height="768" />
     </state>
     <state width="1143" height="192" key="GridCell.Tab.0.bottom/0.0.1187.720@0.0.1187.720" timestamp="1583529272130" />
-    <state width="1230" height="208" key="GridCell.Tab.0.bottom/0.0.1273.768@0.0.1273.768" timestamp="1583703264113" />
-    <state width="1230" height="208" key="GridCell.Tab.0.center" timestamp="1583703264113">
+    <state width="1230" height="208" key="GridCell.Tab.0.bottom/0.0.1273.768@0.0.1273.768" timestamp="1583704746676" />
+    <state width="1230" height="208" key="GridCell.Tab.0.center" timestamp="1583704746676">
       <screen x="0" y="0" width="1273" height="768" />
     </state>
     <state width="1143" height="192" key="GridCell.Tab.0.center/0.0.1187.720@0.0.1187.720" timestamp="1583529272129" />
-    <state width="1230" height="208" key="GridCell.Tab.0.center/0.0.1273.768@0.0.1273.768" timestamp="1583703264113" />
-    <state width="1230" height="208" key="GridCell.Tab.0.left" timestamp="1583703264113">
+    <state width="1230" height="208" key="GridCell.Tab.0.center/0.0.1273.768@0.0.1273.768" timestamp="1583704746676" />
+    <state width="1230" height="208" key="GridCell.Tab.0.left" timestamp="1583704746676">
       <screen x="0" y="0" width="1273" height="768" />
     </state>
     <state width="1143" height="192" key="GridCell.Tab.0.left/0.0.1187.720@0.0.1187.720" timestamp="1583529272099" />
-    <state width="1230" height="208" key="GridCell.Tab.0.left/0.0.1273.768@0.0.1273.768" timestamp="1583703264113" />
-    <state width="1230" height="208" key="GridCell.Tab.0.right" timestamp="1583703264113">
+    <state width="1230" height="208" key="GridCell.Tab.0.left/0.0.1273.768@0.0.1273.768" timestamp="1583704746676" />
+    <state width="1230" height="208" key="GridCell.Tab.0.right" timestamp="1583704746676">
       <screen x="0" y="0" width="1273" height="768" />
     </state>
     <state width="1143" height="192" key="GridCell.Tab.0.right/0.0.1187.720@0.0.1187.720" timestamp="1583529272129" />
-    <state width="1230" height="208" key="GridCell.Tab.0.right/0.0.1273.768@0.0.1273.768" timestamp="1583703264113" />
+    <state width="1230" height="208" key="GridCell.Tab.0.right/0.0.1273.768@0.0.1273.768" timestamp="1583704746676" />
     <state width="1230" height="177" key="GridCell.Tab.1.bottom" timestamp="1583505192082">
       <screen x="0" y="0" width="1273" height="768" />
     </state>
@@ -310,10 +305,10 @@
       <screen x="0" y="0" width="1273" height="768" />
     </state>
     <state x="250" y="111" width="540" height="496" key="extract.method.dialog/0.0.1273.768@0.0.1273.768" timestamp="1582807218278" />
-    <state x="666" y="0" width="607" height="768" key="find.popup" timestamp="1583581495897">
+    <state x="666" y="0" width="607" height="768" key="find.popup" timestamp="1583704410706">
       <screen x="0" y="0" width="1273" height="768" />
     </state>
-    <state x="666" y="0" width="607" height="768" key="find.popup/0.0.1273.768@0.0.1273.768" timestamp="1583581495897" />
+    <state x="666" y="0" width="607" height="768" key="find.popup/0.0.1273.768@0.0.1273.768" timestamp="1583704410706" />
     <state x="343" y="6" key="refactoring.ChangeSignatureDialog" timestamp="1583694700790">
       <screen x="0" y="0" width="1273" height="768" />
     </state>
@@ -326,11 +321,11 @@
       <screen x="0" y="0" width="1273" height="768" />
     </state>
     <state x="228" y="42" key="scopes/0.0.1273.768@0.0.1273.768" timestamp="1582209063947" />
-    <state x="299" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1583703330234">
+    <state x="299" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1583704505218">
       <screen x="0" y="0" width="1273" height="768" />
     </state>
     <state x="279" y="83" width="672" height="636" key="search.everywhere.popup/0.0.1187.720@0.0.1187.720" timestamp="1583529226834" />
-    <state x="299" y="89" width="672" height="678" key="search.everywhere.popup/0.0.1273.768@0.0.1273.768" timestamp="1583703330234" />
+    <state x="299" y="89" width="672" height="678" key="search.everywhere.popup/0.0.1273.768@0.0.1273.768" timestamp="1583704505218" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Asteroids$AsteroidsApp.ic" NAME="AsteroidsApp Coverage Results" MODIFIED="1582873866383" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">

@@ -70,7 +70,6 @@ public final class PlayerShip extends AbstractEntity implements Shooter {
 	@Override
 	public Optional<Missile> shoot(double direction, double distance) {
 		if (ticksSinceLastShot < MissileSource.PLAYER.getCoolDown()) {
-			System.out.println("Empty");
 			return Optional.empty();
 		}
 		ticksSinceLastShot = 0;
@@ -79,7 +78,6 @@ public final class PlayerShip extends AbstractEntity implements Shooter {
 				rotation,
 				centerFrontDistance);
 		Missile missile = new Missile(missileStart, rotation, MissileSource.PLAYER, 0.6);
-		System.out.println("Shot");
 		return Optional.of(missile);
 	}
 
