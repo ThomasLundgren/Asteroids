@@ -11,7 +11,7 @@ import se.hig.thlu.asteroids.gui.GUI;
 import se.hig.thlu.asteroids.gui.SwingGUI;
 import se.hig.thlu.asteroids.gui.eventlistener.AwtKeyboardAdapter;
 import se.hig.thlu.asteroids.model.entity.PlayerShip;
-import se.hig.thlu.asteroids.storage.ImageLoader;
+import se.hig.thlu.asteroids.storage.AbstractImageLoader;
 import se.hig.thlu.asteroids.storage.ImageLoaderAwt;
 
 import javax.swing.*;
@@ -26,7 +26,7 @@ public class AsteroidsApp {
 		} catch (Exception ignored) {
 		}
 		try {
-			ImageLoader<AwtImageAdapter> imgLoader = new ImageLoaderAwt();
+			AbstractImageLoader<AwtImageAdapter> imgLoader = new ImageLoaderAwt();
 			EntityFactory factory = new DefaultFactory();
 			PlayerShip playerShip = factory.createPlayerShip();
 			CommandController cmdController = CommandController.createCommandController(playerShip);

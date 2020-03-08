@@ -2,7 +2,7 @@ package se.hig.thlu.asteroids.storage;
 
 import se.hig.thlu.asteroids.config.GameConfig;
 
-import static se.hig.thlu.asteroids.storage.ImageLoader.FS;
+import static se.hig.thlu.asteroids.storage.AbstractImageLoader.FS;
 
 public enum ImageResource {
 	BACKGROUND_PNG(String.format("resources%simages%<sfinal%<sbackground.png", FS),

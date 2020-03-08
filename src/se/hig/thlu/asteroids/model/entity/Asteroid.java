@@ -51,13 +51,13 @@ public final class Asteroid extends AbstractEntity implements Shatterable {
 		Explosion.ExplosionSize size;
 		switch (asteroidSize) {
 			case LARGE:
-				size = Explosion.ExplosionSize.FOUR;
-				break;
-			case MEDIUM:
 				size = Explosion.ExplosionSize.THREE;
 				break;
-			default:
+			case MEDIUM:
 				size = Explosion.ExplosionSize.TWO;
+				break;
+			default:
+				size = Explosion.ExplosionSize.ONE;
 		}
 		return Optional.of(new Explosion(center, size));
 	}

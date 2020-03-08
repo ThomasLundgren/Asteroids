@@ -28,6 +28,6 @@ public final class EnemyShip extends AbstractEntity implements Shooter {
 	@Override
 	public Optional<Explosion> destroy() {
 		super.destroy();
-		return Optional.of(new Explosion(center, Explosion.ExplosionSize.THREE));
+		return Optional.of(new Explosion(center, Explosion.ExplosionSize.TWO));
 	}
 }

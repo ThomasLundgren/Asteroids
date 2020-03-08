@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class ImageLoaderAwt extends ImageLoader<AwtImageAdapter> {
+public class ImageLoaderAwt extends AbstractImageLoader<AwtImageAdapter> {
 
 	public ImageLoaderAwt() throws IOException {
 	}
@@ -59,26 +59,4 @@ public class ImageLoaderAwt extends ImageLoader<AwtImageAdapter> {
 			return new AwtImageAdapter(bufferedImage);
 		}
 	}
-
-//	@Override
-//	protected List<AwtImageAdapter> loadAnimation(AnimationResource animationResource) throws IOException {
-//		ClassLoader classLoader = ImageLoaderAwt.class.getClassLoader();
-//		try (InputStream stream = Objects.requireNonNull(classLoader
-//				.getResourceAsStream(animationResource.getImagePath()))) {
-//			Image img = ImageIO.read(stream).getScaledInstance(
-//					animationResource.getWidth(),
-//					animationResource.getHeight(),
-//					Image.SCALE_SMOOTH);
-//			int width = img.getWidth(null);
-//			int height = img.getHeight(null);
-//
-//			BufferedImage bufferedImage = new BufferedImage(width, height,
-//					BufferedImage.TYPE_INT_ARGB);
-//			Graphics g = bufferedImage.getGraphics();
-//			g.drawImage(img, 0, 0, null);
-//			g.dispose();
-//
-//
-//		}
-//	}
 }

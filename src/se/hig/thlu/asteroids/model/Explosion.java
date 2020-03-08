@@ -2,7 +2,6 @@ package se.hig.thlu.asteroids.model;
 
 public final class Explosion {
 
-	// TODO: Make new supertype for Explosion? Smth like non-solid.
 	private final ExplosionSize size;
 	private final Point center;
 
@@ -20,10 +19,9 @@ public final class Explosion {
 	}
 
 	public enum ExplosionSize {
-		ONE(6, 6),
-		TWO(18, 16),
-		THREE(34,36),
-		FOUR(52,48);
+		ONE(18, 16),
+		TWO(34,36),
+		THREE(52,48);
 
 		private final int width, height;
 

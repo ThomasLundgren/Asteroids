@@ -1,6 +1,6 @@
 package se.hig.thlu.asteroids.storage;
 
-import static se.hig.thlu.asteroids.storage.ImageLoader.FS;
+import static se.hig.thlu.asteroids.storage.AbstractImageLoader.FS;
 
 public enum AnimationResource {
 

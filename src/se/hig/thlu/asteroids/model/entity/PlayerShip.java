@@ -66,7 +66,7 @@ public final class PlayerShip extends AbstractEntity implements Shooter {
 			velocity = new Velocity();
 			lives--;
 		}
-		return Optional.of(new Explosion(center, Explosion.ExplosionSize.FOUR));
+		return Optional.of(new Explosion(center, Explosion.ExplosionSize.THREE));
 	}
 
 	@Override

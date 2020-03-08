@@ -13,8 +13,8 @@ import se.hig.thlu.asteroids.gui.eventlistener.AwtKeyboardAdapter;
 import se.hig.thlu.asteroids.model.Explosion;
 import se.hig.thlu.asteroids.model.entity.*;
 import se.hig.thlu.asteroids.observer.Event;
+import se.hig.thlu.asteroids.storage.AbstractImageLoader;
 import se.hig.thlu.asteroids.storage.AnimationResource;
-import se.hig.thlu.asteroids.storage.ImageLoader;
 import se.hig.thlu.asteroids.storage.ImageResource;
 
 import javax.swing.*;
@@ -25,10 +25,10 @@ import java.util.Optional;
 public class SwingGUI extends JFrame implements GUI<AwtKeyboardAdapter> {
 
 	// TODO: Use canvas instead because of BufferedStrategy?
-	private final ImageLoader<? extends ImageAdapter> imageLoader;
+	private final AbstractImageLoader<? extends ImageAdapter> imageLoader;
 	private BackgroundPanel backgroundPanel;
 
-	public SwingGUI(ImageLoader<? extends ImageAdapter> imageLoader) {
+	public SwingGUI(AbstractImageLoader<? extends ImageAdapter> imageLoader) {
 		this.imageLoader = imageLoader;
 		backgroundPanel = new BackgroundPanel(imageLoader);
 		add(backgroundPanel);
@@ -51,16 +51,17 @@ public class SwingGUI extends JFrame implements GUI<AwtKeyboardAdapter> {
 
 	@Override
 	public void onNotify(String propertyName, Event event) {
-//		if (propertyName.equals(GameController.Action.REMOVE.toString())) {
-//			backgroundPanel.removeEntityDrawer(event.getId());
-//		} else
-			if (propertyName.equals(GameController.Action.ADD.toString())) {
+		if (propertyName.equals(GameController.Action.ADD.toString())) {
 			Object newValue = event.getValue();
 			if (newValue instanceof Explosion) {
 				Explosion explosion = (Explosion) newValue;
-				List<? extends ImageAdapter> images =
-						imageLoader.getAnimationResource(AnimationResource.EXPLOSIONS_ALL);
-				Drawer explAnimation = new AnimationDrawer(images,
+				int width = explosion.getSize().getWidth();
+				int height = explosion.getSize().getHeight();
+				se.hig.thlu.asteroids.model.Dimension dimension =
+						new se.hig.thlu.asteroids.model.Dimension(width, height);
+				List<? extends ImageAdapter> animation =
+						imageLoader.getAnimation(AnimationResource.EXPLOSIONS_ALL, dimension);
+				Drawer explAnimation = new AnimationDrawer(animation,
 						explosion.getCenter(),
 						2);
 				backgroundPanel.addDrawer(explAnimation);
@@ -80,21 +81,21 @@ public class SwingGUI extends JFrame implements GUI<AwtKeyboardAdapter> {
 			Asteroid asteroid = (Asteroid) entity;
 			switch (asteroid.getAsteroidSize()) {
 				case LARGE:
-					image = imageLoader.getImageResource(ImageResource.ASTEROID_LARGE_PNG);
+					image = imageLoader.getImage(ImageResource.ASTEROID_LARGE_PNG);
 					break;
 				case MEDIUM:
-					image = imageLoader.getImageResource(ImageResource.ASTEROID_MEDIUM_PNG);
+					image = imageLoader.getImage(ImageResource.ASTEROID_MEDIUM_PNG);
 					break;
 				case SMALL:
-					image = imageLoader.getImageResource(ImageResource.ASTEROID_SMALL_PNG);
+					image = imageLoader.getImage(ImageResource.ASTEROID_SMALL_PNG);
 					break;
 			}
 		} else if (entity instanceof EnemyShip) {
-			image = imageLoader.getImageResource(ImageResource.ENEMY_SHIP_SMALL);
+			image = imageLoader.getImage(ImageResource.ENEMY_SHIP_SMALL);
 		} else if (entity instanceof PlayerShip) {
 			ImageAdapter accelerationImg =
-					imageLoader.getImageResource(ImageResource.PLAYER_SHIP_ACCELERATION_PNG);
-			image = imageLoader.getImageResource(ImageResource.PLAYER_SHIP_PNG);
+					imageLoader.getImage(ImageResource.PLAYER_SHIP_ACCELERATION_PNG);
+			image = imageLoader.getImage(ImageResource.PLAYER_SHIP_PNG);
 
 			Entity ent = (Entity) entity;
 			EntityDrawer shipDrawer = new EntityDrawer(new CenteredDrawingStrategy(),
@@ -108,9 +109,9 @@ public class SwingGUI extends JFrame implements GUI<AwtKeyboardAdapter> {
 		} else if (entity instanceof Missile) {
 			Missile missile = (Missile) entity;
 			if (missile.getMissileSource() == Missile.MissileSource.PLAYER) {
-				image = imageLoader.getImageResource(ImageResource.MISSILE_PLAYER);
+				image = imageLoader.getImage(ImageResource.MISSILE_PLAYER);
 			} else {
-				image = imageLoader.getImageResource(ImageResource.MISSILE_ENEMY);
+				image = imageLoader.getImage(ImageResource.MISSILE_ENEMY);
 			}
 		}
 
