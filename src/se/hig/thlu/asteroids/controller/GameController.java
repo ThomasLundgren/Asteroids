@@ -81,8 +81,9 @@ public final class GameController implements IObservable {
 		entity.update();
 		if (entity instanceof Shooter && entity != playerShip) {
 			double direction = Trigonometry.getAngle(entity.getCenter(), playerShip.getCenter());
-			double distance = entity.getCenter().distanceTo(playerShip.getCenter()) + 50.0;
+			double distance = entity.getCenter().distanceTo(playerShip.getCenter()) + 150.0;
 			distance /= (double) GameConfig.WINDOW_WIDTH;
+			distance = StrictMath.max(distance, 0.6);
 			Optional<Missile> missile = ((Shooter) entity).shoot(direction, distance);
 			missile.ifPresent(this::addEnemy);
 		}
@@ -123,10 +124,6 @@ public final class GameController implements IObservable {
 		notifyObservers(ADD, playerShip);
 	}
 
-	public enum Action {
-		ADD;
-	}
-
 	public void handleKeyPressed(InputController.PressedKey key) {
 		switch (key) {
 			case LEFT_ARROW:
@@ -142,11 +139,8 @@ public final class GameController implements IObservable {
 				commandController.deactivate(CommandType.TURN_LEFT);
 				break;
 			case SPACE_BAR:
-				if (canShoot) {
-					canShoot = false;
-					Optional<Missile> missile = playerShip.shoot(playerShip.getRotation(), 0.6);
-					missile.ifPresent(this::addMissile);
-				}
+				Optional<Missile> missile = playerShip.shoot(playerShip.getRotation(), 0.6);
+				missile.ifPresent(this::addMissile);
 				break;
 			default:
 				break;
@@ -166,7 +160,6 @@ public final class GameController implements IObservable {
 				commandController.deactivate(CommandType.TURN_RIGHT);
 				break;
 			case SPACE_BAR:
-				canShoot = true;
 				break;
 			default:
 				break;
@@ -215,6 +208,10 @@ public final class GameController implements IObservable {
 	private void centerPlayerShip() {
 		playerShip.setCenter(new Point((double) (GameConfig.WINDOW_WIDTH / 2),
 				(double) (GameConfig.WINDOW_HEIGHT / 2)));
+	}
+
+	public enum Action {
+		ADD;
 	}
 
 }

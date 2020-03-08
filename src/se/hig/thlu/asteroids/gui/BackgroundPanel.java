@@ -20,6 +20,7 @@ public final class BackgroundPanel extends JPanel {
 	public BackgroundPanel(AbstractImageLoader<? extends ImageAdapter> imageLoader) {
 		setImage(imageLoader.getImage(ImageResource.BACKGROUND_PNG));
 		setLayout(new BorderLayout());
+		setDoubleBuffered(true);
 	}
 
 	public void setImage(ImageAdapter image) {
