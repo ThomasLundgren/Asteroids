@@ -8,6 +8,11 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+/**
+ * Draws a List of Images from first to last. When to last Image has been drawn,
+ * the {@code isFinished} flag is set to true. The {@code AnimationDrawer} can
+ * then safely be discarded.
+ */
 public class AnimationDrawer implements Drawer {
 
 	private final List<ImageAdapter> images = new ArrayList<>(4);
