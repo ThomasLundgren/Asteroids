@@ -19,25 +19,19 @@ public final class Explosion {
 	}
 
 	public enum ExplosionSize {
-		ONE(18, 16),
-		TWO(34,36),
-		THREE(52,48);
+		ONE(new Dim(23, 20)),
+		TWO(new Dim(43,45)),
+		THREE(new Dim(72,66));
 
-		private final int width, height;
+		private final Dim dimensions;
 
-		ExplosionSize(int width, int height) {
-			this.width = width;
-			this.height = height;
+		ExplosionSize(Dim dimensions) {
+			this.dimensions = dimensions;
 		}
 
-		public int getWidth() {
-			return width;
+		public Dim getDimensions() {
+			return dimensions;
 		}
-
-		public int getHeight() {
-			return height;
-		}
-
 	}
 
 }

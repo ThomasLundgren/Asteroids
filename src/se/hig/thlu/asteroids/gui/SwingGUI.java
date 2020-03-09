@@ -56,15 +56,12 @@ public class SwingGUI extends JFrame implements GUI<AwtKeyboardAdapter> {
 			Object newValue = event.getValue();
 			if (newValue instanceof Explosion) {
 				Explosion explosion = (Explosion) newValue;
-				int width = explosion.getSize().getWidth();
-				int height = explosion.getSize().getHeight();
-				Dim dimension =
-						new Dim(width, height);
 				List<? extends ImageAdapter> animation =
-						imageLoader.getAnimation(AnimationResource.EXPLOSIONS_ALL, dimension);
+						imageLoader.getAnimation(AnimationResource.EXPLOSIONS_ALL,
+								explosion.getSize().getDimensions());
 				Drawer explAnimation = new AnimationDrawer(animation,
 						explosion.getCenter(),
-						2);
+						5);
 				backgroundPanel.addDrawer(explAnimation);
 			} else if (newValue instanceof Entity) {
 				Optional<Drawer> entityDrawer = getDrawerFromEntity((Entity) event.getValue());
@@ -73,8 +70,7 @@ public class SwingGUI extends JFrame implements GUI<AwtKeyboardAdapter> {
 		}
 	}
 
-	// TODO: This is not clean... Store images inside of Entities? Or create a hashmap with mappings from properties
-	//  to Images?
+	// TODO: Create map with Entity->Drawer mappings, load it at startup so that caching can occur in advance
 	private Optional<Drawer> getDrawerFromEntity(Entity entity) {
 		ImageAdapter image = null;
 		if (entity instanceof Asteroid) {

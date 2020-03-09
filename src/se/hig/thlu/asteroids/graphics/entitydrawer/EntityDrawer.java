@@ -4,15 +4,16 @@ import se.hig.thlu.asteroids.graphics.entitydrawer.drawingstrategy.DrawingParame
 import se.hig.thlu.asteroids.graphics.entitydrawer.drawingstrategy.DrawingStrategy;
 import se.hig.thlu.asteroids.graphics.graphicsadapter.GraphicsAdapter;
 import se.hig.thlu.asteroids.graphics.image.ImageAdapter;
-import se.hig.thlu.asteroids.model.entity.EntityProperty;
+import se.hig.thlu.asteroids.model.Dim;
 import se.hig.thlu.asteroids.model.Point;
+import se.hig.thlu.asteroids.model.entity.EntityProperty;
 import se.hig.thlu.asteroids.observer.Event;
 import se.hig.thlu.asteroids.observer.IObserver;
 
 public class EntityDrawer implements Drawer, IObserver {
 
-	protected DrawingStrategy drawingStrategy;
 	protected final DrawingParameters drawingParameters;
+	protected DrawingStrategy drawingStrategy;
 	protected boolean isFinished = false;
 
 	public EntityDrawer(DrawingStrategy drawingStrategy, DrawingParameters initialParameters) {
@@ -41,25 +42,23 @@ public class EntityDrawer implements Drawer, IObserver {
 		return isFinished;
 	}
 
-	public int getWidth() {
-		return drawingParameters.getWidth();
-	}
-
-	public int getHeight() {
-		return drawingParameters.getHeight();
+	public Dim getDimensions() {
+		return drawingParameters.getDimensions();
 	}
 
 	@Override
 	public void onNotify(String propertyName, Event event) {
 		Object value = event.getValue();
+		int width = drawingParameters.getDimensions().getWidth();
+		int height = drawingParameters.getDimensions().getHeight();
 		if (propertyName.equals(EntityProperty.CENTER.toString())) {
 			drawingParameters.setCenter((Point) value);
 		} else if (propertyName.equals(EntityProperty.ROTATION.toString())) {
 			drawingParameters.setRotation((double) value);
 		} else if (propertyName.equals(EntityProperty.WIDTH.toString())) {
-			drawingParameters.setWidth((int) value);
+			drawingParameters.setDimensions(new Dim((int) value, height));
 		} else if (propertyName.equals(EntityProperty.HEIGHT.toString())) {
-			drawingParameters.setHeight((int) value);
+			drawingParameters.setDimensions(new Dim(width, (int) value));
 		} else if (propertyName.equals(EntityProperty.IS_DESTROYED.toString())) {
 			isFinished = (boolean) value;
 		}

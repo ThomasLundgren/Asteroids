@@ -35,8 +35,8 @@ public class AccelerationDrawer extends EntityDrawerDecorator {
 		public void draw(GraphicsAdapter<? super ImageAdapter> graphics, DrawingParameters drawingParameters) {
 			setParameters(drawingParameters);
 			if (isAccelerating) {
-				int xCorner = (int) x - decoratee.getWidth() / 2 - width / 2 - 1;
-				int yCorner = (int) y - height / 2;
+				int xCorner = (int) x - decoratee.getDimensions().getWidth() / 2 - dimensions.getWidth() / 2 + 1;
+				int yCorner = (int) y - dimensions.getHeight() / 2;
 				graphics.drawImageWithRotation(image,
 						rotation,
 						(double) x,

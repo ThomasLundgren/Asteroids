@@ -4,6 +4,7 @@ import se.hig.thlu.asteroids.graphics.entitydrawer.drawingstrategy.DrawingParame
 import se.hig.thlu.asteroids.graphics.entitydrawer.drawingstrategy.DrawingStrategy;
 import se.hig.thlu.asteroids.graphics.graphicsadapter.GraphicsAdapter;
 import se.hig.thlu.asteroids.graphics.image.ImageAdapter;
+import se.hig.thlu.asteroids.model.Dim;
 import se.hig.thlu.asteroids.observer.Event;
 
 public class EntityDrawerDecorator extends EntityDrawer {
@@ -28,13 +29,12 @@ public class EntityDrawerDecorator extends EntityDrawer {
 	}
 
 	@Override
-	public int getWidth() {
-		return drawingParameters.getWidth() + decoratee.getWidth();
-	}
-
-	@Override
-	public int getHeight() {
-		return drawingParameters.getHeight() + decoratee.getHeight();
+	public Dim getDimensions() {
+		Dim myDim = super.getDimensions();
+		Dim decorateeDim = decoratee.getDimensions();
+		int width = myDim.getWidth() + decorateeDim.getWidth();
+		int height = myDim.getHeight() + decorateeDim.getHeight();
+		return new Dim(width, height);
 	}
 
 	@Override

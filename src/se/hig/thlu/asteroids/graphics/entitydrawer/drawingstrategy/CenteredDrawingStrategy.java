@@ -9,8 +9,8 @@ public class CenteredDrawingStrategy extends AbstractDrawingStrategy {
 	public void draw(GraphicsAdapter<? super ImageAdapter> graphics, DrawingParameters drawingParameters) {
 		setParameters(drawingParameters);
 
-		int xCorner = (int) x - width / 2;
-		int yCorner = (int) y - height / 2;
+		int xCorner = (int) x - dimensions.getWidth() / 2;
+		int yCorner = (int) y - dimensions.getHeight() / 2;
 		graphics.drawImageWithRotation(image,
 				rotation,
 				(double) x,

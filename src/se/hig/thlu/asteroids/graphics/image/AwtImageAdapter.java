@@ -15,9 +15,9 @@ public class AwtImageAdapter extends BufferedImage implements ImageAdapter {
 	}
 
 	@Override
-	public <T extends ImageAdapter> T resizeTo(Dim dimension) {
-		int width = dimension.getWidth();
-		int height = dimension.getHeight();
+	public <T extends ImageAdapter> T resizeTo(Dim dimensions) {
+		int width = dimensions.getWidth();
+		int height = dimensions.getHeight();
 		Image newImage = image.getScaledInstance(width, height, Image.SCALE_SMOOTH);
 		BufferedImage bufferedImage = new BufferedImage(width, height,
 				BufferedImage.TYPE_INT_ARGB);

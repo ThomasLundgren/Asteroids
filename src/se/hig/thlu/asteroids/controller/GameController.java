@@ -170,9 +170,6 @@ public final class GameController implements IObservable {
 		Optional<Explosion> friendlyExplosion = friendly.destroy();
 		Optional<Explosion> enemyExplosion = enemy.destroy();
 
-		friendlyExplosion.ifPresent(this::addExplosion);
-		enemyExplosion.ifPresent(this::addExplosion);
-
 		if (friendly == playerShip) {
 			centerPlayerShip();
 			if (playerShip.isDestroyed()) {
@@ -183,6 +180,8 @@ public final class GameController implements IObservable {
 			List<Entity> newAsteroids = ((Shatterable) enemy).shatter();
 			addEnemies(newAsteroids);
 		}
+		friendlyExplosion.ifPresent(this::addExplosion);
+		enemyExplosion.ifPresent(this::addExplosion);
 		enemies.remove(enemy);
 	}
 

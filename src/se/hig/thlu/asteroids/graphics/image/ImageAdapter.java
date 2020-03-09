@@ -8,5 +8,5 @@ public interface ImageAdapter {
 
 	int getHeight();
 
-	<T extends ImageAdapter> T resizeTo(Dim dimension);
+	<T extends ImageAdapter> T resizeTo(Dim dimensions);
 }

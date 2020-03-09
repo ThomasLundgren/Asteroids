@@ -7,8 +7,8 @@ import java.util.List;
 
 public interface ImageLoader<T extends ImageAdapter> {
 
-	T getImage(ImageResource imageResource, Dim dimension);
+	T getImage(ImageResource imageResource, Dim dimensions);
 
-	List<T> getAnimation(AnimationResource animationResource, Dim dimension);
+	List<T> getAnimation(AnimationResource animationResource, Dim dimensions);
 
 }

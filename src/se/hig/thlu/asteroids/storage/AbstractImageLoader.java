@@ -29,18 +29,18 @@ public abstract class AbstractImageLoader<T extends ImageAdapter> implements Ima
 	}
 
 	@Override
-	public T getImage(ImageResource imageResource, Dim dimension) {
-		Optional<T> resizedImage = getFromImageResizeCache(imageResource, dimension);
-		return resizedImage.orElseGet(() -> resizeAndCacheImage(imageResource, dimension));
+	public T getImage(ImageResource imageResource, Dim dimensions) {
+		Optional<T> resizedImage = getFromImageResizeCache(imageResource, dimensions);
+		return resizedImage.orElseGet(() -> resizeAndCacheImage(imageResource, dimensions));
 	}
 
 	@Override
-	public List<T> getAnimation(AnimationResource animationResource, Dim dimension) {
-		List<T> resizedAnimation = getFromAnimationResizeCache(animationResource, dimension);
+	public List<T> getAnimation(AnimationResource animationResource, Dim dimensions) {
+		List<T> resizedAnimation = getFromAnimationResizeCache(animationResource, dimensions);
 		if (!resizedAnimation.isEmpty()) {
 			return resizedAnimation;
 		}
-		return resizeAndCacheAnimation(animationResource, dimension);
+		return resizeAndCacheAnimation(animationResource, dimensions);
 	}
 
 	protected abstract List<T> spriteSheetToImageList(T spriteSheet, AnimationResource animation);
@@ -71,11 +71,11 @@ public abstract class AbstractImageLoader<T extends ImageAdapter> implements Ima
 		}
 	}
 
-	protected Optional<T> getFromImageResizeCache(ImageResource imageResource, Dim dimension) {
+	protected Optional<T> getFromImageResizeCache(ImageResource imageResource, Dim dimensions) {
 		Optional<T> cachedResized = Optional.empty();
 		Map<Dim, T> imageMap = sizedImageCache.get(imageResource);
 		if (imageMap != null) {
-			cachedResized = Optional.ofNullable(imageMap.get(dimension));
+			cachedResized = Optional.ofNullable(imageMap.get(dimensions));
 		}
 		return cachedResized;
 	}
@@ -92,12 +92,12 @@ public abstract class AbstractImageLoader<T extends ImageAdapter> implements Ima
 		return cachedImages;
 	}
 
-	protected T resizeAndCacheImage(ImageResource imageResource, Dim dimension) {
+	protected T resizeAndCacheImage(ImageResource imageResource, Dim dimensions) {
 		T resizedImage = imageCache.get(imageResource)
-				.resizeTo(dimension);
+				.resizeTo(dimensions);
 		if (sizedImageCache.containsKey(imageResource)) {
 			sizedImageCache.get(imageResource)
-					.put(dimension, resizedImage);
+					.put(dimensions, resizedImage);
 		} else {
 			Map<Dim, T> newMapping = new HashMap<>(50);
 			sizedImageCache.put(imageResource, newMapping);
@@ -105,17 +105,17 @@ public abstract class AbstractImageLoader<T extends ImageAdapter> implements Ima
 		return resizedImage;
 	}
 
-	protected List<T> resizeAndCacheAnimation(AnimationResource animationResource, Dim dimension) {
+	protected List<T> resizeAndCacheAnimation(AnimationResource animationResource, Dim dimensions) {
 		List<T> animation = animationCache.get(animationResource);
 		List<T> resizedImages = animation.parallelStream()
-				.map(image -> image.<T>resizeTo(dimension))
+				.map(image -> image.<T>resizeTo(dimensions))
 				.collect(Collectors.toList());
 		if (sizedAnimationCache.containsKey(animationResource)) {
 			sizedAnimationCache.get(animationResource)
-					.put(dimension, resizedImages);
+					.put(dimensions, resizedImages);
 		} else {
 			Map<Dim, List<T>> newMapping = new HashMap<>(10);
-			newMapping.put(dimension, resizedImages);
+			newMapping.put(dimensions, resizedImages);
 			sizedAnimationCache.put(animationResource, newMapping);
 		}
 		return resizedImages;
