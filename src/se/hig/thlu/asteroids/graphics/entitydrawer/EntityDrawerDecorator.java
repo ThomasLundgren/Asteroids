@@ -2,6 +2,7 @@ package se.hig.thlu.asteroids.graphics.entitydrawer;
 
 import se.hig.thlu.asteroids.graphics.entitydrawer.drawingstrategy.DrawingParameters;
 import se.hig.thlu.asteroids.graphics.entitydrawer.drawingstrategy.DrawingStrategy;
+import se.hig.thlu.asteroids.graphics.font.FontAdapter;
 import se.hig.thlu.asteroids.graphics.graphicsadapter.GraphicsAdapter;
 import se.hig.thlu.asteroids.graphics.image.ImageAdapter;
 import se.hig.thlu.asteroids.model.Dim;
@@ -23,7 +24,7 @@ public class EntityDrawerDecorator extends EntityDrawer {
 	}
 
 	@Override
-	public void draw(GraphicsAdapter<ImageAdapter> graphics) {
+	public void draw(GraphicsAdapter<FontAdapter, ImageAdapter> graphics) {
 		decoratee.draw(graphics);
 		super.draw(graphics);
 	}

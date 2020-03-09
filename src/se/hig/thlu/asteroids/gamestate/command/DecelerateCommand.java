@@ -1,4 +1,4 @@
-package se.hig.thlu.asteroids.controller.command;
+package se.hig.thlu.asteroids.gamestate.command;
 
 import se.hig.thlu.asteroids.model.entity.PlayerShip;
 

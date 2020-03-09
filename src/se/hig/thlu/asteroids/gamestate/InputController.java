@@ -1,4 +1,4 @@
-package se.hig.thlu.asteroids.controller;
+package se.hig.thlu.asteroids.gamestate;
 
 import se.hig.thlu.asteroids.gui.eventlistener.AwtEventAdapter;
 import se.hig.thlu.asteroids.gui.eventlistener.EventListenerAdapter;

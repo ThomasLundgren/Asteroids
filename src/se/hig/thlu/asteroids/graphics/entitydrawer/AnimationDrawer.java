@@ -1,5 +1,6 @@
 package se.hig.thlu.asteroids.graphics.entitydrawer;
 
+import se.hig.thlu.asteroids.graphics.font.FontAdapter;
 import se.hig.thlu.asteroids.graphics.graphicsadapter.GraphicsAdapter;
 import se.hig.thlu.asteroids.graphics.image.ImageAdapter;
 import se.hig.thlu.asteroids.model.Point;
@@ -29,7 +30,7 @@ public class AnimationDrawer implements Drawer {
 	}
 
 	@Override
-	public void draw(GraphicsAdapter<ImageAdapter> graphics) {
+	public void draw(GraphicsAdapter<FontAdapter, ImageAdapter> graphics) {
 		if (isFinished) {
 			return;
 		}

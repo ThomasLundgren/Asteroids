@@ -1,7 +1,7 @@
 package se.hig.thlu.asteroids.gui;
 
 import se.hig.thlu.asteroids.config.GameConfig;
-import se.hig.thlu.asteroids.controller.GameController;
+import se.hig.thlu.asteroids.gamestate.GameController;
 import se.hig.thlu.asteroids.graphics.entitydrawer.AccelerationDrawer;
 import se.hig.thlu.asteroids.graphics.entitydrawer.AnimationDrawer;
 import se.hig.thlu.asteroids.graphics.entitydrawer.Drawer;

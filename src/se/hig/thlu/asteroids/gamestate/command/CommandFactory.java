@@ -1,6 +1,6 @@
-package se.hig.thlu.asteroids.controller.command;
+package se.hig.thlu.asteroids.gamestate.command;
 
-import se.hig.thlu.asteroids.controller.command.CommandController.*;
+import se.hig.thlu.asteroids.gamestate.command.CommandController.*;
 import se.hig.thlu.asteroids.model.entity.PlayerShip;
 
 class CommandFactory {

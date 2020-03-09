@@ -1,4 +1,4 @@
-package se.hig.thlu.asteroids.controller.command;
+package se.hig.thlu.asteroids.gamestate.command;
 
 import se.hig.thlu.asteroids.model.entity.PlayerShip;
 
@@ -6,8 +6,8 @@ import java.util.EnumMap;
 import java.util.Map;
 import java.util.stream.Stream;
 
-import static se.hig.thlu.asteroids.controller.command.CommandController.CommandType.NULL;
-import static se.hig.thlu.asteroids.controller.command.CommandController.CommandType.values;
+import static se.hig.thlu.asteroids.gamestate.command.CommandController.CommandType.NULL;
+import static se.hig.thlu.asteroids.gamestate.command.CommandController.CommandType.values;
 
 public final class CommandController {
 

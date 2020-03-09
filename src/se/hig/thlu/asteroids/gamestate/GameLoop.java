@@ -1,6 +1,4 @@
-package se.hig.thlu.asteroids.gameloop;
-
-import se.hig.thlu.asteroids.controller.GameController;
+package se.hig.thlu.asteroids.gamestate;
 
 /**
  * Credit to http://www.java-gaming.org/index.php?topic=24220.0

@@ -1,8 +1,8 @@
-package se.hig.thlu.asteroids.controller;
+package se.hig.thlu.asteroids.gamestate;
 
 import se.hig.thlu.asteroids.config.GameConfig;
-import se.hig.thlu.asteroids.controller.command.CommandController;
-import se.hig.thlu.asteroids.controller.command.CommandController.CommandType;
+import se.hig.thlu.asteroids.gamestate.command.CommandController;
+import se.hig.thlu.asteroids.gamestate.command.CommandController.CommandType;
 import se.hig.thlu.asteroids.factory.EntityFactory;
 import se.hig.thlu.asteroids.util.Trigonometry;
 import se.hig.thlu.asteroids.model.Explosion;
@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-import static se.hig.thlu.asteroids.controller.GameController.Action.ADD;
+import static se.hig.thlu.asteroids.gamestate.GameController.Action.ADD;
 
 public final class GameController implements IObservable {
 
