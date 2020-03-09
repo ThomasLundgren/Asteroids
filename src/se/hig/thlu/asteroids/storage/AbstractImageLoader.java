@@ -31,7 +31,6 @@ public abstract class AbstractImageLoader<T extends ImageAdapter> implements Ima
 	@Override
 	public T getImage(ImageResource imageResource, Dim dimension) {
 		Optional<T> resizedImage = getFromImageResizeCache(imageResource, dimension);
-		System.out.println("ResizedImage present? " + resizedImage.isPresent());
 		return resizedImage.orElseGet(() -> resizeAndCacheImage(imageResource, dimension));
 	}
 
@@ -85,7 +84,6 @@ public abstract class AbstractImageLoader<T extends ImageAdapter> implements Ima
 		List<T> cachedImages = new ArrayList<>(50);
 		Map<Dim, List<T>> animationList = sizedAnimationCache.get(animationResource);
 		if (animationList != null) {
-			// Animation was cached
 			List<T> cachedResized = animationList.get(dimension);
 			if (cachedResized != null) {
 				cachedImages = cachedResized;
