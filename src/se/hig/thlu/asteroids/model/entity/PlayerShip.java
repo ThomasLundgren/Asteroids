@@ -83,6 +83,11 @@ public final class PlayerShip extends AbstractEntity implements Shooter {
 	}
 
 	@Override
+	public int getScore() {
+		return 0;
+	}
+
+	@Override
 	public void update() {
 		super.update();
 		ticksSinceLastShot++;

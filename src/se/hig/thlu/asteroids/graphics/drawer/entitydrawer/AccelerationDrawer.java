@@ -1,7 +1,7 @@
-package se.hig.thlu.asteroids.graphics.entitydrawer;
+package se.hig.thlu.asteroids.graphics.drawer.entitydrawer;
 
-import se.hig.thlu.asteroids.graphics.entitydrawer.drawingstrategy.AbstractDrawingStrategy;
-import se.hig.thlu.asteroids.graphics.entitydrawer.drawingstrategy.DrawingParameters;
+import se.hig.thlu.asteroids.graphics.drawer.entitydrawer.drawingstrategy.AbstractDrawingStrategy;
+import se.hig.thlu.asteroids.graphics.drawer.entitydrawer.drawingstrategy.DrawingParameters;
 import se.hig.thlu.asteroids.graphics.font.FontAdapter;
 import se.hig.thlu.asteroids.graphics.graphicsadapter.GraphicsAdapter;
 import se.hig.thlu.asteroids.graphics.image.ImageAdapter;
@@ -18,8 +18,8 @@ public class AccelerationDrawer extends EntityDrawerDecorator {
 	}
 
 	@Override
-	public void onNotify(String propertyName, Event event) {
-		super.onNotify(propertyName, event);
+	public void notify(String propertyName, Event event) {
+		super.notify(propertyName, event);
 		if (propertyName.equals(EntityProperty.IS_ACCELERATING.toString())) {
 			isAccelerating = (boolean) event.getValue();
 		}

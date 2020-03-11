@@ -1,27 +1,24 @@
 package se.hig.thlu.asteroids.gamestate;
 
 import se.hig.thlu.asteroids.config.GameConfig;
+import se.hig.thlu.asteroids.factory.EntityFactory;
 import se.hig.thlu.asteroids.gamestate.command.CommandController;
 import se.hig.thlu.asteroids.gamestate.command.CommandController.CommandType;
-import se.hig.thlu.asteroids.factory.EntityFactory;
-import se.hig.thlu.asteroids.util.Trigonometry;
 import se.hig.thlu.asteroids.model.Explosion;
 import se.hig.thlu.asteroids.model.Point;
 import se.hig.thlu.asteroids.model.entity.*;
 import se.hig.thlu.asteroids.observer.Event;
-import se.hig.thlu.asteroids.observer.IObservable;
-import se.hig.thlu.asteroids.observer.IObserver;
+import se.hig.thlu.asteroids.util.Trigonometry;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-import static se.hig.thlu.asteroids.gamestate.GameController.Action.ADD;
+import static se.hig.thlu.asteroids.gamestate.GameController.Action.*;
 
-public final class GameController implements IObservable {
+public final class GameController /*implements IObservable*/ {
 
 
 	// TODO: Create start() method that start gameloop
@@ -30,8 +27,8 @@ public final class GameController implements IObservable {
 	private final Collection<Missile> missiles = new CopyOnWriteArrayList<>();
 	private final Collection<Entity> enemies = new CopyOnWriteArrayList<>();
 	private final EntityFactory factory;
-	private final List<IObserver> observers = new ArrayList<>(1);
 	private BigDecimal totalGameTime = new BigDecimal("0.0");
+	private double currentLevelTime = 0.0;
 	private double enemyShipSpawnTimer = 0.0;
 	private boolean canShoot = true;
 
@@ -42,6 +39,7 @@ public final class GameController implements IObservable {
 		this.commandController = commandController;
 		this.playerShip = playerShip;
 		centerPlayerShip();
+		EventBus.getInstance().notify(ADD.toString(), new Event(playerShip));
 	}
 
 	public void update(double delta) {
@@ -60,6 +58,8 @@ public final class GameController implements IObservable {
 
 	private void spawnEnemies() {
 		if (enemies.isEmpty()) {
+			emitEvent(LEVEL_CLEARED, currentLevelTime);
+			currentLevelTime = 0.0;
 			List<Entity> newEnemies = factory.nextLevel(playerShip.getCenter());
 			addEnemies(newEnemies);
 		}
@@ -70,11 +70,8 @@ public final class GameController implements IObservable {
 		}
 	}
 
-	private void notifyObservers(Action action, Object object) {
-		for (IObserver observer : observers) {
-			Event event = new Event(object);
-			observer.onNotify(action.toString(), event);
-		}
+	private void emitEvent(Action action, Object object) {
+		EventBus.getInstance().notify(action.toString(), new Event(object));
 	}
 
 	private void updateEntity(Entity entity) {
@@ -95,6 +92,7 @@ public final class GameController implements IObservable {
 
 	private void updateTimes(double delta) {
 		totalGameTime = totalGameTime.add(new BigDecimal(delta));
+		currentLevelTime += delta;
 		enemyShipSpawnTimer += delta;
 	}
 
@@ -102,9 +100,6 @@ public final class GameController implements IObservable {
 		for (Entity enemy : enemies) {
 			if (playerShip.intersectsWith(enemy)) {
 				collideEntities(playerShip, enemy);
-			}
-			if (enemy.isDestroyed()) {
-				enemies.remove(enemy);
 			}
 			for (Missile missile : missiles) {
 				if (missile.intersectsWith(enemy)) {
@@ -114,15 +109,18 @@ public final class GameController implements IObservable {
 					missiles.remove(missile);
 				}
 			}
+			if (enemy.isDestroyed()) {
+				enemies.remove(enemy);
+			}
 		}
 	}
 
-	@Override
-	public void addObserver(IObserver observer) {
-		observers.add(observer);
-		// TODO: MOve this to a new start() method
-		notifyObservers(ADD, playerShip);
-	}
+//	@Override
+//	public void addObserver(IObserver observer) {
+//		observers.add(observer);
+//		// TODO: MOve this to a new start() method
+//		notifyObservers(ADD, playerShip);
+//	}
 
 	public void handleKeyPressed(InputController.PressedKey key) {
 		switch (key) {
@@ -182,26 +180,31 @@ public final class GameController implements IObservable {
 		}
 		friendlyExplosion.ifPresent(this::addExplosion);
 		enemyExplosion.ifPresent(this::addExplosion);
+		removeEnemy(enemy);
+	}
+
+	private void removeEnemy(Entity enemy) {
+		emitEvent(DESTROY, enemy);
 		enemies.remove(enemy);
 	}
 
 	private void addMissile(Missile missile) {
 		missiles.add(missile);
-		notifyObservers(ADD, missile);
+		emitEvent(ADD, missile);
 	}
 
 	private void addEnemies(Collection<Entity> enemies) {
 		this.enemies.addAll(enemies);
-		enemies.forEach(a -> notifyObservers(ADD, a));
+		enemies.forEach(a -> emitEvent(ADD, a));
 	}
 
 	private void addEnemy(Entity enemy) {
 		enemies.add(enemy);
-		notifyObservers(ADD, enemy);
+		emitEvent(ADD, enemy);
 	}
 
 	private void addExplosion(Explosion explosion) {
-		notifyObservers(ADD, explosion);
+		emitEvent(ADD, explosion);
 	}
 
 	private void centerPlayerShip() {
@@ -210,7 +213,7 @@ public final class GameController implements IObservable {
 	}
 
 	public enum Action {
-		ADD;
+		ADD, DESTROY, LEVEL_CLEARED;
 	}
 
 }

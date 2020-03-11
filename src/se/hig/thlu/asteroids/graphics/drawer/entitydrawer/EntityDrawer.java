@@ -1,7 +1,8 @@
-package se.hig.thlu.asteroids.graphics.entitydrawer;
+package se.hig.thlu.asteroids.graphics.drawer.entitydrawer;
 
-import se.hig.thlu.asteroids.graphics.entitydrawer.drawingstrategy.DrawingParameters;
-import se.hig.thlu.asteroids.graphics.entitydrawer.drawingstrategy.DrawingStrategy;
+import se.hig.thlu.asteroids.graphics.drawer.Drawer;
+import se.hig.thlu.asteroids.graphics.drawer.entitydrawer.drawingstrategy.DrawingParameters;
+import se.hig.thlu.asteroids.graphics.drawer.entitydrawer.drawingstrategy.DrawingStrategy;
 import se.hig.thlu.asteroids.graphics.font.FontAdapter;
 import se.hig.thlu.asteroids.graphics.graphicsadapter.GraphicsAdapter;
 import se.hig.thlu.asteroids.graphics.image.ImageAdapter;
@@ -48,7 +49,7 @@ public class EntityDrawer implements Drawer, IObserver {
 	}
 
 	@Override
-	public void onNotify(String propertyName, Event event) {
+	public void notify(String propertyName, Event event) {
 		Object value = event.getValue();
 		int width = drawingParameters.getDimensions().getWidth();
 		int height = drawingParameters.getDimensions().getHeight();

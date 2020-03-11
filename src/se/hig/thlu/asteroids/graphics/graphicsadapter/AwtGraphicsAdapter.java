@@ -31,12 +31,12 @@ public class AwtGraphicsAdapter implements GraphicsAdapter<AwtFontAdapter, AwtIm
 
 	@Override
 	public void drawRect(int x, int y, int width, int height) {
-
+		g2d.drawRect(x, y,  width, height);
 	}
 
 	@Override
 	public void drawString(String text, int x, int y) {
-
+		g2d.drawString(text, x, y);
 	}
 
 	@Override

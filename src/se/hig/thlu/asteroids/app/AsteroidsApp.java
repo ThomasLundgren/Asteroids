@@ -1,11 +1,9 @@
 package se.hig.thlu.asteroids.app;
 
-import se.hig.thlu.asteroids.gamestate.GameController;
-import se.hig.thlu.asteroids.gamestate.InputController;
-import se.hig.thlu.asteroids.gamestate.command.CommandController;
 import se.hig.thlu.asteroids.factory.DefaultFactory;
 import se.hig.thlu.asteroids.factory.EntityFactory;
-import se.hig.thlu.asteroids.gamestate.GameLoop;
+import se.hig.thlu.asteroids.gamestate.*;
+import se.hig.thlu.asteroids.gamestate.command.CommandController;
 import se.hig.thlu.asteroids.graphics.image.AwtImageAdapter;
 import se.hig.thlu.asteroids.gui.GUI;
 import se.hig.thlu.asteroids.gui.SwingGUI;
@@ -40,20 +38,23 @@ public class AsteroidsApp {
 		} catch (Exception ignored) {
 		}
 		try {
+			ScoreKeeper scoreKeeper = new ScoreKeeper();
 			AbstractImageLoader<AwtImageAdapter> imgLoader = new ImageLoaderAwt();
 			EntityFactory factory = new DefaultFactory();
 			PlayerShip playerShip = factory.createPlayerShip();
 			CommandController cmdController = CommandController.createCommandController(playerShip);
 			GUI<AwtKeyboardAdapter> gui = new SwingGUI(imgLoader);
+			EventBus.getInstance().addObserver(gui);
 			GameController gameController = new GameController(factory, cmdController, playerShip);
-			gameController.addObserver(gui);
 			GameLoop gameLoop = new GameLoop(gameController);
 			KeyAdapter inputController =
 					InputController.createInputController(gameController);
 			AwtKeyboardAdapter keyboardAdapter = new AwtKeyboardAdapter(inputController);
 			gui.addEventListener(keyboardAdapter);
 
-			gameLoop.gameLoop();
+			gameLoop.run();
+//			Thread thread = new Thread(gameLoop);
+//			thread.start();
 
 		} catch (IOException e) {
 			e.printStackTrace();

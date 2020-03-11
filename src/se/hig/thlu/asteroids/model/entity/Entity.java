@@ -25,4 +25,6 @@ public interface Entity extends IObservable {
 
 	boolean intersectsWith(Entity other);
 
+	int getScore();
+
 }

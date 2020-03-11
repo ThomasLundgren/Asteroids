@@ -1,5 +1,6 @@
-package se.hig.thlu.asteroids.graphics.entitydrawer;
+package se.hig.thlu.asteroids.graphics.drawer.entitydrawer;
 
+import se.hig.thlu.asteroids.graphics.drawer.Drawer;
 import se.hig.thlu.asteroids.graphics.font.FontAdapter;
 import se.hig.thlu.asteroids.graphics.graphicsadapter.GraphicsAdapter;
 import se.hig.thlu.asteroids.graphics.image.ImageAdapter;

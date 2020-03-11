@@ -1,4 +1,4 @@
-package se.hig.thlu.asteroids.graphics.entitydrawer.drawingstrategy;
+package se.hig.thlu.asteroids.graphics.drawer.entitydrawer.drawingstrategy;
 
 import se.hig.thlu.asteroids.graphics.font.FontAdapter;
 import se.hig.thlu.asteroids.graphics.graphicsadapter.GraphicsAdapter;

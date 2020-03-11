@@ -67,6 +67,11 @@ public final class Asteroid extends AbstractEntity implements Shatterable {
 	}
 
 	@Override
+	public int getScore() {
+		return asteroidSize.getScore();
+	}
+
+	@Override
 	public List<Entity> shatter() {
 		Asteroid.AsteroidSize newSize;
 		switch (asteroidSize) {
@@ -104,20 +109,22 @@ public final class Asteroid extends AbstractEntity implements Shatterable {
 	private enum RotationDirection {LEFT, RIGHT}
 
 	public enum AsteroidSize {
-		LARGE(1.0, 1.5, 91, 87),
-		MEDIUM(1.25, 1.875, 41, 38),
-		SMALL(1.5625, 2.34375, 21, 21);
+		LARGE(1.0, 1.5, 91, 87, 5),
+		MEDIUM(1.25, 1.875, 41, 38, 4),
+		SMALL(1.5625, 2.34375, 21, 21, 3);
 
 		private final double minSpeed;
 		private final double maxSpeed;
 		private final int width;
 		private final int height;
+		private final int score;
 
-		AsteroidSize(double minSpeed, double maxSpeed, int width, int height) {
+		AsteroidSize(double minSpeed, double maxSpeed, int width, int height, int score) {
 			this.minSpeed = minSpeed;
 			this.maxSpeed = maxSpeed;
 			this.width = width;
 			this.height = height;
+			this.score = score;
 		}
 
 		public double getMaxSpeed() {
@@ -134,6 +141,10 @@ public final class Asteroid extends AbstractEntity implements Shatterable {
 
 		public int getWidth() {
 			return width;
+		}
+
+		public int getScore() {
+			return score;
 		}
 	}
 }

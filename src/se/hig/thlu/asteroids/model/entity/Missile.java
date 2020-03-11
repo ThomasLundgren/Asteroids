@@ -37,6 +37,15 @@ public final class Missile extends AbstractEntity {
 		}
 	}
 
+	@Override
+	public int getScore() {
+		if (missileSource == MissileSource.PLAYER) {
+			return 0;
+		} else {
+			return 1;
+		}
+	}
+
 	public enum MissileSource {
 		PLAYER(9.0,  17, 9, 9),
 		ENEMY(3.5,  9, 6, 310);

@@ -1,4 +1,4 @@
-package se.hig.thlu.asteroids.graphics.entitydrawer.drawingstrategy;
+package se.hig.thlu.asteroids.graphics.drawer.entitydrawer.drawingstrategy;
 
 import se.hig.thlu.asteroids.graphics.image.ImageAdapter;
 import se.hig.thlu.asteroids.model.Dim;

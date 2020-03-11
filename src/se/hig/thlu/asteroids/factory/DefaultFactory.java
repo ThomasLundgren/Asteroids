@@ -53,10 +53,12 @@ public final class DefaultFactory implements EntityFactory {
 			direction = -180.0;
 		}
 
+		double yDistanceToPlayer = 0.0;
 		do {
 			int randomY = ThreadLocalRandom.current().nextInt(0, GameConfig.WINDOW_HEIGHT);
 			randomPoint = new Point((double) shipX, (double) randomY);
-		} while (randomPoint.distanceTo(playerCenter) < (double) GameConfig.ENEMY_SPAWN_MIN_DISTANCE);
+			yDistanceToPlayer = StrictMath.abs((double) randomY - playerCenter.getY());
+		} while (yDistanceToPlayer < ((double) GameConfig.WINDOW_WIDTH / 4.0));
 
 		EnemyShip enemyShip = new EnemyShip(direction);
 		enemyShip.setCenter(randomPoint);

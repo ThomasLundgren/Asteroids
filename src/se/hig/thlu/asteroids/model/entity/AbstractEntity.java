@@ -50,7 +50,7 @@ public abstract class AbstractEntity implements Entity {
 	protected void notifyObservers(EntityProperty property, Object newValue) {
 		observers.forEach(o -> {
 			Event event = new Event(newValue);
-			o.onNotify(property.toString(), event);
+			o.notify(property.toString(), event);
 		});
 	}
 
