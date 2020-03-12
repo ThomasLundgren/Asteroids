@@ -1,9 +1,9 @@
 package se.hig.thlu.asteroids.graphics.drawer.entitydrawer.drawingstrategy;
 
-import se.hig.thlu.asteroids.graphics.image.ImageAdapter;
+import se.hig.thlu.asteroids.graphics.adapter.imageadapter.ImageAdapter;
 import se.hig.thlu.asteroids.model.Dim;
-import se.hig.thlu.asteroids.model.entity.Entity;
 import se.hig.thlu.asteroids.model.Point;
+import se.hig.thlu.asteroids.model.entity.Entity;
 
 public class DrawingParameters {
 
