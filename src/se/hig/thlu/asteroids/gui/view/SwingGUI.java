@@ -10,15 +10,11 @@ import javax.swing.*;
 
 public class SwingGUI extends JFrame implements GUI<AwtKeyboardAdapter> {
 
-	private final AbstractImageLoader<? extends ImageAdapter> imageLoader;
 	private BackgroundPanel backgroundPanel;
 
 	public SwingGUI(AbstractImageLoader<? extends ImageAdapter> imageLoader) {
-		this.imageLoader = imageLoader;
-//		backgroundPanel = new BackgroundPanel(imageLoader);
-//		add(backgroundPanel);
-		StartMenuSwing startMenu = new StartMenuSwing();
-		add(startMenu.getPanel());
+		backgroundPanel = new BackgroundPanel(imageLoader);
+		add(backgroundPanel);
 		configureFrame();
 	}
 
