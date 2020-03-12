@@ -1,12 +1,11 @@
 package se.hig.thlu.asteroids.storage;
 
-import se.hig.thlu.asteroids.graphics.image.ImageAdapter;
+import se.hig.thlu.asteroids.graphics.adapter.imageadapter.ImageAdapter;
 import se.hig.thlu.asteroids.model.Dim;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.*;
-import java.util.stream.Collectors;
 
 public abstract class AbstractImageLoader<T extends ImageAdapter> implements ImageLoader<T> {
 
@@ -15,7 +14,7 @@ public abstract class AbstractImageLoader<T extends ImageAdapter> implements Ima
 			new EnumMap<>(ImageResource.class);
 	protected final EnumMap<ImageResource, Map<Dim, T>> sizedImageCache =
 			new EnumMap<>(ImageResource.class);
-	protected final EnumMap<AnimationResource, List<T>> animationCache =
+	protected final EnumMap<AnimationResource, T> animationCache =
 			new EnumMap<>(AnimationResource.class);
 	protected final EnumMap<AnimationResource, Map<Dim, List<T>>> sizedAnimationCache =
 			new EnumMap<>(AnimationResource.class);
@@ -43,6 +42,7 @@ public abstract class AbstractImageLoader<T extends ImageAdapter> implements Ima
 		return resizeAndCacheAnimation(animationResource, dimensions);
 	}
 
+
 	protected abstract List<T> spriteSheetToImageList(T spriteSheet, AnimationResource animation);
 
 	protected abstract T loadImageFromString(String path, int width, int height) throws IOException;
@@ -53,11 +53,12 @@ public abstract class AbstractImageLoader<T extends ImageAdapter> implements Ima
 				image.getHeight());
 	}
 
-	protected List<T> loadAnimation(AnimationResource animation) throws IOException {
+	protected T loadAnimation(AnimationResource animation) throws IOException {
 		T spriteSheet = loadImageFromString(animation.getImagePath(),
 				animation.getWidth(),
 				animation.getHeight());
-		return spriteSheetToImageList(spriteSheet, animation);
+		// TODO: Just store the Image instead. Split up into multiple Images when "getting" them.
+		return spriteSheet;
 	}
 
 	protected final void loadAllImages() throws IOException {
@@ -66,7 +67,7 @@ public abstract class AbstractImageLoader<T extends ImageAdapter> implements Ima
 			imageCache.put(imageResource, image);
 		}
 		for (AnimationResource animationResource : AnimationResource.values()) {
-			List<T> animation = loadAnimation(animationResource);
+			T animation = loadAnimation(animationResource);
 			animationCache.put(animationResource, animation);
 		}
 	}
@@ -106,10 +107,13 @@ public abstract class AbstractImageLoader<T extends ImageAdapter> implements Ima
 	}
 
 	protected List<T> resizeAndCacheAnimation(AnimationResource animationResource, Dim dimensions) {
-		List<T> animation = animationCache.get(animationResource);
-		List<T> resizedImages = animation.parallelStream()
-				.map(image -> image.<T>resizeTo(dimensions))
-				.collect(Collectors.toList());
+		int columns = animationResource.getColumns();
+		int rows = animationResource.getRows();
+		int newWidth = dimensions.getWidth() * columns;
+		int newHeight = dimensions.getHeight() * rows;
+		T spriteSheet = animationCache.get(animationResource);
+		T resizedSpriteSheet = spriteSheet.resizeTo(new Dim(newWidth, newHeight));
+		List<T> resizedImages = spriteSheetToImageList(resizedSpriteSheet, animationResource);
 		if (sizedAnimationCache.containsKey(animationResource)) {
 			sizedAnimationCache.get(animationResource)
 					.put(dimensions, resizedImages);

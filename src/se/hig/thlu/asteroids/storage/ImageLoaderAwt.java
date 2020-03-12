@@ -1,6 +1,6 @@
 package se.hig.thlu.asteroids.storage;
 
-import se.hig.thlu.asteroids.graphics.image.AwtImageAdapter;
+import se.hig.thlu.asteroids.graphics.adapter.imageadapter.AwtImageAdapter;
 
 import javax.imageio.ImageIO;
 import java.awt.*;

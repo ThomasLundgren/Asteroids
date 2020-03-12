@@ -1,6 +1,6 @@
 package se.hig.thlu.asteroids.storage;
 
-import se.hig.thlu.asteroids.graphics.image.ImageAdapter;
+import se.hig.thlu.asteroids.graphics.adapter.imageadapter.ImageAdapter;
 import se.hig.thlu.asteroids.model.Dim;
 
 import java.util.List;
