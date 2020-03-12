@@ -1,4 +1,4 @@
-package se.hig.thlu.asteroids.gui;
+package se.hig.thlu.asteroids.gui.view;
 
 import se.hig.thlu.asteroids.config.GameConfig;
 import se.hig.thlu.asteroids.gamestate.EventBus;
@@ -9,9 +9,9 @@ import se.hig.thlu.asteroids.graphics.drawer.Drawer;
 import se.hig.thlu.asteroids.graphics.drawer.entitydrawer.EntityDrawer;
 import se.hig.thlu.asteroids.graphics.drawer.entitydrawer.drawingstrategy.CenteredDrawingStrategy;
 import se.hig.thlu.asteroids.graphics.drawer.entitydrawer.drawingstrategy.DrawingParameters;
-import se.hig.thlu.asteroids.graphics.graphicsadapter.AwtGraphicsAdapter;
-import se.hig.thlu.asteroids.graphics.graphicsadapter.GraphicsAdapter;
-import se.hig.thlu.asteroids.graphics.image.ImageAdapter;
+import se.hig.thlu.asteroids.graphics.adapter.graphicsadapter.AwtGraphicsAdapter;
+import se.hig.thlu.asteroids.graphics.adapter.graphicsadapter.GraphicsAdapter;
+import se.hig.thlu.asteroids.graphics.adapter.imageadapter.ImageAdapter;
 import se.hig.thlu.asteroids.model.Dim;
 import se.hig.thlu.asteroids.model.Explosion;
 import se.hig.thlu.asteroids.model.entity.*;

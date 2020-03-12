@@ -1,4 +1,4 @@
-package se.hig.thlu.asteroids.graphics.font;
+package se.hig.thlu.asteroids.graphics.adapter.fontadapter;
 
 import java.awt.*;
 

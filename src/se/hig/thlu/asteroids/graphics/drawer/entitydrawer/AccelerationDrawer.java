@@ -2,9 +2,8 @@ package se.hig.thlu.asteroids.graphics.drawer.entitydrawer;
 
 import se.hig.thlu.asteroids.graphics.drawer.entitydrawer.drawingstrategy.AbstractDrawingStrategy;
 import se.hig.thlu.asteroids.graphics.drawer.entitydrawer.drawingstrategy.DrawingParameters;
-import se.hig.thlu.asteroids.graphics.font.FontAdapter;
-import se.hig.thlu.asteroids.graphics.graphicsadapter.GraphicsAdapter;
-import se.hig.thlu.asteroids.graphics.image.ImageAdapter;
+import se.hig.thlu.asteroids.graphics.adapter.graphicsadapter.GraphicsAdapter;
+import se.hig.thlu.asteroids.graphics.adapter.imageadapter.ImageAdapter;
 import se.hig.thlu.asteroids.model.entity.EntityProperty;
 import se.hig.thlu.asteroids.observer.Event;
 
@@ -33,7 +32,8 @@ public class AccelerationDrawer extends EntityDrawerDecorator {
 		}
 
 		@Override
-		public void draw(GraphicsAdapter<FontAdapter, ImageAdapter> graphics, DrawingParameters drawingParameters) {
+		public void draw(GraphicsAdapter<ImageAdapter> graphics,
+						 DrawingParameters drawingParameters) {
 			setParameters(drawingParameters);
 			if (isAccelerating) {
 				int xCorner = (int) x - decoratee.getDimensions().getWidth() / 2 - dimensions.getWidth() / 2 + 1;

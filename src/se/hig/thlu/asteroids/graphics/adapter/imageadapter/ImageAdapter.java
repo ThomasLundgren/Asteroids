@@ -1,4 +1,4 @@
-package se.hig.thlu.asteroids.graphics.image;
+package se.hig.thlu.asteroids.graphics.adapter.imageadapter;
 
 import se.hig.thlu.asteroids.model.Dim;
 

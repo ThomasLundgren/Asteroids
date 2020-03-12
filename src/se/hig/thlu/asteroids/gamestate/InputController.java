@@ -1,7 +1,7 @@
 package se.hig.thlu.asteroids.gamestate;
 
-import se.hig.thlu.asteroids.gui.eventlistener.AwtEventAdapter;
-import se.hig.thlu.asteroids.gui.eventlistener.EventListenerAdapter;
+import se.hig.thlu.asteroids.gui.eventlisteneradapter.AwtEventAdapter;
+import se.hig.thlu.asteroids.gui.eventlisteneradapter.EventListenerAdapter;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;

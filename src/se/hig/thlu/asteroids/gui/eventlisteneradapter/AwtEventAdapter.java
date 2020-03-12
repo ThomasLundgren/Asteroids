@@ -1,4 +1,4 @@
-package se.hig.thlu.asteroids.gui.eventlistener;
+package se.hig.thlu.asteroids.gui.eventlisteneradapter;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;

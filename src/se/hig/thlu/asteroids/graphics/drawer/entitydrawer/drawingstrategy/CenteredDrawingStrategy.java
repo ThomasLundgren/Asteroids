@@ -1,13 +1,13 @@
 package se.hig.thlu.asteroids.graphics.drawer.entitydrawer.drawingstrategy;
 
-import se.hig.thlu.asteroids.graphics.font.FontAdapter;
-import se.hig.thlu.asteroids.graphics.graphicsadapter.GraphicsAdapter;
-import se.hig.thlu.asteroids.graphics.image.ImageAdapter;
+import se.hig.thlu.asteroids.graphics.adapter.graphicsadapter.GraphicsAdapter;
+import se.hig.thlu.asteroids.graphics.adapter.imageadapter.ImageAdapter;
 
 public class CenteredDrawingStrategy extends AbstractDrawingStrategy {
 
 	@Override
-	public void draw(GraphicsAdapter<FontAdapter, ImageAdapter> graphics, DrawingParameters drawingParameters) {
+	public void draw(GraphicsAdapter<ImageAdapter> graphics,
+					 DrawingParameters drawingParameters) {
 		setParameters(drawingParameters);
 
 		int xCorner = (int) x - dimensions.getWidth() / 2;

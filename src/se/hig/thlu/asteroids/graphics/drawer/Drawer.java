@@ -1,12 +1,11 @@
 package se.hig.thlu.asteroids.graphics.drawer;
 
-import se.hig.thlu.asteroids.graphics.font.FontAdapter;
-import se.hig.thlu.asteroids.graphics.graphicsadapter.GraphicsAdapter;
-import se.hig.thlu.asteroids.graphics.image.ImageAdapter;
+import se.hig.thlu.asteroids.graphics.adapter.graphicsadapter.GraphicsAdapter;
+import se.hig.thlu.asteroids.graphics.adapter.imageadapter.ImageAdapter;
 
 public interface Drawer {
 
-	void draw(GraphicsAdapter<FontAdapter, ImageAdapter> graphics);
+	void draw(GraphicsAdapter<ImageAdapter> graphics);
 
 	boolean isFinished();
 

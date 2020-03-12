@@ -1,8 +1,8 @@
-package se.hig.thlu.asteroids.gui;
+package se.hig.thlu.asteroids.gui.view;
 
 import se.hig.thlu.asteroids.config.GameConfig;
-import se.hig.thlu.asteroids.graphics.image.ImageAdapter;
-import se.hig.thlu.asteroids.gui.eventlistener.AwtKeyboardAdapter;
+import se.hig.thlu.asteroids.graphics.adapter.imageadapter.ImageAdapter;
+import se.hig.thlu.asteroids.gui.eventlisteneradapter.AwtKeyboardAdapter;
 import se.hig.thlu.asteroids.observer.Event;
 import se.hig.thlu.asteroids.storage.AbstractImageLoader;
 
@@ -15,8 +15,10 @@ public class SwingGUI extends JFrame implements GUI<AwtKeyboardAdapter> {
 
 	public SwingGUI(AbstractImageLoader<? extends ImageAdapter> imageLoader) {
 		this.imageLoader = imageLoader;
-		backgroundPanel = new BackgroundPanel(imageLoader);
-		add(backgroundPanel);
+//		backgroundPanel = new BackgroundPanel(imageLoader);
+//		add(backgroundPanel);
+		StartMenuSwing startMenu = new StartMenuSwing();
+		add(startMenu.getPanel());
 		configureFrame();
 	}
 

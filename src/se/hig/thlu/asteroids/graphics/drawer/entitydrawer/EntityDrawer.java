@@ -3,9 +3,8 @@ package se.hig.thlu.asteroids.graphics.drawer.entitydrawer;
 import se.hig.thlu.asteroids.graphics.drawer.Drawer;
 import se.hig.thlu.asteroids.graphics.drawer.entitydrawer.drawingstrategy.DrawingParameters;
 import se.hig.thlu.asteroids.graphics.drawer.entitydrawer.drawingstrategy.DrawingStrategy;
-import se.hig.thlu.asteroids.graphics.font.FontAdapter;
-import se.hig.thlu.asteroids.graphics.graphicsadapter.GraphicsAdapter;
-import se.hig.thlu.asteroids.graphics.image.ImageAdapter;
+import se.hig.thlu.asteroids.graphics.adapter.graphicsadapter.GraphicsAdapter;
+import se.hig.thlu.asteroids.graphics.adapter.imageadapter.ImageAdapter;
 import se.hig.thlu.asteroids.model.Dim;
 import se.hig.thlu.asteroids.model.Point;
 import se.hig.thlu.asteroids.model.entity.EntityProperty;
@@ -32,7 +31,7 @@ public class EntityDrawer implements Drawer, IObserver {
 	}
 
 	@Override
-	public void draw(GraphicsAdapter<FontAdapter, ImageAdapter> graphics) {
+	public void draw(GraphicsAdapter<ImageAdapter> graphics) {
 		if (isFinished) {
 			return;
 		}

@@ -1,7 +1,7 @@
-package se.hig.thlu.asteroids.graphics.graphicsadapter;
+package se.hig.thlu.asteroids.graphics.adapter.graphicsadapter;
 
-import se.hig.thlu.asteroids.graphics.font.AwtFontAdapter;
-import se.hig.thlu.asteroids.graphics.image.AwtImageAdapter;
+import se.hig.thlu.asteroids.graphics.adapter.fontadapter.AwtFontAdapter;
+import se.hig.thlu.asteroids.graphics.adapter.imageadapter.AwtImageAdapter;
 
 import java.awt.*;
 import java.awt.geom.AffineTransform;

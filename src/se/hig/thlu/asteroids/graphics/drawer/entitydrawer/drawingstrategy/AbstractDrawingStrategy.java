@@ -1,6 +1,6 @@
 package se.hig.thlu.asteroids.graphics.drawer.entitydrawer.drawingstrategy;
 
-import se.hig.thlu.asteroids.graphics.image.ImageAdapter;
+import se.hig.thlu.asteroids.graphics.adapter.imageadapter.ImageAdapter;
 import se.hig.thlu.asteroids.model.Dim;
 
 public abstract class AbstractDrawingStrategy implements DrawingStrategy {
