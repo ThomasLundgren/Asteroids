@@ -9,12 +9,5 @@ public interface GraphicsAdapter<T extends ImageAdapter> {
 
 	void drawImage(T image, int x, int y, int width, int height);
 
-//	void drawRect(int x, int y, int width, int height);
-//
-//	void drawString(String text, int x, int y);
-//
-//	void setFont(S font);
-//
-//	void setColor(R color);
 
 }

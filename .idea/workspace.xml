@@ -2,33 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="912592ae-0182-4155-a100-0b05ae75298b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/gamestate/EventBus.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/gamestate/ScoreKeeper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/graphics/drawer/MenuDrawer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/app/AsteroidsApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/app/AsteroidsApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/factory/DefaultFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/factory/DefaultFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/gamestate/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/gamestate/GameController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/gamestate/GameLoop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/gamestate/GameLoop.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/graphics/entitydrawer/AccelerationDrawer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/graphics/drawer/entitydrawer/AccelerationDrawer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/graphics/entitydrawer/AnimationDrawer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/graphics/drawer/entitydrawer/AnimationDrawer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/graphics/entitydrawer/Drawer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/graphics/drawer/Drawer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/graphics/entitydrawer/EntityDrawer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/graphics/drawer/entitydrawer/EntityDrawer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/graphics/entitydrawer/EntityDrawerDecorator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/graphics/drawer/entitydrawer/EntityDrawerDecorator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/graphics/entitydrawer/drawingstrategy/AbstractDrawingStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/graphics/drawer/entitydrawer/drawingstrategy/AbstractDrawingStrategy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/graphics/entitydrawer/drawingstrategy/CenteredDrawingStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/graphics/drawer/entitydrawer/drawingstrategy/CenteredDrawingStrategy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/graphics/entitydrawer/drawingstrategy/DrawingParameters.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/graphics/drawer/entitydrawer/drawingstrategy/DrawingParameters.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/graphics/entitydrawer/drawingstrategy/DrawingStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/graphics/drawer/entitydrawer/drawingstrategy/DrawingStrategy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/graphics/graphicsadapter/AwtGraphicsAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/graphics/graphicsadapter/AwtGraphicsAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/gui/BackgroundPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/gui/BackgroundPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/gui/SwingGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/gui/SwingGUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/model/entity/AbstractEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/model/entity/AbstractEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/model/entity/Asteroid.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/model/entity/Asteroid.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/model/entity/EnemyShip.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/model/entity/EnemyShip.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/model/entity/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/model/entity/Entity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/model/entity/Missile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/model/entity/Missile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/model/entity/PlayerShip.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/model/entity/PlayerShip.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/observer/IObserver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/observer/IObserver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/graphics/adapter/graphicsadapter/AwtGraphicsAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/graphics/adapter/graphicsadapter/AwtGraphicsAdapter.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,16 +56,16 @@
       <recent name="se.hig.thlu.asteroids.model" />
       <recent name="test.se.hig.thlu.asteroids.model.velocity" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\thoma\Documents\Dev\Projects\Asteroids\src" />
-    </key>
-    <key name="CreateTestDialog.Recents.Supers">
-      <recent name="" />
-    </key>
     <key name="CreateClassDialog.RecentsKey">
       <recent name="se.hig.thlu.asteroids.controller" />
       <recent name="se.hig.thlu.asteroids.factory" />
       <recent name="se.hig.thlu.asteroids.model" />
+    </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\thoma\Documents\Dev\Projects\Asteroids\src" />
     </key>
   </component>
   <component name="RunManager" selected="Application.AsteroidsApp">
@@ -258,26 +233,26 @@
       <screen x="0" y="0" width="1273" height="768" />
     </state>
     <state x="416" y="138" key="FileChooserDialogImpl/0.0.1273.768@0.0.1273.768" timestamp="1582807400936" />
-    <state width="1229" height="208" key="GridCell.Tab.0.bottom" timestamp="1583919071956">
+    <state width="1229" height="208" key="GridCell.Tab.0.bottom" timestamp="1584018538412">
       <screen x="0" y="0" width="1273" height="768" />
     </state>
     <state width="1143" height="192" key="GridCell.Tab.0.bottom/0.0.1187.720@0.0.1187.720" timestamp="1583529272130" />
-    <state width="1229" height="208" key="GridCell.Tab.0.bottom/0.0.1273.768@0.0.1273.768" timestamp="1583919071956" />
-    <state width="1229" height="208" key="GridCell.Tab.0.center" timestamp="1583919071956">
+    <state width="1229" height="208" key="GridCell.Tab.0.bottom/0.0.1273.768@0.0.1273.768" timestamp="1584018538412" />
+    <state width="1229" height="208" key="GridCell.Tab.0.center" timestamp="1584018538412">
       <screen x="0" y="0" width="1273" height="768" />
     </state>
     <state width="1143" height="192" key="GridCell.Tab.0.center/0.0.1187.720@0.0.1187.720" timestamp="1583529272129" />
-    <state width="1229" height="208" key="GridCell.Tab.0.center/0.0.1273.768@0.0.1273.768" timestamp="1583919071956" />
-    <state width="1229" height="208" key="GridCell.Tab.0.left" timestamp="1583919071956">
+    <state width="1229" height="208" key="GridCell.Tab.0.center/0.0.1273.768@0.0.1273.768" timestamp="1584018538412" />
+    <state width="1229" height="208" key="GridCell.Tab.0.left" timestamp="1584018538412">
       <screen x="0" y="0" width="1273" height="768" />
     </state>
     <state width="1143" height="192" key="GridCell.Tab.0.left/0.0.1187.720@0.0.1187.720" timestamp="1583529272099" />
-    <state width="1229" height="208" key="GridCell.Tab.0.left/0.0.1273.768@0.0.1273.768" timestamp="1583919071956" />
-    <state width="1229" height="208" key="GridCell.Tab.0.right" timestamp="1583919071956">
+    <state width="1229" height="208" key="GridCell.Tab.0.left/0.0.1273.768@0.0.1273.768" timestamp="1584018538412" />
+    <state width="1229" height="208" key="GridCell.Tab.0.right" timestamp="1584018538412">
       <screen x="0" y="0" width="1273" height="768" />
     </state>
     <state width="1143" height="192" key="GridCell.Tab.0.right/0.0.1187.720@0.0.1187.720" timestamp="1583529272129" />
-    <state width="1229" height="208" key="GridCell.Tab.0.right/0.0.1273.768@0.0.1273.768" timestamp="1583919071956" />
+    <state width="1229" height="208" key="GridCell.Tab.0.right/0.0.1273.768@0.0.1273.768" timestamp="1584018538412" />
     <state width="1230" height="177" key="GridCell.Tab.1.bottom" timestamp="1583505192082">
       <screen x="0" y="0" width="1273" height="768" />
     </state>
