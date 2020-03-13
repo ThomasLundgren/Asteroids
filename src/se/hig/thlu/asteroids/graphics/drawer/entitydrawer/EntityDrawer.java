@@ -1,15 +1,17 @@
 package se.hig.thlu.asteroids.graphics.drawer.entitydrawer;
 
+import se.hig.thlu.asteroids.event.Event;
+import se.hig.thlu.asteroids.event.IObserver;
+import se.hig.thlu.asteroids.event.entity.DestroyedEvent;
+import se.hig.thlu.asteroids.event.entity.MoveEvent;
+import se.hig.thlu.asteroids.event.entity.RotationEvent;
+import se.hig.thlu.asteroids.graphics.adapter.graphicsadapter.GraphicsAdapter;
+import se.hig.thlu.asteroids.graphics.adapter.imageadapter.ImageAdapter;
 import se.hig.thlu.asteroids.graphics.drawer.Drawer;
 import se.hig.thlu.asteroids.graphics.drawer.entitydrawer.drawingstrategy.DrawingParameters;
 import se.hig.thlu.asteroids.graphics.drawer.entitydrawer.drawingstrategy.DrawingStrategy;
-import se.hig.thlu.asteroids.graphics.adapter.graphicsadapter.GraphicsAdapter;
-import se.hig.thlu.asteroids.graphics.adapter.imageadapter.ImageAdapter;
 import se.hig.thlu.asteroids.model.Dim;
 import se.hig.thlu.asteroids.model.Point;
-import se.hig.thlu.asteroids.model.entity.EntityProperty;
-import se.hig.thlu.asteroids.observer.Event;
-import se.hig.thlu.asteroids.observer.IObserver;
 
 public class EntityDrawer implements Drawer, IObserver {
 
@@ -48,20 +50,14 @@ public class EntityDrawer implements Drawer, IObserver {
 	}
 
 	@Override
-	public void notify(String propertyName, Event event) {
+	public void notify(Event event) {
 		Object value = event.getValue();
-		int width = drawingParameters.getDimensions().getWidth();
-		int height = drawingParameters.getDimensions().getHeight();
-		if (propertyName.equals(EntityProperty.CENTER.toString())) {
+		if (event.toString().equals(MoveEvent.class.toString())) {
 			drawingParameters.setCenter((Point) value);
-		} else if (propertyName.equals(EntityProperty.ROTATION.toString())) {
+		} else if (event.toString().equals(RotationEvent.class.toString())) {
 			drawingParameters.setRotation((double) value);
-		} else if (propertyName.equals(EntityProperty.WIDTH.toString())) {
-			drawingParameters.setDimensions(new Dim((int) value, height));
-		} else if (propertyName.equals(EntityProperty.HEIGHT.toString())) {
-			drawingParameters.setDimensions(new Dim(width, (int) value));
-		} else if (propertyName.equals(EntityProperty.IS_DESTROYED.toString())) {
-			isFinished = (boolean) value;
+		} else if (event.toString().equals(DestroyedEvent.class.toString())) {
+			isFinished = true;
 		}
 	}
 }

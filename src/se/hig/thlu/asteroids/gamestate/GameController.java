@@ -1,25 +1,20 @@
 package se.hig.thlu.asteroids.gamestate;
 
 import se.hig.thlu.asteroids.config.GameConfig;
-import se.hig.thlu.asteroids.factory.EntityFactory;
+import se.hig.thlu.asteroids.event.EventHandlerFactory;
+import se.hig.thlu.asteroids.event.gamestate.GameStateEventHandler;
+import se.hig.thlu.asteroids.event.gamestate.LevelClearedEvent;
 import se.hig.thlu.asteroids.gamestate.command.CommandController;
 import se.hig.thlu.asteroids.gamestate.command.CommandController.CommandType;
-import se.hig.thlu.asteroids.model.Explosion;
 import se.hig.thlu.asteroids.model.Point;
 import se.hig.thlu.asteroids.model.entity.*;
-import se.hig.thlu.asteroids.observer.Event;
-import se.hig.thlu.asteroids.util.Trigonometry;
 
 import java.math.BigDecimal;
 import java.util.Collection;
 import java.util.List;
-import java.util.Optional;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-import static se.hig.thlu.asteroids.gamestate.GameController.Action.*;
-
-public final class GameController /*implements IObservable*/ {
-
+public final class GameController {
 
 	// TODO: Create start() method that start gameloop
 	private final CommandController commandController;
@@ -39,7 +34,6 @@ public final class GameController /*implements IObservable*/ {
 		this.commandController = commandController;
 		this.playerShip = playerShip;
 		centerPlayerShip();
-		EventBus.getInstance().notify(ADD.toString(), new Event(playerShip));
 	}
 
 	public void update(double delta) {
@@ -58,32 +52,21 @@ public final class GameController /*implements IObservable*/ {
 
 	private void spawnEnemies() {
 		if (enemies.isEmpty()) {
-			emitEvent(LEVEL_CLEARED, currentLevelTime);
+			EventHandlerFactory.getEventHandler(GameStateEventHandler.class)
+					.notify(new LevelClearedEvent(currentLevelTime));
 			currentLevelTime = 0.0;
 			List<Entity> newEnemies = factory.nextLevel(playerShip.getCenter());
-			addEnemies(newEnemies);
+			enemies.addAll(newEnemies);
 		}
 		if (enemyShipSpawnTimer > GameConfig.ENEMY_SHIP_SPAWN_TIME) {
 			enemyShipSpawnTimer = 0.0;
 			EnemyShip enemyShip = factory.createEnemyShip(playerShip.getCenter());
-			addEnemy(enemyShip);
+			enemies.add(enemyShip);
 		}
-	}
-
-	private void emitEvent(Action action, Object object) {
-		EventBus.getInstance().notify(action.toString(), new Event(object));
 	}
 
 	private void updateEntity(Entity entity) {
 		entity.update();
-		if (entity instanceof Shooter && entity != playerShip) {
-			double direction = Trigonometry.getAngle(entity.getCenter(), playerShip.getCenter());
-			double distance = entity.getCenter().distanceTo(playerShip.getCenter()) + 150.0;
-			distance /= (double) GameConfig.WINDOW_WIDTH;
-			distance = StrictMath.max(distance, 0.6);
-			Optional<Missile> missile = ((Shooter) entity).shoot(direction, distance);
-			missile.ifPresent(this::addEnemy);
-		}
 	}
 
 	private void executeActiveCommands() {
@@ -97,30 +80,23 @@ public final class GameController /*implements IObservable*/ {
 	}
 
 	private void checkCollisions() {
-		for (Entity enemy : enemies) {
-			if (playerShip.intersectsWith(enemy)) {
-				collideEntities(playerShip, enemy);
-			}
-			for (Missile missile : missiles) {
-				if (missile.intersectsWith(enemy)) {
-					collideEntities(missile, enemy);
-				} else if (missile.isDestroyed()) {
-					// Missile has selfdestructed
-					missiles.remove(missile);
-				}
-			}
-			if (enemy.isDestroyed()) {
-				enemies.remove(enemy);
-			}
-		}
+//		for (Entity enemy : enemies) {
+//			if (playerShip.intersectsWith(enemy)) {
+//				collideEntities(playerShip, enemy);
+//			}
+//			for (Missile missile : missiles) {
+//				if (missile.intersectsWith(enemy)) {
+//					collideEntities(missile, enemy);
+//				} else if (missile.isDestroyed()) {
+//					// Missile has selfdestructed
+//					missiles.remove(missile);
+//				}
+//			}
+//			if (enemy.isDestroyed()) {
+//				enemies.remove(enemy);
+//			}
+//		}
 	}
-
-//	@Override
-//	public void addObserver(IObserver observer) {
-//		observers.add(observer);
-//		// TODO: MOve this to a new start() method
-//		notifyObservers(ADD, playerShip);
-//	}
 
 	public void handleKeyPressed(InputController.PressedKey key) {
 		switch (key) {
@@ -137,8 +113,7 @@ public final class GameController /*implements IObservable*/ {
 				commandController.deactivate(CommandType.TURN_LEFT);
 				break;
 			case SPACE_BAR:
-				Optional<Missile> missile = playerShip.shoot(playerShip.getRotation(), 0.6);
-				missile.ifPresent(this::addMissile);
+				playerShip.shoot();
 				break;
 			default:
 				break;
@@ -165,55 +140,19 @@ public final class GameController /*implements IObservable*/ {
 	}
 
 	private void collideEntities(Entity friendly, Entity enemy) {
-		Optional<Explosion> friendlyExplosion = friendly.destroy();
-		Optional<Explosion> enemyExplosion = enemy.destroy();
-
 		if (friendly == playerShip) {
 			centerPlayerShip();
-			if (playerShip.isDestroyed()) {
-				System.out.println("Game over");
-			}
 		}
 		if (enemy instanceof Shatterable) {
 			List<Entity> newAsteroids = ((Shatterable) enemy).shatter();
-			addEnemies(newAsteroids);
+			enemies.addAll(newAsteroids);
 		}
-		friendlyExplosion.ifPresent(this::addExplosion);
-		enemyExplosion.ifPresent(this::addExplosion);
-		removeEnemy(enemy);
-	}
-
-	private void removeEnemy(Entity enemy) {
-		emitEvent(DESTROY, enemy);
 		enemies.remove(enemy);
-	}
-
-	private void addMissile(Missile missile) {
-		missiles.add(missile);
-		emitEvent(ADD, missile);
-	}
-
-	private void addEnemies(Collection<Entity> enemies) {
-		this.enemies.addAll(enemies);
-		enemies.forEach(a -> emitEvent(ADD, a));
-	}
-
-	private void addEnemy(Entity enemy) {
-		enemies.add(enemy);
-		emitEvent(ADD, enemy);
-	}
-
-	private void addExplosion(Explosion explosion) {
-		emitEvent(ADD, explosion);
 	}
 
 	private void centerPlayerShip() {
 		playerShip.setCenter(new Point((double) (GameConfig.WINDOW_WIDTH / 2),
 				(double) (GameConfig.WINDOW_HEIGHT / 2)));
-	}
-
-	public enum Action {
-		ADD, DESTROY, LEVEL_CLEARED;
 	}
 
 }

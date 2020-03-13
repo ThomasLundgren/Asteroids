@@ -5,6 +5,8 @@ import se.hig.thlu.asteroids.model.Dim;
 import se.hig.thlu.asteroids.model.Point;
 import se.hig.thlu.asteroids.model.Velocity;
 
+import java.util.Optional;
+
 public final class Missile extends AbstractEntity {
 
 	private final MissileSource missileSource;
@@ -35,6 +37,11 @@ public final class Missile extends AbstractEntity {
 		if (distanceTravelled > maxDistance * (double) GameConfig.WINDOW_WIDTH) {
 			destroy();
 		}
+	}
+
+	@Override
+	protected Optional<Explosion> createDeathExplosion() {
+		return Optional.empty();
 	}
 
 	@Override

@@ -1,4 +1,4 @@
-package se.hig.thlu.asteroids.observer;
+package se.hig.thlu.asteroids.event;
 
 public interface IObservable {
 

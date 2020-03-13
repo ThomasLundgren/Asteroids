@@ -1,49 +1,53 @@
 package se.hig.thlu.asteroids.gamestate;
 
-import se.hig.thlu.asteroids.gamestate.GameController.Action;
+import se.hig.thlu.asteroids.event.Event;
+import se.hig.thlu.asteroids.event.EventHandlerFactory;
+import se.hig.thlu.asteroids.event.IObserver;
+import se.hig.thlu.asteroids.event.entity.DestroyedEvent;
+import se.hig.thlu.asteroids.event.entity.EntityEventHandler;
+import se.hig.thlu.asteroids.event.gamestate.GameStateEventHandler;
+import se.hig.thlu.asteroids.event.gamestate.LevelClearedEvent;
+import se.hig.thlu.asteroids.event.gamestate.PenaltyScoreEvent;
+import se.hig.thlu.asteroids.event.gamestate.ScoreEvent;
 import se.hig.thlu.asteroids.model.entity.Entity;
-import se.hig.thlu.asteroids.observer.Event;
-import se.hig.thlu.asteroids.observer.IObserver;
 
 public class ScoreKeeper implements IObserver {
 
-	private long score = 0L;
 	private static double CLEAR_TIME_PENALTY_FACTOR = 0.001;
-
-	public enum Score {
-		SCORE_UPDATED;
-	}
+	private long score = 0L;
 
 	public ScoreKeeper() {
-		EventBus.getInstance().addObserver(this);
+		EventHandlerFactory.getEventHandler(GameStateEventHandler.class)
+				.addObserver(this);
+		EventHandlerFactory.getEventHandler(EntityEventHandler.class)
+				.addObserver(this);
 	}
 
 	private void enemyKilled(Entity entity) {
-		if (entity.isDestroyed()) {
-			score += (long) entity.getScore();
-		}
-		EventBus.getInstance().notify(Score.SCORE_UPDATED.toString(), new Event(score));
+		score += (long) entity.getScore();
+		EventHandlerFactory.getEventHandler(GameStateEventHandler.class)
+				.notify(new ScoreEvent(score));
 		System.out.println(score);
 	}
 
 	private void levelCleared(double timeToClear) {
 		if (timeToClear > 0.0) {
+			EventHandlerFactory.getEventHandler(GameStateEventHandler.class)
+					.notify(new ScoreEvent(score));
 			long penalty = (long) (CLEAR_TIME_PENALTY_FACTOR * timeToClear);
 			score -= penalty;
+			EventHandlerFactory.getEventHandler(GameStateEventHandler.class)
+					.notify(new PenaltyScoreEvent(penalty));
 		}
-		EventBus.getInstance().notify(Score.SCORE_UPDATED.toString(), new Event(score));
 	}
 
 	@Override
-	public void notify(String propertyName, Event event) {
-		Object value = event.getValue();
-		if (propertyName.equals(Action.DESTROY.toString())) {
-			if (value instanceof Entity) {
-				Entity entity = (Entity) value;
-				enemyKilled(entity);
-			}
-		} else if (propertyName.equals(Action.LEVEL_CLEARED.toString())) {
-			double timeToClear = (double) value;
+	public void notify(Event event) {
+		if (event.toString().equals(DestroyedEvent.class.toString())) {
+			Entity entity = (Entity) event.getValue();
+			enemyKilled(entity);
+		} else if (event.toString().equals(LevelClearedEvent.class.toString())) {
+			double timeToClear = (double) event.getValue();
 			levelCleared(timeToClear);
 		}
 	}

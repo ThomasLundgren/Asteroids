@@ -5,7 +5,7 @@ import se.hig.thlu.asteroids.graphics.drawer.entitydrawer.drawingstrategy.Drawin
 import se.hig.thlu.asteroids.graphics.adapter.graphicsadapter.GraphicsAdapter;
 import se.hig.thlu.asteroids.graphics.adapter.imageadapter.ImageAdapter;
 import se.hig.thlu.asteroids.model.Dim;
-import se.hig.thlu.asteroids.observer.Event;
+import se.hig.thlu.asteroids.event.Event;
 
 public class EntityDrawerDecorator extends EntityDrawer {
 
@@ -38,8 +38,8 @@ public class EntityDrawerDecorator extends EntityDrawer {
 	}
 
 	@Override
-	public void notify(String propertyName, Event event) {
-		decoratee.notify(propertyName, event);
-		super.notify(propertyName, event);
+	public void notify(Event event) {
+		decoratee.notify(event);
+		super.notify(event);
 	}
 }

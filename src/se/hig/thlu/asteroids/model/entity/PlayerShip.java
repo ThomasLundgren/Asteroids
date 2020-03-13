@@ -1,11 +1,18 @@
 package se.hig.thlu.asteroids.model.entity;
 
-import se.hig.thlu.asteroids.util.Trigonometry;
+import se.hig.thlu.asteroids.event.EventHandlerFactory;
+import se.hig.thlu.asteroids.event.create.CreateEventHandler;
+import se.hig.thlu.asteroids.event.create.ExplosionCreateEvent;
+import se.hig.thlu.asteroids.event.entity.AccelerationEvent;
+import se.hig.thlu.asteroids.event.entity.DestroyedEvent;
+import se.hig.thlu.asteroids.event.entity.PlayerMoveEvent;
+import se.hig.thlu.asteroids.event.gamestate.GameOverEvent;
+import se.hig.thlu.asteroids.event.gamestate.GameStateEventHandler;
 import se.hig.thlu.asteroids.model.Dim;
-import se.hig.thlu.asteroids.model.Explosion;
 import se.hig.thlu.asteroids.model.Point;
 import se.hig.thlu.asteroids.model.Velocity;
 import se.hig.thlu.asteroids.model.entity.Missile.MissileSource;
+import se.hig.thlu.asteroids.util.Trigonometry;
 
 import java.util.Optional;
 
@@ -17,7 +24,7 @@ public final class PlayerShip extends AbstractEntity implements Shooter {
 	private int lives = 3;
 	private int ticksSinceLastShot = 1337;
 
-	public PlayerShip() {
+	PlayerShip() {
 		super(new Point(),
 				new Velocity(),
 				5.0,
@@ -25,9 +32,14 @@ public final class PlayerShip extends AbstractEntity implements Shooter {
 						26));
 	}
 
-	public void accelerate() {
-		notifyObservers(EntityProperty.IS_ACCELERATING,true);
+	@Override
+	public void setCenter(Point center) {
+		super.setCenter(center);
+		eventHandler.notify(new PlayerMoveEvent(center, id));
+	}
 
+	public void accelerate() {
+		eventHandler.notify(new AccelerationEvent(true, id));
 		Velocity acceleration = new Velocity(ACCELERATION, rotation);
 		velocity.composeWith(acceleration);
 		if (velocity.getSpeed() >= MAX_SPEED) {
@@ -36,7 +48,7 @@ public final class PlayerShip extends AbstractEntity implements Shooter {
 	}
 
 	public void decelerate() {
-		notifyObservers(EntityProperty.IS_ACCELERATING,false);
+		eventHandler.notify(new AccelerationEvent(false, id));
 		if (velocity.getSpeed() < DECELERATION) {
 			velocity = new Velocity(0.0, velocity.getDirection());
 			return;
@@ -56,30 +68,33 @@ public final class PlayerShip extends AbstractEntity implements Shooter {
 	}
 
 	@Override
-	public Optional<Explosion> destroy() {
+	public void destroy() {
+		lives--;
 		if (lives == 1) {
-			isDestroyed = true;
-			lives--;
-			super.destroy();
+			GameStateEventHandler gameState = EventHandlerFactory.getEventHandler(GameStateEventHandler.class);
+			gameState.notify(new GameOverEvent());
 		} else {
 			velocity = new Velocity();
-			lives--;
 		}
-		return Optional.of(new Explosion(center, Explosion.ExplosionSize.THREE));
+		Optional<Explosion> explosion = createDeathExplosion();
+		eventHandler.notify(new DestroyedEvent(id));
+		EventHandlerFactory.getEventHandler(CreateEventHandler.class)
+				.notify(new ExplosionCreateEvent(explosion.get()));
 	}
 
 	@Override
-	public Optional<Missile> shoot(double direction, double distance) {
-		if (ticksSinceLastShot < MissileSource.PLAYER.getCoolDown()) {
-			return Optional.empty();
-		}
+	protected Optional<Explosion> createDeathExplosion() {
+		return Optional.of(new Explosion(center, Explosion.ExplosionSize.THREE));
+	}
+
+	// TODO: Change this to a "component/action"
+	public void shoot() {
 		ticksSinceLastShot = 0;
 		double centerFrontDistance = ((double) getDimensions().getWidth() / 2.0);
 		Point missileStart = Trigonometry.rotateAroundPoint(center,
 				rotation,
 				centerFrontDistance);
 		Missile missile = new Missile(missileStart, rotation, MissileSource.PLAYER, 0.6);
-		return Optional.of(missile);
 	}
 
 	@Override
@@ -91,5 +106,8 @@ public final class PlayerShip extends AbstractEntity implements Shooter {
 	public void update() {
 		super.update();
 		ticksSinceLastShot++;
+		if (ticksSinceLastShot > MissileSource.PLAYER.getCoolDown()) {
+			shoot();
+		}
 	}
 }

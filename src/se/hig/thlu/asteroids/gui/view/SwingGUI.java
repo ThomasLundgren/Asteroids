@@ -3,7 +3,6 @@ package se.hig.thlu.asteroids.gui.view;
 import se.hig.thlu.asteroids.config.GameConfig;
 import se.hig.thlu.asteroids.graphics.adapter.imageadapter.ImageAdapter;
 import se.hig.thlu.asteroids.gui.eventlisteneradapter.AwtKeyboardAdapter;
-import se.hig.thlu.asteroids.observer.Event;
 import se.hig.thlu.asteroids.storage.AbstractImageLoader;
 
 import javax.swing.*;
@@ -30,11 +29,5 @@ public class SwingGUI extends JFrame implements GUI<AwtKeyboardAdapter> {
 		pack();
 		setLocationRelativeTo(null);
 		setVisible(true);
-	}
-
-
-	@Override
-	public void notify(String propertyName, Event event) {
-
 	}
 }

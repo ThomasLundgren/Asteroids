@@ -2,7 +2,6 @@ package se.hig.thlu.asteroids.model.entity;
 
 import se.hig.thlu.asteroids.util.Randomizer;
 import se.hig.thlu.asteroids.model.Dim;
-import se.hig.thlu.asteroids.model.Explosion;
 import se.hig.thlu.asteroids.model.Point;
 import se.hig.thlu.asteroids.model.Velocity;
 
@@ -20,7 +19,7 @@ public final class Asteroid extends AbstractEntity implements Shatterable {
 	private final AsteroidSize asteroidSize;
 	private final RotationDirection rotationDirection;
 
-	public Asteroid(Point position, Velocity velocity, AsteroidSize size) {
+	Asteroid(Point position, Velocity velocity, AsteroidSize size) {
 		super(position,
 				velocity,
 				velocity.getSpeed(),
@@ -46,8 +45,7 @@ public final class Asteroid extends AbstractEntity implements Shatterable {
 	}
 
 	@Override
-	public Optional<Explosion> destroy() {
-		super.destroy();
+	protected Optional<Explosion> createDeathExplosion() {
 		Explosion.ExplosionSize size;
 		switch (asteroidSize) {
 			case LARGE:
@@ -99,7 +97,7 @@ public final class Asteroid extends AbstractEntity implements Shatterable {
 		for (int i = 0; i < 2; i++) {
 			double randSpeed = randomSpeed(minSpeed, maxSpeed);
 			double randomDir = Randomizer.randomDirection(parentDir - deviationDeg, parentDir + deviationDeg);
-			Asteroid newAsteroid = new Asteroid(center, new Velocity(randSpeed,
+			Entity newAsteroid = new Asteroid(center, new Velocity(randSpeed,
 					randomDir), size);
 			asteroids.add(newAsteroid);
 		}

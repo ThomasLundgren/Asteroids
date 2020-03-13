@@ -1,13 +1,13 @@
 package se.hig.thlu.asteroids.model.entity;
 
 import se.hig.thlu.asteroids.model.Dim;
-import se.hig.thlu.asteroids.model.Explosion;
 import se.hig.thlu.asteroids.model.Point;
-import se.hig.thlu.asteroids.observer.IObservable;
 
-import java.util.Optional;
+import java.util.UUID;
 
-public interface Entity extends IObservable {
+public interface Entity {
+
+	UUID getId();
 
 	Dim getDimensions();
 
@@ -17,13 +17,11 @@ public interface Entity extends IObservable {
 
 	double getRotation();
 
-	boolean isDestroyed();
-
-	Optional<Explosion> destroy();
+	void destroy();
 
 	void update();
 
-	boolean intersectsWith(Entity other);
+	void intersectsWith(Entity other);
 
 	int getScore();
 

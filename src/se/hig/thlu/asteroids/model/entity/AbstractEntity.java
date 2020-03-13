@@ -1,37 +1,42 @@
 package se.hig.thlu.asteroids.model.entity;
 
 import se.hig.thlu.asteroids.config.GameConfig;
-import se.hig.thlu.asteroids.util.Trigonometry;
+import se.hig.thlu.asteroids.event.EventHandlerFactory;
+import se.hig.thlu.asteroids.event.create.CreateEventHandler;
+import se.hig.thlu.asteroids.event.create.ExplosionCreateEvent;
+import se.hig.thlu.asteroids.event.entity.*;
 import se.hig.thlu.asteroids.model.Dim;
-import se.hig.thlu.asteroids.model.Explosion;
 import se.hig.thlu.asteroids.model.Point;
 import se.hig.thlu.asteroids.model.Velocity;
-import se.hig.thlu.asteroids.observer.Event;
-import se.hig.thlu.asteroids.observer.IObserver;
+import se.hig.thlu.asteroids.util.Trigonometry;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Optional;
+import java.util.UUID;
 
 public abstract class AbstractEntity implements Entity {
 
 	protected final double turningDegree;
 	private final Dim dimensions;
-	protected Collection<IObserver> observers = new ArrayList<>(1);
 	// TODO: Extract the three rows below into separate object Position or smth?
 	protected Point center;
 	protected double rotation = 0.0;
 	protected Velocity velocity;
-	protected boolean isDestroyed = false;
+	protected UUID id = UUID.randomUUID();
+	protected EntityEventHandler eventHandler;
 
 	protected AbstractEntity(Point center, Velocity velocity, double turningDegree, Dim dimensions) {
 		this.velocity = velocity;
 		this.center = center;
 		this.turningDegree = turningDegree;
 		this.dimensions = dimensions;
+		eventHandler = EventHandlerFactory.getEventHandler(EntityEventHandler.class);
 	}
 
 	@Override
+	public UUID getId() {
+		return id;
+	}
+
 	public Dim getDimensions() {
 		return new Dim(dimensions.getWidth(), dimensions.getHeight());
 	}
@@ -44,29 +49,15 @@ public abstract class AbstractEntity implements Entity {
 	@Override
 	public void setCenter(Point center) {
 		this.center = center;
-		notifyObservers(EntityProperty.CENTER, center);
-	}
-
-	protected void notifyObservers(EntityProperty property, Object newValue) {
-		observers.forEach(o -> {
-			Event event = new Event(newValue);
-			o.notify(property.toString(), event);
-		});
-	}
-
-	@Override
-	public void addObserver(IObserver observer) {
-		observers.add(observer);
+		eventHandler.notify(new MoveEvent(center, id));
 	}
 
 	protected void turnLeft() {
 		setRotation(rotation - turningDegree);
-		notifyObservers(EntityProperty.TURN_LEFT, true);
 	}
 
 	protected void turnRight() {
 		setRotation(rotation + turningDegree);
-		notifyObservers(EntityProperty.TURN_LEFT, true);
 	}
 
 	@Override
@@ -76,21 +67,19 @@ public abstract class AbstractEntity implements Entity {
 
 	protected void setRotation(double rotation) {
 		this.rotation = Trigonometry.normalizeDegree(rotation);
-		notifyObservers(EntityProperty.ROTATION, rotation);
+		eventHandler.notify(new RotationEvent(rotation, id));
 	}
 
 	@Override
-	public final boolean isDestroyed() {
-		return isDestroyed;
+	public void destroy() {
+		eventHandler.notify(new DestroyedEvent(id));
+		createDeathExplosion().ifPresent(explosion -> {
+			EventHandlerFactory.getEventHandler(CreateEventHandler.class)
+					.notify(new ExplosionCreateEvent(explosion));
+		});
 	}
 
-	@Override
-	public Optional<Explosion> destroy() {
-		isDestroyed = true;
-		notifyObservers(EntityProperty.IS_DESTROYED, true);
-		observers = new ArrayList<>(1);
-		return Optional.empty();
-	}
+	protected abstract Optional<Explosion> createDeathExplosion();
 
 	@Override
 	public void update() {
@@ -102,7 +91,7 @@ public abstract class AbstractEntity implements Entity {
 	}
 
 	@Override
-	public boolean intersectsWith(Entity other) {
+	public void intersectsWith(Entity other) {
 		Dim otherDim = other.getDimensions();
 		int otherWidth = otherDim.getWidth();
 		int otherHeight = otherDim.getHeight();
@@ -117,9 +106,8 @@ public abstract class AbstractEntity implements Entity {
 				thisX + width > otherX &&
 				thisY < otherY + otherHeight &&
 				thisY + height > otherY) {
-			return true;
+			eventHandler.notify(new IntersectEvent(other, id));
 		}
-		return false;
 	}
 
 	protected void handleOverflow() {

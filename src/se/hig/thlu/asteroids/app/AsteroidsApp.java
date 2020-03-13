@@ -1,13 +1,16 @@
 package se.hig.thlu.asteroids.app;
 
-import se.hig.thlu.asteroids.factory.DefaultFactory;
-import se.hig.thlu.asteroids.factory.EntityFactory;
-import se.hig.thlu.asteroids.gamestate.*;
+import se.hig.thlu.asteroids.model.entity.RandomizedFactory;
+import se.hig.thlu.asteroids.model.entity.EntityFactory;
+import se.hig.thlu.asteroids.gamestate.GameController;
+import se.hig.thlu.asteroids.gamestate.GameLoop;
+import se.hig.thlu.asteroids.gamestate.InputController;
+import se.hig.thlu.asteroids.gamestate.ScoreKeeper;
 import se.hig.thlu.asteroids.gamestate.command.CommandController;
 import se.hig.thlu.asteroids.graphics.adapter.imageadapter.AwtImageAdapter;
+import se.hig.thlu.asteroids.gui.eventlisteneradapter.AwtKeyboardAdapter;
 import se.hig.thlu.asteroids.gui.view.GUI;
 import se.hig.thlu.asteroids.gui.view.SwingGUI;
-import se.hig.thlu.asteroids.gui.eventlisteneradapter.AwtKeyboardAdapter;
 import se.hig.thlu.asteroids.model.entity.PlayerShip;
 import se.hig.thlu.asteroids.storage.AbstractImageLoader;
 import se.hig.thlu.asteroids.storage.ImageLoaderAwt;
@@ -18,6 +21,7 @@ import java.io.IOException;
 
 public class AsteroidsApp {
 
+	// TODO: Create start method that gets called after all wiring is done
 	// TODO: Create score keeping.
 	// TODO: Create game start menu.
 	// TODO: Create game end menu (score submission).
@@ -40,11 +44,10 @@ public class AsteroidsApp {
 		try {
 			ScoreKeeper scoreKeeper = new ScoreKeeper();
 			AbstractImageLoader<AwtImageAdapter> imgLoader = new ImageLoaderAwt();
-			EntityFactory factory = new DefaultFactory();
+			EntityFactory factory = new RandomizedFactory();
 			PlayerShip playerShip = factory.createPlayerShip();
 			CommandController cmdController = CommandController.createCommandController(playerShip);
 			GUI<AwtKeyboardAdapter> gui = new SwingGUI(imgLoader);
-			EventBus.getInstance().addObserver(gui);
 			GameController gameController = new GameController(factory, cmdController, playerShip);
 			GameLoop gameLoop = new GameLoop(gameController);
 			KeyAdapter inputController =

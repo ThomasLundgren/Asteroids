@@ -2,13 +2,62 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="912592ae-0182-4155-a100-0b05ae75298b" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/event/AbsEventHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/event/Event.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/event/EventHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/event/EventHandlerFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/event/IObservable.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/event/IObserver.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/event/create/AsteroidCreateEvent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/event/create/CreateEvent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/event/create/CreateEventHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/event/create/EnemyShipCreateEvent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/event/create/ExplosionCreateEvent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/event/create/MissileCreateEvent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/event/create/PlayerShipCreateEvent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/event/entity/AccelerationEvent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/event/entity/DestroyedEvent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/event/entity/EntityEvent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/event/entity/EntityEventHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/event/entity/IntersectEvent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/event/entity/MoveEvent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/event/entity/PlayerMoveEvent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/event/entity/RotationEvent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/event/gamestate/GameOverEvent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/event/gamestate/GameStateEvent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/event/gamestate/GameStateEventHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/event/gamestate/LevelClearedEvent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/event/gamestate/PenaltyScoreEvent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/event/gamestate/ScoreEvent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/model/entity/EntityFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/model/entity/Explosion.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/model/entity/RandomizedFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/gamestate/GameLoop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/gamestate/GameLoop.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/graphics/adapter/fontadapter/AwtFontAdapter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/graphics/drawer/MenuDrawer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/graphics/drawer/entitydrawer/drawingstrategy/DrawingParameters.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/graphics/drawer/entitydrawer/drawingstrategy/DrawingParameters.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/graphics/font/FontAdapter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/app/AsteroidsApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/app/AsteroidsApp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/factory/DefaultFactory.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/factory/EntityFactory.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/gamestate/EventBus.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/gamestate/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/gamestate/GameController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/gamestate/ScoreKeeper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/gamestate/ScoreKeeper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/graphics/drawer/entitydrawer/AccelerationDrawer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/graphics/drawer/entitydrawer/AccelerationDrawer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/graphics/drawer/entitydrawer/EntityDrawer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/graphics/drawer/entitydrawer/EntityDrawer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/graphics/drawer/entitydrawer/EntityDrawerDecorator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/graphics/drawer/entitydrawer/EntityDrawerDecorator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/gui/view/BackgroundPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/gui/view/BackgroundPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/gui/view/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/gui/view/GUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/gui/view/SwingGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/gui/view/SwingGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/model/Explosion.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/model/entity/AbstractEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/model/entity/AbstractEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/model/entity/Asteroid.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/model/entity/Asteroid.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/model/entity/EnemyShip.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/model/entity/EnemyShip.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/model/entity/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/model/entity/Entity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/model/entity/EntityProperty.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/model/entity/Missile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/model/entity/Missile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/model/entity/PlayerShip.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/model/entity/PlayerShip.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/model/entity/Shooter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/model/entity/Shooter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/observer/Event.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/observer/IObservable.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/se/hig/thlu/asteroids/observer/IObserver.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,16 +110,16 @@
       <recent name="se.hig.thlu.asteroids.model" />
       <recent name="test.se.hig.thlu.asteroids.model.velocity" />
     </key>
-    <key name="CreateClassDialog.RecentsKey">
-      <recent name="se.hig.thlu.asteroids.controller" />
-      <recent name="se.hig.thlu.asteroids.factory" />
-      <recent name="se.hig.thlu.asteroids.model" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\thoma\Documents\Dev\Projects\Asteroids\src" />
     </key>
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\thoma\Documents\Dev\Projects\Asteroids\src" />
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="se.hig.thlu.asteroids.controller" />
+      <recent name="se.hig.thlu.asteroids.factory" />
+      <recent name="se.hig.thlu.asteroids.model" />
     </key>
   </component>
   <component name="RunManager" selected="Application.AsteroidsApp">
@@ -174,10 +223,10 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="196" y="85" key="#Inspections" timestamp="1583704276297">
+    <state x="196" y="85" key="#Inspections" timestamp="1584094024946">
       <screen x="0" y="0" width="1273" height="768" />
     </state>
-    <state x="196" y="85" key="#Inspections/0.0.1273.768@0.0.1273.768" timestamp="1583704276297" />
+    <state x="196" y="85" key="#Inspections/0.0.1273.768@0.0.1273.768" timestamp="1584094024946" />
     <state x="228" y="0" width="816" height="768" key="#Intentions" timestamp="1583694041923">
       <screen x="0" y="0" width="1273" height="768" />
     </state>
@@ -198,10 +247,10 @@
       <screen x="0" y="0" width="1273" height="768" />
     </state>
     <state x="92" y="92" width="1089" height="584" key="#com.intellij.execution.junit2.states.ComparisonFailureState$DiffDialog/0.0.1273.768@0.0.1273.768" timestamp="1582761027456" />
-    <state x="406" y="85" width="530" height="568" key="#com.intellij.ide.util.MemberChooser" timestamp="1583851679639">
+    <state x="406" y="85" width="530" height="568" key="#com.intellij.ide.util.MemberChooser" timestamp="1584098097177">
       <screen x="0" y="0" width="1273" height="768" />
     </state>
-    <state x="406" y="85" width="530" height="568" key="#com.intellij.ide.util.MemberChooser/0.0.1273.768@0.0.1273.768" timestamp="1583851679639" />
+    <state x="406" y="85" width="530" height="568" key="#com.intellij.ide.util.MemberChooser/0.0.1273.768@0.0.1273.768" timestamp="1584098097177" />
     <state x="366" y="144" key="#com.intellij.ide.util.PackageChooserDialog" timestamp="1582754924687">
       <screen x="0" y="0" width="1273" height="768" />
     </state>
@@ -214,18 +263,18 @@
       <screen x="0" y="0" width="1273" height="768" />
     </state>
     <state x="340" y="152" key="#com.intellij.refactoring.memberPushDown.PushDownDialog/0.0.1273.768@0.0.1273.768" timestamp="1582716097197" />
-    <state x="432" y="269" width="410" height="237" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1582805679986">
+    <state x="432" y="269" width="410" height="237" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1584088639163">
       <screen x="0" y="0" width="1273" height="768" />
     </state>
-    <state x="432" y="269" width="410" height="237" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1273.768@0.0.1273.768" timestamp="1582805679986" />
+    <state x="432" y="269" width="410" height="237" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1273.768@0.0.1273.768" timestamp="1584088639163" />
     <state x="432" y="290" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages" timestamp="1583851572149">
       <screen x="0" y="0" width="1273" height="768" />
     </state>
     <state x="432" y="290" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages/0.0.1273.768@0.0.1273.768" timestamp="1583851572149" />
-    <state x="124" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1583714323001">
+    <state x="124" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1584095956473">
       <screen x="0" y="0" width="1273" height="768" />
     </state>
-    <state x="124" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1273.768@0.0.1273.768" timestamp="1583714323001" />
+    <state x="124" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1273.768@0.0.1273.768" timestamp="1584095956473" />
     <state x="478" y="294" key="#com.intellij.refactoring.replaceConstructorWithFactory.ReplaceConstructorWithFactoryDialog" timestamp="1583487371338">
       <screen x="0" y="0" width="1273" height="768" />
     </state>
@@ -238,26 +287,26 @@
       <screen x="0" y="0" width="1273" height="768" />
     </state>
     <state x="416" y="138" key="FileChooserDialogImpl/0.0.1273.768@0.0.1273.768" timestamp="1582807400936" />
-    <state width="1229" height="208" key="GridCell.Tab.0.bottom" timestamp="1584018832041">
+    <state width="1229" height="208" key="GridCell.Tab.0.bottom" timestamp="1584104452661">
       <screen x="0" y="0" width="1273" height="768" />
     </state>
     <state width="1143" height="192" key="GridCell.Tab.0.bottom/0.0.1187.720@0.0.1187.720" timestamp="1583529272130" />
-    <state width="1229" height="208" key="GridCell.Tab.0.bottom/0.0.1273.768@0.0.1273.768" timestamp="1584018832041" />
-    <state width="1229" height="208" key="GridCell.Tab.0.center" timestamp="1584018832041">
+    <state width="1229" height="208" key="GridCell.Tab.0.bottom/0.0.1273.768@0.0.1273.768" timestamp="1584104452661" />
+    <state width="1229" height="208" key="GridCell.Tab.0.center" timestamp="1584104452660">
       <screen x="0" y="0" width="1273" height="768" />
     </state>
     <state width="1143" height="192" key="GridCell.Tab.0.center/0.0.1187.720@0.0.1187.720" timestamp="1583529272129" />
-    <state width="1229" height="208" key="GridCell.Tab.0.center/0.0.1273.768@0.0.1273.768" timestamp="1584018832041" />
-    <state width="1229" height="208" key="GridCell.Tab.0.left" timestamp="1584018832041">
+    <state width="1229" height="208" key="GridCell.Tab.0.center/0.0.1273.768@0.0.1273.768" timestamp="1584104452660" />
+    <state width="1229" height="208" key="GridCell.Tab.0.left" timestamp="1584104452660">
       <screen x="0" y="0" width="1273" height="768" />
     </state>
     <state width="1143" height="192" key="GridCell.Tab.0.left/0.0.1187.720@0.0.1187.720" timestamp="1583529272099" />
-    <state width="1229" height="208" key="GridCell.Tab.0.left/0.0.1273.768@0.0.1273.768" timestamp="1584018832041" />
-    <state width="1229" height="208" key="GridCell.Tab.0.right" timestamp="1584018832041">
+    <state width="1229" height="208" key="GridCell.Tab.0.left/0.0.1273.768@0.0.1273.768" timestamp="1584104452660" />
+    <state width="1229" height="208" key="GridCell.Tab.0.right" timestamp="1584104452661">
       <screen x="0" y="0" width="1273" height="768" />
     </state>
     <state width="1143" height="192" key="GridCell.Tab.0.right/0.0.1187.720@0.0.1187.720" timestamp="1583529272129" />
-    <state width="1229" height="208" key="GridCell.Tab.0.right/0.0.1273.768@0.0.1273.768" timestamp="1584018832041" />
+    <state width="1229" height="208" key="GridCell.Tab.0.right/0.0.1273.768@0.0.1273.768" timestamp="1584104452661" />
     <state width="1230" height="177" key="GridCell.Tab.1.bottom" timestamp="1583505192082">
       <screen x="0" y="0" width="1273" height="768" />
     </state>
@@ -298,18 +347,18 @@
       <screen x="0" y="0" width="1273" height="768" />
     </state>
     <state x="445" y="301" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1273.768@0.0.1273.768" timestamp="1583692789754" />
-    <state x="407" y="87" width="494" height="563" key="com.intellij.testIntegration.createTest.CreateTestDialog" timestamp="1582760692882">
+    <state x="407" y="87" width="494" height="563" key="com.intellij.testIntegration.createTest.CreateTestDialog" timestamp="1584085248953">
       <screen x="0" y="0" width="1273" height="768" />
     </state>
-    <state x="407" y="87" width="494" height="563" key="com.intellij.testIntegration.createTest.CreateTestDialog/0.0.1273.768@0.0.1273.768" timestamp="1582760692882" />
+    <state x="407" y="87" width="494" height="563" key="com.intellij.testIntegration.createTest.CreateTestDialog/0.0.1273.768@0.0.1273.768" timestamp="1584085248953" />
     <state x="250" y="111" width="540" height="496" key="extract.method.dialog" timestamp="1582807218278">
       <screen x="0" y="0" width="1273" height="768" />
     </state>
     <state x="250" y="111" width="540" height="496" key="extract.method.dialog/0.0.1273.768@0.0.1273.768" timestamp="1582807218278" />
-    <state x="666" y="0" width="607" height="768" key="find.popup" timestamp="1583917311791">
+    <state x="666" y="0" width="607" height="768" key="find.popup" timestamp="1584103190571">
       <screen x="0" y="0" width="1273" height="768" />
     </state>
-    <state x="666" y="0" width="607" height="768" key="find.popup/0.0.1273.768@0.0.1273.768" timestamp="1583917311791" />
+    <state x="666" y="0" width="607" height="768" key="find.popup/0.0.1273.768@0.0.1273.768" timestamp="1584103190571" />
     <state x="343" y="6" key="refactoring.ChangeSignatureDialog" timestamp="1583713022808">
       <screen x="0" y="0" width="1273" height="768" />
     </state>
@@ -322,11 +371,11 @@
       <screen x="0" y="0" width="1273" height="768" />
     </state>
     <state x="228" y="42" key="scopes/0.0.1273.768@0.0.1273.768" timestamp="1582209063947" />
-    <state x="299" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1584018804049">
+    <state x="299" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1584105677975">
       <screen x="0" y="0" width="1273" height="768" />
     </state>
     <state x="279" y="83" width="672" height="636" key="search.everywhere.popup/0.0.1187.720@0.0.1187.720" timestamp="1583529226834" />
-    <state x="299" y="89" width="672" height="678" key="search.everywhere.popup/0.0.1273.768@0.0.1273.768" timestamp="1584018804049" />
+    <state x="299" y="89" width="672" height="678" key="search.everywhere.popup/0.0.1273.768@0.0.1273.768" timestamp="1584105677975" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Asteroids$AsteroidsApp.ic" NAME="AsteroidsApp Coverage Results" MODIFIED="1582873866383" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">

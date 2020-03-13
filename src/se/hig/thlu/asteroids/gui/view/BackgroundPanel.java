@@ -1,23 +1,24 @@
 package se.hig.thlu.asteroids.gui.view;
 
 import se.hig.thlu.asteroids.config.GameConfig;
-import se.hig.thlu.asteroids.gamestate.EventBus;
-import se.hig.thlu.asteroids.gamestate.GameController;
-import se.hig.thlu.asteroids.graphics.drawer.entitydrawer.AccelerationDrawer;
-import se.hig.thlu.asteroids.graphics.drawer.entitydrawer.AnimationDrawer;
-import se.hig.thlu.asteroids.graphics.drawer.Drawer;
-import se.hig.thlu.asteroids.graphics.drawer.entitydrawer.EntityDrawer;
-import se.hig.thlu.asteroids.graphics.drawer.entitydrawer.drawingstrategy.CenteredDrawingStrategy;
-import se.hig.thlu.asteroids.graphics.drawer.entitydrawer.drawingstrategy.DrawingParameters;
+import se.hig.thlu.asteroids.event.Event;
+import se.hig.thlu.asteroids.event.EventHandlerFactory;
+import se.hig.thlu.asteroids.event.IObserver;
+import se.hig.thlu.asteroids.event.create.CreateEventHandler;
+import se.hig.thlu.asteroids.event.create.ExplosionCreateEvent;
+import se.hig.thlu.asteroids.event.entity.EntityEventHandler;
 import se.hig.thlu.asteroids.graphics.adapter.graphicsadapter.AwtGraphicsAdapter;
 import se.hig.thlu.asteroids.graphics.adapter.graphicsadapter.GraphicsAdapter;
 import se.hig.thlu.asteroids.graphics.adapter.imageadapter.ImageAdapter;
+import se.hig.thlu.asteroids.graphics.drawer.Drawer;
+import se.hig.thlu.asteroids.graphics.drawer.entitydrawer.AccelerationDrawer;
+import se.hig.thlu.asteroids.graphics.drawer.entitydrawer.AnimationDrawer;
+import se.hig.thlu.asteroids.graphics.drawer.entitydrawer.EntityDrawer;
+import se.hig.thlu.asteroids.graphics.drawer.entitydrawer.drawingstrategy.CenteredDrawingStrategy;
+import se.hig.thlu.asteroids.graphics.drawer.entitydrawer.drawingstrategy.DrawingParameters;
 import se.hig.thlu.asteroids.model.Dim;
-import se.hig.thlu.asteroids.model.Explosion;
 import se.hig.thlu.asteroids.model.entity.*;
 import se.hig.thlu.asteroids.model.entity.Asteroid.AsteroidSize;
-import se.hig.thlu.asteroids.observer.Event;
-import se.hig.thlu.asteroids.observer.IObserver;
 import se.hig.thlu.asteroids.storage.AnimationResource;
 import se.hig.thlu.asteroids.storage.ImageLoader;
 import se.hig.thlu.asteroids.storage.ImageResource;
@@ -41,7 +42,8 @@ public final class BackgroundPanel extends JPanel implements IObserver {
 				new Dim(GameConfig.WINDOW_WIDTH, GameConfig.WINDOW_HEIGHT)));
 		setLayout(new BorderLayout());
 		setDoubleBuffered(true);
-		EventBus.getInstance().addObserver(this);
+		EventHandlerFactory.getEventHandler(CreateEventHandler.class)
+				.addObserver(this);
 	}
 
 	public void setImage(ImageAdapter image) {
@@ -76,20 +78,17 @@ public final class BackgroundPanel extends JPanel implements IObserver {
 	}
 
 	@Override
-	public void notify(String propertyName, Event event) {
+	public void notify(Event event) {
 //			if (propertyName.equals(ScoreKeeper.Score.SCORE_UPDATED.toString())) {
 //				updateScore(score);
 //			}
-		if (propertyName.equals(GameController.Action.ADD.toString())) {
-			Object newValue = event.getValue();
-			if (newValue instanceof Explosion) {
-				Explosion explosion = (Explosion) newValue;
-				Drawer explAnimation = createExplosionDrawer(explosion);
-				drawers.add(explAnimation);
-			} else if (newValue instanceof Entity) {
-				Optional<Drawer> entityDrawer = getDrawerFromEntity((Entity) event.getValue());
-				entityDrawer.ifPresent(drawers::add);
-			}
+		if (event.getTypeString().equals(ExplosionCreateEvent.class.toString())) {
+			Explosion explosion = (Explosion) event.getValue();
+			Drawer explAnimation = createExplosionDrawer(explosion);
+			drawers.add(explAnimation);
+		} else if (event.getValue() instanceof Entity) {
+			Optional<Drawer> entityDrawer = getDrawerFromEntity((Entity) event.getValue());
+			entityDrawer.ifPresent(drawers::add);
 		}
 	}
 
@@ -133,14 +132,15 @@ public final class BackgroundPanel extends JPanel implements IObserver {
 					imageLoader.getImage(ImageResource.PLAYER_SHIP_ACCELERATION_PNG, accelerationDim);
 			image = imageLoader.getImage(ImageResource.PLAYER_SHIP_PNG, entity.getDimensions());
 
-			Entity ent = (Entity) entity;
 			EntityDrawer shipDrawer = new EntityDrawer(new CenteredDrawingStrategy(),
-					DrawingParameters.fromEntity(ent, image));
-			EntityDrawer acceleration = new AccelerationDrawer(DrawingParameters.fromEntity(ent, accelerationImg),
+					DrawingParameters.fromEntity(entity, image));
+			EntityDrawer acceleration = new AccelerationDrawer(DrawingParameters.fromEntity(entity, accelerationImg),
 					shipDrawer);
 
-			ent.addObserver(acceleration);
-			ent.addObserver(shipDrawer);
+			EventHandlerFactory.getEventHandler(EntityEventHandler.class)
+					.addObserverMapping(entity.getId(), acceleration);
+			EventHandlerFactory.getEventHandler(EntityEventHandler.class)
+					.addObserverMapping(entity.getId(), shipDrawer);
 			return Optional.of(acceleration);
 		} else if (entity instanceof Missile) {
 			Missile missile = (Missile) entity;
@@ -152,17 +152,13 @@ public final class BackgroundPanel extends JPanel implements IObserver {
 		}
 
 		if (image != null) {
-			Entity ent = (Entity) entity;
 			EntityDrawer drawer = new EntityDrawer(new CenteredDrawingStrategy(),
-					DrawingParameters.fromEntity(ent, image));
-			ent.addObserver(drawer);
+					DrawingParameters.fromEntity(entity, image));
+			EventHandlerFactory.getEventHandler(EntityEventHandler.class)
+					.addObserverMapping(entity.getId(), drawer);
 			return Optional.of(drawer);
 		}
 		return Optional.empty();
 	}
-
-//	public void addDrawer(Drawer drawer) {
-//		drawers.add(drawer);
-//	}
 
 }

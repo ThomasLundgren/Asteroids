@@ -1,12 +1,15 @@
-package se.hig.thlu.asteroids.factory;
+package se.hig.thlu.asteroids.model.entity;
 
 import se.hig.thlu.asteroids.config.GameConfig;
+import se.hig.thlu.asteroids.event.EventHandlerFactory;
+import se.hig.thlu.asteroids.event.create.AsteroidCreateEvent;
+import se.hig.thlu.asteroids.event.create.EnemyShipCreateEvent;
+import se.hig.thlu.asteroids.event.create.CreateEventHandler;
+import se.hig.thlu.asteroids.event.create.PlayerShipCreateEvent;
+import se.hig.thlu.asteroids.event.entity.EntityEventHandler;
+import se.hig.thlu.asteroids.model.Point;
+import se.hig.thlu.asteroids.model.Velocity;
 import se.hig.thlu.asteroids.util.Randomizer;
-import se.hig.thlu.asteroids.model.*;
-import se.hig.thlu.asteroids.model.entity.Asteroid;
-import se.hig.thlu.asteroids.model.entity.EnemyShip;
-import se.hig.thlu.asteroids.model.entity.Entity;
-import se.hig.thlu.asteroids.model.entity.PlayerShip;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,9 +17,18 @@ import java.util.concurrent.ThreadLocalRandom;
 
 import static se.hig.thlu.asteroids.model.entity.Asteroid.AsteroidSize.LARGE;
 
-public final class DefaultFactory implements EntityFactory {
+public final class RandomizedFactory implements EntityFactory {
 
+	private PlayerShip playerShip;
 	private int level = 0;
+	private final EntityEventHandler entityHandler;
+	private final CreateEventHandler createHandler;
+
+	public RandomizedFactory() {
+		entityHandler = EventHandlerFactory.getEventHandler(EntityEventHandler.class);
+		createHandler = EventHandlerFactory.getEventHandler(CreateEventHandler.class);
+		playerShip = createPlayerShip();
+	}
 
 	@Override
 	public List<Entity> nextLevel(Point playerCenter) {
@@ -25,20 +37,10 @@ public final class DefaultFactory implements EntityFactory {
 		for (int i = 0; i < level; i++) {
 			Point randomPoint = randomPoint(playerCenter);
 			Asteroid newAsteroid = createLargeAsteroid(randomPoint);
+			createHandler.notify(new AsteroidCreateEvent(newAsteroid));
 			asteroids.add(newAsteroid);
 		}
 		return asteroids;
-	}
-
-	private Point randomPoint(Point playerCenter) {
-		Point randomPoint;
-		do {
-			int randomX = ThreadLocalRandom.current().nextInt(0, GameConfig.WINDOW_WIDTH);
-			int randomY = ThreadLocalRandom.current().nextInt(0, GameConfig.WINDOW_HEIGHT);
-			randomPoint = new Point((double) randomX, (double) randomY);
-		} while (randomPoint.distanceTo(playerCenter) < (double) GameConfig.ENEMY_SPAWN_MIN_DISTANCE);
-
-		return randomPoint;
 	}
 
 	@Override
@@ -62,12 +64,30 @@ public final class DefaultFactory implements EntityFactory {
 
 		EnemyShip enemyShip = new EnemyShip(direction);
 		enemyShip.setCenter(randomPoint);
+
+		entityHandler.addObserverMapping(playerShip.getId(), enemyShip);
+		createHandler.notify(new EnemyShipCreateEvent(enemyShip));
 		return enemyShip;
 	}
 
 	@Override
 	public PlayerShip createPlayerShip() {
-		return new PlayerShip();
+		if (playerShip == null) {
+			playerShip = new PlayerShip();
+		}
+		createHandler.notify(new PlayerShipCreateEvent(playerShip));
+		return playerShip;
+	}
+
+	private Point randomPoint(Point playerCenter) {
+		Point randomPoint;
+		do {
+			int randomX = ThreadLocalRandom.current().nextInt(0, GameConfig.WINDOW_WIDTH);
+			int randomY = ThreadLocalRandom.current().nextInt(0, GameConfig.WINDOW_HEIGHT);
+			randomPoint = new Point((double) randomX, (double) randomY);
+		} while (randomPoint.distanceTo(playerCenter) < (double) GameConfig.ENEMY_SPAWN_MIN_DISTANCE);
+
+		return randomPoint;
 	}
 
 	private Asteroid createLargeAsteroid(Point point) {
