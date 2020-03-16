@@ -1,10 +1,10 @@
 package se.hig.thlu.asteroids.event.create;
 
-import se.hig.thlu.asteroids.model.entity.Asteroid;
+import se.hig.thlu.asteroids.model.entity.Entity;
 
 public class AsteroidCreateEvent extends CreateEvent {
 
-	public AsteroidCreateEvent(Asteroid entity) {
+	public AsteroidCreateEvent(Entity entity) {
 		super(entity);
 	}
 }

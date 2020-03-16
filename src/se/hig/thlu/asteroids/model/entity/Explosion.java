@@ -51,8 +51,8 @@ public final class Explosion implements Entity {
 	}
 
 	@Override
-	public void intersectsWith(Entity other) {
-		//
+	public boolean intersectsWith(Entity other) {
+		return false;
 	}
 
 	@Override

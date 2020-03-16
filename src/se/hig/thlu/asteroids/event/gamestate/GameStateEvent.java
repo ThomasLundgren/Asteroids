@@ -4,13 +4,13 @@ import se.hig.thlu.asteroids.event.Event;
 
 import java.util.UUID;
 
-public abstract class GameStateEvent extends Event {
+public abstract class GameStateEvent<T> extends Event<T> {
 
-	public GameStateEvent(Object value) {
+	public GameStateEvent(T value) {
 		super(value);
 	}
 
-	public GameStateEvent(Object value, UUID id) {
+	public GameStateEvent(T value, UUID id) {
 		super(value, id);
 	}
 }

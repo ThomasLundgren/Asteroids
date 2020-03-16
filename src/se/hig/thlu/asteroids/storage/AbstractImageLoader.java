@@ -18,6 +18,7 @@ public abstract class AbstractImageLoader<T extends ImageAdapter> implements Ima
 			new EnumMap<>(AnimationResource.class);
 	protected final EnumMap<AnimationResource, Map<Dim, List<T>>> sizedAnimationCache =
 			new EnumMap<>(AnimationResource.class);
+	protected final Map<Class<?>, List<T>> classCache = new HashMap<>(15);
 
 	/*
 	Not handling the Exception here since we NEED all images.
@@ -42,10 +43,20 @@ public abstract class AbstractImageLoader<T extends ImageAdapter> implements Ima
 		return resizeAndCacheAnimation(animationResource, dimensions);
 	}
 
-
 	protected abstract List<T> spriteSheetToImageList(T spriteSheet, AnimationResource animation);
 
 	protected abstract T loadImageFromString(String path, int width, int height) throws IOException;
+
+	protected final void loadAllImages() throws IOException {
+		for (ImageResource imageResource : ImageResource.values()) {
+			T image = loadImage(imageResource);
+			imageCache.put(imageResource, image);
+		}
+		for (AnimationResource animationResource : AnimationResource.values()) {
+			T animation = loadAnimation(animationResource);
+			animationCache.put(animationResource, animation);
+		}
+	}
 
 	protected T loadImage(ImageResource image) throws IOException {
 		return loadImageFromString(image.getImagePath(),
@@ -59,17 +70,6 @@ public abstract class AbstractImageLoader<T extends ImageAdapter> implements Ima
 				animation.getHeight());
 		// TODO: Just store the Image instead. Split up into multiple Images when "getting" them.
 		return spriteSheet;
-	}
-
-	protected final void loadAllImages() throws IOException {
-		for (ImageResource imageResource : ImageResource.values()) {
-			T image = loadImage(imageResource);
-			imageCache.put(imageResource, image);
-		}
-		for (AnimationResource animationResource : AnimationResource.values()) {
-			T animation = loadAnimation(animationResource);
-			animationCache.put(animationResource, animation);
-		}
 	}
 
 	protected Optional<T> getFromImageResizeCache(ImageResource imageResource, Dim dimensions) {

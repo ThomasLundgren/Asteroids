@@ -4,7 +4,7 @@ import se.hig.thlu.asteroids.model.Point;
 
 import java.util.UUID;
 
-public class PlayerMoveEvent extends EntityEvent {
+public class PlayerMoveEvent extends EntityEvent<Point> {
 
 	public PlayerMoveEvent(Point position, UUID entityId) {
 		super(position, entityId);

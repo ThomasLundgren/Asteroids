@@ -49,7 +49,8 @@ public abstract class AbstractEntity implements Entity {
 	@Override
 	public void setCenter(Point center) {
 		this.center = center;
-		eventHandler.notify(new MoveEvent(center, id));
+		MoveEvent moveEvent = new MoveEvent(center, id);
+		eventHandler.notify(moveEvent);
 	}
 
 	protected void turnLeft() {
@@ -72,7 +73,7 @@ public abstract class AbstractEntity implements Entity {
 
 	@Override
 	public void destroy() {
-		eventHandler.notify(new DestroyedEvent(id));
+		eventHandler.notify(new DestroyedEvent(this, id));
 		createDeathExplosion().ifPresent(explosion -> {
 			EventHandlerFactory.getEventHandler(CreateEventHandler.class)
 					.notify(new ExplosionCreateEvent(explosion));
@@ -91,7 +92,7 @@ public abstract class AbstractEntity implements Entity {
 	}
 
 	@Override
-	public void intersectsWith(Entity other) {
+	public boolean intersectsWith(Entity other) {
 		Dim otherDim = other.getDimensions();
 		int otherWidth = otherDim.getWidth();
 		int otherHeight = otherDim.getHeight();
@@ -106,8 +107,9 @@ public abstract class AbstractEntity implements Entity {
 				thisX + width > otherX &&
 				thisY < otherY + otherHeight &&
 				thisY + height > otherY) {
-			eventHandler.notify(new IntersectEvent(other, id));
+			return true;
 		}
+		return false;
 	}
 
 	protected void handleOverflow() {

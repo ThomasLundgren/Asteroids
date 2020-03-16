@@ -27,7 +27,6 @@ public class ScoreKeeper implements IObserver {
 		score += (long) entity.getScore();
 		EventHandlerFactory.getEventHandler(GameStateEventHandler.class)
 				.notify(new ScoreEvent(score));
-		System.out.println(score);
 	}
 
 	private void levelCleared(double timeToClear) {

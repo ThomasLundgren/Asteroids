@@ -1,8 +1,10 @@
 package se.hig.thlu.asteroids.model.entity;
 
+import se.hig.thlu.asteroids.config.GameConfig;
 import se.hig.thlu.asteroids.event.EventHandlerFactory;
 import se.hig.thlu.asteroids.event.create.CreateEventHandler;
 import se.hig.thlu.asteroids.event.create.ExplosionCreateEvent;
+import se.hig.thlu.asteroids.event.create.MissileCreateEvent;
 import se.hig.thlu.asteroids.event.entity.AccelerationEvent;
 import se.hig.thlu.asteroids.event.entity.DestroyedEvent;
 import se.hig.thlu.asteroids.event.entity.PlayerMoveEvent;
@@ -30,6 +32,7 @@ public final class PlayerShip extends AbstractEntity implements Shooter {
 				5.0,
 				new Dim(35,
 						26));
+		center();
 	}
 
 	@Override
@@ -75,11 +78,17 @@ public final class PlayerShip extends AbstractEntity implements Shooter {
 			gameState.notify(new GameOverEvent());
 		} else {
 			velocity = new Velocity();
+			center();
 		}
 		Optional<Explosion> explosion = createDeathExplosion();
-		eventHandler.notify(new DestroyedEvent(id));
+		eventHandler.notify(new DestroyedEvent(this, id));
 		EventHandlerFactory.getEventHandler(CreateEventHandler.class)
 				.notify(new ExplosionCreateEvent(explosion.get()));
+	}
+
+	private void center() {
+		setCenter(new Point((double) (GameConfig.WINDOW_WIDTH / 2),
+				(double) (GameConfig.WINDOW_HEIGHT / 2)));
 	}
 
 	@Override
@@ -89,12 +98,17 @@ public final class PlayerShip extends AbstractEntity implements Shooter {
 
 	// TODO: Change this to a "component/action"
 	public void shoot() {
+		if (ticksSinceLastShot < MissileSource.PLAYER.getCoolDown()) {
+			return;
+		}
 		ticksSinceLastShot = 0;
 		double centerFrontDistance = ((double) getDimensions().getWidth() / 2.0);
 		Point missileStart = Trigonometry.rotateAroundPoint(center,
 				rotation,
 				centerFrontDistance);
 		Missile missile = new Missile(missileStart, rotation, MissileSource.PLAYER, 0.6);
+		EventHandlerFactory.getEventHandler(CreateEventHandler.class)
+				.notify(new MissileCreateEvent(missile));
 	}
 
 	@Override
@@ -106,8 +120,6 @@ public final class PlayerShip extends AbstractEntity implements Shooter {
 	public void update() {
 		super.update();
 		ticksSinceLastShot++;
-		if (ticksSinceLastShot > MissileSource.PLAYER.getCoolDown()) {
-			shoot();
-		}
 	}
+
 }

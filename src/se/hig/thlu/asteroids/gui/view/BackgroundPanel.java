@@ -68,6 +68,7 @@ public final class BackgroundPanel extends JPanel implements IObserver {
 		Dimension dim = getSize();
 		graphics.drawImage(image, 0, 0, dim.width, dim.height);
 
+		// TODO: Replace with iterator?
 		drawers.forEach(drawer -> {
 			drawer.draw(graphics);
 			if (drawer.isFinished()) {
@@ -82,7 +83,7 @@ public final class BackgroundPanel extends JPanel implements IObserver {
 //			if (propertyName.equals(ScoreKeeper.Score.SCORE_UPDATED.toString())) {
 //				updateScore(score);
 //			}
-		if (event.getTypeString().equals(ExplosionCreateEvent.class.toString())) {
+		if (event.toString().equals(ExplosionCreateEvent.class.toString())) {
 			Explosion explosion = (Explosion) event.getValue();
 			Drawer explAnimation = createExplosionDrawer(explosion);
 			drawers.add(explAnimation);

@@ -26,6 +26,7 @@ public class AsteroidsApp {
 	// TODO: Create game start menu.
 	// TODO: Create game end menu (score submission).
 	// TODO: Create animation and logic for when player loses a life or dies.
+	// TODO: Randomize EnemyShip shot cooldown.
 	// TODO: New class FontLoader to load fonts.
 	// TODO: Use polymorfism or just Factory Methods to create Asteroids and Explosions of different sizes instead of
 	//  Enums.
@@ -45,9 +46,9 @@ public class AsteroidsApp {
 			ScoreKeeper scoreKeeper = new ScoreKeeper();
 			AbstractImageLoader<AwtImageAdapter> imgLoader = new ImageLoaderAwt();
 			EntityFactory factory = new RandomizedFactory();
+			GUI<AwtKeyboardAdapter> gui = new SwingGUI(imgLoader);
 			PlayerShip playerShip = factory.createPlayerShip();
 			CommandController cmdController = CommandController.createCommandController(playerShip);
-			GUI<AwtKeyboardAdapter> gui = new SwingGUI(imgLoader);
 			GameController gameController = new GameController(factory, cmdController, playerShip);
 			GameLoop gameLoop = new GameLoop(gameController);
 			KeyAdapter inputController =

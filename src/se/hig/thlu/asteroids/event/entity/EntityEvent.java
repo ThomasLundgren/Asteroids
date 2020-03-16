@@ -4,13 +4,13 @@ import se.hig.thlu.asteroids.event.Event;
 
 import java.util.UUID;
 
-public abstract class EntityEvent extends Event {
+public abstract class EntityEvent<T> extends Event<T> {
 
-	public EntityEvent(Object value, UUID id) {
+	public EntityEvent(T value, UUID id) {
 		super(value, id);
 	}
 
-	public EntityEvent(Object value) {
+	public EntityEvent(T value) {
 		super(value);
 	}
 

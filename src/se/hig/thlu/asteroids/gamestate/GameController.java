@@ -1,12 +1,17 @@
 package se.hig.thlu.asteroids.gamestate;
 
 import se.hig.thlu.asteroids.config.GameConfig;
+import se.hig.thlu.asteroids.event.Event;
 import se.hig.thlu.asteroids.event.EventHandlerFactory;
+import se.hig.thlu.asteroids.event.IObserver;
+import se.hig.thlu.asteroids.event.create.CreateEventHandler;
+import se.hig.thlu.asteroids.event.create.MissileCreateEvent;
+import se.hig.thlu.asteroids.event.entity.DestroyedEvent;
+import se.hig.thlu.asteroids.event.entity.EntityEventHandler;
 import se.hig.thlu.asteroids.event.gamestate.GameStateEventHandler;
 import se.hig.thlu.asteroids.event.gamestate.LevelClearedEvent;
 import se.hig.thlu.asteroids.gamestate.command.CommandController;
 import se.hig.thlu.asteroids.gamestate.command.CommandController.CommandType;
-import se.hig.thlu.asteroids.model.Point;
 import se.hig.thlu.asteroids.model.entity.*;
 
 import java.math.BigDecimal;
@@ -14,7 +19,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-public final class GameController {
+public final class GameController implements IObserver {
 
 	// TODO: Create start() method that start gameloop
 	private final CommandController commandController;
@@ -25,7 +30,6 @@ public final class GameController {
 	private BigDecimal totalGameTime = new BigDecimal("0.0");
 	private double currentLevelTime = 0.0;
 	private double enemyShipSpawnTimer = 0.0;
-	private boolean canShoot = true;
 
 	public GameController(EntityFactory factory,
 						  CommandController commandController,
@@ -33,7 +37,10 @@ public final class GameController {
 		this.factory = factory;
 		this.commandController = commandController;
 		this.playerShip = playerShip;
-		centerPlayerShip();
+		EventHandlerFactory.getEventHandler(CreateEventHandler.class)
+				.addObserver(this);
+		EventHandlerFactory.getEventHandler(EntityEventHandler.class)
+				.addObserver(this);
 	}
 
 	public void update(double delta) {
@@ -80,23 +87,20 @@ public final class GameController {
 	}
 
 	private void checkCollisions() {
-//		for (Entity enemy : enemies) {
-//			if (playerShip.intersectsWith(enemy)) {
-//				collideEntities(playerShip, enemy);
-//			}
-//			for (Missile missile : missiles) {
-//				if (missile.intersectsWith(enemy)) {
-//					collideEntities(missile, enemy);
-//				} else if (missile.isDestroyed()) {
-//					// Missile has selfdestructed
-//					missiles.remove(missile);
-//				}
-//			}
-//			if (enemy.isDestroyed()) {
-//				enemies.remove(enemy);
-//			}
-//		}
+		for (Entity enemy : enemies) {
+			if (playerShip.intersectsWith(enemy)) {
+				collideEntities(playerShip, enemy);
+			}
+			for (Missile missile : missiles) {
+				if (missile.intersectsWith(enemy)) {
+					counter++;
+					collideEntities(missile, enemy);
+				}
+			}
+		}
 	}
+
+	private int counter = 0;
 
 	public void handleKeyPressed(InputController.PressedKey key) {
 		switch (key) {
@@ -140,19 +144,37 @@ public final class GameController {
 	}
 
 	private void collideEntities(Entity friendly, Entity enemy) {
-		if (friendly == playerShip) {
-			centerPlayerShip();
-		}
 		if (enemy instanceof Shatterable) {
 			List<Entity> newAsteroids = ((Shatterable) enemy).shatter();
 			enemies.addAll(newAsteroids);
 		}
+		friendly.destroy();
+		enemy.destroy();
+		if (friendly instanceof Missile) {
+			missiles.remove(friendly);
+		}
 		enemies.remove(enemy);
 	}
 
-	private void centerPlayerShip() {
-		playerShip.setCenter(new Point((double) (GameConfig.WINDOW_WIDTH / 2),
-				(double) (GameConfig.WINDOW_HEIGHT / 2)));
+	@Override
+	public void notify(Event event) {
+		if (event instanceof MissileCreateEvent) {
+			Missile missile = (Missile) event.getValue();
+			if (missile.getMissileSource() == Missile.MissileSource.PLAYER) {
+				missiles.add(missile);
+			} else {
+				enemies.add(missile);
+			}
+		}
+		if (event instanceof DestroyedEvent) {
+			if (event.getValue() instanceof Missile) {
+				Missile missile = (Missile) event.getValue();
+				if (missile.getMissileSource() == Missile.MissileSource.PLAYER) {
+					missiles.remove(missile);
+				} else {
+					enemies.remove(missile);
+				}
+			}
+		}
 	}
-
 }

@@ -21,7 +21,7 @@ public interface Entity {
 
 	void update();
 
-	void intersectsWith(Entity other);
+	boolean intersectsWith(Entity other);
 
 	int getScore();
 

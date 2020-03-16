@@ -2,22 +2,22 @@ package se.hig.thlu.asteroids.event;
 
 import java.util.UUID;
 
-public abstract class Event {
+public abstract class Event<T> {
 
-	private final Object value;
+	private final T value;
 	private final UUID id;
 
-	public Event(Object value) {
+	public Event(T value) {
 		this.value = value;
 		id = UUID.randomUUID();
 	}
 
-	public Event(Object value, UUID id) {
+	public Event(T value, UUID id) {
 		this.value = value;
 		this.id = id;
 	}
 
-	public Object getValue() {
+	public T getValue() {
 		return value;
 	}
 
@@ -25,8 +25,12 @@ public abstract class Event {
 		return id;
 	}
 
-	public String getTypeString() {
-		return getClass().toString();
+	public boolean is(Class<? extends Event<?>> eventClass) {
+		return this.getClass() == eventClass;
 	}
 
+	@Override
+	public String toString() {
+		return getClass().toString();
+	}
 }
