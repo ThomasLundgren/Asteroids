@@ -12,7 +12,6 @@ public enum AnimationResource {
 	private final String imagePath;
 	private final int width, height, rows, columns;
 
-	// TODO: Move width and height out to Entity classes
 	AnimationResource(String imagePath, int width, int height, int rows, int columns) {
 		this.imagePath = imagePath;
 		this.width = width;

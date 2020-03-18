@@ -17,7 +17,6 @@ public abstract class AbstractEntity implements Entity {
 
 	protected final double turningDegree;
 	private final Dim dimensions;
-	// TODO: Extract the three rows below into separate object Position or smth?
 	protected Point center;
 	protected double rotation = 0.0;
 	protected Velocity velocity;

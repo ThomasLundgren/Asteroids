@@ -13,7 +13,7 @@ import se.hig.thlu.asteroids.model.entity.Entity;
 
 public class ScoreKeeper implements IObserver {
 
-	private static double CLEAR_TIME_PENALTY_FACTOR = 0.001;
+	private static double CLEAR_TIME_PENALTY_FACTOR = 0.01;
 	private long score = 0L;
 
 	public ScoreKeeper() {

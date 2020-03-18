@@ -21,22 +21,6 @@ import java.io.IOException;
 
 public class AsteroidsApp {
 
-	// TODO: Create start method that gets called after all wiring is done
-	// TODO: Create score keeping.
-	// TODO: Create game start menu.
-	// TODO: Create game end menu (score submission).
-	// TODO: Create animation and logic for when player loses a life or dies.
-	// TODO: Randomize EnemyShip shot cooldown.
-	// TODO: New class FontLoader to load fonts.
-	// TODO: Use polymorfism or just Factory Methods to create Asteroids and Explosions of different sizes instead of
-	//  Enums.
-	// TODO: Refactor GameController.
-	// TODO: Refactor SwingGUI: split into different classes. Make loading of Animations/Images run at startup
-	//  to avoid lag.
-	// TODO: Uncouple GUI from Swing/AWT (by creating an ABC?).
-	// TODO: Change PlayerShip image to a better looking one.
-	// TODO: Refactor to Entity-Component-like model?
-
 	public static void main(String[] args) {
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
@@ -57,8 +41,6 @@ public class AsteroidsApp {
 			gui.addEventListener(keyboardAdapter);
 
 			gameLoop.run();
-//			Thread thread = new Thread(gameLoop);
-//			thread.start();
 
 		} catch (IOException e) {
 			e.printStackTrace();

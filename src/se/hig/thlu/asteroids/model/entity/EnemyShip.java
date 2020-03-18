@@ -19,14 +19,15 @@ public final class EnemyShip extends AbstractEntity implements Shooter, IObserve
 
 	private static final double ENEMY_SHIP_SPEED = 2.0;
 	private int ticksSinceLastShot = 1337;
-	private Point playerPosition = new Point();
+	private Point playerPosition;
 
-	EnemyShip(double direction) {
+	EnemyShip(double direction, Point playerPosition) {
 		super(new Point(),
 				new Velocity(ENEMY_SHIP_SPEED, direction),
 				0.0,
 				new Dim(23,
 						16));
+		this.playerPosition = playerPosition;
 		setRotation(direction);
 	}
 

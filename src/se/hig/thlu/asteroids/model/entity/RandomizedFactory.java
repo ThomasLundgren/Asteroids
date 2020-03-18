@@ -62,7 +62,7 @@ public final class RandomizedFactory implements EntityFactory {
 			yDistanceToPlayer = StrictMath.abs((double) randomY - playerCenter.getY());
 		} while (yDistanceToPlayer < ((double) GameConfig.WINDOW_WIDTH / 4.0));
 
-		EnemyShip enemyShip = new EnemyShip(direction);
+		EnemyShip enemyShip = new EnemyShip(direction, playerCenter);
 		enemyShip.setCenter(randomPoint);
 
 		entityHandler.addObserverMapping(playerShip.getId(), enemyShip);

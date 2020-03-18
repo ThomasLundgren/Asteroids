@@ -30,4 +30,5 @@ public class SwingGUI extends JFrame implements GUI<AwtKeyboardAdapter> {
 		setLocationRelativeTo(null);
 		setVisible(true);
 	}
+
 }

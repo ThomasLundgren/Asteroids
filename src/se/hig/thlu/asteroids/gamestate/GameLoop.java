@@ -19,8 +19,8 @@ public class GameLoop implements Runnable {
 
 	public void run() {
 		long lastLoopTime = System.nanoTime();
-		long lastFpsTime = 0L;
-		int fps = 0;
+//		long lastFpsTime = 0L;
+//		int fps = 0;
 
 		while (isRunning) {
 			long now = System.nanoTime();

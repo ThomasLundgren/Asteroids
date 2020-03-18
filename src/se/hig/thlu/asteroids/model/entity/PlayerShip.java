@@ -6,7 +6,7 @@ import se.hig.thlu.asteroids.event.create.CreateEventHandler;
 import se.hig.thlu.asteroids.event.create.ExplosionCreateEvent;
 import se.hig.thlu.asteroids.event.create.MissileCreateEvent;
 import se.hig.thlu.asteroids.event.entity.AccelerationEvent;
-import se.hig.thlu.asteroids.event.entity.DestroyedEvent;
+import se.hig.thlu.asteroids.event.entity.LoseLifeEvent;
 import se.hig.thlu.asteroids.event.entity.PlayerMoveEvent;
 import se.hig.thlu.asteroids.event.gamestate.GameOverEvent;
 import se.hig.thlu.asteroids.event.gamestate.GameStateEventHandler;
@@ -72,18 +72,19 @@ public final class PlayerShip extends AbstractEntity implements Shooter {
 
 	@Override
 	public void destroy() {
-		lives--;
 		if (lives == 1) {
-			GameStateEventHandler gameState = EventHandlerFactory.getEventHandler(GameStateEventHandler.class);
-			gameState.notify(new GameOverEvent());
+			EventHandlerFactory.getEventHandler(GameStateEventHandler.class)
+					.notify(new GameOverEvent());
 		} else {
 			velocity = new Velocity();
-			center();
+			EventHandlerFactory.getEventHandler(CreateEventHandler.class)
+					.notify(new LoseLifeEvent(lives));
 		}
+		lives--;
 		Optional<Explosion> explosion = createDeathExplosion();
-		eventHandler.notify(new DestroyedEvent(this, id));
 		EventHandlerFactory.getEventHandler(CreateEventHandler.class)
 				.notify(new ExplosionCreateEvent(explosion.get()));
+		center();
 	}
 
 	private void center() {
@@ -96,7 +97,6 @@ public final class PlayerShip extends AbstractEntity implements Shooter {
 		return Optional.of(new Explosion(center, Explosion.ExplosionSize.THREE));
 	}
 
-	// TODO: Change this to a "component/action"
 	public void shoot() {
 		if (ticksSinceLastShot < MissileSource.PLAYER.getCoolDown()) {
 			return;

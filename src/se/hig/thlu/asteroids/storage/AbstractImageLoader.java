@@ -68,7 +68,6 @@ public abstract class AbstractImageLoader<T extends ImageAdapter> implements Ima
 		T spriteSheet = loadImageFromString(animation.getImagePath(),
 				animation.getWidth(),
 				animation.getHeight());
-		// TODO: Just store the Image instead. Split up into multiple Images when "getting" them.
 		return spriteSheet;
 	}
 

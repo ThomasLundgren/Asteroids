@@ -2,6 +2,7 @@ package se.hig.thlu.asteroids.graphics.drawer.entitydrawer;
 
 import se.hig.thlu.asteroids.event.Event;
 import se.hig.thlu.asteroids.event.entity.AccelerationEvent;
+import se.hig.thlu.asteroids.event.entity.DestroyedEvent;
 import se.hig.thlu.asteroids.graphics.adapter.graphicsadapter.GraphicsAdapter;
 import se.hig.thlu.asteroids.graphics.adapter.imageadapter.ImageAdapter;
 import se.hig.thlu.asteroids.graphics.drawer.entitydrawer.drawingstrategy.AbstractDrawingStrategy;
@@ -18,7 +19,9 @@ public class AccelerationDrawer extends EntityDrawerDecorator {
 
 	@Override
 	public void notify(Event event) {
-		super.notify(event);
+		if (!(event instanceof DestroyedEvent)) {
+			super.notify(event);
+		}
 		if (event.toString().equals(AccelerationEvent.class.toString())) {
 			isAccelerating = (boolean) event.getValue();
 		}

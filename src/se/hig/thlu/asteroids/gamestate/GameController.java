@@ -10,6 +10,7 @@ import se.hig.thlu.asteroids.event.entity.DestroyedEvent;
 import se.hig.thlu.asteroids.event.entity.EntityEventHandler;
 import se.hig.thlu.asteroids.event.gamestate.GameStateEventHandler;
 import se.hig.thlu.asteroids.event.gamestate.LevelClearedEvent;
+import se.hig.thlu.asteroids.event.gamestate.NextLevelEvent;
 import se.hig.thlu.asteroids.gamestate.command.CommandController;
 import se.hig.thlu.asteroids.gamestate.command.CommandController.CommandType;
 import se.hig.thlu.asteroids.model.entity.*;
@@ -21,7 +22,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 public final class GameController implements IObserver {
 
-	// TODO: Create start() method that start gameloop
+	private static final double INVINCIBILITY_TIME = 250.0;
 	private final CommandController commandController;
 	private final PlayerShip playerShip;
 	private final Collection<Missile> missiles = new CopyOnWriteArrayList<>();
@@ -30,6 +31,8 @@ public final class GameController implements IObserver {
 	private BigDecimal totalGameTime = new BigDecimal("0.0");
 	private double currentLevelTime = 0.0;
 	private double enemyShipSpawnTimer = 0.0;
+	private int level = 0;
+	private double invincibilityTimer = 0.0;
 
 	public GameController(EntityFactory factory,
 						  CommandController commandController,
@@ -45,7 +48,7 @@ public final class GameController implements IObserver {
 
 	public void update(double delta) {
 		updateTimes(delta);
-		spawnEnemies();
+		spawnEnemies(delta);
 		executeActiveCommands();
 		updateEntities();
 		checkCollisions();
@@ -57,10 +60,13 @@ public final class GameController implements IObserver {
 		updateEntity(playerShip);
 	}
 
-	private void spawnEnemies() {
+	private void spawnEnemies(double delta) {
 		if (enemies.isEmpty()) {
+			level++;
 			EventHandlerFactory.getEventHandler(GameStateEventHandler.class)
 					.notify(new LevelClearedEvent(currentLevelTime));
+			EventHandlerFactory.getEventHandler(GameStateEventHandler.class)
+					.notify(new NextLevelEvent(level));
 			currentLevelTime = 0.0;
 			List<Entity> newEnemies = factory.nextLevel(playerShip.getCenter());
 			enemies.addAll(newEnemies);
@@ -81,6 +87,9 @@ public final class GameController implements IObserver {
 	}
 
 	private void updateTimes(double delta) {
+		if (invincibilityTimer > 0.0) {
+			invincibilityTimer -= delta;
+		}
 		totalGameTime = totalGameTime.add(new BigDecimal(delta));
 		currentLevelTime += delta;
 		enemyShipSpawnTimer += delta;
@@ -89,18 +98,18 @@ public final class GameController implements IObserver {
 	private void checkCollisions() {
 		for (Entity enemy : enemies) {
 			if (playerShip.intersectsWith(enemy)) {
-				collideEntities(playerShip, enemy);
+				if (invincibilityTimer <= 0.0) {
+					collideEntities(playerShip, enemy);
+					invincibilityTimer = INVINCIBILITY_TIME;
+				}
 			}
 			for (Missile missile : missiles) {
 				if (missile.intersectsWith(enemy)) {
-					counter++;
 					collideEntities(missile, enemy);
 				}
 			}
 		}
 	}
-
-	private int counter = 0;
 
 	public void handleKeyPressed(InputController.PressedKey key) {
 		switch (key) {

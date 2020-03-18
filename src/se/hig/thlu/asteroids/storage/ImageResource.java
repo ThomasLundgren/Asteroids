@@ -36,7 +36,6 @@ public enum ImageResource {
 	private final String imagePath;
 	private final int width, height;
 
-	// TODO: Move width and height out to Entity classes
 	ImageResource(String imagePath, int width, int height) {
 		this.imagePath = imagePath;
 		this.width = width;
